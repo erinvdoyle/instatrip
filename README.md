@@ -7,7 +7,6 @@
 
 [Visit the deployed site](https://)
 
-
 # **Introduction**
 
 Welcome to **Instatrip**, where 
