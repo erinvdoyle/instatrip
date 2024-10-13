@@ -468,7 +468,7 @@ All tutorials used have been credited throughout the code. Tutorials were consul
 
 ### Python Tutorials
 
-[Tutorial summary and title"](https://)
+["Python Datetime" Tutorial](https://www.w3schools.com/python/python_datetime.asp)
 
 [Tutorial summary and title"](https://)
 
