@@ -166,8 +166,12 @@ def adjust_city_scores(top_cities, ratings):
 
     return adjusted_cities[:3]  
 
+# Library for Ryanair API provided by https://github.com/cohaolain/ryanair-py
+
 def find_cheapest_flights(top_cities, trip_details):
-    """Finds the cheapest flights to each of the top cities using Ryanair API."""
+    """
+    Finds the cheapest flights to each of the top cities using Ryanair API.
+    """
     
     api = Ryanair(currency="EUR")  # Initialize Ryanair API instance
     
@@ -176,9 +180,9 @@ def find_cheapest_flights(top_cities, trip_details):
     flights_info = {}
     
     for city_name in top_cities:
-        destination_code = city_name[0]  # Assuming city name corresponds directly to airport code
+        destination_code = city_name[0]  
         
-        # Get departure date range based on flexibility
+        
         departure_dates = [travel_date]
         
         if trip_details['flexibility'] == 'yes':
@@ -197,7 +201,7 @@ def find_cheapest_flights(top_cities, trip_details):
             flights = api.get_cheapest_flights("DUB", departure_date.date(), departure_date.date())
             
             if flights: 
-                flight_info = flights[0]  # Get first flight info
+                flight_info = flights[0]  
                 flight_price_info = {
                     'flight_number': flight_info.flightNumber,
                     'price': flight_info.price,
@@ -215,6 +219,9 @@ def find_cheapest_flights(top_cities, trip_details):
     return flights_info
 
 def main():
+    """
+    Provides the main functionality of the program using all other functions to do so
+    """
     greeting() 
     
     trip_details = get_trip_details()  
@@ -228,12 +235,22 @@ def main():
         print("Top 3 suitable cities:")
         for city in top_cities:
             print(city[0])  
+        
         ratings = rate_importance()  
         final_top_cities = adjust_city_scores(top_cities, ratings)  
-
+        
         print("\nFinal Top Cities Considering Importance Ratings:")
         for city in final_top_cities:
             print(city[0])  
+            
+            flights_info = find_cheapest_flights(final_top_cities, trip_details)  
+            
+            print("\nCheapest Flights Information:")
+            for city_name, flight in flights_info.items():
+                if flight: 
+                    print(f"{city_name}: Flight Number: {flight['flight_number']}, Price: {flight['price']} {flight['currency']}, Departure Time: {flight['departure_time']}")
+                else:
+                    print(f"{city_name}: No flights found.")
 
 if __name__ == "__main__":
-    main()    
+    main()
