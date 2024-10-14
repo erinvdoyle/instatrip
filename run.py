@@ -51,12 +51,40 @@ def get_trip_details():
 
     return {
         'travel_date': travel_date,
-        'date_flexibility': date_flexibility,
+        #'date_flexibility': date_flexibility,
         'length_of_stay': length_of_stay
     }
+
+    #def get_user_preferences():
+
+def type_of_trip():
+    """
+    Determines the occasion for the trip.
+    """
+    print("Please select the most applicable choice for your trip:")
+    options = ["romantic", "solo travel", "hen party", "friends and family"]
+    
+    for i, option in enumerate(options, start=1):
+        print(f"{i}. {option}")
+
+    while True:
+        try:
+            choice = int(input("Enter the number corresponding to your choice: "))
+            if 1 <= choice <= len(options):
+                selected_trip_type = options[choice - 1]
+                print(f"You selected: {selected_trip_type}")
+                return selected_trip_type
+            else:
+                print("Invalid choice. Please select a number from the list.")
+        except ValueError:
+            print("Please enter a valid number.")
+
+
+
 
 
     
 
 greeting()
 get_trip_details()
+type_of_trip()
