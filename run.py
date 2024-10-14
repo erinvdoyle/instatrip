@@ -165,9 +165,26 @@ def adjust_city_scores(top_cities, ratings):
 
     return adjusted_cities[:3]  
 
+def main():
+    greeting() 
+    
+    trip_details = get_trip_details()  
+    
+    if trip_details:  
+        selected_trip_type = type_of_trip()  
+        selected_factors = important_factors()  
+        
+        top_cities = rank_cities(SHEET, selected_trip_type, selected_factors)  
+        
+        print("Top 3 suitable cities:")
+        for city in top_cities:
+            print(city[0])  
+        ratings = rate_importance()  
+        final_top_cities = adjust_city_scores(top_cities, ratings)  
 
-#greeting()
-#get_trip_details()
-#type_of_trip()
-#important_factors()
-#rank_cities(SHEET, selected_trip_type, selected_factors)    
+        print("\nFinal Top Cities Considering Importance Ratings:")
+        for city in final_top_cities:
+            print(city[0])  
+
+if __name__ == "__main__":
+    main()    
