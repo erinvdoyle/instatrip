@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from datetime import datetime
+from datetime import datetime, timedelta
+from ryanair import Ryanair
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -164,6 +165,54 @@ def adjust_city_scores(top_cities, ratings):
     adjusted_cities.sort(key=lambda x: x[1], reverse=True)
 
     return adjusted_cities[:3]  
+
+def find_cheapest_flights(top_cities, trip_details):
+    """Finds the cheapest flights to each of the top cities using Ryanair API."""
+    
+    api = Ryanair(currency="EUR")  # Initialize Ryanair API instance
+    
+    travel_date = trip_details['travel_date']
+    
+    flights_info = {}
+    
+    for city_name in top_cities:
+        destination_code = city_name[0]  # Assuming city name corresponds directly to airport code
+        
+        # Get departure date range based on flexibility
+        departure_dates = [travel_date]
+        
+        if trip_details['flexibility'] == 'yes':
+            departure_dates += [
+                travel_date + timedelta(days=1),
+                travel_date - timedelta(days=1),
+                travel_date + timedelta(days=2),
+                travel_date - timedelta(days=2),
+                travel_date + timedelta(days=3),
+                travel_date - timedelta(days=3),
+            ]
+        
+        cheapest_flight_info = None
+        
+        for departure_date in departure_dates:
+            flights = api.get_cheapest_flights("DUB", departure_date.date(), departure_date.date())
+            
+            if flights: 
+                flight_info = flights[0]  # Get first flight info
+                flight_price_info = {
+                    'flight_number': flight_info.flightNumber,
+                    'price': flight_info.price,
+                    'currency': flight_info.currency,
+                    'departure_time': flight_info.departureTime,
+                    'origin': flight_info.originFull,
+                    'destination': flight_info.destinationFull,
+                }
+                
+                if cheapest_flight_info is None or flight_info.price < cheapest_flight_info['price']:
+                    cheapest_flight_info = flight_price_info
+        
+        flights_info[city_name[0]] = cheapest_flight_info
+    
+    return flights_info
 
 def main():
     greeting() 
