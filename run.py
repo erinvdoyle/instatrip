@@ -51,11 +51,11 @@ def get_trip_details():
 
     return {
         'travel_date': travel_date,
-        #'date_flexibility': date_flexibility,
+        'flexibility': flexibility_response,
         'length_of_stay': length_of_stay
     }
 
-    #def get_user_preferences():
+#def get_user_preferences():
 
 def type_of_trip():
     """
@@ -79,7 +79,33 @@ def type_of_trip():
         except ValueError:
             print("Please enter a valid number.")
 
+def important_factors():
+    """
+    Collects up to three important factors from the user.
+    """
+    print("Select up to three important factors (enter numbers separated by commas):")
+    factors = ["nightlife", "culture", "cuisine", "outdoors", "shopping", "off the beaten path"]
+    
+    for i, factor in enumerate(factors, start=1):
+        print(f"{i}. {factor}")
 
+    while True:
+        choices = input("Enter your choices (e.g., 1,2,3): ").split(',')
+        selected_factors = []
+        
+        for choice in choices:
+            try:
+                index = int(choice.strip()) - 1
+                if 0 <= index < len(factors):
+                    selected_factors.append(factors[index])
+            except ValueError:
+                continue
+        
+        if len(selected_factors) <= 3:
+            print(f"You selected: {selected_factors}")
+            return selected_factors
+        else:
+            print("Please select up to three factors.")
 
 
 
@@ -88,3 +114,4 @@ def type_of_trip():
 greeting()
 get_trip_details()
 type_of_trip()
+important_factors()
