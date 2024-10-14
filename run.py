@@ -126,27 +126,48 @@ def rank_cities(sheet, selected_trip_type, selected_factors):
 
     return ranked_cities[:3]  
 
+def rate_importance():
+    """
+    Collects importance ranking for safety and accessinbility factors from the user.
+    """
+    factors_to_rate = ["Safety", "Accessibility", "Transportation", "Tourist", "Language Barrier"]
+    
+    ratings = {}
+    
+    for factor in factors_to_rate:
+        while True:
+            try:
+                rating = int(input(f"Rate the importance of {factor} (1-5, with 1 being most important): "))
+                if 1 <= rating <= 5:
+                    ratings[factor] = rating
+                    break
+                else:
+                    print("Please enter a number between 1 and 5.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+
+    return ratings
+
+def adjust_city_scores(top_cities, ratings):
+    """
+    Adjusts scores of top cities based on safety and accessibility ratings.
+    """
+    adjusted_cities = []
+
+    for city_name, score in top_cities:
+        adjustment_factor = sum(6 - ratings[factor] for factor in ratings)  
+        adjusted_score = score + adjustment_factor
+        
+        adjusted_cities.append((city_name, adjusted_score))
+
+   
+    adjusted_cities.sort(key=lambda x: x[1], reverse=True)
+
+    return adjusted_cities[:3]  
+
 
 #greeting()
 #get_trip_details()
 #type_of_trip()
 #important_factors()
 #rank_cities(SHEET, selected_trip_type, selected_factors)    
-
-def main():
-    greeting()  
-    
-    trip_details = get_trip_details()  
-    
-    if trip_details:  
-        selected_trip_type = type_of_trip()  
-        selected_factors = important_factors()  
-        
-        top_cities = rank_cities(SHEET, selected_trip_type, selected_factors)  
-        
-        print("Top 3 suitable cities:")
-        for city in top_cities:
-            print(city[0]) 
-
-if __name__ == "__main__":
-    main()
