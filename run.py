@@ -4,8 +4,6 @@ from datetime import datetime, timedelta
 import requests
 from ryanair import Ryanair
 
-
-
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -17,43 +15,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Instatrip').sheet1
 
-airport_codes = {
-    "Amsterdam": "AMS",
-    "Athens": "ATH",
-    "Barcelona": "BCN",
-    "Beirut": "BEY",
-    "Berlin": "BER",
-    "Bratislava": "BTS",
-    "Brussels": "BRU",
-    "Bucharest": "OTP",
-    "Budapest": "BUD",
-    "Copenhagen": "CPH",
-    "Dubrovnik": "DBV",
-    "Helsinki": "HEL",
-    "Istanbul": "IST",
-    "Tbilisi": "TBS",
-    "Larnaka": "LCA",
-    "Paphos": "PFO",
-    "Lisbon": "LIS",
-    "London": "LON",
-    "Ljubljana": "LJU",
-    "Madrid": "MAD",
-    "Minsk": "MSQ",
-    "Oslo": "OSL",
-    "Paris": "CDG",
-    "Podgorica": "TGD",
-    "Prague": "PRG",
-    "Riga": "RIX",
-    "Rome": "FCO",
-    "Sofia": "SOF",
-    "Stockholm": "ARN",
-    "Tallinn": "TLL",
-    "Tunis": "TUN",
-    "Vienna": "VIE",
-    "Vilnius": "VNO",
-    "Warsaw": "WAW",
-    "Zurich": "ZRH"
-}
+def get_airport_code(city_name):
+    """
+    Retrieves the airport code for a city from the Google Sheet.
+    """
+    city_data = SHEET.get_all_records()  
+    for city in city_data:
+        if city['Destination'].strip().lower() == city_name.strip().lower():
+            return city['Airport Code']  
+    return None
 
 def greeting():
     """
@@ -151,6 +121,7 @@ def important_factors():
         else:
             print("Please select up to three factors.")
 
+#Ranking tutorial credit: 
 def rank_cities(sheet, selected_trip_type, selected_factors):
     """
     Ranks cities based on user preferences from Google Sheets, with higher rank being better.
@@ -200,6 +171,7 @@ def rate_importance():
 
     return ratings
 
+
 def adjust_city_scores(top_cities, ratings):
     """
     Adjusts scores of top cities based on safety and accessibility ratings.
@@ -218,9 +190,6 @@ def adjust_city_scores(top_cities, ratings):
 
 # Library for Ryanair API provided by https://github.com/cohaolain/ryanair-py
 
-from datetime import timedelta
-from ryanair import Ryanair
-
 def find_cheapest_flights(top_cities, trip_details):
     """Finds the cheapest flights to each of the top cities using Ryanair API, with Dublin as the default departure city."""
     
@@ -230,20 +199,17 @@ def find_cheapest_flights(top_cities, trip_details):
     
     flights_info = {}
 
-    
     for index, city_name in enumerate(top_cities[:3]):  
-        destination_code = airport_codes.get(city_name)
+        destination_code = get_airport_code(city_name)  
 
         if not destination_code:
             print(f"Warning: No airport code found for {city_name}. Skipping.")
             continue
 
-        
         outbound_date = travel_date + timedelta(days=index)  
         inbound_date = outbound_date + timedelta(days=length_of_stay)  
 
         try:
-            # Utilize Ryanair API
             flights = api.get_cheapest_return_flights(
                 "DUB",  
                 outbound_date,  
@@ -291,7 +257,7 @@ def main():
         top_cities_names_only = [city[0] for city in top_cities_with_scores]
 
         for city in top_cities_with_scores:
-            print(city[0])
+            print(city[0])  
 
         ratings = rate_importance()
         final_top_cities = adjust_city_scores(top_cities_with_scores, ratings)
@@ -299,7 +265,7 @@ def main():
         print("\nFinal Top Cities Considering Importance Ratings:")
 
         for city in final_top_cities:
-            print(city[0])
+            print(city[0])  
 
         flights_info = find_cheapest_flights(top_cities_names_only, trip_details)
 
