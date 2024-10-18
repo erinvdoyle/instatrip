@@ -7,6 +7,8 @@ from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
 import random
 import time
+import emoji
+# credit for emoji library: https://pypi.org/project/emoji/
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -23,11 +25,11 @@ def greeting():
     """
     Greets the user when the program is run.
     """
-    print("Welcome to Instatrip, your booking buddy.")
+    print(emoji.emojize(":palm_tree: Welcome to Instatrip, your booking buddy :palm_tree:"))
     time.sleep(3)
-    print("First things first. We're going to ask you a few questions about your travel dates")
+    print("First things first. We're going to ask you a few questions about your travel \n dates")
     time.sleep(3)
-    print("Then we'll get to the fun part: Selecting your next trip!")
+    print(emoji.emojize("Then we'll get to the fun part: :crystal_ball: Selecting your next trip!"))
     time.sleep(3) 
     print("Grab a suitcase, we're about to get started...")
     time.sleep(3)
@@ -37,7 +39,7 @@ def get_trip_details():
     Asks user for travel date, flexibility, and length of trip.
     """
     while True:
-        travel_date_str = input("When would you like to depart? (Please enter a date in YYYY-MM-DD format):\n ")
+        travel_date_str = input(emoji.emojize(":handbag: When would you like to depart? (Please enter a date in YYYY-MM-DD format):\n "))
 
         try:
             travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d")
@@ -55,7 +57,7 @@ def get_trip_details():
             print("Oops. Please enter a valid date in YYYY-MM-DD format.")
             return None
 
-    flexibility_response = input("Are you flexible with your date (+/- 1-3 days)? (yes/no): \n").strip().lower()
+    flexibility_response = input(emoji.emojize("Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n")).strip().lower()
     if flexibility_response not in ['yes', 'no']:
         print("Please answer with 'yes' or 'no'.")
         return None
@@ -84,8 +86,8 @@ def type_of_trip():
     """
     Determines the occasion for the trip.
     """
-    print("Please select the most applicable choice for your trip:")
-    options = ["Romantic", "Solo Travel", "Hen Party", "Friends/Fam"]
+    print(emoji.emojize("Please select the most applicable choice for your trip: :beating_heart: :man_dancing: :chicken:/:deer: :family:"))
+    options = ["Romantic Adventure", "Solo Travel", "Hen or Stag Party", "Time with Friends or Family"]
 
     for i, option in enumerate(options, start=1):
         print(f"{i}. {option}")
@@ -106,8 +108,8 @@ def important_factors():
     """
     Collects up to three important factors from the user.
     """
-    print("Select up to three important factors (enter numbers separated by commas):")
-    factors = ["Nightlife", "Culture", "Cuisine", "Outdoors", "Shopping", "Off Beaten Path"]
+    print(emoji.emojize("Select up to three important factors (enter numbers separated by commas): :party_popper: :books: :woman_cook: :mountain:  :shopping_bags:  :magnifying_glass_tilted_left:"))
+    factors = ["Nightlife", "History & Culture", "Cuisine", "Outdoorsy Experiences", "Shopping", "Off the Beaten Path Exploration"]
 
     for i, factor in enumerate(factors, start=1):
         print(f"{i}. {factor}")
@@ -232,14 +234,14 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
     """
     while True:
         print("\nAre you happy with these cities?")
-        print("1. Let's go!")
-        print("2. No, let's see the next three cities based on my preferences")
-        print("3. It's a wash. Start over")
+        print(emoji.emojize("1. Yes, let's go! :airplane_departure:"))
+        print(emoji.emojize("2. No, let's see the next three :man_gesturing_NO:"))
+        print(emoji.emojize("3. It's a wash. Start over :wastebasket:"))
 
         try:
             choice = int(input("Please choose an option (1-3): "))
             if choice == 1:
-                print("Great! Let's adjust the cities based on your safety and accessibility preferences.")
+                print(emoji.emojize("Great! Let's adjust the cities based on your safety and accessibility preferences :service_dog:"))
 
                 user_ratings = rate_importance()
 
@@ -421,7 +423,9 @@ def main():
             else:
                 final_top_cities = user_choice  # Assign the user choice to final_top_cities
 
-                print("\nLet's print your flight information...")
+                print(emoji.emojize("\n :party_popper:
+Let's print your flight information... :party_popper:
+"))
 
                 # trip_details['departure_airport'] = 'DUB'
                 # trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
