@@ -240,23 +240,23 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
             choice = int(input("Please choose an option (1-3): "))
             if choice == 1:
                 print("Great! Let's adjust the cities based on your safety and accessibility preferences.")
-                
+
                 user_ratings = rate_importance()
 
                 adjusted_cities = adjust_city_scores(top_cities, user_ratings)
 
                 print("\nHere are your final cities based on safety and accessibility:")
                 for city in adjusted_cities:
-                    print(f"{city[0]} (Adjusted Score: {city[1]})")
-                
-                return adjusted_cities  
+                    print(f"{city[0]}")
+
+                return adjusted_cities
 
             elif choice == 2:
                 new_top_cities = generate_new_cities(sheet, selected_trip_type, selected_factors)
                 return new_top_cities
 
             elif choice == 3:
-                return "start_over"  
+                return "start_over"
 
             else:
                 print("Invalid choice. Please select a number from 1 to 3.")
@@ -390,7 +390,7 @@ def main():
 
     trip_details = get_trip_details()
 
-    if trip_details:  
+    if trip_details:
         selected_trip_type = type_of_trip()
         selected_factors = important_factors()
 
@@ -406,12 +406,12 @@ def main():
             user_choice = user_choice_after_ranking(initial_top_cities, SHEET, selected_trip_type, selected_factors)
 
             if user_choice == "start_over":
-                main()  
+                main()
                 break
 
             elif user_choice is None:
                 new_top_cities = generate_new_cities(SHEET, selected_trip_type, selected_factors)
-                initial_top_cities = new_top_cities  
+                initial_top_cities = new_top_cities
                 print("\nTop suitable cities:")
                 for city in new_top_cities:
                     print(city[0])
@@ -419,14 +419,7 @@ def main():
                 continue
 
             else:
-                print("\nNow let's rate the importance of Safety and Accessibility.")
-                ratings = rate_importance()  
-
-                final_top_cities = adjust_city_scores(user_choice, ratings)
-
-                print("\nFinal city rankings after Safety & Accessibility adjustments:")
-                for city in final_top_cities:
-                    print(f"{city[0]}")
+                final_top_cities = user_choice  # Assign the user choice to final_top_cities
 
                 print("\nLet's print your flight information...")
 
@@ -437,9 +430,9 @@ def main():
                 # for flight in flights_info:
                 #     print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
                 #           f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
-                break  # Exit the loop after processing cities and preferences
 
             #ask_for_booking_link(flights_info)
+            break 
 
 if __name__ == "__main__":
     main()
