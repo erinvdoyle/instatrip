@@ -6,6 +6,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
 import random
+import time
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -23,18 +24,36 @@ def greeting():
     Greets the user when the program is run.
     """
     print("Welcome to Instatrip, your booking buddy.")
+    time.sleep(3)
+    print("First things first. We're going to ask you a few questions about your travel dates")
+    time.sleep(3)
+    print("Then we'll get to the fun part: Selecting your next trip!")
+    time.sleep(3) 
+    print("Grab a suitcase, we're about to get started...")
+    time.sleep(3)
 
 def get_trip_details():
     """
     Asks user for travel date, flexibility, and length of trip.
     """
-    travel_date_str = input("First things first, when would you like to depart? (Please enter a date in YYYY-MM-DD format):\n ")
+    while True:
+        travel_date_str = input("When would you like to depart? (Please enter a date in YYYY-MM-DD format):\n ")
 
-    try:
-        travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d")
-    except ValueError:
-        print("Oops. Please enter a valid date in YYYY-MM-DD format.")
-        return None
+        try:
+            travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d")
+
+            current_date = datetime.now()
+            minimum_travel_date = current_date + timedelta(days=1)
+
+            if travel_date < minimum_travel_date:
+                print(f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()}).")
+                continue  
+            
+            break
+        
+        except ValueError:
+            print("Oops. Please enter a valid date in YYYY-MM-DD format.")
+            return None
 
     flexibility_response = input("Are you flexible with your date (+/- 1-3 days)? (yes/no): \n").strip().lower()
     if flexibility_response not in ['yes', 'no']:
