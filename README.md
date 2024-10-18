@@ -5,7 +5,7 @@
   <img src="assets/documentation/amiresp.png">
 </p>
 
-[Visit the deployed site](https://)
+[Visit the deployed site](https://instatrip-ffc10cb98741.herokuapp.com/)
 
 # **Introduction**
 

@@ -175,6 +175,41 @@ def adjust_city_scores(top_cities, ratings):
 
     return adjusted_cities[:3]
 
+def user_choice_after_ranking(top_cities):
+    """
+    Prompts the user to choose whether to keep the ranked cities and move forward, generate three new cities, or start the program over
+    """
+    while True:
+        print("\nAre you happy with these cities?")
+        print("1. Yes, let's go")
+        print("2. No, let's see the next three cities based on my preferences")
+        print("3. It's a wash. Start over")
+
+        try:
+            choice = int(input("Please choose an option (1-3): "))
+            if choice == 1:
+                print("Super! We move")
+                return top_cities  
+            elif choice == 2:
+                return None  
+            elif choice == 3:
+                return "start_over"  
+            else:
+                print("Invalid choice. Please select a number from 1 to 3.")
+        except ValueError:
+            print("Please enter a valid number.")
+
+def generate_new_cities(sheet, selected_trip_type, selected_factors):
+    """
+    Generates and ranks new cities based on user preferences
+    """
+    new_top_cities_with_scores = rank_cities(sheet, selected_trip_type, selected_factors)
+    print("\nBased on your preferences, your new cities are:")
+    for city in new_top_cities_with_scores:
+        print(city[0])
+    
+    return new_top_cities_with_scores
+
 def get_airport_codes(sheet):
     """
     Get airport codes from Google Sheet using 'City' and 'IATA' columns to access airport codes
@@ -187,7 +222,7 @@ def get_airport_codes(sheet):
         airport_codes[city] = code
     return airport_codes
 
-#Credit for help implementing API in this function and find_cheapest_flights(): 
+#Credit for help implementing and understanding how to use the API in this function and find_cheapest_flights: Mistral AI
 def search_ryanair_flights(origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0):
     """
     Searches flights using Ryanair API (via RapidAPI).
@@ -290,15 +325,25 @@ def main():
         for city in final_top_cities:
             print(city[0])
 
-        trip_details['departure_airport'] = 'DUB'
-        trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
+        
+        user_choice = user_choice_after_ranking(final_top_cities)
 
-        flights_info = find_cheapest_flights(SHEET, top_cities_names_only, trip_details)
+        if user_choice == "start_over":
+            main()  
+        elif user_choice is None:
+            
+            new_top_cities = generate_new_cities(SHEET, selected_trip_type, selected_factors)
+            user_choice_after_ranking(new_top_cities)  
+        #else:
+            #trip_details['departure_airport'] = 'DUB'
+            #trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
 
-        print("\nCheapest Flights Information:")
-        for flight in flights_info:
-            print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
-                  f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
+            #flights_info = find_cheapest_flights(SHEET, [city[0] for city in user_choice], trip_details)
+
+            #print("\nCheapest Flights Information:")
+            #for flight in flights_info:
+                #print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
+                      #f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
 
 if __name__ == "__main__":
     main()
