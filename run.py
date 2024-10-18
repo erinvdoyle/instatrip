@@ -27,7 +27,7 @@ def get_trip_details():
     """
     Asks user for travel date, flexibility, and length of trip.
     """
-    travel_date_str = input("First things first, when would you like to depart? (Please enter a date in YYYY-MM-DD format): ")
+    travel_date_str = input("First things first, when would you like to depart? (Please enter a date in YYYY-MM-DD format):\n ")
 
     try:
         travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d")
@@ -35,20 +35,20 @@ def get_trip_details():
         print("Oops. Please enter a valid date in YYYY-MM-DD format.")
         return None
 
-    flexibility_response = input("Are you flexible with your date (+/- 1-3 days)? (yes/no): ").strip().lower()
+    flexibility_response = input("Are you flexible with your date (+/- 1-3 days)? (yes/no): \n").strip().lower()
     if flexibility_response not in ['yes', 'no']:
         print("Please answer with 'yes' or 'no'.")
         return None
 
     flexibility_days = 0
     if flexibility_response == 'yes':
-        flexibility_days = int(input("How many days of flexibility do you have? (1-3): "))
+        flexibility_days = int(input("How many days of flexibility do you have? (1-3): \n"))
         if not (1 <= flexibility_days <= 3):
             print("Please enter a number between 1 and 3.")
             return None
 
     try:
-        length_of_stay = int(input("How many days do you plan to stay? "))
+        length_of_stay = int(input("How many days do you plan to stay? \n"))
     except ValueError:
         print("Please enter a valid number for length of stay.")
         return None
@@ -72,7 +72,7 @@ def type_of_trip():
 
     while True:
         try:
-            choice = int(input("Enter the number corresponding to your choice: "))
+            choice = int(input("Enter the number corresponding to your choice: \n"))
             if 1 <= choice <= len(options):
                 selected_trip_type = options[choice - 1]
                 print(f"You selected: {selected_trip_type}")
@@ -93,7 +93,7 @@ def important_factors():
         print(f"{i}. {factor}")
 
     while True:
-        choices = input("Enter your choices (e.g., 1,2,3): ").split(',')
+        choices = input("Enter your choices (e.g., 1,2,3): \n").split(',')
         selected_factors = []
 
         for choice in choices:
@@ -148,7 +148,7 @@ def rate_importance():
     for factor in factors_to_rate:
         while True:
             try:
-                rating = int(input(f"Rate the importance of {factor} (1-5, with 1 being most important): "))
+                rating = int(input(f"Rate the importance of {factor} (1-5, with 1 being most important): \n"))
                 if 1 <= rating <= 5:
                     ratings[factor] = rating
                     break
@@ -187,7 +187,7 @@ def get_airport_codes(sheet):
         airport_codes[city] = code
     return airport_codes
 
-#Credit for help implementing API: 
+#Credit for help implementing API in this function and find_cheapest_flights(): 
 def search_ryanair_flights(origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0):
     """
     Searches flights using Ryanair API (via RapidAPI).
