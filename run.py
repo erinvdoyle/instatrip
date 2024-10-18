@@ -222,7 +222,7 @@ def get_airport_codes(sheet):
         airport_codes[city] = code
     return airport_codes
 
-#Credit for help implementing and understanding how to use the API in this function and find_cheapest_flights: Mistral AI
+#Credit for help implementing and understanding how to use the API in this function, find_cheapest_flights(), and ask_for_booking(): Mistral AI
 def search_ryanair_flights(origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0):
     """
     Searches flights using Ryanair API (via RapidAPI).
@@ -300,6 +300,37 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
             print(f"No airport code found for {city_name}")
 
     return flight_results
+
+def ask_for_booking_link(flights_info):
+    """
+    Asks the user if they would like to generate a booking link for any of the displayed flights and allows user to start over if not
+    """
+    if not flights_info:
+        print("No flight information available.")
+        return
+
+    print("Would you like to generate a booking for any of these flights?")
+    for idx, flight in enumerate(flights_info, start=1):
+        print(f"{idx}. {flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR")
+
+    print("4. Start over")
+
+    while True:
+        try:
+            choice = int(input("Please choose an option (1-4): "))
+            if 1 <= choice <= len(flights_info):
+                selected_flight = flights_info[choice - 1]
+                booking_link = f"https://www.ryanair.com/gb/en/booking/home?departureAirport=DUB&arrivalAirport={selected_flight['city']}&outboundDate={trip_details['departure_date']}&adults=1"
+                print(f"Booking link for {selected_flight['city']}: {booking_link}")
+                break
+            elif choice == 4:
+                print("Starting over...")
+                
+                break
+            else:
+                print("Invalid choice. Please select a number from 1 to 5.")
+        except ValueError:
+            print("Please enter a valid number.")
 
 def main():
     greeting()
