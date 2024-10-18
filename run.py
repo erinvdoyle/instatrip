@@ -148,17 +148,18 @@ def select_random_cities(cities, num_cities=3):
 
 def generate_new_cities(sheet, selected_trip_type, selected_factors):
     """
-    Generates and ranks new cities based on user preferences and selects a subset of three cities.
+    Generates and ranks new cities based on user preferences.
+    Safety and accessibility adjustments are applied separately.
     """
-    all_ranked_cities = rank_cities(sheet, selected_trip_type, selected_factors)
-
-    new_top_cities = select_random_cities(all_ranked_cities, num_cities=3)
-
-    print("\nNew Top Cities Based on Your Preferences:")
+    new_top_cities_with_scores = rank_cities(sheet, selected_trip_type, selected_factors)
+    new_top_cities = select_random_cities(new_top_cities_with_scores)
+    
+    print("\nBased on your preferences, here are three new cities:")
     for city in new_top_cities:
-        print(city[0])  
-
+        print(city[0])
+    
     return new_top_cities
+
 
 def rate_importance():
     """
@@ -184,44 +185,64 @@ def rate_importance():
 
 def adjust_city_scores(top_cities, ratings):
     """
-    Adjusts scores of top cities based on safety and accessibility ratings.
+    Adjusts scores of top cities based on safety and other factor ratings.
+    Only the selected top three cities are adjusted.
     """
     adjusted_cities = []
 
     for city_name, score in top_cities:
-        adjustment_factor = sum(6 - ratings[factor] for factor in ratings)
-        adjusted_score = score + adjustment_factor
+        adjustment_factor = 0
 
+        for factor, rating in ratings.items():
+            if factor == 'Safety' or factor == 'Accessibility':
+                adjustment_factor += (6 - rating) 
+
+        adjusted_score = score + adjustment_factor
         adjusted_cities.append((city_name, adjusted_score))
 
     adjusted_cities.sort(key=lambda x: x[1], reverse=True)
 
-    return adjusted_cities[:3]
+    return adjusted_cities
 
-def user_choice_after_ranking(top_cities):
+
+def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_factors):
     """
-    Prompts the user to choose whether to keep the ranked cities and move forward, generate three new cities, or start the program over
+    Prompts the user to choose whether to keep the ranked cities and move forward,
+    generate three new cities, or start the program over.
+    If they choose to proceed, the program will prompt for safety and accessibility preferences
     """
     while True:
         print("\nAre you happy with these cities?")
-        print("1. Yes, let's go")
+        print("1. Let's go!")
         print("2. No, let's see the next three cities based on my preferences")
         print("3. It's a wash. Start over")
 
         try:
             choice = int(input("Please choose an option (1-3): "))
             if choice == 1:
-                print("Super! We move")
-                return top_cities  
+                print("Great! Let's adjust the cities based on your safety and accessibility preferences.")
+                
+                user_ratings = rate_importance()
+
+                adjusted_cities = adjust_city_scores(top_cities, user_ratings)
+
+                print("\nHere are your final cities based on safety and accessibility:")
+                for city in adjusted_cities:
+                    print(f"{city[0]} (Adjusted Score: {city[1]})")
+                
+                return adjusted_cities  
+
             elif choice == 2:
-                return None  
+                new_top_cities = generate_new_cities(sheet, selected_trip_type, selected_factors)
+                return new_top_cities
+
             elif choice == 3:
                 return "start_over"  
+
             else:
                 print("Invalid choice. Please select a number from 1 to 3.")
         except ValueError:
             print("Please enter a valid number.")
-
 
 def get_airport_codes(sheet):
     """
@@ -350,7 +371,7 @@ def main():
 
     trip_details = get_trip_details()
 
-    if trip_details:
+    if trip_details:  
         selected_trip_type = type_of_trip()
         selected_factors = important_factors()
 
@@ -363,26 +384,43 @@ def main():
             print(city[0])
 
         while True:
-            user_choice = user_choice_after_ranking(initial_top_cities)
+            user_choice = user_choice_after_ranking(initial_top_cities, SHEET, selected_trip_type, selected_factors)
 
             if user_choice == "start_over":
                 main()  
                 break
+
             elif user_choice is None:
-                
                 new_top_cities = generate_new_cities(SHEET, selected_trip_type, selected_factors)
-                user_choice_after_ranking(new_top_cities)  # Ask again after generating new cities
-            #else:
-                #trip_details['departure_airport'] = 'DUB'
-                #trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
+                initial_top_cities = new_top_cities  
+                print("\nTop suitable cities:")
+                for city in new_top_cities:
+                    print(city[0])
 
-                #flights_info = find_cheapest_flights(SHEET, [city[0] for city in user_choice], trip_details)
+                continue
 
-                #print("\nCheapest Flights Information:")
-                #for flight in flights_info:
-                    #print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
-                          #f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
-                break  # Exit the loop after processing flights
+            else:
+                print("\nNow let's rate the importance of Safety and Accessibility.")
+                ratings = rate_importance()  
+
+                final_top_cities = adjust_city_scores(user_choice, ratings)
+
+                print("\nFinal city rankings after Safety & Accessibility adjustments:")
+                for city in final_top_cities:
+                    print(f"{city[0]}")
+
+                print("\nLet's print your flight information...")
+
+                # trip_details['departure_airport'] = 'DUB'
+                # trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
+                # flights_info = find_cheapest_flights(SHEET, [city[0] for city in final_top_cities], trip_details)
+                # print("\nCheapest Flights Information:")
+                # for flight in flights_info:
+                #     print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
+                #           f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
+                break  # Exit the loop after processing cities and preferences
+
+            #ask_for_booking_link(flights_info)
 
 if __name__ == "__main__":
     main()
