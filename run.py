@@ -376,5 +376,7 @@ def main():
                 #print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
                       #f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
 
+            #ask_for_booking_link(flights_info)
+
 if __name__ == "__main__":
     main()
