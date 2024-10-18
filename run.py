@@ -1,8 +1,10 @@
+import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+import logging
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
-import requests
-from ryanair import Ryanair
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -15,16 +17,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Instatrip').sheet1
 
-def get_airport_code(city_name):
-    """
-    Retrieves the airport code for a city from the Google Sheet.
-    """
-    city_data = SHEET.get_all_records()  
-    for city in city_data:
-        if city['Destination'].strip().lower() == city_name.strip().lower():
-            return city['Airport Code']  
-    return None
-
 def greeting():
     """
     Greets the user when the program is run.
@@ -35,7 +27,6 @@ def get_trip_details():
     """
     Asks user for travel date, flexibility, and length of trip.
     """
-    # Get travel date
     travel_date_str = input("First things first, when would you like to depart? (Please enter a date in YYYY-MM-DD format): ")
 
     try:
@@ -44,7 +35,6 @@ def get_trip_details():
         print("Oops. Please enter a valid date in YYYY-MM-DD format.")
         return None
 
-    # Get flexibility
     flexibility_response = input("Are you flexible with your date (+/- 1-3 days)? (yes/no): ").strip().lower()
     if flexibility_response not in ['yes', 'no']:
         print("Please answer with 'yes' or 'no'.")
@@ -57,7 +47,6 @@ def get_trip_details():
             print("Please enter a number between 1 and 3.")
             return None
 
-    # Get length of stay
     try:
         length_of_stay = int(input("How many days do you plan to stay? "))
     except ValueError:
@@ -138,20 +127,19 @@ def rank_cities(sheet, selected_trip_type, selected_factors):
 
         for factor in selected_factors:
              if factor in city:
-                 score += (5 - int(city[factor]))  
+                 score += (5 - int(city[factor]))
 
-        
-        if 'Destination' in city:
-             ranked_cities.append((city['Destination'].strip(), score))  
+        if 'City' in city:
+             ranked_cities.append((city['City'].strip(), score))
 
      # Sort by score (higher is better)
     ranked_cities.sort(key=lambda x: x[1], reverse=True)
 
-    return ranked_cities[:3]  
+    return ranked_cities[:3]
 
 def rate_importance():
     """
-    Collects importance ranking for safety and accessinbility factors from the user.
+    Collects importance ranking for safety and accessibility factors from the user.
     """
     factors_to_rate = ["Safety", "Accessibility", "Transportation", "Tourist", "Language Barrier"]
 
@@ -171,7 +159,6 @@ def rate_importance():
 
     return ratings
 
-
 def adjust_city_scores(top_cities, ratings):
     """
     Adjusts scores of top cities based on safety and accessibility ratings.
@@ -188,58 +175,96 @@ def adjust_city_scores(top_cities, ratings):
 
     return adjusted_cities[:3]
 
-# Library for Ryanair API provided by https://github.com/cohaolain/ryanair-py
+def get_airport_codes(sheet):
+    """
+    Get airport codes from Google Sheet using 'City' and 'IATA' columns to access airport codes
+    """
+    records = sheet.get_all_records()
+    airport_codes = {}
+    for record in records:
+        city = record['City'].strip()
+        code = record['IATA'].strip()
+        airport_codes[city] = code
+    return airport_codes
 
-def find_cheapest_flights(top_cities, trip_details):
-    """Finds the cheapest flights to each of the top cities using Ryanair API, with Dublin as the default departure city."""
-    
-    api = Ryanair(currency="EUR")  
-    travel_date = trip_details['travel_date']
-    length_of_stay = trip_details['length_of_stay']
-    
-    flights_info = {}
+#Credit for help implementing API: 
+def search_ryanair_flights(origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0):
+    """
+    Searches flights using Ryanair API (via RapidAPI).
+    """
+    url = "https://ryanair2.p.rapidapi.com/api/v1/searchFlights"
+    querystring = {
+        "origin": origin,
+        "destination": destination,
+        "outboundDate": outbound_date,
+        "adults": str(adults),
+        "teens": str(teens),
+        "children": str(children),
+        "infants": str(infants)
+    }
+    #Credit to Rapid API for Ryanair API key
+    headers = {
+        "x-rapidapi-host": "ryanair2.p.rapidapi.com",
+        "x-rapidapi-key": "1ba388bfffmsh0eff684773db243p19641djsn51bdcd6bec4f"  # Replace with your RapidAPI key
+    }
 
-    for index, city_name in enumerate(top_cities[:3]):  
-        destination_code = get_airport_code(city_name)  
+    try:
+        logging.debug(f"Sending request to {url} with params {querystring}")
+        response = requests.get(url, headers=headers, params=querystring)
+        response.raise_for_status()  # Raises HTTPError for bad responses
+        logging.debug(f"Response received: {response.text}")
+        return response.json()  # Return JSON data if successful
+    except requests.exceptions.HTTPError as http_err:
+        logging.error(f"HTTP error occurred: {http_err}")
+        logging.error(f"Response: {response.text}")
+    except requests.exceptions.RequestException as req_err:
+        logging.error(f"Error searching for flights: {req_err}")
+    return None
 
-        if not destination_code:
-            print(f"Warning: No airport code found for {city_name}. Skipping.")
-            continue
+def find_cheapest_flights(sheet, top_cities, trip_details):
+    """
+    Finds the cheapest flights for a list of top cities using Ryanair API via RapidAPI.
+    """
+    airport_codes = get_airport_codes(sheet)  
+    origin = trip_details['departure_airport']  
+    flight_results = []
 
-        outbound_date = travel_date + timedelta(days=index)  
-        inbound_date = outbound_date + timedelta(days=length_of_stay)  
+    for city_name in top_cities:
+        destination_code = airport_codes.get(city_name) 
 
-        try:
-            flights = api.get_cheapest_return_flights(
-                "DUB",  
-                outbound_date,  
-                outbound_date,  
-                inbound_date,   
-                inbound_date    
-            )
+        if destination_code:
+            outbound_date = trip_details['departure_date']  
+            print(f"Fetching flights for {city_name} (IATA: {destination_code})...")
 
-            if flights and len(flights) > 0:
-                flight_info = flights[0]  
-                flight_price_info = {
-                    'flight_number': flight_info.outbound.flightNumber,
-                    'price': flight_info.totalPrice,  
-                    'currency': flight_info.outbound.currency,  
-                    'departure_time': flight_info.outbound.departureTime,
-                    'origin': flight_info.outbound.originFull,
-                    'destination': flight_info.outbound.destinationFull,
-                }
+            # Search flights via RapidAPI Ryanair
+            flight_data = search_ryanair_flights(origin, destination_code, outbound_date)
 
-                flights_info[city_name] = flight_price_info
+            if flight_data:
+                # Parse the response and find the cheapest flight
+                cheapest_flight = None
+                for trip in flight_data['data']['trips']:
+                    for date in trip['dates']:
+                        for flight in date['flights']:
+                            if not cheapest_flight or flight['regularFare']['fares'][0]['amount'] < cheapest_flight['regularFare']['fares'][0]['amount']:
+                                cheapest_flight = flight
 
+                if cheapest_flight:
+                    flight_info = {
+                        'city': city_name,
+                        'flight_number': cheapest_flight['flightNumber'],
+                        'price': cheapest_flight['regularFare']['fares'][0]['amount'],
+                        'departure_time': cheapest_flight['time'][0],
+                        'arrival_time': cheapest_flight['time'][1]
+                    }
+                    flight_results.append(flight_info)
+                else:
+                    print(f"No fares found for {city_name}.")
             else:
-                flights_info[city_name] = 'No flights found'
+                print(f"Error fetching flights for {city_name}")
+        else:
+            print(f"No airport code found for {city_name}")
 
-        except requests.exceptions.HTTPError as http_err:
-            print(f"HTTP error occurred: {http_err}")
-        except Exception as err:
-            print(f"An error occurred: {err}")
-
-    return flights_info
+    return flight_results
 
 def main():
     greeting()
@@ -253,29 +278,27 @@ def main():
         top_cities_with_scores = rank_cities(SHEET, selected_trip_type, selected_factors)
 
         print("Top 3 suitable cities:")
-
         top_cities_names_only = [city[0] for city in top_cities_with_scores]
 
         for city in top_cities_with_scores:
-            print(city[0])  
+            print(city[0])
 
         ratings = rate_importance()
         final_top_cities = adjust_city_scores(top_cities_with_scores, ratings)
 
         print("\nFinal Top Cities Considering Importance Ratings:")
-
         for city in final_top_cities:
-            print(city[0])  
+            print(city[0])
 
-        flights_info = find_cheapest_flights(top_cities_names_only, trip_details)
+        trip_details['departure_airport'] = 'DUB'
+        trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
+
+        flights_info = find_cheapest_flights(SHEET, top_cities_names_only, trip_details)
 
         print("\nCheapest Flights Information:")
-
-        for city_name, flight in flights_info.items():
-            if isinstance(flight, dict):  
-                print(f"{city_name}: Flight Number: {flight['flight_number']}, Price: {flight['price']} {flight['currency']}, Departure Time: {flight['departure_time']}")
-            else:
-                print(f"{city_name}: {flight}")
+        for flight in flights_info:
+            print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
+                  f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
 
 if __name__ == "__main__":
     main()
