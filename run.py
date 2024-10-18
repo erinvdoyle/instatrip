@@ -5,6 +5,7 @@ import logging
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
+import random
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -135,7 +136,29 @@ def rank_cities(sheet, selected_trip_type, selected_factors):
      # Sort by score (higher is better)
     ranked_cities.sort(key=lambda x: x[1], reverse=True)
 
-    return ranked_cities[:3]
+    return ranked_cities#[:3]
+
+def select_random_cities(cities, num_cities=3):
+    """
+    Selects a random sample of cities from a list.
+    """
+    if len(cities) <= num_cities:
+        return cities  
+    return random.sample(cities, num_cities)
+
+def generate_new_cities(sheet, selected_trip_type, selected_factors):
+    """
+    Generates and ranks new cities based on user preferences and selects a subset of three cities.
+    """
+    all_ranked_cities = rank_cities(sheet, selected_trip_type, selected_factors)
+
+    new_top_cities = select_random_cities(all_ranked_cities, num_cities=3)
+
+    print("\nNew Top Cities Based on Your Preferences:")
+    for city in new_top_cities:
+        print(city[0])  
+
+    return new_top_cities
 
 def rate_importance():
     """
@@ -199,16 +222,6 @@ def user_choice_after_ranking(top_cities):
         except ValueError:
             print("Please enter a valid number.")
 
-def generate_new_cities(sheet, selected_trip_type, selected_factors):
-    """
-    Generates and ranks new cities based on user preferences
-    """
-    new_top_cities_with_scores = rank_cities(sheet, selected_trip_type, selected_factors)
-    print("\nBased on your preferences, your new cities are:")
-    for city in new_top_cities_with_scores:
-        print(city[0])
-    
-    return new_top_cities_with_scores
 
 def get_airport_codes(sheet):
     """
@@ -341,42 +354,35 @@ def main():
         selected_trip_type = type_of_trip()
         selected_factors = important_factors()
 
-        top_cities_with_scores = rank_cities(SHEET, selected_trip_type, selected_factors)
+        all_ranked_cities = rank_cities(SHEET, selected_trip_type, selected_factors)
 
-        print("Top 3 suitable cities:")
-        top_cities_names_only = [city[0] for city in top_cities_with_scores]
+        initial_top_cities = select_random_cities(all_ranked_cities)
 
-        for city in top_cities_with_scores:
+        print("Top suitable cities:")
+        for city in initial_top_cities:
             print(city[0])
 
-        ratings = rate_importance()
-        final_top_cities = adjust_city_scores(top_cities_with_scores, ratings)
+        while True:
+            user_choice = user_choice_after_ranking(initial_top_cities)
 
-        print("\nFinal Top Cities Considering Importance Ratings:")
-        for city in final_top_cities:
-            print(city[0])
+            if user_choice == "start_over":
+                main()  
+                break
+            elif user_choice is None:
+                
+                new_top_cities = generate_new_cities(SHEET, selected_trip_type, selected_factors)
+                user_choice_after_ranking(new_top_cities)  # Ask again after generating new cities
+            #else:
+                #trip_details['departure_airport'] = 'DUB'
+                #trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
 
-        
-        user_choice = user_choice_after_ranking(final_top_cities)
+                #flights_info = find_cheapest_flights(SHEET, [city[0] for city in user_choice], trip_details)
 
-        if user_choice == "start_over":
-            main()  
-        elif user_choice is None:
-            
-            new_top_cities = generate_new_cities(SHEET, selected_trip_type, selected_factors)
-            user_choice_after_ranking(new_top_cities)  
-        #else:
-            #trip_details['departure_airport'] = 'DUB'
-            #trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
-
-            #flights_info = find_cheapest_flights(SHEET, [city[0] for city in user_choice], trip_details)
-
-            #print("\nCheapest Flights Information:")
-            #for flight in flights_info:
-                #print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
-                      #f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
-
-            #ask_for_booking_link(flights_info)
+                #print("\nCheapest Flights Information:")
+                #for flight in flights_info:
+                    #print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
+                          #f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
+                break  # Exit the loop after processing flights
 
 if __name__ == "__main__":
     main()
