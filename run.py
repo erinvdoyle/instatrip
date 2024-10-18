@@ -21,6 +21,11 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Instatrip').sheet1
 
+def print_colored_background():
+    # ANSI escape code for setting background color (e.g., blue)
+    print("\033[44m" + "This is text with a blue background" + "\033[0m")
+
+
 def greeting():
     """
     Greets the user when the program is run.
@@ -388,6 +393,7 @@ def ask_for_booking_link(flights_info):
             print("Please enter a valid number.")
 
 def main():
+    print_colored_background()
     greeting()
 
     trip_details = get_trip_details()
