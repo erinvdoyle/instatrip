@@ -423,9 +423,7 @@ def main():
             else:
                 final_top_cities = user_choice  # Assign the user choice to final_top_cities
 
-                print(emoji.emojize("\n :party_popper:
-Let's print your flight information... :party_popper:
-"))
+                print(emoji.emojize("\n :party_popper: Let's print your flight information... :party_popper:"))
 
                 # trip_details['departure_airport'] = 'DUB'
                 # trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
