@@ -671,7 +671,8 @@ def exit():
         print(line)
 
     input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nPress Enter to return to the main menu..." + Style.NORMAL)
-
+    
+    os.system('cls' if os.name == 'nt' else 'clear') 
     print("\n")
     colored_instatrip()
     print_colored_background()
