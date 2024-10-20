@@ -207,7 +207,7 @@ def get_trip_details():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear') 
         print("")
-        travel_date_str = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format): \n" + Style.RESET_ALL))
+        travel_date_str = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format): \n" + Style.NORMAL))
 
         try:
             travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d")
@@ -225,20 +225,20 @@ def get_trip_details():
             print(Fore.RED + "Oops. Please enter a valid date in YYYY-MM-DD format.")
             return None
 
-    flexibility_response = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n" + Style.RESET_ALL)).strip().lower()
+    flexibility_response = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n" + Style.NORMAL)).strip().lower()
     if flexibility_response not in ['yes', 'no']:
         print(Fore.RED + "Please answer with 'yes' or 'no'.")
         return None
 
     flexibility_days = 0
     if flexibility_response == 'yes':
-        flexibility_days = int(input(Fore.LIGHTMAGENTA_EX + "How many days of flexibility do you have? (1-3): \n"))
+        flexibility_days = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days of flexibility do you have? (1-3): \n" + Style.NORMAL))
         if not (1 <= flexibility_days <= 3):
             print(Fore.RED + "Please enter a number between 1 and 3.")
             return None
 
     try:
-        length_of_stay = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? \n" + Style.RESET_ALL))
+        length_of_stay = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? \n" + Style.NORMAL))
     except ValueError:
         print(Fore.RED + "Please enter a valid number for length of stay.")
         return None
@@ -255,22 +255,27 @@ def type_of_trip():
     Determines the occasion for the trip.
     """
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Please select the most applicable choice for your trip: :beating_heart: :man_dancing: :chicken:/:deer: :family:" + Style.RESET_ALL))
-    options = ["Romantic Adventure", "Solo Travel", "Hen or Stag Party", "Time with Friends or Family"]
-    
+    print(Style.BRIGHT + Fore.MAGENTA + "Please select the most applicable choice for your trip: \n" + Style.NORMAL)
+    options = [
+        emoji.emojize("Romantic Adventure :beating_heart:"),
+        emoji.emojize("Solo Travel :man_dancing:"),
+        emoji.emojize("Hen or Stag Party :tropical_drink:"),
+        emoji.emojize("Time with Friends or Family :family:")
+    ]
+
     colored_options = [Fore.LIGHTMAGENTA_EX + option for option in options]
     for i, option in enumerate(colored_options, start=1):
         print(f"{i}. {option}")
 
     while True:
         try:
-            choice = int(input("Enter the number corresponding to your choice: \n"))
+            choice = int(input(Style.BRIGHT + Fore.MAGENTA + "Enter the number corresponding to your choice: \n" + Style.NORMAL))
             if 1 <= choice <= len(options):
                 selected_trip_type = options[choice - 1]
-                print(f"You selected: {selected_trip_type}")
+                print(Style.BRIGHT + Fore.MAGENTA + f"You selected: {selected_trip_type}")
                 return selected_trip_type
             else:
-                print("Invalid choice. Please select a number from the list.")
+                print(Fore.RED + "Invalid choice. Please select a number from the list.")
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
 
@@ -278,14 +283,21 @@ def important_factors():
     """
     Collects up to three important factors from the user.
     """
-    print(emoji.emojize("Select up to three important factors (enter numbers separated by commas): :party_popper: :books: :woman_cook: :mountain:  :shopping_bags:  :magnifying_glass_tilted_left:"))
-    factors = ["Nightlife", "History & Culture", "Cuisine", "Outdoorsy Experiences", "Shopping", "Off the Beaten Path Exploration"]
+    print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Select up to three important factors (enter numbers separated by commas): \n" + Style.NORMAL)
+    factors = [
+        emoji.emojize("Nightlife :cityscape:"),
+        emoji.emojize("History & Culture :books:"),
+        emoji.emojize("Cuisine :fork_and_knife:"),
+        emoji.emojize("Outdoorsy Experiences :mountain:"),
+        emoji.emojize("Shopping :shopping_bags:"),
+        emoji.emojize("Off the Beaten Path Exploration :world_map:")
+    ]
 
     for i, factor in enumerate(factors, start=1):
-        print(f"{i}. {factor}")
+        print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + f"{i}. {factor}" + Style.NORMAL)
 
     while True:
-        choices = input("Enter your choices (e.g., 1,2,3): \n").split(',')
+        choices = input(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Enter your choices (e.g., 1,2,3): \n" + Style.NORMAL).split(',')
         selected_factors = []
 
         for choice in choices:
@@ -297,11 +309,10 @@ def important_factors():
                 continue
 
         if len(selected_factors) <= 3:
-            print(f"You selected: {selected_factors}")
+            print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + f"You selected: {selected_factors}" + Style.NORMAL)
             return selected_factors
         else:
-            print("Please select up to three factors.")
-
+            print(Fore.RED + "Please select up to three factors.")
 #Ranking tutorial credit: 
 def rank_cities(sheet, selected_trip_type, selected_factors):
     """
