@@ -138,7 +138,7 @@ def greeting():
     Greets the user when the program is run.
     """
     welcome_message = emoji.emojize("\n:palm_tree:" + Fore.LIGHTMAGENTA_EX + " Welcome to Instatrip, your booking bestie :palm_tree:\n")
-    first_message = Fore.YELLOW + "First things first. We're going to ask you a few\n" + Fore.YELLOW + "questions about your travel dates \n"
+    first_message = Fore.YELLOW + "First things first. We're going to ask you a few questions about your travel dates \n"
     fun_part_message = emoji.emojize(Fore.LIGHTMAGENTA_EX + "Then we'll get to the fun part: :crystal_ball: Selecting your next trip!\n")
     get_started_message = Fore.YELLOW + "Grab your suitcase, we're about to get started...\n"
 
@@ -148,7 +148,7 @@ def greeting():
     time.sleep(2)
 
     for line in center_text(first_message):
-        print(line)
+        print(wrap_text(line))
         print("")
     time.sleep(2)
 
@@ -287,7 +287,7 @@ def important_factors():
     """
     Collects up to three important factors from the user.
     """
-    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Select up to three important factors (enter numbers separated by commas): \n" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Select up to three important factors (enter numbers separated by commas): \n" +Style.NORMAL)
     factors = [
         emoji.emojize("Nightlife :cityscape:"),
         emoji.emojize("History & Culture :books:"),
@@ -298,7 +298,7 @@ def important_factors():
     ]
 
     for i, factor in enumerate(factors, start=1):
-        print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"{i}. {factor}" + Style.NORMAL)
+        print(Fore.LIGHTCYAN_EX + f"{i}. {factor}")
 
     while True:
         choices = input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Enter your choices (e.g., 1,2,3): \n" + Style.NORMAL).split(',')
@@ -313,7 +313,8 @@ def important_factors():
                 continue
 
         if len(selected_factors) <= 3:
-            print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"You selected: {selected_factors}" + Style.NORMAL)
+            selected_factors_str = ", ".join(selected_factors)
+            print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"You selected: {selected_factors_str}" + Style.NORMAL)
             print("")
             time.sleep(2)
             drumroll()
@@ -368,7 +369,7 @@ def drumroll():
     print("")
     time.sleep(2)
 
-    drum_emojis = emoji.emojize(":drum:")
+    drum_emojis = emoji.emojize(":drum:  ")
     for _ in range(1):
         print(drum_emojis * 5)
         time.sleep(2)
@@ -383,9 +384,9 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
     new_top_cities_with_scores = rank_cities(sheet, selected_trip_type, selected_factors)
     new_top_cities = select_random_cities(new_top_cities_with_scores)
     
-    print("\nBased on your preferences, here are three new cities:")
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nBased on your preferences, here are three new cities:" + Style.NORMAL)
     for city in new_top_cities:
-        print(city[0])
+        print(emoji.emojize(Fore.LIGHTCYAN_EX + ":star: " + city[0]))
     
     return new_top_cities
 
@@ -443,14 +444,15 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
     while True:
         print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nAre you happy with these cities?" + Style.NORMAL)
         print("")
-        print(emoji.emojize(Style.BRIGHT + Fore.LIGHTCYAN_EX + "1. Yes, let's go! :airplane_departure:" + Style.NORMAL))
-        print(emoji.emojize(Style.BRIGHT + Fore.LIGHTCYAN_EX + "2. No, let's see the next three :man_gesturing_NO:" + Style.NORMAL))
-        print(emoji.emojize(Style.BRIGHT + Fore.LIGHTCYAN_EX + "3. It's a wash. Start over :wastebasket:" + Style.NORMAL))
+        print(emoji.emojize(Fore.LIGHTCYAN_EX + "1. Yes, let's go! :airplane_departure:"))
+        print(emoji.emojize(Fore.LIGHTCYAN_EX + "2. No, let's see the next three :man_gesturing_NO:"))
+        print(emoji.emojize(Fore.LIGHTCYAN_EX + "3. It's a wash. Start over :wastebasket:"))
 
         try:
             choice = int(input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Please choose an option (1-3): " + Style.NORMAL))
             if choice == 1:
                 os.system('cls' if os.name == 'nt' else 'clear') 
+                print("")
                 print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Great! Let's adjust the cities based on your safety and accessibility \n preferences :service_dog:" + Style.NORMAL))
 
                 user_ratings = rate_importance()
@@ -459,7 +461,7 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
 
                 print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nHere are your final cities based on safety and accessibility:" + Style.NORMAL)
                 for city in adjusted_cities:
-                    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"{city[0]}" + Style.NORMAL)
+                    print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star: {city[0]}"))
 
                 return adjusted_cities
 
@@ -619,10 +621,10 @@ def main():
         initial_top_cities = select_random_cities(all_ranked_cities)
         
         os.system('cls' if os.name == 'nt' else 'clear') 
-        print(Style.BRIGHT + Fore.MAGENTA + "Top suitable cities:" + Style.NORMAL)
+        print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
         print("")
         for city in initial_top_cities:
-            print(Style.BRIGHT + Fore.MAGENTA + city[0] + Style.NORMAL)
+            print(emoji.emojize(Fore.MAGENTA + ":star: " + city[0]))
 
         while True:
             user_choice = user_choice_after_ranking(initial_top_cities, SHEET, selected_trip_type, selected_factors)
