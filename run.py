@@ -120,6 +120,7 @@ def display_menu():
 
         if choice == '1':
             os.system('cls' if os.name == 'nt' else 'clear') 
+            colored_instatrip()
             greeting()  
             break  
         elif choice == '2':
@@ -136,13 +137,26 @@ def greeting():
     """
     Greets the user when the program is run.
     """
-    print(emoji.emojize(":palm_tree: Welcome to Instatrip, your booking bestie :palm_tree:"))
+    welcome_message = emoji.emojize(":palm_tree:" + Fore.LIGHTMAGENTA_EX + " Welcome to Instatrip, your booking bestie :palm_tree:")
+    first_message = Fore.YELLOW + "First things first. We're going to ask you a few questions about your travel dates \n"
+    fun_part_message = emoji.emojize(Fore.LIGHTMAGENTA_EX + "Then we'll get to the fun part: :crystal_ball: Selecting your next trip!")
+    get_started_message = Fore.YELLOW + "Grab a suitcase, we're about to get started..."
+
+    for line in center_text(welcome_message):
+        print(line)
     time.sleep(3)
-    print("First things first. We're going to ask you a few questions about your travel \n dates")
+
+    for line in center_text(first_message):
+        print(line)
     time.sleep(3)
-    print(emoji.emojize("Then we'll get to the fun part: :crystal_ball: Selecting your next trip!"))
-    time.sleep(3) 
-    print("Grab a suitcase, we're about to get started...")
+
+    for line in center_text(fun_part_message):
+        print(line)
+    time.sleep(3)
+
+    for line in center_text(get_started_message):
+        print(line)
+        print("")
     time.sleep(3)
 
 def get_terminal_width():
@@ -165,12 +179,12 @@ def read_about():
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip")
     print(wrap_text(Fore.YELLOW + "InstaTrip is a travel planning program designed to bring a little spontaneity to the user's next vacation. The user is asked a few simple questions about their preferred trip type and occasion to to curate a list of personalized European destinations"))
     print("")
-    print(wrap_text(Fore.YELLOW + "For each destination, the program retrieves real-time flight data through the Ryanair API, showcasing the cheapest available flights. The user may then choose to book their flights with Ryanair"))
+    print(wrap_text(Fore.YELLOW + "For each destination, the program retrieves flight data through the Ryanair API, showcasing the cheapest available flights. The user may then choose to book a flight through the provided url to Ryanair"))
     print("")
-    print(wrap_text(Fore.YELLOW + "Disclaimer: InstaTrip is a student project and not affiliated with Ryanair. Prices and details are updated in real-time and subject to change. While InstaTrip wishes the user the happiest of holidays, they cannot be held responsible for any travel mishaps or misadventures :)"))
+    print(wrap_text(Fore.LIGHTRED_EX + "Disclaimer:" + Fore.YELLOW + "InstaTrip is a student project and not affiliated with Ryanair. Prices and details are updated in real-time and subject to change. While InstaTrip wishes the user the happiest of holidays, they cannot be held responsible for any travel mishaps or misadventures :)"))
     print("")
     print(Style.BRIGHT + Fore.MAGENTA + "About the Developer")
-    print(wrap_text(Fore.YELLOW + "InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her Instatrip travel preferences are: Romantic (her husband vetoed 'Solo Trip') and Culinary, Outdoorsy, and Off the Beaten Path"))
+    print(wrap_text(Fore.YELLOW + "InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her Instatrip travel preferences are: Romantic (her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, and Off the Beaten Path"))
     print(Fore.LIGHTMAGENTA_EX + "https://github.com/erinvdoyle")
     print("")
     
@@ -191,7 +205,7 @@ def get_trip_details():
     Asks user for travel date, flexibility, and length of trip.
     """
     while True:
-        travel_date_str = input(emoji.emojize(":handbag: When would you like to depart? (Please enter a date in YYYY-MM-DD format):\n "))
+        travel_date_str = input(emoji.emojize(":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format):\n "))
 
         try:
             travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d")
