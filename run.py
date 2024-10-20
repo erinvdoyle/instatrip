@@ -137,22 +137,22 @@ def greeting():
     """
     Greets the user when the program is run.
     """
-    welcome_message = emoji.emojize(":palm_tree:" + Fore.LIGHTMAGENTA_EX + " Welcome to Instatrip, your booking bestie :palm_tree:")
-    first_message = Fore.YELLOW + "First things first. We're going to ask you a few questions about your travel dates \n"
-    fun_part_message = emoji.emojize(Fore.LIGHTMAGENTA_EX + "Then we'll get to the fun part: :crystal_ball: Selecting your next trip!")
-    get_started_message = Fore.YELLOW + "Grab a suitcase, we're about to get started..."
+    welcome_message = emoji.emojize("\n:palm_tree:" + Fore.LIGHTMAGENTA_EX + " Welcome to Instatrip, your booking bestie :palm_tree:\n")
+    first_message = Fore.YELLOW + "First things first. We're going to ask you a few\n questions about your travel dates \n"
+    fun_part_message = emoji.emojize(Fore.LIGHTMAGENTA_EX + "Then we'll get to the fun part: :crystal_ball: Selecting your next trip!\n")
+    get_started_message = Fore.YELLOW + "Grab your suitcase, we're about to get started...\n"
 
     for line in center_text(welcome_message):
         print(line)
-    time.sleep(3)
+    time.sleep(2)
 
     for line in center_text(first_message):
         print(line)
-    time.sleep(3)
+    time.sleep(2)
 
     for line in center_text(fun_part_message):
         print(line)
-    time.sleep(3)
+    time.sleep(2)
 
     for line in center_text(get_started_message):
         print(line)
@@ -205,7 +205,8 @@ def get_trip_details():
     Asks user for travel date, flexibility, and length of trip.
     """
     while True:
-        travel_date_str = input(emoji.emojize(":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format):\n "))
+        os.system('cls' if os.name == 'nt' else 'clear') 
+        travel_date_str = input(emoji.emojize(Fore.RED + ":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format): \n"))
 
         try:
             travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d")
@@ -214,31 +215,31 @@ def get_trip_details():
             minimum_travel_date = current_date + timedelta(days=1)
 
             if travel_date < minimum_travel_date:
-                print(f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()}).")
+                print(Style.BRIGHT + Fore.MAGENTA + f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()}).")
                 continue  
             
             break
         
         except ValueError:
-            print("Oops. Please enter a valid date in YYYY-MM-DD format.")
+            print(Fore.RED + "Oops. Please enter a valid date in YYYY-MM-DD format.")
             return None
 
-    flexibility_response = input(emoji.emojize("Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n")).strip().lower()
+    flexibility_response = input(emoji.emojize(Fore.YELLOW + "Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n")).strip().lower()
     if flexibility_response not in ['yes', 'no']:
-        print("Please answer with 'yes' or 'no'.")
+        print(Fore.RED + "Please answer with 'yes' or 'no'.")
         return None
 
     flexibility_days = 0
     if flexibility_response == 'yes':
-        flexibility_days = int(input("How many days of flexibility do you have? (1-3): \n"))
+        flexibility_days = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days of flexibility do you have? (1-3): \n"))
         if not (1 <= flexibility_days <= 3):
-            print("Please enter a number between 1 and 3.")
+            print(Fore.RED + "Please enter a number between 1 and 3.")
             return None
 
     try:
-        length_of_stay = int(input("How many days do you plan to stay? \n"))
+        length_of_stay = int(input(Fore.YELLOW + "How many days do you plan to stay? \n"))
     except ValueError:
-        print("Please enter a valid number for length of stay.")
+        print(Fore.RED + "Please enter a valid number for length of stay.")
         return None
 
     return {
@@ -252,7 +253,7 @@ def type_of_trip():
     """
     Determines the occasion for the trip.
     """
-    print(emoji.emojize("Please select the most applicable choice for your trip: :beating_heart: :man_dancing: :chicken:/:deer: :family:"))
+    print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Please select the most applicable choice for your trip: :beating_heart: :man_dancing: :chicken:/:deer: :family:"))
     options = ["Romantic Adventure", "Solo Travel", "Hen or Stag Party", "Time with Friends or Family"]
 
     for i, option in enumerate(options, start=1):
@@ -268,7 +269,7 @@ def type_of_trip():
             else:
                 print("Invalid choice. Please select a number from the list.")
         except ValueError:
-            print("Please enter a valid number.")
+            print(Fore.RED + "Please enter a valid number.")
 
 def important_factors():
     """
