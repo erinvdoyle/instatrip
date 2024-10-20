@@ -579,7 +579,7 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
 
         if destination_code:
             outbound_date = trip_details['departure_date']  
-            print(f"Fetching flights for {city_name} (IATA: {destination_code})...")
+            print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"Fetching flights for {city_name} (IATA: {destination_code})..." + Style.NORMAL)
 
             # Search flights via RapidAPI Ryanair
             flight_data = search_ryanair_flights(origin, destination_code, outbound_date)
@@ -603,11 +603,11 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
                     }
                     flight_results.append(flight_info)
                 else:
-                    print(f"No fares found for {city_name}.")
+                    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"No fares found for {city_name}." + Style.NORMAL)
             else:
-                print(f"Error fetching flights for {city_name}")
+                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"Error fetching flights for {city_name}" + Style.NORMAL)
         else:
-            print(f"No airport code found for {city_name}")
+            print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"No airport code found for {city_name}" + Style.NORMAL)
 
     return flight_results
 
@@ -616,31 +616,31 @@ def ask_for_booking_link(flights_info):
     Asks the user if they would like to generate a booking link for any of the displayed flights and allows user to start over if not
     """
     if not flights_info:
-        print("No flight information available.")
+        print(Style.BRIGHT + Fore.MAGENTA_EX + "No flight information available." + Style.NORMAL)
         return
 
-    print("Would you like to generate a booking for any of these flights?")
+    print(Style.BRIGHT + Fore.MAGENTA_EX + "Would you like to generate a booking for any of these flights?" + Style.NORMAL)
     for idx, flight in enumerate(flights_info, start=1):
-        print(f"{idx}. {flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR")
+        print(Style.BRIGHT + Fore.MAGENTA_EX + f"{idx}. {flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL)
 
-    print("4. Start over")
+    print(Style.BRIGHT + Fore.MAGENTA_EX + "4. Start over" + Style.NORMAL)
 
     while True:
         try:
-            choice = int(input("Please choose an option (1-4): "))
+            choice = int(input(Style.BRIGHT + Fore.MAGENTA_EX + "Please choose an option (1-4): " + Style.NORMAL))
             if 1 <= choice <= len(flights_info):
                 selected_flight = flights_info[choice - 1]
                 booking_link = f"https://www.ryanair.com/gb/en/booking/home?departureAirport=DUB&arrivalAirport={selected_flight['city']}&outboundDate={trip_details['departure_date']}&adults=1"
-                print(f"Booking link for {selected_flight['city']}: {booking_link}")
+                print(Style.BRIGHT + Fore.MAGENTA_EX + f"Booking link for {selected_flight['city']}: {booking_link}" + Style.NORMAL)
                 break
             elif choice == 4:
-                print("Starting over...")
+                print(Style.BRIGHT + Fore.MAGENTA_EX + "Starting over..." + Style.NORMAL)
                 
                 break
             else:
-                print("Invalid choice. Please select a number from 1 to 5.")
+                print(Fore.RED + "Invalid choice. Please select a number from 1 to 5.")
         except ValueError:
-            print("Please enter a valid number.")
+            print(Fore.RED + "Please enter a valid number.")
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear') 
