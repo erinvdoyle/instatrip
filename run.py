@@ -234,30 +234,36 @@ def get_trip_details():
             print(Fore.RED + "Oops. Please enter a valid date in YYYY-MM-DD format.")
             continue  
 
-    flexibility_response = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n" + Style.NORMAL)).strip().lower()
-    if flexibility_response not in ['yes', 'no']:
-        print(Fore.RED + "Please answer with 'yes' or 'no'.")
-        return None
+    while True:
+        flexibility_response = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n" + Style.NORMAL)).strip().lower()
+        if flexibility_response not in ['yes', 'no']:
+            print(Fore.RED + "Please answer with 'yes' or 'no'.")
+        else:
+            break  
 
     flexibility_days = 0
     if flexibility_response == 'yes':
+        while True:
+            try:
+                flexibility_days = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days of flexibility do you have? (1-3): \n" + Style.NORMAL))
+                if not (1 <= flexibility_days <= 3):
+                    print(Fore.RED + "Please enter a number between 1 and 3.")
+                else:
+                    break  
+            except ValueError:
+                print(Fore.RED + "Please enter a valid number for flexibility days.")
+                continue
+    
+    while True:
         try:
-            flexibility_days = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days of flexibility do you have? (1-3): \n" + Style.NORMAL))
-            if not (1 <= flexibility_days <= 3):
-                print(Fore.RED + "Please enter a number between 1 and 3.")
-                return None
+            length_of_stay = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? (Enter a minimum of 1 and maximum of 59)\n" + Style.NORMAL))
+            if not (1 <= length_of_stay <= 59):
+                print(Fore.RED + "Please enter a number between 1 and 59.")
+            else:
+                break  
         except ValueError:
-            print(Fore.RED + "Please enter a valid number for flexibility days.")
-            return None
-
-    try:
-        length_of_stay = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? (Enter a minimum of 1 and maximum of 59)\n" + Style.NORMAL))
-        if not (1 <= length_of_stay <= 59):
-            print(Fore.RED + "Please enter a number between 1 and 59.")
-            return None
-    except ValueError:
-        print(Fore.RED + "Please enter a valid number for length of stay.")
-        return None
+            print(Fore.RED + "Please enter a valid number for length of stay.")
+            continue
 
     return {
         'travel_date': travel_date,
