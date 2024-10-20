@@ -144,14 +144,17 @@ def greeting():
 
     for line in center_text(welcome_message):
         print(line)
+        print("")
     time.sleep(2)
 
     for line in center_text(first_message):
         print(line)
+        print("")
     time.sleep(2)
 
     for line in center_text(fun_part_message):
         print(line)
+        print("")
     time.sleep(2)
 
     for line in center_text(get_started_message):
@@ -312,9 +315,12 @@ def important_factors():
         if len(selected_factors) <= 3:
             print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"You selected: {selected_factors}" + Style.NORMAL)
             print("")
+            time.sleep(2)
+            drumroll()
             return selected_factors
         else:
             print(Fore.RED + "Please select up to three factors.")
+
 #Ranking tutorial credit: 
 def rank_cities(sheet, selected_trip_type, selected_factors):
     """
@@ -350,6 +356,25 @@ def select_random_cities(cities, num_cities=3):
         return cities  
     return random.sample(cities, num_cities)
 
+def drumroll():
+    """
+    Clears the screen and displays a drumroll message with drum emojis.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    print(Style.BRIGHT + Fore.RED + "Based off your preferences, your top city selections are..." + Style.NORMAL)
+    print("")
+    print(Style.BRIGHT + Fore.RED + "drumroll please..." + Style.NORMAL)
+    print("")
+    time.sleep(2)
+
+    drum_emojis = emoji.emojize(":drum:")
+    for _ in range(1):
+        print(drum_emojis * 5)
+        time.sleep(2)
+
+    #print(Style.BRIGHT + Fore.MAGENTA + "And the result is..." + Style.NORMAL)
+    
 def generate_new_cities(sheet, selected_trip_type, selected_factors):
     """
     Generates and ranks new cities based on user preferences.
@@ -425,7 +450,8 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
         try:
             choice = int(input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Please choose an option (1-3): " + Style.NORMAL))
             if choice == 1:
-                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Great! Let's adjust the cities based on your safety and accessibility preferences :service_dog:" + Style.NORMAL))
+                os.system('cls' if os.name == 'nt' else 'clear') 
+                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Great! Let's adjust the cities based on your safety and accessibility \n preferences :service_dog:" + Style.NORMAL))
 
                 user_ratings = rate_importance()
 
@@ -438,10 +464,12 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
                 return adjusted_cities
 
             elif choice == 2:
+                os.system('cls' if os.name == 'nt' else 'clear') 
                 new_top_cities = generate_new_cities(sheet, selected_trip_type, selected_factors)
                 return new_top_cities
 
             elif choice == 3:
+                os.system('cls' if os.name == 'nt' else 'clear') 
                 return "start_over"
 
             else:
@@ -589,7 +617,8 @@ def main():
         all_ranked_cities = rank_cities(SHEET, selected_trip_type, selected_factors)
 
         initial_top_cities = select_random_cities(all_ranked_cities)
-
+        
+        os.system('cls' if os.name == 'nt' else 'clear') 
         print(Style.BRIGHT + Fore.MAGENTA + "Top suitable cities:" + Style.NORMAL)
         print("")
         for city in initial_top_cities:
@@ -614,7 +643,7 @@ def main():
             else:
                 final_top_cities = user_choice  # Assign the user choice to final_top_cities
 
-                print(emoji.emojize("\n :party_popper: Let's print your flight information... :party_popper:"))
+                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "\n :party_popper: Let's print your flight information... :party_popper:" + Style.NORMAL))
 
                 # trip_details['departure_airport'] = 'DUB'
                 # trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
