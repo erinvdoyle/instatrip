@@ -128,10 +128,11 @@ def display_menu():
             read_about()  
             break  
         elif choice == '3':
-            print(Fore.YELLOW + "Exiting the program. Goodbye!")
+            print(Fore.YELLOW + "Exiting the program...")
+            exit()
             break  
         else:
-            print(Fore.YELLOW + "Invalid choice. Please enter 1, 2, or 3.")
+            print(Fore.RED + "Invalid choice. Please enter 1, 2, or 3.")
 
 def greeting():
     """
@@ -424,7 +425,7 @@ def rate_importance():
     """
     Collects importance ranking for safety and accessibility factors from the user.
     """
-    factors_to_rate = ["Overall Safety", "Accessibility", "Public Transportation", "Tourism-Friendly", "English-Friendly"]
+    factors_to_rate = ["Overall Safety", "Accessibility", "Public Transportation", "Tourism-Friendliness", "English-Friendliness"]
 
     ratings = {}
 
@@ -631,16 +632,47 @@ def ask_for_booking_link(flights_info):
             if 1 <= choice <= len(flights_info):
                 selected_flight = flights_info[choice - 1]
                 booking_link = f"https://www.ryanair.com/gb/en/booking/home?departureAirport=DUB&arrivalAirport={selected_flight['city']}&outboundDate={trip_details['departure_date']}&adults=1"
+                print(Style.BRIGHT + Fore.MAGENTA_EX + "Link will open in new window" + Style.NORMAL)
                 print(Style.BRIGHT + Fore.MAGENTA_EX + f"Booking link for {selected_flight['city']}: {booking_link}" + Style.NORMAL)
+                print(Style.BRIGHT + Fore.MAGENTA_EX + "Bon Voyage!" + Style.NORMAL)
                 break
             elif choice == 4:
                 print(Style.BRIGHT + Fore.MAGENTA_EX + "Starting over..." + Style.NORMAL)
-                
                 break
             else:
                 print(Fore.RED + "Invalid choice. Please select a number from 1 to 5.")
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
+
+def exit():
+    """
+    Brings the user to the exit art screen
+    """
+    os.system('cls' if os.name == 'nt' else 'clear') 
+    print(Fore.LIGHTCYAN_EX + "Bon Voyage!")
+    print("")
+    
+    goodbye_art = [
+        f"{Fore.YELLOW}              |",
+        f"{Fore.YELLOW}        \\ _ /",
+        f"{Fore.YELLOW}      -= (_) =-",
+        f"{Fore.LIGHTGREEN_EX}        /   \\         _\\/\\_",
+        f"{Fore.LIGHTYELLOW_EX}          |           //o\\  _\\/\\_",
+        f"{Fore.LIGHTYELLOW_EX}   _____ _ __ __ ____ _ | __/o\\\\ _",
+        f"{Fore.LIGHTCYAN_EX} =-=-_-__=_-= _=_=-=_,-'|\"\"\"\"-|-,_",
+        f"{Fore.LIGHTCYAN_EX}  =- _=-=- -_=-=_,-\"          |",
+        f"{Fore.LIGHTCYAN_EX} =- =- -=.--"
+    ]
+
+    for line in goodbye_art:
+        print(line)
+
+    input(Fore.LIGHTCYAN_EX + "\nPress Enter to return to the main menu...")
+
+    print("\n")
+    colored_instatrip()
+    print_colored_background()
+    display_menu()
 
 def main():
     os.system('cls' if os.name == 'nt' else 'clear') 
@@ -691,12 +723,12 @@ def main():
                 # trip_details['departure_airport'] = 'DUB'
                 # trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
                 # flights_info = find_cheapest_flights(SHEET, [city[0] for city in final_top_cities], trip_details)
-                # print("\nCheapest Flights Information:")
+                # print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nCheapest Flights Information:" + Style.NORMAL)
                 # for flight in flights_info:
-                #     print(f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
-                #           f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}")
+                #     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
+                #           f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}" + Style.NORMAL)
 
-            #ask_for_booking_link(flights_info)
+            #ask_for_booking_link(flights_info) 
             break 
 
 if __name__ == "__main__":
