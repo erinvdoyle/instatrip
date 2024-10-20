@@ -649,16 +649,19 @@ def exit():
     Brings the user to the exit art screen
     """
     os.system('cls' if os.name == 'nt' else 'clear') 
-    print(Fore.LIGHTCYAN_EX + "Bon Voyage!")
+    print("")
+    print("")
+    print("")
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
     print("")
     
     goodbye_art = [
         f"{Fore.YELLOW}              |",
         f"{Fore.YELLOW}        \\ _ /",
         f"{Fore.YELLOW}      -= (_) =-",
-        f"{Fore.LIGHTGREEN_EX}        /   \\         _\\/\\_",
-        f"{Fore.LIGHTYELLOW_EX}          |           //o\\  _\\/\\_",
-        f"{Fore.LIGHTYELLOW_EX}   _____ _ __ __ ____ _ | __/o\\\\ _",
+        f"{Fore.YELLOW}        /   \\         _\\/\\_",
+        f"{Fore.LIGHTGREEN_EX}          |           //o\\  _\\/\\_",
+        f"{Fore.LIGHTGREEN_EX}   _____ _ __ __ ____ _ | __/o\\\\ _",
         f"{Fore.LIGHTCYAN_EX} =-=-_-__=_-= _=_=-=_,-'|\"\"\"\"-|-,_",
         f"{Fore.LIGHTCYAN_EX}  =- _=-=- -_=-=_,-\"          |",
         f"{Fore.LIGHTCYAN_EX} =- =- -=.--"
@@ -667,7 +670,7 @@ def exit():
     for line in goodbye_art:
         print(line)
 
-    input(Fore.LIGHTCYAN_EX + "\nPress Enter to return to the main menu...")
+    input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nPress Enter to return to the main menu..." + Style.NORMAL)
 
     print("\n")
     colored_instatrip()
