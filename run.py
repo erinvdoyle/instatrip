@@ -222,10 +222,10 @@ def get_trip_details():
             maximum_travel_date = current_date + timedelta(days=730)
 
             if travel_date < minimum_travel_date:
-                print(Fore.LIGHTMAGENTA_EX + f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()}).")
+                print(Fore.RED + f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()}).")
                 continue
             elif travel_date > maximum_travel_date:
-                print(Fore.LIGHTMAGENTA_EX + f"Please enter a date no further than two years from today (before {maximum_travel_date.date()}).")
+                print(Fore.RED + f"Please enter a date no further than two years from today (before {maximum_travel_date.date()}).")
                 continue
 
             break 
@@ -306,7 +306,8 @@ def important_factors():
     """
     Collects up to three important factors from the user.
     """
-    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Select up to three important factors (enter numbers separated by commas): \n" +Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Select up to three important factors (enter numbers separated by commas): \n" + Style.NORMAL)
+    
     factors = [
         emoji.emojize("Nightlife :cityscape:"),
         emoji.emojize("History & Culture :books:"),
@@ -323,24 +324,33 @@ def important_factors():
         print("")
         choices = input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Enter your choices (e.g., 1,2,3): \n" + Style.NORMAL).split(',')
         selected_factors = []
+        invalid_choices = []
 
         for choice in choices:
             try:
                 index = int(choice.strip()) - 1
                 if 0 <= index < len(factors):
                     selected_factors.append(factors[index])
+                else:
+                    invalid_choices.append(choice.strip())
             except ValueError:
-                continue
+                invalid_choices.append(choice.strip())
 
-        if len(selected_factors) <= 3:
+        if invalid_choices:
+            print(Fore.RED + "Invalid input(s): " + ", ".join(invalid_choices) + ". Please choose numbers between 1 and {}.".format(len(factors)))
+            continue  
+
+        if len(selected_factors) > 3:
+            print(Fore.RED + "Please select up to three factors.")
+        elif len(selected_factors) == 0:
+            print(Fore.RED + "You must select at least one factor. Please try again.")
+        else:
             selected_factors_str = ", ".join(selected_factors)
             print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"You selected: {selected_factors_str}" + Style.NORMAL)
             print("")
             time.sleep(2)
             drumroll()
-            return selected_factors
-        else:
-            print(Fore.RED + "Please select up to three factors.")
+            return selected_factors 
 
 #Ranking tutorial credit: 
 def rank_cities(sheet, selected_trip_type, selected_factors):
@@ -410,7 +420,6 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
     
     return new_top_cities
 
-
 def rate_importance():
     """
     Collects importance ranking for safety and accessibility factors from the user.
@@ -422,12 +431,24 @@ def rate_importance():
     for factor in factors_to_rate:
         while True:
             try:
-                rating = int(input(Style.BRIGHT + Fore.MAGENTA + f"Rate the importance of {factor} (1-5, with 1 being most important): \n" + Style.NORMAL))
+                # Ask the user for a rating
+                rating = input(Style.BRIGHT + Fore.MAGENTA + f"Rate the importance of {factor} (1-5, with 1 being most important): \n" + Style.NORMAL).strip()
+
+                # Ensure the rating is not blank
+                if rating == "":
+                    print(Fore.RED + "You didn't enter anything. Please enter a number between 1 and 5.")
+                    continue
+
+                # Try to convert the rating to an integer
+                rating = int(rating)
+
+                # Ensure the rating is between 1 and 5
                 if 1 <= rating <= 5:
                     ratings[factor] = rating
-                    break
+                    break  # Valid input, break out of the loop
                 else:
                     print(Fore.RED + "Please enter a number between 1 and 5.")
+            
             except ValueError:
                 print(Fore.RED + "Invalid input. Please enter a number.")
 
@@ -465,7 +486,7 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
         print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nAre you happy with these cities?" + Style.NORMAL)
         print("")
         print(emoji.emojize(Fore.LIGHTCYAN_EX + "1. Yes, let's go! :airplane_departure:"))
-        print(emoji.emojize(Fore.LIGHTCYAN_EX + "2. No, let's see the next three :man_gesturing_NO:"))
+        print(emoji.emojize(Fore.LIGHTCYAN_EX + "2. No, let's see another three cities :man_gesturing_NO:"))
         print(emoji.emojize(Fore.LIGHTCYAN_EX + "3. It's a wash. Start over :wastebasket:"))
 
         try:
@@ -644,7 +665,7 @@ def main():
         print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
         print("")
         for city in initial_top_cities:
-            print(emoji.emojize(Fore.MAGENTA + ":star: " + city[0]))
+            print(emoji.emojize(Fore.MAGENTA + ":star: " + " " + city[0]))
 
         while True:
             user_choice = user_choice_after_ranking(initial_top_cities, SHEET, selected_trip_type, selected_factors)
