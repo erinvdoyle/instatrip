@@ -1,5 +1,6 @@
 backoff==2.2.1
 cachetools==5.5.0
+colorama==0.4.6
 emoji==2.14.0
 google-auth==2.35.0
 google-auth-oauthlib==1.2.1
