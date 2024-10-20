@@ -137,7 +137,7 @@ def greeting():
     """
     Greets the user when the program is run.
     """
-    welcome_message = emoji.emojize("\n:palm_tree:" + Fore.LIGHTMAGENTA_EX + " Welcome to Instatrip, your booking bestie :palm_tree:\n")
+    welcome_message = emoji.emojize("\n:palm_tree: " + Fore.LIGHTMAGENTA_EX + "Welcome to Instatrip, your booking bestie :palm_tree:\n")
     first_message = Fore.YELLOW + "First things first. We're going to ask you a few questions about your travel dates \n"
     fun_part_message = emoji.emojize(Fore.LIGHTMAGENTA_EX + "Then we'll get to the fun part: :crystal_ball: Selecting your next trip!\n")
     get_started_message = Fore.YELLOW + "Grab your suitcase, we're about to get started...\n"
@@ -148,7 +148,7 @@ def greeting():
     time.sleep(2)
 
     for line in center_text(first_message):
-        print(wrap_text(line))
+        print(line)
         print("")
     time.sleep(2)
 
@@ -301,6 +301,7 @@ def important_factors():
         print(Fore.LIGHTCYAN_EX + f"{i}. {factor}")
 
     while True:
+        print("")
         choices = input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Enter your choices (e.g., 1,2,3): \n" + Style.NORMAL).split(',')
         selected_factors = []
 
@@ -395,7 +396,7 @@ def rate_importance():
     """
     Collects importance ranking for safety and accessibility factors from the user.
     """
-    factors_to_rate = ["Safety", "Accessibility", "Transportation", "Tourist", "Language Barrier"]
+    factors_to_rate = ["Overall Safety", "Accessibility", "Public Transportation", "Tourism-Friendly", "English-Speaker Accessible"]
 
     ratings = {}
 
@@ -449,19 +450,19 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
         print(emoji.emojize(Fore.LIGHTCYAN_EX + "3. It's a wash. Start over :wastebasket:"))
 
         try:
-            choice = int(input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Please choose an option (1-3): " + Style.NORMAL))
+            choice = int(input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nPlease choose an option (1-3): " + Style.NORMAL))
             if choice == 1:
                 os.system('cls' if os.name == 'nt' else 'clear') 
                 print("")
-                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Great! Let's adjust the cities based on your safety and accessibility \n preferences :service_dog:" + Style.NORMAL))
+                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Great! Let's adjust the cities based on your safety and accessibility \n preferences :service_dog: \n" + Style.NORMAL))
 
                 user_ratings = rate_importance()
 
                 adjusted_cities = adjust_city_scores(top_cities, user_ratings)
 
-                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nHere are your final cities based on safety and accessibility:" + Style.NORMAL)
+                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nHere are your final cities based on your safety and accessibility preferences:" + Style.NORMAL)
                 for city in adjusted_cities:
-                    print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star: {city[0]}"))
+                    print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
 
                 return adjusted_cities
 
