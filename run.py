@@ -75,14 +75,6 @@ def colored_instatrip():
     for line in bottom_lines:
         print(Fore.RED + line)
 
-#menu_text = """
-#MAIN MENU
-#---------
-#1. Start
-#2. About
-#3. Exit
-#"""
-
 def center_text(text):
     """
     Centers the text in the console.
@@ -118,9 +110,11 @@ MAIN MENU
         choice = input("Please choose an option (1, 2, or 3): ")
 
         if choice == '1':
+            os.system('cls' if os.name == 'nt' else 'clear') 
             greeting()  
             break  
         elif choice == '2':
+            os.system('cls' if os.name == 'nt' else 'clear') 
             read_about()  
             break  
         elif choice == '3':
@@ -142,6 +136,21 @@ def greeting():
     print("Grab a suitcase, we're about to get started...")
     time.sleep(3)
 
+def read_about():
+    """
+    Displays the about text for both the company and the developer :) 
+    """
+    print("About InstaTrip")
+    print("InstaTrip is a travel planning program designed to bring a little spontaneity to the user's next vacation. The user is asked a few simple questions about their preferred trip type and occasion to allow InstaTrip to curate a list of personalized European destinations")
+    print("")
+    print("For each destination, the program retrieves real-time flight data through the Ryanair API, showcasing the cheapest available flights on the user's selected date. The user may then follow a link to book their flights directly with Ryanair")
+    print("")
+    print("Disclaimer: InstaTrip is a student project and not affiliated with Ryanair. Flight data is generated through the official Ryanair API but prices and details are updated in real-time and subject to change. Finally, while InstaTrip wishes the user the happiest of holidays, they cannot be held responsible for any travel mishaps or misadventures :)")
+    print("")
+    print("About the Developer")
+    print("InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her Instatrip travel preferences would be: Romantic (her husband might have vetoed 'Solo Trip') and Culinary, Outdoorsy, and Off the Beaten Path")
+    print("https://github.com/erinvdoyle")
+    
 def get_trip_details():
     """
     Asks user for travel date, flexibility, and length of trip.
@@ -502,12 +511,6 @@ def main():
     colored_instatrip()
     print_colored_background()
 
-    #print("\n")
-    #centered_menu = center_text(menu_text.splitlines())
-    #for line in centered_menu:
-        #print(line)
-    
-    #greeting()
     display_menu()
 
     trip_details = get_trip_details()
