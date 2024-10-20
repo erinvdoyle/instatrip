@@ -138,7 +138,7 @@ def greeting():
     Greets the user when the program is run.
     """
     welcome_message = emoji.emojize("\n:palm_tree: " + Fore.LIGHTMAGENTA_EX + "Welcome to Instatrip, your booking bestie :palm_tree:\n")
-    first_message = Fore.YELLOW + "First things first. We're going to ask you a few questions about your travel dates \n"
+    first_message = Fore.YELLOW + "First things first. We're going to ask you a few questions about your travel\n dates \n"
     fun_part_message = emoji.emojize(Fore.LIGHTMAGENTA_EX + "Then we'll get to the fun part: :crystal_ball: Selecting your next trip!\n")
     get_started_message = Fore.YELLOW + "Grab your suitcase, we're about to get started...\n"
 
@@ -217,9 +217,10 @@ def get_trip_details():
 
             current_date = datetime.now()
             minimum_travel_date = current_date + timedelta(days=1)
+            maximum_travel_date = current_date + timedelta(days=730)
 
             if travel_date < minimum_travel_date:
-                print(Fore.LIGHTMAGENTA_EX + f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()}).")
+                print(Fore.LIGHTMAGENTA_EX + f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()}, but no further in advance than {maximum_travel_date}).")
                 continue  
             
             break
@@ -241,7 +242,7 @@ def get_trip_details():
             return None
 
     try:
-        length_of_stay = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? \n" + Style.NORMAL))
+        length_of_stay = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? (Enter a minimum of 1 and maximum of 59)\n" + Style.NORMAL))
     except ValueError:
         print(Fore.RED + "Please enter a valid number for length of stay.")
         return None
@@ -396,7 +397,7 @@ def rate_importance():
     """
     Collects importance ranking for safety and accessibility factors from the user.
     """
-    factors_to_rate = ["Overall Safety", "Accessibility", "Public Transportation", "Tourism-Friendly", "English-Speaker Accessible"]
+    factors_to_rate = ["Overall Safety", "Accessibility", "Public Transportation", "Tourism-Friendly", "English-Friendly"]
 
     ratings = {}
 
@@ -454,7 +455,7 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
             if choice == 1:
                 os.system('cls' if os.name == 'nt' else 'clear') 
                 print("")
-                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Great! Let's adjust the cities based on your safety and accessibility \n preferences :service_dog: \n" + Style.NORMAL))
+                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Great! Let's adjust the cities based on your safety and accessibility \npreferences :service_dog: \n" + Style.NORMAL))
 
                 user_ratings = rate_importance()
 
