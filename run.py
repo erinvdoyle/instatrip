@@ -176,14 +176,14 @@ def read_about():
     """
     Displays the about text for both the company and the developer :) 
     """
-    print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip")
+    print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(wrap_text(Fore.YELLOW + "InstaTrip is a travel planning program designed to bring a little spontaneity to the user's next vacation. The user is asked a few simple questions about their preferred trip type and occasion to to curate a list of personalized European destinations"))
     print("")
     print(wrap_text(Fore.YELLOW + "For each destination, the program retrieves flight data through the Ryanair API, showcasing the cheapest available flights. The user may then choose to book a flight through the provided url to Ryanair"))
     print("")
     print(wrap_text(Fore.LIGHTRED_EX + "Disclaimer:" + Fore.YELLOW + " InstaTrip is a student project and not affiliated with Ryanair. Prices and details are updated in real-time and subject to change. While InstaTrip wishes the user the happiest of holidays, they cannot be held responsible for any travel mishaps or misadventures :)"))
     print("")
-    print(Style.BRIGHT + Fore.MAGENTA + "About the Developer")
+    print(Style.BRIGHT + Fore.MAGENTA + "About the Developer" + Style.RESET_ALL)
     print(wrap_text(Fore.YELLOW + "InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her Instatrip travel preferences are: Romantic (her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, and Off the Beaten Path"))
     print(Fore.LIGHTMAGENTA_EX + "https://github.com/erinvdoyle")
     print("")
@@ -207,7 +207,7 @@ def get_trip_details():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear') 
         print("")
-        travel_date_str = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format): \n"))
+        travel_date_str = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format): \n" + Style.RESET_ALL))
 
         try:
             travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d")
@@ -225,7 +225,7 @@ def get_trip_details():
             print(Fore.RED + "Oops. Please enter a valid date in YYYY-MM-DD format.")
             return None
 
-    flexibility_response = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n")).strip().lower()
+    flexibility_response = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n" + Style.RESET_ALL)).strip().lower()
     if flexibility_response not in ['yes', 'no']:
         print(Fore.RED + "Please answer with 'yes' or 'no'.")
         return None
@@ -238,7 +238,7 @@ def get_trip_details():
             return None
 
     try:
-        length_of_stay = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? \n"))
+        length_of_stay = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? \n" + Style.RESET_ALL))
     except ValueError:
         print(Fore.RED + "Please enter a valid number for length of stay.")
         return None
@@ -255,7 +255,7 @@ def type_of_trip():
     Determines the occasion for the trip.
     """
     os.system('cls' if os.name == 'nt' else 'clear')
-    print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Please select the most applicable choice for your trip: :beating_heart: :man_dancing: :chicken:/:deer: :family:"))
+    print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Please select the most applicable choice for your trip: :beating_heart: :man_dancing: :chicken:/:deer: :family:" + Style.RESET_ALL))
     options = ["Romantic Adventure", "Solo Travel", "Hen or Stag Party", "Time with Friends or Family"]
     
     colored_options = [Fore.LIGHTMAGENTA_EX + option for option in options]
