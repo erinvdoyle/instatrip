@@ -185,9 +185,9 @@ def read_about():
     print("")
     print(Style.BRIGHT + Fore.MAGENTA + "About the Developer" + Style.RESET_ALL)
     print(wrap_text(Fore.YELLOW + "InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her Instatrip travel preferences are: Romantic (her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, and Off the Beaten Path"))
-    print(Fore.LIGHTMAGENTA_EX + "https://github.com/erinvdoyle")
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "https://github.com/erinvdoyle" + Style.NORMAL)
     print("")
-    
+     
     while True:
         choice = input(Fore.RED + "Enter 1 to return to Main Menu: \n")
 
@@ -265,14 +265,15 @@ def type_of_trip():
 
     colored_options = [Fore.LIGHTMAGENTA_EX + option for option in options]
     for i, option in enumerate(colored_options, start=1):
-        print(f"{i}. {option}")
+        print(Fore.LIGHTMAGENTA_EX + f"{i}. {option}")
 
     while True:
         try:
-            choice = int(input(Style.BRIGHT + Fore.MAGENTA + "Enter the number corresponding to your choice: \n" + Style.NORMAL))
+            choice = int(input(Style.BRIGHT + Fore.MAGENTA + "\nEnter the number corresponding to your choice: \n" + Style.NORMAL))
             if 1 <= choice <= len(options):
                 selected_trip_type = options[choice - 1]
-                print(Style.BRIGHT + Fore.MAGENTA + f"You selected: {selected_trip_type}")
+                print(Style.BRIGHT + Fore.MAGENTA + f"You selected: {selected_trip_type}" + Style.NORMAL)
+                print("")
                 return selected_trip_type
             else:
                 print(Fore.RED + "Invalid choice. Please select a number from the list.")
@@ -283,7 +284,7 @@ def important_factors():
     """
     Collects up to three important factors from the user.
     """
-    print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Select up to three important factors (enter numbers separated by commas): \n" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Select up to three important factors (enter numbers separated by commas): \n" + Style.NORMAL)
     factors = [
         emoji.emojize("Nightlife :cityscape:"),
         emoji.emojize("History & Culture :books:"),
@@ -294,10 +295,10 @@ def important_factors():
     ]
 
     for i, factor in enumerate(factors, start=1):
-        print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + f"{i}. {factor}" + Style.NORMAL)
+        print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"{i}. {factor}" + Style.NORMAL)
 
     while True:
-        choices = input(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Enter your choices (e.g., 1,2,3): \n" + Style.NORMAL).split(',')
+        choices = input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Enter your choices (e.g., 1,2,3): \n" + Style.NORMAL).split(',')
         selected_factors = []
 
         for choice in choices:
@@ -309,7 +310,8 @@ def important_factors():
                 continue
 
         if len(selected_factors) <= 3:
-            print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + f"You selected: {selected_factors}" + Style.NORMAL)
+            print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"You selected: {selected_factors}" + Style.NORMAL)
+            print("")
             return selected_factors
         else:
             print(Fore.RED + "Please select up to three factors.")
@@ -374,14 +376,14 @@ def rate_importance():
     for factor in factors_to_rate:
         while True:
             try:
-                rating = int(input(f"Rate the importance of {factor} (1-5, with 1 being most important): \n"))
+                rating = int(input(Style.BRIGHT + Fore.MAGENTA + f"Rate the importance of {factor} (1-5, with 1 being most important): \n" + Style.NORMAL))
                 if 1 <= rating <= 5:
                     ratings[factor] = rating
                     break
                 else:
-                    print("Please enter a number between 1 and 5.")
+                    print(Fore.RED + "Please enter a number between 1 and 5.")
             except ValueError:
-                print("Invalid input. Please enter a number.")
+                print(Fore.RED + "Invalid input. Please enter a number.")
 
     return ratings
 
@@ -414,23 +416,24 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
     If they choose to proceed, the program will prompt for safety and accessibility preferences
     """
     while True:
-        print("\nAre you happy with these cities?")
-        print(emoji.emojize("1. Yes, let's go! :airplane_departure:"))
-        print(emoji.emojize("2. No, let's see the next three :man_gesturing_NO:"))
-        print(emoji.emojize("3. It's a wash. Start over :wastebasket:"))
+        print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nAre you happy with these cities?" + Style.NORMAL)
+        print("")
+        print(emoji.emojize(Style.BRIGHT + Fore.LIGHTCYAN_EX + "1. Yes, let's go! :airplane_departure:" + Style.NORMAL))
+        print(emoji.emojize(Style.BRIGHT + Fore.LIGHTCYAN_EX + "2. No, let's see the next three :man_gesturing_NO:" + Style.NORMAL))
+        print(emoji.emojize(Style.BRIGHT + Fore.LIGHTCYAN_EX + "3. It's a wash. Start over :wastebasket:" + Style.NORMAL))
 
         try:
-            choice = int(input("Please choose an option (1-3): "))
+            choice = int(input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Please choose an option (1-3): " + Style.NORMAL))
             if choice == 1:
-                print(emoji.emojize("Great! Let's adjust the cities based on your safety and accessibility preferences :service_dog:"))
+                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Great! Let's adjust the cities based on your safety and accessibility preferences :service_dog:" + Style.NORMAL))
 
                 user_ratings = rate_importance()
 
                 adjusted_cities = adjust_city_scores(top_cities, user_ratings)
 
-                print("\nHere are your final cities based on safety and accessibility:")
+                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nHere are your final cities based on safety and accessibility:" + Style.NORMAL)
                 for city in adjusted_cities:
-                    print(f"{city[0]}")
+                    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"{city[0]}" + Style.NORMAL)
 
                 return adjusted_cities
 
@@ -442,9 +445,9 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
                 return "start_over"
 
             else:
-                print("Invalid choice. Please select a number from 1 to 3.")
+                print(Fore.RED + "Invalid choice. Please select a number from 1 to 3.")
         except ValueError:
-            print("Please enter a valid number.")
+            print(Fore.RED + "Please enter a valid number.")
 
 def get_airport_codes(sheet):
     """
@@ -587,9 +590,10 @@ def main():
 
         initial_top_cities = select_random_cities(all_ranked_cities)
 
-        print("Top suitable cities:")
+        print(Style.BRIGHT + Fore.MAGENTA + "Top suitable cities:" + Style.NORMAL)
+        print("")
         for city in initial_top_cities:
-            print(city[0])
+            print(Style.BRIGHT + Fore.MAGENTA + city[0] + Style.NORMAL)
 
         while True:
             user_choice = user_choice_after_ranking(initial_top_cities, SHEET, selected_trip_type, selected_factors)
@@ -601,9 +605,9 @@ def main():
             elif user_choice is None:
                 new_top_cities = generate_new_cities(SHEET, selected_trip_type, selected_factors)
                 initial_top_cities = new_top_cities
-                print("\nTop suitable cities:")
+                print(Style.BRIGHT + Fore.MAGENTA + "\nTop suitable cities:" + Style.NORMAL)
                 for city in new_top_cities:
-                    print(city[0])
+                    print(Style.BRIGHT + Fore.MAGENTA + city[0] + Style.NORMAL)
 
                 continue
 
