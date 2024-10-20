@@ -137,8 +137,8 @@ def greeting():
     """
     Greets the user when the program is run.
     """
-    welcome_message = emoji.emojize("\n:palm_tree: " + Fore.LIGHTMAGENTA_EX + "Welcome to Instatrip, your booking bestie :palm_tree:\n")
-    first_message = Fore.YELLOW + "First things first. We're going to ask you a few questions about your travel\n dates \n"
+    welcome_message = emoji.emojize("\n:palm_tree: " + Fore.LIGHTMAGENTA_EX + " Welcome to Instatrip, your booking bestie :palm_tree:\n")
+    first_message = Fore.YELLOW + "First we'll ask you a few questions about your travel dates \n"
     fun_part_message = emoji.emojize(Fore.LIGHTMAGENTA_EX + "Then we'll get to the fun part: :crystal_ball: Selecting your next trip!\n")
     get_started_message = Fore.YELLOW + "Grab your suitcase, we're about to get started...\n"
 
@@ -207,27 +207,32 @@ def get_trip_details():
     """
     Asks user for travel date, flexibility, and length of trip.
     """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
     while True:
-        os.system('cls' if os.name == 'nt' else 'clear') 
         print("")
+
         travel_date_str = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format): \n" + Style.NORMAL))
 
         try:
             travel_date = datetime.strptime(travel_date_str, "%Y-%m-%d")
-
+            
             current_date = datetime.now()
             minimum_travel_date = current_date + timedelta(days=1)
             maximum_travel_date = current_date + timedelta(days=730)
 
             if travel_date < minimum_travel_date:
-                print(Fore.LIGHTMAGENTA_EX + f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()}, but no further in advance than {maximum_travel_date}).")
-                continue  
-            
-            break
+                print(Fore.LIGHTMAGENTA_EX + f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()}).")
+                continue
+            elif travel_date > maximum_travel_date:
+                print(Fore.LIGHTMAGENTA_EX + f"Please enter a date no further than two years from today (before {maximum_travel_date.date()}).")
+                continue
+
+            break 
         
         except ValueError:
             print(Fore.RED + "Oops. Please enter a valid date in YYYY-MM-DD format.")
-            return None
+            continue  
 
     flexibility_response = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + "Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n" + Style.NORMAL)).strip().lower()
     if flexibility_response not in ['yes', 'no']:
@@ -236,13 +241,20 @@ def get_trip_details():
 
     flexibility_days = 0
     if flexibility_response == 'yes':
-        flexibility_days = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days of flexibility do you have? (1-3): \n" + Style.NORMAL))
-        if not (1 <= flexibility_days <= 3):
-            print(Fore.RED + "Please enter a number between 1 and 3.")
+        try:
+            flexibility_days = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days of flexibility do you have? (1-3): \n" + Style.NORMAL))
+            if not (1 <= flexibility_days <= 3):
+                print(Fore.RED + "Please enter a number between 1 and 3.")
+                return None
+        except ValueError:
+            print(Fore.RED + "Please enter a valid number for flexibility days.")
             return None
 
     try:
         length_of_stay = int(input(Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? (Enter a minimum of 1 and maximum of 59)\n" + Style.NORMAL))
+        if not (1 <= length_of_stay <= 59):
+            print(Fore.RED + "Please enter a number between 1 and 59.")
+            return None
     except ValueError:
         print(Fore.RED + "Please enter a valid number for length of stay.")
         return None
