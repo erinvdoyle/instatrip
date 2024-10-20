@@ -75,22 +75,59 @@ def colored_instatrip():
     for line in bottom_lines:
         print(Fore.RED + line)
 
-menu_text = """
+#menu_text = """
+#MAIN MENU
+#---------
+#1. Start
+#2. About
+#3. Exit
+#"""
+
+def center_text(text):
+    """
+    Centers the text in the console.
+    """
+    terminal_width = os.get_terminal_size().columns
+    # Check if the input is a list (credit mistral AI for help creating a centered text function that works for lists)
+    if isinstance(text, list):
+        
+        text = "\n".join(text)
+    
+    centered_lines = [line.center(terminal_width) for line in text.splitlines()]
+    return centered_lines
+
+def display_menu():
+    """
+    Creates a main menu for the starting screen that allows user to choose to start the program, read the about, or exit
+    """
+
+    menu_text = """
 MAIN MENU
 ---------
 1. Start
 2. About
 3. Exit
 """
+    
+    centered_menu = center_text(menu_text)
 
-def center_text(text):
-    """
-    Centers the text in the console
-    """
-    terminal_width = os.get_terminal_size().columns
-    centered_lines = [line.center(terminal_width) for line in text]
-    return centered_lines
+    for line in centered_menu:
+        print(line)
 
+    while True:
+        choice = input("Please choose an option (1, 2, or 3): ")
+
+        if choice == '1':
+            greeting()  
+            break  
+        elif choice == '2':
+            read_about()  
+            break  
+        elif choice == '3':
+            print("Exiting the program. Goodbye!")
+            break  
+        else:
+            print("Invalid choice. Please enter 1, 2, or 3.")
 
 def greeting():
     """
@@ -461,14 +498,17 @@ def ask_for_booking_link(flights_info):
 def main():
     os.system('cls' if os.name == 'nt' else 'clear') 
 
+    print("\n")
     colored_instatrip()
     print_colored_background()
 
-    print("\n")
-    centered_menu = center_text(menu_text.splitlines())
-    for line in centered_menu:
-        print(line)
-    greeting()
+    #print("\n")
+    #centered_menu = center_text(menu_text.splitlines())
+    #for line in centered_menu:
+        #print(line)
+    
+    #greeting()
+    display_menu()
 
     trip_details = get_trip_details()
 
