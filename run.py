@@ -9,6 +9,8 @@ import random
 import time
 import emoji
 # credit for emoji library: https://pypi.org/project/emoji/
+from colorama import Fore, Style, init
+import os
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -22,15 +24,79 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Instatrip').sheet1
 
 def print_colored_background():
-    # ANSI escape code for setting background color (e.g., blue)
-    print("\033[44m" + "This is text with a blue background" + "\033[0m")
+    """
+    Gets terminal size to create three colored lines the width of the terminal using the coloroma library. Centers the Instatrip tagline within the color block
+    """
+    terminal_width = os.get_terminal_size().columns
+    
+    orange_background = "\033[43m"
+    reset_style = "\033[0m"
+    
+    background_line = " " * terminal_width
+    
+    centered_text = "Europe, but make it spontaneous"
+    
+    centered_line = centered_text.center(terminal_width)
+
+    print()  
+    print(orange_background + background_line + reset_style) 
+    print(orange_background + centered_line + reset_style)  
+    print(orange_background + background_line + reset_style)  
+
+# Initialize colorama for Windows support
+init(autoreset=True)
+
+insta_trip_text = [
+    r" ___           _       _____     _       ",
+    r"|_ _|_ __  ___| |_ __ |_   _| __(_)_ __  ",
+    r" | || '_ \/ __| __/ _` || || '__| | '_ \ ",
+    r" | || | | \__ \ || (_| || || |  | | |_) |",
+    r"|___|_| |_|___/\__\__,_||_||_|  |_| .__/ ",
+    r"                                  |_|    "
+]
+
+def colored_instatrip():
+    """
+    Makes InstaTrip ASCII text tri-colored
+    """
+    total_lines = len(insta_trip_text)
+    top_lines = insta_trip_text[:total_lines // 3]  
+    middle_lines = insta_trip_text[total_lines // 3: 2 * total_lines // 3]  
+    bottom_lines = insta_trip_text[2 * total_lines // 3:]  
+
+    top_lines = center_text(top_lines)
+    middle_lines = center_text(middle_lines)
+    bottom_lines = center_text(bottom_lines)
+
+    for line in top_lines:
+        print(Fore.YELLOW + line)
+    for line in middle_lines:
+        print(Fore.LIGHTYELLOW_EX + line)
+    for line in bottom_lines:
+        print(Fore.RED + line)
+
+menu_text = """
+MAIN MENU
+---------
+1. Start
+2. About
+3. Exit
+"""
+
+def center_text(text):
+    """
+    Centers the text in the console
+    """
+    terminal_width = os.get_terminal_size().columns
+    centered_lines = [line.center(terminal_width) for line in text]
+    return centered_lines
 
 
 def greeting():
     """
     Greets the user when the program is run.
     """
-    print(emoji.emojize(":palm_tree: Welcome to Instatrip, your booking buddy :palm_tree:"))
+    print(emoji.emojize(":palm_tree: Welcome to Instatrip, your booking bestie :palm_tree:"))
     time.sleep(3)
     print("First things first. We're going to ask you a few questions about your travel \n dates")
     time.sleep(3)
@@ -393,7 +459,15 @@ def ask_for_booking_link(flights_info):
             print("Please enter a valid number.")
 
 def main():
+    os.system('cls' if os.name == 'nt' else 'clear') 
+
+    colored_instatrip()
     print_colored_background()
+
+    print("\n")
+    centered_menu = center_text(menu_text.splitlines())
+    for line in centered_menu:
+        print(line)
     greeting()
 
     trip_details = get_trip_details()
