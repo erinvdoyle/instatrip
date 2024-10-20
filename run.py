@@ -7,6 +7,7 @@ from google.oauth2.service_account import Credentials
 from datetime import datetime, timedelta
 import random
 import time
+import textwrap
 import emoji
 # credit for emoji library: https://pypi.org/project/emoji/
 from colorama import Fore, Style, init
@@ -90,7 +91,7 @@ def center_text(text):
     centered_lines = [line.center(terminal_width) for line in text.splitlines()]
     return centered_lines
 
-DEFAULT_COLOR = Fore.MAGENTA
+DEFAULT_COLOR = Fore.LIGHTMAGENTA_EX
 
 def print_with_default_color(text):
     """ Prints text in the default color so that it can be applied to a list """
@@ -104,8 +105,8 @@ def display_menu():
     menu_text = f"""
 {DEFAULT_COLOR}MAIN MENU
 {DEFAULT_COLOR}---------
-{DEFAULT_COLOR}1. Start
-{DEFAULT_COLOR}2. About
+{DEFAULT_COLOR} 1. Start
+{DEFAULT_COLOR} 2. About
 {DEFAULT_COLOR}3. Exit
 {Style.RESET_ALL}""" 
     
@@ -144,20 +145,33 @@ def greeting():
     print("Grab a suitcase, we're about to get started...")
     time.sleep(3)
 
+def get_terminal_width():
+    """
+    Get the current width of the terminal
+    """
+    return os.get_terminal_size().columns
+
+def wrap_text(text):
+    """
+    Wraps text to fit within the terminal width
+    """
+    width = get_terminal_width()
+    return textwrap.fill(text, width)   
+
 def read_about():
     """
     Displays the about text for both the company and the developer :) 
     """
-    print(Fore.MAGENTA + "About InstaTrip")
-    print(Fore.YELLOW + "InstaTrip is a travel planning program designed to bring a little spontaneity to the user's next vacation. The user is asked a few simple questions about their preferred trip type and occasion to to curate a list of personalized European destinations")
+    print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip")
+    print(wrap_text(Fore.YELLOW + "InstaTrip is a travel planning program designed to bring a little spontaneity to the user's next vacation. The user is asked a few simple questions about their preferred trip type and occasion to to curate a list of personalized European destinations"))
     print("")
-    print(Fore.YELLOW + "For each destination, the program retrieves real-time flight data through the Ryanair API, showcasing the cheapest available flights. The user may then choose to book their flights with Ryanair")
+    print(wrap_text(Fore.YELLOW + "For each destination, the program retrieves real-time flight data through the Ryanair API, showcasing the cheapest available flights. The user may then choose to book their flights with Ryanair"))
     print("")
-    print(Fore.YELLOW + "Disclaimer: InstaTrip is a student project and not affiliated with Ryanair. Prices and details are updated in real-time and subject to change. While InstaTrip wishes the user the happiest of holidays, they cannot be held responsible for any travel mishaps or misadventures :)")
+    print(wrap_text(Fore.YELLOW + "Disclaimer: InstaTrip is a student project and not affiliated with Ryanair. Prices and details are updated in real-time and subject to change. While InstaTrip wishes the user the happiest of holidays, they cannot be held responsible for any travel mishaps or misadventures :)"))
     print("")
-    print(Fore.MAGENTA + "About the Developer")
-    print(Fore.YELLOW + "InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her Instatrip travel preferences are: Romantic (her husband vetoed 'Solo Trip') and Culinary, Outdoorsy, and Off the Beaten Path")
-    print("https://github.com/erinvdoyle")
+    print(Style.BRIGHT + Fore.MAGENTA + "About the Developer")
+    print(wrap_text(Fore.YELLOW + "InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her Instatrip travel preferences are: Romantic (her husband vetoed 'Solo Trip') and Culinary, Outdoorsy, and Off the Beaten Path"))
+    print(Fore.LIGHTMAGENTA_EX + "https://github.com/erinvdoyle")
     print("")
     
     while True:
