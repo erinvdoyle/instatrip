@@ -151,6 +151,16 @@ def read_about():
     print("InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her Instatrip travel preferences would be: Romantic (her husband might have vetoed 'Solo Trip') and Culinary, Outdoorsy, and Off the Beaten Path")
     print("https://github.com/erinvdoyle")
     
+    while True:
+        choice = input("Enter 1 to return to Main Menu: \n")
+
+        if choice == '1':
+            os.system('cls' if os.name == 'nt' else 'clear') 
+            display_menu()  
+            break  
+        else:
+            print("Invalid choice. Please enter 1")
+
 def get_trip_details():
     """
     Asks user for travel date, flexibility, and length of trip.
