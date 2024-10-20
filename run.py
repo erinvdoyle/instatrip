@@ -416,7 +416,7 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
     
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nBased on your preferences, here are three new cities:" + Style.NORMAL)
     for city in new_top_cities:
-        print(emoji.emojize(Fore.LIGHTCYAN_EX + ":star: " + city[0]))
+        print(emoji.emojize(Fore.LIGHTCYAN_EX + ":star: " + " " + city[0]))
     
     return new_top_cities
 

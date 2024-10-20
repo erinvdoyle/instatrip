@@ -13,22 +13,27 @@ Welcome to **Instatrip**, where
 
 # **Table of Contents**
 - [Project](#project)
+  - [How to Use InstaTrip](#how-to-use-instatrip)
   - [User Stories](#user-stories)
 - [User Experience](#user-experience)
-  - [Wireframes](#wireframes)
   - [Site Structure](#site-structure)
   - [Design Choices](#design-choices)
+- [Flowchart](#flowchart)
+- [Database Structure](#database-structure)
 - [Features](#features)
 - [Future Features](#future-features)
 - [Technologies](#technologies)
   - [Languages](#languages)
+  - [Libraries, Programs, and Tools](#libraries-programs-and-tools)
 - [Testing](#testing)
   - [Code Validation](#code-validation)
-  - [Responsiveness](#responsiveness) 
-  - [Browser Compatibility](#browser-compatibility)
+  - [Feature Testing](#feature-testing)
   - [Additional Testing](#additional-testing)
   - [Bugs](#bugs)
 - [Deployment](#deployment)
+  - [Git](#git)
+  - [GitHub](#github)
+  - [Heroku](#heroku)
 - [Credits](#credits)
 - [Acknowledgements](#acknowledgements)
 - [Contact](#contact)
@@ -39,6 +44,8 @@ Welcome to **Instatrip**, where
 This website was created for Portfolio Project #3 (Python Essentials) for The Code Institute Full Stack Software Developer program.
 
 It is intended for 
+
+## How to Use InstaTrip
 
 ## User Stories
    <details>
@@ -58,19 +65,6 @@ It is intended for
     </details>
 
 # User Experience
-
-## Wireframes (Flowchart?)
-<details>
-  <summary>This project was planned with Balsamiq Wireframes/ Lucidchart (click)</summary>
-   <p>Mobile</p>
-   <img src="assets/documentation/tarotmobilewf.png">
-   <p>Tablet</p>
-   <img src="assets/documentation/tarottabletwf.png">
-    <p>Laptop</p>
-   <img src="assets/documentation/tarotlaptopwf.png">
-  </details>
-
-The wireframes were created for mobile, tablet, and desktop with a particular focus on mobile-friendly design.  Some changes to text, layout, and color choice have been made as the project evolved due to both accessibility and design preference. 
 
 ## Site Structure
 
@@ -105,17 +99,9 @@ The color scheme for **Instatrip** was inspired by
   <img src="assets/documentation/font1.png" height="50px"/>
   </p>
     
-- The font "" was chosen to 
-     
-  <p align="center">
-  <img src="assets/documentation/font2.png" height="50px"/>
-  </p>
-
-- The font "" was chosen for readability and contrast 
-
 # Features
 
-I have aimed to give this site a simple, intuitive interface. Ease of navigation allows the visitor to engage with their game of choice without delay. 
+I have aimed to give this site a simple, intuitive interface. Ease of navigation allows the visitor to 
 
 Examples of this site's interactive features include:
  
@@ -170,8 +156,7 @@ Examples of this site's interactive features include:
 - [Python](https://www./) - provides application functionality
 
 
-## Frameworks, Libraries, and Software
-- [Balsamiq](https://balsamiq.com/wireframes/) - to create first draft wireframes for the site
+## Libraries, Programs, and Tools
 - [ChatGPT](https://openai.com/chatgpt/) - for help ranking tourist destinations by my chosen criteria
 - [Coolors](https://coolors.co/) - to provide the README color palette
 - [Freepik](https://www.freepik.com) - for all images
@@ -181,6 +166,17 @@ Examples of this site's interactive features include:
 - [Shields.io](https://shields.io/badges) - for README color badges
 
 # Testing
+
+## Code Validation
+
+| W3 Validator | index.html | 
+|--------------|------------|
+| html         | Pass       |
+| python          |  ?      |
+
+
+No errors were returned in any of the -- code validators
+
 
 ## Feature Testing 
 
@@ -224,16 +220,6 @@ Examples of this site's interactive features include:
 </p>
 </details>
 
-## Code Validation
-
-| W3 Validator | index.html | 
-|--------------|------------|
-| html         | Pass       |
-| python          |  ?      |
-
-
-No errors were returned in any of the -- code validators
-
 ### HTML Validation
 - [W3C HTML Validator](https://validator.w3.org/) -
 <details>
@@ -250,38 +236,6 @@ No errors were returned in any of the -- code validators
      <img src="assets/documentation/">
      <p>No errors returned. etc</p>
   </details>
-
-## Responsiveness --?
-- All pages have been tested for responsiveness through both Chrome and Edge DevTools at the following CSS breakpoints:
-    - Mobile S (320px)
-    - Mobile M (375px)
-    - Mobile L (425px)
-    - Tablet (768px)
-    - Laptop (1024px)
-    - Laptop (1440px)
-
-### Screenshots of each section of the site as tested in Chrome DevTools --?
-
-<details>
-  <summary>Screenshots of Mobile S (320px) (click)</summary>
-<p align="center">
-  <img src="assets/documentation/" height="450px">
-  <img src="assets/documentation/" height="450px">
-  <img src="assets/documentation/" height="450px">
-  <img src="assets/documentation/" height="450px">
-  <img src="assets/documentation/" height="450px">
-  <img src="assets/documentation/" height="450px">
-</p>
-</details>
-
-## Browser Compatibility
-
-| Browser Tested          | Intended Appearance | Intended Responsiveness |
-|-------------------------|---------------------|-------------------------|
-| Chrome (Mobile/Desktop) | ?               | ?                    |
-| Edge (Mobile/ Desktop)  | ?             | ?                   |
-| Safari (Mobile)         | ?              | ?                   |
-
 
 ## Additional Testing
 
