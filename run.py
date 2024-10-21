@@ -14,6 +14,8 @@ from colorama import Fore, Style, init
 # credit for colorama library: https://pypi.org/project/colorama/
 import os
 # credit for tutorial to clear console https://www.delftstack.com/howto/python/python-clear-console/#print-multiple-new-lines-to-clear-interpreter-console-in-python
+import webbrowser
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -654,7 +656,7 @@ def exit():
     print("")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
     print("")
-    
+
     goodbye_art = [
         f"{Fore.YELLOW}              |",
         f"{Fore.YELLOW}        \\ _ /",
@@ -670,8 +672,42 @@ def exit():
     for line in goodbye_art:
         print(line)
 
-    input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nPress Enter to return to the main menu..." + Style.NORMAL)
-    
+    url = 'https://www.lonelyplanet.com/articles/how-to-plan-a-staycation'
+
+    print(" ")
+    print(" ")
+    time.sleep(2)
+    print(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Not able to travel at the moment?" + Style.NORMAL)
+    time.sleep(2)
+    print(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Perhaps a staycation is in order" + Style.NORMAL)
+    time.sleep(2)
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX +  url + Style.NORMAL)
+    print(" ")
+
+    while True:
+        user_input = input(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Type 'YES' to open the link in a new tab, or press Enter to return to the main menu: " + Style.NORMAL)
+
+        if user_input.upper() == 'YES':
+            webbrowser.open(url, new=2)  
+            print(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Opening the link in a new tab..." + Style.NORMAL)
+            break  
+
+        elif user_input == '': 
+            print(Fore.RED + "You chose to skip opening the link. Returning to the main menu..." + Style.NORMAL)
+            break  
+
+        else:
+            print(Fore.RED + "Invalid input! Please type 'YES' to open the link or press Enter to return to the main menu." + Style.NORMAL)
+
+    while True:
+        user_input = input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nPress Enter to return to the main menu..." + Style.NORMAL)
+        
+        if user_input == '':  
+            break  
+
+        else:
+            print(Fore.RED + "Invalid input! Please press Enter to return to the main menu." + Style.NORMAL)
+
     os.system('cls' if os.name == 'nt' else 'clear') 
     print("\n")
     colored_instatrip()
@@ -679,6 +715,9 @@ def exit():
     display_menu()
 
 def main():
+    """
+    The main operating function which runs the program
+    """
     os.system('cls' if os.name == 'nt' else 'clear') 
 
     print("\n")
