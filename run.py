@@ -653,7 +653,6 @@ def exit():
     os.system('cls' if os.name == 'nt' else 'clear') 
     print("")
     print("")
-    print("")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
     print("")
 
@@ -677,19 +676,19 @@ def exit():
     print(" ")
     print(" ")
     time.sleep(2)
-    print(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Not able to travel at the moment?" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Not able to travel at the moment?" + Style.NORMAL)
     time.sleep(2)
-    print(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Perhaps a staycation is in order" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Perhaps a staycation is in order!" + Style.NORMAL)
     time.sleep(2)
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX +  url + Style.NORMAL)
     print(" ")
 
     while True:
-        user_input = input(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Type 'YES' to open the link in a new tab, or press Enter to return to the main menu: " + Style.NORMAL)
+        user_input = input(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Type 'YES' to open the link in a new tab, or press Enter to return to the \n main menu: " + Style.NORMAL)
 
         if user_input.upper() == 'YES':
             webbrowser.open(url, new=2)  
-            print(Style.BRIGHT + Fore.LIGHTGREEN_EX + "Opening the link in a new tab..." + Style.NORMAL)
+            print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Opening the link in a new tab..." + Style.NORMAL)
             break  
 
         elif user_input == '': 
