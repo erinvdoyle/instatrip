@@ -653,19 +653,19 @@ def exit():
     os.system('cls' if os.name == 'nt' else 'clear') 
     print("")
     print("")
-    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.MAGENTA_EX + "Bon Voyage!" + Style.NORMAL)
     print("")
 
     goodbye_art = [
-        f"{Fore.YELLOW}              |",
-        f"{Fore.YELLOW}        \\ _ /",
-        f"{Fore.YELLOW}      -= (_) =-",
-        f"{Fore.YELLOW}        /   \\         _\\/\\_",
-        f"{Fore.LIGHTGREEN_EX}          |           //o\\  _\\/\\_",
-        f"{Fore.LIGHTGREEN_EX}   _____ _ __ __ ____ _ | __/o\\\\ _",
-        f"{Fore.LIGHTCYAN_EX} =-=-_-__=_-= _=_=-=_,-'|\"\"\"\"-|-,_",
-        f"{Fore.LIGHTCYAN_EX}  =- _=-=- -_=-=_,-\"          |",
-        f"{Fore.LIGHTCYAN_EX} =- =- -=.--"
+        f"{Style.BRIGHT + Fore.MAGENTA}              |",
+        f"{Style.BRIGHT + Fore.MAGENTA}        \\ _ /",
+        f"{Style.BRIGHT + Fore.MAGENTA}      -= (_) =-",
+        f"{Style.BRIGHT + Fore.MAGENTA}        /   \\         _\\/\\_",
+        f"{Style.BRIGHT + Fore.LIGHTMAGENTA_EX}          |           //o\\  _\\/\\_",
+        f"{Style.BRIGHT + Fore.LIGHTMAGENTA_EX}   _____ _ __ __ ____ _ | __/o\\\\ _",
+        f"{Style.BRIGHT + Fore.LIGHTRED_EX} =-=-_-__=_-= _=_=-=_,-'|\"\"\"\"-|-,_",
+        f"{Style.BRIGHT + Fore.LIGHTRED_EX}  =- _=-=- -_=-=_,-\"          |",
+        f"{Style.BRIGHT + Fore.LIGHTRED_EX} =- =- -=.--"
     ]
 
     for line in goodbye_art:
@@ -676,36 +676,26 @@ def exit():
     print(" ")
     print(" ")
     time.sleep(2)
-    print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Not able to travel at the moment?" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.MAGENTA + "Not able to travel at the moment?" + Style.NORMAL)
     time.sleep(2)
-    print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Perhaps a staycation is in order!" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.MAGENTA + "Perhaps a staycation is in order!" + Style.NORMAL)
     time.sleep(2)
-    print(Style.BRIGHT + Fore.LIGHTCYAN_EX +  url + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +  url + Style.NORMAL)
     print(" ")
 
     while True:
-        user_input = input(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Type 'YES' to open the link in a new tab, or press Enter to return to the \n main menu: " + Style.NORMAL)
+        user_input = input(Style.BRIGHT + Fore.MAGENTA + "Type 'YES' to open the link in a new tab, or press Enter to return to the \n main menu: " + Style.NORMAL)
 
         if user_input.upper() == 'YES':
             webbrowser.open(url, new=2)  
-            print(Style.BRIGHT + Fore.LIGHTYELLOW_EX + "Opening the link in a new tab..." + Style.NORMAL)
+            print(Style.BRIGHT + Fore.MAGENTA + "Opening the link in a new tab..." + Style.NORMAL)
             break  
 
         elif user_input == '': 
-            print(Fore.RED + "You chose to skip opening the link. Returning to the main menu..." + Style.NORMAL)
             break  
 
         else:
-            print(Fore.RED + "Invalid input! Please type 'YES' to open the link or press Enter to return to the main menu." + Style.NORMAL)
-
-    while True:
-        user_input = input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nPress Enter to return to the main menu..." + Style.NORMAL)
-        
-        if user_input == '':  
-            break  
-
-        else:
-            print(Fore.RED + "Invalid input! Please press Enter to return to the main menu." + Style.NORMAL)
+            print(Fore.RED + "Invalid input! Please type 'YES' to open the link and return to the main menu \nOR press Enter to skip the link and return to the main menu" + Style.NORMAL)
 
     os.system('cls' if os.name == 'nt' else 'clear') 
     print("\n")
