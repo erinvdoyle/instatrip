@@ -653,7 +653,7 @@ def exit():
     os.system('cls' if os.name == 'nt' else 'clear') 
     print("")
     print("")
-    print(Style.BRIGHT + Fore.MAGENTA_EX + "Bon Voyage!" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.YELLOW + "Bon Voyage!" + Style.NORMAL)
     print("")
 
     goodbye_art = [
@@ -661,8 +661,8 @@ def exit():
         f"{Style.BRIGHT + Fore.MAGENTA}        \\ _ /",
         f"{Style.BRIGHT + Fore.MAGENTA}      -= (_) =-",
         f"{Style.BRIGHT + Fore.MAGENTA}        /   \\         _\\/\\_",
-        f"{Style.BRIGHT + Fore.LIGHTMAGENTA_EX}          |           //o\\  _\\/\\_",
-        f"{Style.BRIGHT + Fore.LIGHTMAGENTA_EX}   _____ _ __ __ ____ _ | __/o\\\\ _",
+        f"{Style.BRIGHT + Fore.YELLOW}          |           //o\\  _\\/\\_",
+        f"{Style.BRIGHT + Fore.YELLOW}   _____ _ __ __ ____ _ | __/o\\\\ _",
         f"{Style.BRIGHT + Fore.LIGHTRED_EX} =-=-_-__=_-= _=_=-=_,-'|\"\"\"\"-|-,_",
         f"{Style.BRIGHT + Fore.LIGHTRED_EX}  =- _=-=- -_=-=_,-\"          |",
         f"{Style.BRIGHT + Fore.LIGHTRED_EX} =- =- -=.--"
@@ -680,7 +680,7 @@ def exit():
     time.sleep(2)
     print(Style.BRIGHT + Fore.MAGENTA + "Perhaps a staycation is in order!" + Style.NORMAL)
     time.sleep(2)
-    print(Style.BRIGHT + Fore.LIGHTMAGENTA_EX +  url + Style.NORMAL)
+    print(Style.BRIGHT + Fore.YELLOW +  url + Style.NORMAL)
     print(" ")
 
     while True:
