@@ -181,14 +181,14 @@ def read_about():
     Displays the about text for both the company and the developer :) 
     """
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
-    print(wrap_text(Fore.YELLOW + "InstaTrip is a travel planning program designed to bring spontaneity to the user's next vacation. After asking few simple questions with data compiled in a Google Sheet, the program curates a list of personalized European destinations"))
+    print(wrap_text(Fore.YELLOW + "InstaTrip is a travel planning program designed to bring spontaneity to the user's next vacation. After asking a few simple questions with data compiled by a Google Sheet, the program curates a list of personalized European destinations"))
     print("")
-    print(wrap_text(Fore.YELLOW + "For each destination, flight data is retrieved through the Ryanair API, showcasing the cheapest available flights. The user may then choose to book a flight through the provided url"))
+    print(wrap_text(Fore.YELLOW + "For each destination, flight data is retrieved by the Ryanair API, showcasing the cheapest available flights. The user may then choose to book a flight through the provided url"))
     print("")
     print(wrap_text(Fore.LIGHTRED_EX + "Disclaimer:" + Fore.YELLOW + " InstaTrip is a student project and not affiliated with Ryanair. Prices + details are updated in real-time and subject to change. InstaTrip wishes the user the happiest of holidays and cannot be held responsible for any travel mishaps or misadventures :)"))
     print("")
     print(Style.BRIGHT + Fore.MAGENTA + "About the Developer" + Style.RESET_ALL)
-    print(wrap_text(Fore.YELLOW + "InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her Instatrip travel preferences are: Romantic (her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, and Off the Beaten Path"))
+    print(wrap_text(Fore.YELLOW + "InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her InstaTrip travel preferences are: Romantic (her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, and Off the Beaten Path"))
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "https://github.com/erinvdoyle" + Style.NORMAL)
     print("")
      
@@ -425,7 +425,7 @@ def rate_importance():
     """
     Collects importance ranking for safety and accessibility factors from the user.
     """
-    factors_to_rate = ["Overall Safety", "Accessibility", "Public Transportation", "Tourism-Friendliness", "English-Friendliness"]
+    factors_to_rate = ["Overall Safety", "Accessibility", "Public Transportation", "Tourism-Friendliness", "English-Speaking"]
 
     ratings = {}
 
