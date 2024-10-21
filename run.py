@@ -213,8 +213,14 @@ def get_trip_details():
     os.system('cls' if os.name == 'nt' else 'clear')
 
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        
         print("")
-
+        print(emoji.emojize(Style.BRIGHT + Fore.GREEN + ":shamrock:" + "  " + "Please note that InstaTrip hails from the emerald isle of Ireland, with our departure city set to Dublin. New departure cities launch Spring, 2025 :shamrock:" + Style.NORMAL))
+        print("")
+        #os.system('cls' if os.name == 'nt' else 'clear')
+        
+        
         travel_date_str = input(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format): \n" + Style.NORMAL))
 
         try:
@@ -653,7 +659,7 @@ def exit():
     os.system('cls' if os.name == 'nt' else 'clear') 
     print("")
     print("")
-    print(Style.BRIGHT + Fore.YELLOW + "Bon Voyage!" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
     print("")
 
     goodbye_art = [
@@ -661,11 +667,11 @@ def exit():
         f"{Style.BRIGHT + Fore.MAGENTA}        \\ _ /",
         f"{Style.BRIGHT + Fore.MAGENTA}      -= (_) =-",
         f"{Style.BRIGHT + Fore.MAGENTA}        /   \\         _\\/\\_",
-        f"{Style.BRIGHT + Fore.YELLOW}          |           //o\\  _\\/\\_",
+        f"{Style.BRIGHT + Fore.MAGENTA}          |           //o\\  _\\/\\_",
         f"{Style.BRIGHT + Fore.YELLOW}   _____ _ __ __ ____ _ | __/o\\\\ _",
-        f"{Style.BRIGHT + Fore.LIGHTRED_EX} =-=-_-__=_-= _=_=-=_,-'|\"\"\"\"-|-,_",
-        f"{Style.BRIGHT + Fore.LIGHTRED_EX}  =- _=-=- -_=-=_,-\"          |",
-        f"{Style.BRIGHT + Fore.LIGHTRED_EX} =- =- -=.--"
+        f"{Style.BRIGHT + Fore.LIGHTCYAN_EX} =-=-_-__=_-= _=_=-=_,-'|\"\"\"\"-|-,_",
+        f"{Style.BRIGHT + Fore.LIGHTCYAN_EX}  =- _=-=- -_=-=_,-\"          |",
+        f"{Style.BRIGHT + Fore.LIGHTCYAN_EX} =- =- -=.--"
     ]
 
     for line in goodbye_art:
@@ -680,19 +686,19 @@ def exit():
     time.sleep(2)
     print(Style.BRIGHT + Fore.MAGENTA + "Perhaps a staycation is in order!" + Style.NORMAL)
     time.sleep(2)
-    print(Style.BRIGHT + Fore.YELLOW +  url + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX +  url + Style.NORMAL)
     print(" ")
 
     while True:
-        user_input = input(Style.BRIGHT + Fore.MAGENTA + "Type 'YES' to open the link in a new tab, or press Enter to return to the \n main menu: " + Style.NORMAL)
+        user_input = input(Style.BRIGHT + Fore.MAGENTA + "Type 'YES' to open the link in a new tab and return to the main menu, \nor press Enter to return to the main menu: " + Style.NORMAL)
 
         if user_input.upper() == 'YES':
-            webbrowser.open(url, new=2)  
+            webbrowser.open(url, new=2)
             print(Style.BRIGHT + Fore.MAGENTA + "Opening the link in a new tab..." + Style.NORMAL)
-            break  
+            break
 
-        elif user_input == '': 
-            break  
+        elif user_input == '':
+            break
 
         else:
             print(Fore.RED + "Invalid input! Please type 'YES' to open the link and return to the main menu \nOR press Enter to skip the link and return to the main menu" + Style.NORMAL)
