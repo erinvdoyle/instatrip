@@ -20,6 +20,7 @@ Welcome to **Instatrip**, where
   - [Design Choices](#design-choices)
 - [Flowchart](#flowchart)
 - [Database Structure](#database-structure)
+  - [Google Sheet](#google-sheet)
 - [Features](#features)
 - [Future Features](#future-features)
 - [Technologies](#technologies)
@@ -96,6 +97,20 @@ The color scheme for **Instatrip** was inspired by
 - Fonts have been provided by 
     
   <p align="center">
+  <img src="assets/documentation/font1.png" height="50px"/>
+  </p>
+
+# Flowchart  
+
+<p align="center">
+  <img src="assets/documentation/googlesheet.png" height="50px"/>
+  </p>
+
+# Database Structure 
+
+## Google Sheet
+
+<p align="center">
   <img src="assets/documentation/font1.png" height="50px"/>
   </p>
     
@@ -410,7 +425,7 @@ To clone the repository of this site:
 </p>
 </details>
 
-
+## Heroku
 
 # Credits
 
