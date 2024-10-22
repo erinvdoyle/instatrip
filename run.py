@@ -27,6 +27,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Instatrip').sheet1
 
+# Start of Starting Screen logic 
+
 def print_colored_background():
     """
     Gets terminal size to create three colored lines the width of the terminal using the coloroma library. Centers the Instatrip tagline within the color block
@@ -95,7 +97,7 @@ def center_text(text):
 DEFAULT_COLOR = Fore.LIGHTMAGENTA_EX
 
 def print_with_default_color(text):
-    """ Prints text in the default color so that it can be applied to a list """
+    """ Prints text in the default color so that it can be applied to the Main Menu List """
     print(DEFAULT_COLOR + text + Style.RESET_ALL)
 
 def display_menu():
@@ -135,6 +137,8 @@ def display_menu():
         else:
             print(Fore.RED + "Invalid choice. Please enter 1, 2, or 3.")
 
+# Greeting Screen            
+
 def greeting():
     """
     Greets the user when the program is run.
@@ -164,12 +168,14 @@ def greeting():
         print("")
     time.sleep(4)
 
+# About Page
+
 def get_terminal_width():
     """
     Get the current width of the terminal
     """
     return os.get_terminal_size().columns
-
+ 
 def wrap_text(text):
     """
     Wraps text to fit within the terminal width
@@ -204,6 +210,8 @@ def read_about():
             break  
         else:
             print(Fore.RED + "Invalid choice. Please enter 1")
+
+# Data Collection to Set Flight Parameters for Ryanair API
 
 def get_trip_details():
     """
@@ -279,6 +287,8 @@ def get_trip_details():
         'flexibility_days': flexibility_days,
         'length_of_stay': length_of_stay
     }
+
+# Data Collection of User Preferences to Rank Cities via Google Sheet
 
 def type_of_trip():
     """
@@ -360,6 +370,8 @@ def important_factors():
             drumroll()
             return selected_factors 
 
+# Logic to Rank Cities from Google Sheet Based on User Preferences and Randomly Select Three of them
+
 #Ranking tutorial credit: 
 def rank_cities(sheet, selected_trip_type, selected_factors):
     """
@@ -416,8 +428,7 @@ def drumroll():
     
 def generate_new_cities(sheet, selected_trip_type, selected_factors):
     """
-    Generates and ranks new cities based on user preferences.
-    Safety and accessibility adjustments are applied separately.
+    Generates and ranks a list of new cities based on the same user preferences
     """
     new_top_cities_with_scores = rank_cities(sheet, selected_trip_type, selected_factors)
     new_top_cities = select_random_cities(new_top_cities_with_scores)
@@ -427,6 +438,8 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
         print(emoji.emojize(Fore.LIGHTCYAN_EX + ":star: " + " " + city[0]))
     
     return new_top_cities
+
+# Logic to Weigh The User's Safety and Accessibility Preferences Against the Selected Cities And Order Accordingly    
 
 def rate_importance():
     """
@@ -528,6 +541,8 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
 
+# Logic to Pull Airport Codes of Final City Selections from Google Sheet and Pass Them to Ryanair API 
+
 def get_airport_codes(sheet):
     """
     Get airport codes from Google Sheet using 'City' and 'IATA' columns to access airport codes
@@ -539,7 +554,7 @@ def get_airport_codes(sheet):
         code = record['IATA'].strip()
         airport_codes[city] = code
     return airport_codes
-
+    
 #Credit for help implementing and understanding how to use the API in this function, find_cheapest_flights(), and ask_for_booking(): Mistral AI
 def search_ryanair_flights(origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0):
     """
@@ -573,6 +588,8 @@ def search_ryanair_flights(origin, destination, outbound_date, adults=1, teens=0
     except requests.exceptions.RequestException as req_err:
         logging.error(f"Error searching for flights: {req_err}")
     return None
+
+# Logic to Find the Cheapest Flights Among The Eligible and Ask User If They Want to Make a Booking
 
 def find_cheapest_flights(sheet, top_cities, trip_details):
     """
@@ -651,6 +668,8 @@ def ask_for_booking_link(flights_info):
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
 
+# Logic to Exit The Program
+
 def exit():
     """
     Brings the user to the exit art screen and displays a staycation link.
@@ -701,6 +720,8 @@ def exit():
     colored_instatrip()
     print_colored_background()
     display_menu()
+
+# Logic to Run The Program
 
 def main():
     """
