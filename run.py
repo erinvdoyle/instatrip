@@ -14,7 +14,6 @@ from colorama import Fore, Style, init
 # credit for colorama library: https://pypi.org/project/colorama/
 import os
 # credit for tutorial to clear console https://www.delftstack.com/howto/python/python-clear-console/#print-multiple-new-lines-to-clear-interpreter-console-in-python
-import webbrowser
 
 
 SCOPE = [
@@ -216,7 +215,7 @@ def get_trip_details():
         os.system('cls' if os.name == 'nt' else 'clear')
         
         print("")
-        print(emoji.emojize(Style.BRIGHT + Fore.GREEN + ":shamrock:" + "  " + "Please note that InstaTrip hails from the emerald isle of Ireland, with our departure city set to Dublin. New departure cities launch Spring, 2025 :shamrock:" + Style.NORMAL))
+        print(emoji.emojize(Fore.GREEN + ":shamrock:" + "  " + "Please note that InstaTrip hails from the emerald isle of Ireland, with our \ndeparture city set to Dublin. New departure cities launch Spring, 2025 :shamrock:"))
         print("")
         #os.system('cls' if os.name == 'nt' else 'clear')
         
@@ -654,7 +653,7 @@ def ask_for_booking_link(flights_info):
 
 def exit():
     """
-    Brings the user to the exit art screen
+    Brings the user to the exit art screen and displays a staycation link.
     """
     os.system('cls' if os.name == 'nt' else 'clear') 
     print("")
@@ -686,22 +685,16 @@ def exit():
     time.sleep(2)
     print(Style.BRIGHT + Fore.MAGENTA + "Perhaps a staycation is in order!" + Style.NORMAL)
     time.sleep(2)
-    print(Style.BRIGHT + Fore.LIGHTCYAN_EX +  url + Style.NORMAL)
+    print(" ")
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + url + Style.NORMAL)
     print(" ")
 
     while True:
-        user_input = input(Style.BRIGHT + Fore.MAGENTA + "Type 'YES' to open the link in a new tab and return to the main menu, \nor press Enter to return to the main menu: " + Style.NORMAL)
-
-        if user_input.upper() == 'YES':
-            webbrowser.open(url, new=2)
-            print(Style.BRIGHT + Fore.MAGENTA + "Opening the link in a new tab..." + Style.NORMAL)
+        user_input = input(Style.BRIGHT + Fore.MAGENTA + "Press Enter to return to the main menu: " + Style.NORMAL)
+        if user_input == '': 
             break
-
-        elif user_input == '':
-            break
-
         else:
-            print(Fore.RED + "Invalid input! Please type 'YES' to open the link and return to the main menu \nOR press Enter to skip the link and return to the main menu" + Style.NORMAL)
+            print(Fore.RED + "Invalid input! Please press Enter to return to the main menu." + Style.NORMAL)
 
     os.system('cls' if os.name == 'nt' else 'clear') 
     print("\n")
