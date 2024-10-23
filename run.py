@@ -530,7 +530,15 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
             elif choice == 2:
                 os.system('cls' if os.name == 'nt' else 'clear') 
                 new_top_cities = generate_new_cities(sheet, selected_trip_type, selected_factors)
-                return new_top_cities
+                user_ratings = rate_importance()
+                adjusted_cities = adjust_city_scores(new_top_cities, user_ratings)
+                
+                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nHere are your final cities based on your safety and accessibility preferences:" + Style.NORMAL)
+                for city in adjusted_cities:
+                    print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
+                    print(" ")
+
+                return adjusted_cities
 
             elif choice == 3:
                 os.system('cls' if os.name == 'nt' else 'clear') 
