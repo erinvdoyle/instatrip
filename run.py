@@ -108,7 +108,9 @@ DEFAULT_COLOR = Fore.LIGHTMAGENTA_EX
 
 
 def print_with_default_color(text):
-    """Prints text in the default color so that it can be applied to the Main Menu List"""
+    """
+    Prints text in the default color so that it can be applied to the Main Menu List
+    """
     print(DEFAULT_COLOR + text + Style.RESET_ALL)
 
 
@@ -287,13 +289,9 @@ def get_trip_details():
     """
     Asks user for travel date, flexibility, and length of trip.
     """
-    os.system("cls" if os.name == "nt" else "clear")
-
-    while True:
-        os.system("cls" if os.name == "nt" else "clear")
-
-        print("")
-        print(
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("")
+    print(
             emoji.emojize(
                 Fore.GREEN
                 + ":shamrock:"
@@ -303,9 +301,9 @@ def get_trip_details():
                 + "off soon! :shamrock:"
             )
         )
+    print(" ")
 
-        print("")
-
+    while True:
         travel_date_str = input(
             emoji.emojize(
                 Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? "
@@ -345,7 +343,7 @@ def get_trip_details():
                 emoji.emojize(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + "Are you flexible with your date (+/- 1-3 days)? "
+                    + "Are you flexible with your departure date (+/- 1-3 days)? "
                     "(yes/no):person_cartwheeling: \n" + Style.NORMAL
                 )
             )
@@ -365,7 +363,7 @@ def get_trip_details():
                     input(
                         Style.BRIGHT
                         + Fore.MAGENTA
-                        + "How many days of flexibility do you have? (1-3): \n"
+                        + "How many days of departure flexibility do you have? (1-3): \n"
                         + Style.NORMAL
                     )
                 )
@@ -755,6 +753,7 @@ def user_choice_after_ranking(
 
                 adjusted_cities = adjust_city_scores(top_cities, user_ratings)
 
+                os.system("cls" if os.name == "nt" else "clear")
                 print(
                     Style.BRIGHT
                     + Fore.LIGHTCYAN_EX
