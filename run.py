@@ -413,7 +413,7 @@ def drumroll():
     """
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    print(Style.BRIGHT + Fore.RED + "Based off your preferences, your top city selections are..." + Style.NORMAL)
+    print(Style.BRIGHT + Fore.RED + "Based on your preferences, your top city selections are..." + Style.NORMAL)
     print("")
     print(Style.BRIGHT + Fore.RED + "drumroll please..." + Style.NORMAL)
     print("")
@@ -497,26 +497,28 @@ def adjust_city_scores(top_cities, ratings):
     return adjusted_cities
 
 
-def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_factors):
+def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_factors, city_history=None):
     """
-    Prompts the user to choose whether to keep the ranked cities and move forward,
-    generate three new cities, or start the program over.
-    If they choose to proceed, the program will prompt for safety and accessibility preferences
+    Prompts the user to choose whether to keep the ranked cities, generate new cities,
+    start over, or return to previous cities.
+    If they choose to proceed, the program will prompt for safety and accessibility preferences.
     """
-    previous_cities = top_cities
+    if city_history is None:
+        city_history = []
+
     while True:
         print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nAre you happy with these cities?" + Style.NORMAL)
         print("")
         print(emoji.emojize(Fore.LIGHTCYAN_EX + "1. Yes, let's go! :airplane_departure:"))
         print(emoji.emojize(Fore.LIGHTCYAN_EX + "2. No, let's see another three cities :man_gesturing_NO:"))
-        
-        if previous_cities:
-            print(emoji.emojize(Fore.LIGHTCYAN_EX + "3. Return to previous cities :left_arrow:"))
+        print(emoji.emojize(Fore.LIGHTCYAN_EX + "3. It's a wash. Start over :wastebasket:"))
 
-        print(emoji.emojize(Fore.LIGHTCYAN_EX + "4. It's a wash. Start over :wastebasket:"))
+        if city_history:
+            print(emoji.emojize(Fore.LIGHTCYAN_EX + "4. Return to previous cities :left_arrow:"))
 
         try:
-            choice = int(input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nPlease choose an option (1-4): " + Style.NORMAL))
+            choice = int(input(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nPlease choose an option: " + Style.NORMAL))
+
             if choice == 1:
                 os.system('cls' if os.name == 'nt' else 'clear') 
                 print("")
@@ -526,7 +528,7 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
 
                 adjusted_cities = adjust_city_scores(top_cities, user_ratings)
 
-                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nHere are your final cities ranked in order of your safety and accessibility preferences:" + Style.NORMAL)
+                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nHere are your final cities ranked by your safety and accessibility preferences:" + Style.NORMAL)
                 for city in adjusted_cities:
                     print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
 
@@ -534,32 +536,31 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
 
             elif choice == 2:
                 os.system('cls' if os.name == 'nt' else 'clear') 
-                new_top_cities = generate_new_cities(sheet, selected_trip_type, selected_factors)
-                previous_cities = top_cities
-                top_cities = new_top_cities
-                os.system('cls' if os.name == 'nt' else 'clear') 
-                
-                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nHere are three new cities based on your preferences:" + Style.NORMAL)
-                for city in new_top_cities:
-                    print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
-            
-            elif choice == 3:
-                os.system('cls' if os.name == 'nt' else 'clear') 
 
-                top_cities = previous_cities
-                previous_cities = None
-                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nReturning to your previous cities:" + Style.NORMAL)
-                for city in previous_cities:
-                    print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
-            
-            elif choice == 4:
+                city_history.append(top_cities)
+
+                new_top_cities = generate_new_cities(sheet, selected_trip_type, selected_factors)
+                top_cities = new_top_cities
+
+            elif choice == 3:
                 os.system('cls' if os.name == 'nt' else 'clear') 
                 return "start_over"
 
+            elif choice == 4 and city_history:
+                os.system('cls' if os.name == 'nt' else 'clear') 
+
+                top_cities = city_history.pop()
+
+                print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nReturning to your previous cities:" + Style.NORMAL)
+                for city in top_cities:
+                    print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
+
             else:
                 print(Fore.RED + "Invalid choice. Please select a valid number")
+
         except ValueError:
-            print(Fore.RED + "Please enter a valid number.")
+            print(Fore.RED + "Please enter a valid number")
+
 
 # Logic to Pull Airport Codes of Final City Selections from Google Sheet and Pass Them to Ryanair API 
 
