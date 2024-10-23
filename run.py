@@ -509,7 +509,10 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
         print("")
         print(emoji.emojize(Fore.LIGHTCYAN_EX + "1. Yes, let's go! :airplane_departure:"))
         print(emoji.emojize(Fore.LIGHTCYAN_EX + "2. No, let's see another three cities :man_gesturing_NO:"))
-        print(emoji.emojize(Fore.LIGHTCYAN_EX + "3. Return to previous cities :left_arrow:"))
+        
+        if previous_cities:
+            print(emoji.emojize(Fore.LIGHTCYAN_EX + "3. Return to previous cities :left_arrow:"))
+
         print(emoji.emojize(Fore.LIGHTCYAN_EX + "4. It's a wash. Start over :wastebasket:"))
 
         try:
@@ -532,8 +535,10 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
             elif choice == 2:
                 os.system('cls' if os.name == 'nt' else 'clear') 
                 new_top_cities = generate_new_cities(sheet, selected_trip_type, selected_factors)
+                previous_cities = top_cities
                 top_cities = new_top_cities
                 os.system('cls' if os.name == 'nt' else 'clear') 
+                
                 print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nHere are three new cities based on your preferences:" + Style.NORMAL)
                 for city in new_top_cities:
                     print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
@@ -542,6 +547,7 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
                 os.system('cls' if os.name == 'nt' else 'clear') 
 
                 top_cities = previous_cities
+                previous_cities = None
                 print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nReturning to your previous cities:" + Style.NORMAL)
                 for city in previous_cities:
                     print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
@@ -551,7 +557,7 @@ def user_choice_after_ranking(top_cities, sheet, selected_trip_type, selected_fa
                 return "start_over"
 
             else:
-                print(Fore.RED + "Invalid choice. Please select a number from 1 to 4.")
+                print(Fore.RED + "Invalid choice. Please select a valid number")
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
 
