@@ -16,8 +16,8 @@ from colorama import Fore, Style, init
 # credit for colorama library: https://pypi.org/project/colorama/
 import os
 
-# credit for tutorial to clear console https://www.delftstack.com/howto/python/python-clear-console/#print-multiple-new-lines-to-clear-interpreter-console-in-python
-
+# credit for tutorial to clear console
+# https://www.delftstack.com/howto/python/python-clear-console/#print-multiple-new-lines-to-clear-interpreter-console-in-python
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -35,7 +35,9 @@ SHEET = GSPREAD_CLIENT.open("Instatrip").sheet1
 
 def print_colored_background():
     """
-    Gets terminal size to create three colored lines the width of the terminal using the coloroma library. Centers the Instatrip tagline within the color block
+    Gets terminal size to create three colored lines the width of the
+    terminal using the coloroma library. Centers the Instatrip tagline
+    within the color block
     """
     terminal_width = os.get_terminal_size().columns
 
@@ -93,9 +95,9 @@ def center_text(text):
     Centers the text in the console.
     """
     terminal_width = os.get_terminal_size().columns
-    # Check if the input is a list (credit mistral AI for help creating a centered text function that works for lists)
+    # Check if the input is a list
+    # (credit mistral AI for help creating a centered text function that works for lists)
     if isinstance(text, list):
-
         text = "\n".join(text)
 
     centered_lines = [line.center(terminal_width) for line in text.splitlines()]
@@ -112,7 +114,8 @@ def print_with_default_color(text):
 
 def display_menu():
     """
-    Creates a main menu for the starting screen that allows user to choose to start the program, read the about, or exit
+    Creates a main menu for the starting screen that allows user to choose
+    to start the program, read the about, or exit
     """
 
     menu_text = f"""
@@ -218,14 +221,19 @@ def read_about():
     print(
         wrap_text(
             Fore.YELLOW
-            + "InstaTrip is a travel planning program designed to bring spontaneity to the user's next vacation. After asking a few simple questions with data compiled by a Google Sheet, the program curates a list of personalized European destinations"
+            + "InstaTrip is a travel planning program designed to bring spontaneity "
+            + "to the user's next vacation. After asking a few simple questions with "
+            + "data compiled by a Google Sheet, the program curates a list of "
+            + "personalized European destinations"
         )
     )
     print("")
     print(
         wrap_text(
             Fore.YELLOW
-            + "For each destination, flight data is retrieved by the Ryanair API, showcasing the cheapest available flights. The user may then choose to book a flight through the provided url"
+            + "For each destination, flight data is retrieved by the Ryanair API, "
+            + "showcasing the cheapest available flights. The user may then choose "
+            + "to book a flight through the provided url"
         )
     )
     print("")
@@ -234,7 +242,10 @@ def read_about():
             Fore.LIGHTRED_EX
             + "Disclaimer:"
             + Fore.YELLOW
-            + " InstaTrip is a student project and not affiliated with Ryanair. Prices + details are updated in real-time and subject to change. InstaTrip wishes the user the happiest of holidays and cannot be held responsible for any travel mishaps or misadventures :)"
+            + " InstaTrip is a student project and not affiliated with Ryanair. Prices "
+            + "+ details are updated in real-time and subject to change. InstaTrip "
+            + "wishes the user the happiest of holidays and cannot be held responsible "
+            + "for any travel mishaps or misadventures :)"
         )
     )
     print("")
@@ -242,7 +253,10 @@ def read_about():
     print(
         wrap_text(
             Fore.YELLOW
-            + "InstaTrip was developed by Erin Doyle, a student of Code Institute's Full-Stack Software Development program. Her InstaTrip travel preferences are: Romantic (her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, and Off the Beaten Path"
+            + "InstaTrip was developed by Erin Doyle, a student of Code Institute's "
+            + "Full-Stack Software Development program. Her InstaTrip travel "
+            + "preferences are: Romantic (her husband vetoed 'Solo Trip') + Culinary, "
+            + "Outdoorsy, and Off the Beaten Path"
         )
     )
     print(
@@ -284,18 +298,18 @@ def get_trip_details():
                 Fore.GREEN
                 + ":shamrock:"
                 + "  "
-                + "Please note that InstaTrip hails from the emerald isle of Ireland, with our \ndeparture city set to Dublin. New departure cities take off soon! :shamrock:"
+                + "Please note that InstaTrip hails from the emerald isle of Ireland, "
+                + "with our \ndeparture city set to Dublin. New departure cities take "
+                + "off soon! :shamrock:"
             )
         )
+
         print("")
-        # os.system('cls' if os.name == 'nt' else 'clear')
 
         travel_date_str = input(
             emoji.emojize(
-                Style.BRIGHT
-                + Fore.MAGENTA
-                + ":handbag:  When would you like to depart? (Please enter a date in YYYY-MM-DD format): \n"
-                + Style.NORMAL
+                Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? "
+                "(Please enter a date in YYYY-MM-DD format): \n" + Style.NORMAL
             )
         )
 
@@ -308,14 +322,14 @@ def get_trip_details():
 
             if travel_date < minimum_travel_date:
                 print(
-                    Fore.RED
-                    + f"Please enter a date from tomorrow onward (after {minimum_travel_date.date()})."
+                    Fore.RED + f"Please enter a date from tomorrow onward "
+                    f"(after {minimum_travel_date.date()})."
                 )
                 continue
             elif travel_date > maximum_travel_date:
                 print(
-                    Fore.RED
-                    + f"Please enter a date no further than two years from today (before {maximum_travel_date.date()})."
+                    Fore.RED + f"Please enter a date no further than two years from today "
+                    f"(before {maximum_travel_date.date()})."
                 )
                 continue
 
@@ -331,8 +345,8 @@ def get_trip_details():
                 emoji.emojize(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + "Are you flexible with your date (+/- 1-3 days)? (yes/no):person_cartwheeling: \n"
-                    + Style.NORMAL
+                    + "Are you flexible with your date (+/- 1-3 days)? "
+                    "(yes/no):person_cartwheeling: \n" + Style.NORMAL
                 )
             )
             .strip()
@@ -367,10 +381,8 @@ def get_trip_details():
         try:
             length_of_stay = int(
                 input(
-                    Style.BRIGHT
-                    + Fore.MAGENTA
-                    + "How many days do you plan to stay? (Enter a minimum of 1 and maximum of 59)\n"
-                    + Style.NORMAL
+                    Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? "
+                    "(Enter a minimum of 1 and maximum of 59)\n" + Style.NORMAL
                 )
             )
             if not (1 <= length_of_stay <= 59):
@@ -449,8 +461,8 @@ def important_factors():
     print(
         Style.BRIGHT
         + Fore.LIGHTCYAN_EX
-        + "Select up to three important factors (enter numbers separated by commas): \n"
-        + Style.NORMAL
+        + "Select up to three important factors (enter numbers separated "
+        "by commas): \n" + Style.NORMAL
     )
 
     factors = [
@@ -513,12 +525,14 @@ def important_factors():
             return selected_factors
 
 
-# Logic to Rank Cities from Google Sheet Based on User Preferences and Randomly Select Three of them
+# Logic to Rank Cities from Google Sheet Based on User Preferences
+# and Randomly Select Three of them
 
 # Ranking tutorial credit:
 def rank_cities(sheet, selected_trip_type, selected_factors):
     """
-    Ranks cities based on user preferences from Google Sheets, with higher rank being better.
+    Ranks cities based on user preferences from Google Sheets,
+    with higher rank being better.
     """
     cities = sheet.get_all_records()
 
@@ -598,12 +612,14 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
     return new_top_cities
 
 
-# Logic to Weigh The User's Safety and Accessibility Preferences Against the Selected Cities And Order Accordingly
+# Logic to Weigh The User's Safety and Accessibility Preferences
+# Against the Selected Cities And Order Accordingly
 
 
 def rate_importance():
     """
-    Collects importance ranking for safety and accessibility factors from the user.
+    Collects importance ranking for safety and accessibility factors
+    from the user.
     """
     factors_to_rate = [
         "Overall Safety",
@@ -620,17 +636,15 @@ def rate_importance():
             try:
                 # Ask the user for a rating
                 rating = input(
-                    Style.BRIGHT
-                    + Fore.MAGENTA
-                    + f"Rate the importance of {factor} (1-5, with 1 being most important): \n"
-                    + Style.NORMAL
+                    Style.BRIGHT + Fore.MAGENTA + f"Rate the importance of {factor} "
+                    "(1-5, with 1 being most important): \n" + Style.NORMAL
                 ).strip()
 
                 # Ensure the rating is not blank
                 if rating == "":
                     print(
-                        Fore.RED
-                        + "You didn't enter anything. Please enter a number between 1 and 5."
+                        Fore.RED + "You didn't enter anything. Please enter a number "
+                        "between 1 and 5."
                     )
                     continue
 
@@ -676,9 +690,10 @@ def user_choice_after_ranking(
     top_cities, sheet, selected_trip_type, selected_factors, city_history=None
 ):
     """
-    Prompts the user to choose whether to keep the ranked cities, generate new cities,
-    start over, or return to previous cities.
-    If they choose to proceed, the program will prompt for safety and accessibility preferences.
+    Prompts the user to choose whether to keep the ranked cities,
+    generate new cities, start over, or return to previous cities.
+    If they choose to proceed, the program will prompt for safety and
+    accessibility preferences.
     """
     if city_history is None:
         city_history = []
@@ -726,12 +741,13 @@ def user_choice_after_ranking(
             if choice == 1:
                 os.system("cls" if os.name == "nt" else "clear")
                 print("")
+
                 print(
                     emoji.emojize(
                         Style.BRIGHT
                         + Fore.MAGENTA
-                        + "Great! Let's adjust the cities based on your safety and accessibility \npreferences :service_dog: \n"
-                        + Style.NORMAL
+                        + "Great! Let's adjust the cities based on your safety "
+                        "and accessibility preferences :service_dog: \n" + Style.NORMAL
                     )
                 )
 
@@ -742,8 +758,8 @@ def user_choice_after_ranking(
                 print(
                     Style.BRIGHT
                     + Fore.LIGHTCYAN_EX
-                    + "\nHere are your final cities ranked by your safety and accessibility preferences:"
-                    + Style.NORMAL
+                    + "\nHere are your final cities ranked by your safety "
+                    "and accessibility preferences:" + Style.NORMAL
                 )
                 for city in adjusted_cities:
                     print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
@@ -785,12 +801,14 @@ def user_choice_after_ranking(
             print(Fore.RED + "Please enter a valid number")
 
 
-# Logic to Pull Airport Codes of Final City Selections from Google Sheet and Pass Them to Ryanair API
+# Logic to Pull Airport Codes of Final City Selections from Google Sheet
+# and Pass Them to Ryanair API
 
 
 def get_airport_codes(sheet):
     """
-    Get airport codes from Google Sheet using 'City' and 'IATA' columns to access airport codes
+    Get airport codes from Google Sheet using 'City' and 'IATA' columns
+    to access airport codes
     """
     records = sheet.get_all_records()
     airport_codes = {}
@@ -801,7 +819,8 @@ def get_airport_codes(sheet):
     return airport_codes
 
 
-# Credit for help implementing and understanding how to use the API in this function, find_cheapest_flights(), and ask_for_booking(): Mistral AI
+# Credit for help implementing and understanding how to use the API
+# in this function, find_cheapest_flights(), and ask_for_booking(): Mistral AI
 def search_ryanair_flights(
     origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0
 ):
@@ -821,7 +840,8 @@ def search_ryanair_flights(
     # Credit to Rapid API for Ryanair API key
     headers = {
         "x-rapidapi-host": "ryanair2.p.rapidapi.com",
-        "x-rapidapi-key": "1ba388bfffmsh0eff684773db243p19641djsn51bdcd6bec4f",  # Replace with your RapidAPI key
+        "x-rapidapi-key": "1ba388bfffmsh0eff684773db243p19641djsn51bdcd6bec4f",
+        # Replace with your RapidAPI key
     }
 
     try:
@@ -838,12 +858,14 @@ def search_ryanair_flights(
     return None
 
 
-# Logic to Find the Cheapest Flights Among The Eligible and Ask User If They Want to Make a Booking
+# Logic to Find the Cheapest Flights Among The Eligible and Ask User
+# If They Want to Make a Booking
 
 
 def find_cheapest_flights(sheet, top_cities, trip_details):
     """
-    Finds the cheapest flights for a list of top cities using Ryanair API via RapidAPI.
+    Finds the cheapest flights for a list of top cities using Ryanair API
+    via RapidAPI.
     """
     airport_codes = get_airport_codes(sheet)
     origin = trip_details["departure_airport"]
@@ -915,7 +937,8 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
 
 def ask_for_booking_link(flights_info):
     """
-    Asks the user if they would like to generate a booking link for any of the displayed flights and allows user to start over if not
+    Asks the user if they would like to generate a booking link for any of the
+    displayed flights and allows user to start over if not.
     """
     if not flights_info:
         print(
@@ -934,10 +957,8 @@ def ask_for_booking_link(flights_info):
     )
     for idx, flight in enumerate(flights_info, start=1):
         print(
-            Style.BRIGHT
-            + Fore.MAGENTA_EX
-            + f"{idx}. {flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR"
-            + Style.NORMAL
+            Style.BRIGHT + Fore.MAGENTA_EX + f"{idx}. {flight['city']}: Flight Number: "
+            f"{flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL
         )
 
     print(Style.BRIGHT + Fore.MAGENTA_EX + "4. Start over" + Style.NORMAL)
@@ -954,7 +975,12 @@ def ask_for_booking_link(flights_info):
             )
             if 1 <= choice <= len(flights_info):
                 selected_flight = flights_info[choice - 1]
-                booking_link = f"https://www.ryanair.com/gb/en/booking/home?departureAirport=DUB&arrivalAirport={selected_flight['city']}&outboundDate={trip_details['departure_date']}&adults=1"
+                booking_link = (
+                    f"https://www.ryanair.com/gb/en/booking/home?"
+                    f"departureAirport=DUB&arrivalAirport="
+                    f"{selected_flight['city']}&outboundDate="
+                    f"{trip_details['departure_date']}&adults=1"
+                )
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA_EX
@@ -964,8 +990,8 @@ def ask_for_booking_link(flights_info):
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA_EX
-                    + f"Booking link for {selected_flight['city']}: {booking_link}"
-                    + Style.NORMAL
+                    + f"Booking link for {selected_flight['city']}: "
+                    f"{booking_link}" + Style.NORMAL
                 )
                 print(Style.BRIGHT + Fore.MAGENTA_EX + "Bon Voyage!" + Style.NORMAL)
                 break
@@ -978,9 +1004,6 @@ def ask_for_booking_link(flights_info):
                 print(Fore.RED + "Invalid choice. Please select a number from 1 to 5.")
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
-
-
-# Logic to Exit The Program
 
 
 def exit():
@@ -1036,9 +1059,8 @@ def exit():
             break
         else:
             print(
-                Fore.RED
-                + "Invalid input! Please press Enter to return to the main menu."
-                + Style.NORMAL
+                Fore.RED + "Invalid input! Please press Enter to return to the "
+                "main menu." + Style.NORMAL
             )
 
     os.system("cls" if os.name == "nt" else "clear")
@@ -1113,18 +1135,24 @@ def main():
                     emoji.emojize(
                         Style.BRIGHT
                         + Fore.MAGENTA
-                        + "\n :party_popper: Let's print your flight information... :party_popper:"
-                        + Style.NORMAL
+                        + "\n :party_popper: Let's print your flight "
+                        "information... :party_popper:" + Style.NORMAL
                     )
                 )
 
                 # trip_details['departure_airport'] = 'DUB'
-                # trip_details['departure_date'] = trip_details['travel_date'].strftime("%Y-%m-%d")
-                # flights_info = find_cheapest_flights(SHEET, [city[0] for city in final_top_cities], trip_details)
-                # print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "\nCheapest Flights Information:" + Style.NORMAL)
+                # trip_details['departure_date'] = trip_details['travel_date']
+                # .strftime("%Y-%m-%d")
+                # flights_info = find_cheapest_flights(SHEET,
+                # [city[0] for city in final_top_cities], trip_details)
+                # print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
+                # "\nCheapest Flights Information:" + Style.NORMAL)
                 # for flight in flights_info:
-                #     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + f"{flight['city']}: Flight Number: {flight['flight_number']}, Price: {flight['price']} EUR, "
-                #           f"Departure Time: {flight['departure_time']}, Arrival Time: {flight['arrival_time']}" + Style.NORMAL)
+                # print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
+                # f"{flight['city']}: Flight Number: {flight['flight_number']},"
+                # "Price: {flight['price']} EUR, "
+                # "Departure Time: {flight['departure_time']}, "
+                # "Arrival Time: {flight['arrival_time']}" + Style.NORMAL)
 
             # ask_for_booking_link(flights_info)
             break
