@@ -2,7 +2,7 @@
 ## *For When You Want to Travel, But Decision-Making Isn’t Your Thing* 
 
 <p align="center">
-  <img src="assets/documentation/amiresp.png">
+  <img src="assets/documentation/landing.png">
 </p>
 
 [Visit the deployed site](https://instatrip-ffc10cb98741.herokuapp.com/)
@@ -52,11 +52,17 @@ Don't forget your passport!
 
 # Project 
 
-This program was created for Portfolio Project #3 (Python Essentials) for The Code Institute Full Stack Software Developer program.
-
-It is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport-- people who would like to explore spontaneous European travel. This program is designed to inspire joy:  From the colors to the playful tone, whether the user is landlocked or ready for takeoff, InstaTrip encourages them to imagine all the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
+This program was created for Portfolio Project #3 (Python Essentials) for The Code Institute Full Stack Software Developer program
 
 ## How to Use InstaTrip
+
+1. Navigate to https://instatrip-ffc10cb98741.herokuapp.com [or click this link](https://instatrip-ffc10cb98741.herokuapp.com/)
+2. Click the "Run Program" button at the top of the page
+3. Follow the instruction on the main menu to either read *about* the program or *start* the InstaTrip city destination process
+4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *start over* to select new cities, or *exit* the program
+
+## Target Audience
+It is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport: People who would like to explore spontaneous European travel. This program is designed to inspire joy.  From the colors to the playful tone, whether the user is landlocked or ready for takeoff, InstaTrip encourages them to imagine all the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
 
 ## User Stories
    <details>
@@ -69,22 +75,58 @@ It is intended for adults (and young people with parental supervision) of all wa
  - **As a returning visitor**, I want:
     - Story 1
     - Story 2 etc
+    </details>
+
+## Site Owner's Goal
+   <details>
+   <summary>Site Owner's Goal (click)</summary>
 
   - **As the owner of the site**, I want:
     - Story 1
     - Story 2 etc
     </details>
 
+## Features to Achieve the Goals
+
 # User Experience
 
 ## Site Structure
 
-**Instatrip** has 
+**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is fueled by two core modalities, each backed by an API: A data collection process to determine the user's ideal European destination, as ranked by their input and compared with a Google Sheet of relevant values; and a flight retrieval process by which the Ryanair API selects the cheapest flight based on the parameters decided above.
 
-More about each area and all of the features can be found in the [Features](<#features>) section.
+More about each of these processes can be found in the [flowchart](<#flowchart>) and [database structure]((<#database-structure>)) sections. The logic behind them as well as the experience navigating through the program can be found in the [Features](<#features>) section.
 
-- [Section 1](##<section-one>)
-- [Section 2](##<section-two>)
+## Flowchart  
+<details>
+<summary> Instatrip Flowchart </summary>
+<p align="center">
+  <img src="assets/documentation/googlesheet.png" height="500px"/>
+  </p>
+
+The flow chart for this application was originally designed with pen and paper before I began coding. I used Visio once I had an idea of the general structure of InstaTrip and the first few functions in place, and it helped me flesh out the details, stay organized, and create the necessary bridges between functions as the logic of the program became more complex
+</details>
+
+## Database Structure 
+
+## Google Sheet
+<details>
+<summary> Instatrip Google Sheet </summary>
+<p align="center">
+  <img src="assets/documentation/googlesheet.png" height="500px"/>
+  </p>
+
+My introduction to Google Sheets was from Code Institute's extremely helpful Love Sandwiches Walkthrough Project. I have often said I am not a "spreadsheet person" to my Business Analyst husband, despite my love and need for organization. I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkle:
+
+My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17 columns, 15 of which form the parameters for the user's travel preferences; and 32 rows, with each row representing a European city.
+
+The column titles are as follows: City, IATA (airport code), Nightlife, History & Culure, Cuisine, Outdoorsy Experiences, Shopping, Off the Beaten Path Exploration, Romantic Adventure, Solo Travel, Hen or Stag Party, Time with Friends or Family, Overall Safety, Accessibility, Public Transportation, Tourism-Friendliness, and English-Speaking
+
+Data to rank each city with a numeric value from 1-5 for each of the column parameters was collected first from google, and then with the aid of ChatGPT. The program compares these numeric rankings with the user's own rankings to determine which cities make the most suitable destinations 
+</details>
+
+## Ryanair API
+
+## Logic Flow
 
 ## Design Choices
 
@@ -112,23 +154,6 @@ While this project by nature limits styling liberties, I enjoyed colorizing the 
   <img src="assets/documentation/font1.png" height="50px"/>
   </p>
 
-# Flowchart  
-
-<p align="center">
-  <img src="assets/documentation/googlesheet.png" height="500px"/>
-  </p>
-
-# Database Structure 
-
-## Google Sheet
-
-<p align="center">
-  <img src="assets/documentation/font1.png" height="50px"/>
-  </p>
-
-## Ryanair API
-
-    
 # Features
 
 I have aimed to give this site a simple, intuitive interface. Ease of navigation allows the visitor to 
