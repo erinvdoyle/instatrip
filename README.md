@@ -11,9 +11,9 @@
 
 Crave the magic of adventure but need the security of cold, hard data? Welcome to **InstaTrip**, your source for perfectly planned travel spontaneity (courtesy of a Google Sheet)
 
-InstaTrip asks you a few simple questions (nothing too deep :sweat_smile:), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests: Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
+InstaTrip asks you a few simple questions (nothing too deep!), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests: Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
 
-But that's not all, folks. InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. So no need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
+But that's not all, folks. InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. Decision fatigue is real so let us help you. No need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
 
 Don't forget your passport!
 
@@ -48,9 +48,9 @@ Don't forget your passport!
 
 # Project 
 
-This website was created for Portfolio Project #3 (Python Essentials) for The Code Institute Full Stack Software Developer program.
+This program was created for Portfolio Project #3 (Python Essentials) for The Code Institute Full Stack Software Developer program.
 
-It is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport-- people who would like to explore spontaneous European travel. This program is designed to inspire joy:  From the colorsto the playful tone, whether the user is landlocked or ready for takeoff, InstaTrip encourages them to imagine all the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine 
+It is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport-- people who would like to explore spontaneous European travel. This program is designed to inspire joy:  From the colors to the playful tone, whether the user is landlocked or ready for takeoff, InstaTrip encourages them to imagine all the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
 
 ## How to Use InstaTrip
 
@@ -468,13 +468,13 @@ All tutorials used have been credited throughout the code. Tutorials were consul
 If applicable
 
 # Acknowledgements
-- My mentor, Precious Ijege, for helping me make sure all my exceptions were handled, providing kind guidance and ---.
-- Our cohort standup leader, Kay Welfare, for providing a weekly dose of enthusiasm and ---
-- The CI Hackathon Team and my Elevate Hackathon teammates (Team ResuMates!) for inspiration and ---
-- My husband, Taylor, process mapper extraordinaire, for helping me tighten up my flow chart. And especially for taking care of our horses and household during Storm Ashley to allow me long hours to complete the bulk of this project
+- My mentor, Precious Ijege, for helping me make sure all my exceptions were handled, providing kind guidance from project inception to completion, and helping me see the project with fresh eyes.
+- Our cohort standup leader, Kay Welfare, for providing a weekly dose of enthusiasm and encouragement
+- The CI Hackathon staff and my Elevate Hackathon teammates (Team ResuMates!) for inspiration and the opportunity to experience working as part of a team
+- My husband, Taylor, process mapper extraordinaire, for helping me tighten up my flow chart. And *especially* for taking care of our horses and household during Storm Ashley to allow me long hours to complete the bulk of this project
 
 # Contact
-Thank you for viewing my project. Please feel free to contact me with any questions, comments, or opportunities
+Thank you for viewing this project. Please feel free to contact me with any questions, comments, or opportunities
   
  - [erin.v.doyle@gmail.com](mailto:erin.v.doyle@gmail.com)
  - [linkedin.com/erinvdoyle](https://linkedin.com/erinvdoyle)
