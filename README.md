@@ -1,5 +1,5 @@
-# **InstaTrip**
-## *For When You Want to Travel, But Decision-Making Isn’t Your Thing*
+# **InstaTrip** :airplane::sun:
+## *For When You Want to Travel, But Decision-Making Isn’t Your Thing* 
 
 <p align="center">
   <img src="assets/documentation/amiresp.png">
@@ -9,9 +9,9 @@
 
 # **Introduction**
 
-:airplane: Welcome to **InstaTrip** :airplane: your source for perfectly planned travel spontaneity (courtesy of a spreadsheet). (a program for those who crave the magic of adventure but the security of cold, hard data)
+Crave the magic of adventure but need the security of cold, hard data? Welcome to **InstaTrip**, your source for perfectly planned travel spontaneity (courtesy of a Google Sheet)
 
-InstaTrip asks you a few simple questions (nothing too deep :sweat_smile:), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick jaunt to Rome? Or maybe you're feeling a bit Reykjavik-ish? We’ve got you covered.
+InstaTrip asks you a few simple questions (nothing too deep :sweat_smile:), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Or maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests (Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*)
 
 InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket for your destination. So no need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries in a 40cm x 20cm bag! :fearful:
 
