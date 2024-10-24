@@ -101,7 +101,7 @@ More about each of these processes can be found in the [Flowchart](<#flowchart>)
 <details>
 <summary> Instatrip Flowchart </summary>
 <p align="center">
-  <img src="assets/documentation/googlesheet.png" height="500px"/>
+  <img src="assets/documentation/flowchart.png" height="650px"/>
   </p>
 
 The flow chart for this application was originally designed with pen and paper before I began coding. I used Visio once I had an idea of the general structure and put the first few functions in place. This helped me flesh out the details, stay organized, and create the necessary bridges between functions as the logic of the program grew in complexity
@@ -113,7 +113,7 @@ The flow chart for this application was originally designed with pen and paper b
 <details>
 <summary> Instatrip Google Sheet </summary>
 <p align="center">
-  <img src="assets/documentation/googlesheet.png" height="500px"/>
+  <img src="assets/documentation/googlesheet.png" height="650px"/>
   </p>
 
 My introduction to Google Sheets was from Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said to my Business Analyst husband that I am not a "spreadsheet person," despite my love and need for organization. I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkles:
