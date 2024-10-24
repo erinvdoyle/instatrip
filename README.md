@@ -11,9 +11,9 @@
 
 Crave the magic of adventure but need the security of cold, hard data? Welcome to **InstaTrip**, your source for perfectly planned travel spontaneity (courtesy of a Google Sheet)
 
-InstaTrip asks you a few simple questions (nothing too deep :sweat_smile:), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests (Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*)
+InstaTrip asks you a few simple questions (nothing too deep :sweat_smile:), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests: Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
 
-InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket for your destination. So no need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries in a 40cm x 20cm bag :fearful:
+But that's not all, folks. InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. So no need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
 
 Don't forget your passport!
 
@@ -50,7 +50,7 @@ Don't forget your passport!
 
 This website was created for Portfolio Project #3 (Python Essentials) for The Code Institute Full Stack Software Developer program.
 
-It is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport, who would like to explore spontaneous European travel. This program is designed to inspire joy--------
+It is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport-- people who would like to explore spontaneous European travel. This program is designed to inspire joy:  From the colorsto the playful tone, whether the user is landlocked or ready for takeoff, InstaTrip encourages them to imagine all the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine 
 
 ## How to Use InstaTrip
 
@@ -86,9 +86,9 @@ More about each area and all of the features can be found in the [Features](<#fe
 
 ### Color Scheme
 
-The color and design scheme for the start screen of **Instatrip** was inspired by a slightly retro feel, intended to evoke travel agencies of yesteryear. The background image for the page, a sunset tropical paradise, inspired the color choice for the rest of the program.
+The color and design scheme for the starting screen of **Instatrip** was chosen to give a slightly retro feel, intended to evoke nostalgia-- the travel agencies and city destination posters of yesteryear. The background image for the page, an island sunset, inspired the color choice for the rest of the program. 
 
-While this project by nature limits styling liberties, I enjoyed colorizing the text and making generous use of emoji to compliment the fun, light-hearted tone set by the copy. 
+While this project by nature limits styling liberties, I enjoyed colorizing the text and making generous use of emoji to compliment the fun, light-hearted tone set by the copy. Booking flights and tending to travel details can often be a dreary affair. The aim here is to break the tedium and usher in a bit of excitement
 
 <p align="center">
     <img src="assets/documentation/" height="150" style="margin-right: 20px;"/>
