@@ -9,6 +9,7 @@ import random
 import time
 import textwrap
 import emoji
+from ryanair import Ryanair
 
 # credit for emoji library: https://pypi.org/project/emoji/
 from colorama import Fore, Style, init
@@ -857,7 +858,7 @@ def search_ryanair_flights(
     return None
 
 
-# Logic to Find the Cheapest Flights Among The Eligible and Ask User
+# Logic to Find the Cheapest Flights Among Those Eligible and Ask User
 # If They Want to Make a Booking
 
 
@@ -983,7 +984,7 @@ def ask_for_booking_link(flights_info):
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA_EX
-                    + "Link will open in new window"
+                    + "Copy link into your browser"
                     + Style.NORMAL
                 )
                 print(
@@ -1127,7 +1128,7 @@ def main():
 
             else:
                 final_top_cities = (
-                    user_choice  # Assign the user choice to final_top_cities
+                    user_choice  
                 )
 
                 print(
