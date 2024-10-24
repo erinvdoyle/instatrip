@@ -13,20 +13,24 @@ Crave the magic of adventure but need the security of cold, hard data? Welcome t
 
 InstaTrip asks you a few simple questions (nothing too deep!), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests: Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
 
-But that's not all, folks. InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. Decision fatigue is real so let us help you. No need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
+But that's not all, folks. InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. Decision fatigue is real, so let us help you. No need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
 
 Don't forget your passport!
 
 # **Table of Contents**
 - [Project](#project)
   - [How to Use InstaTrip](#how-to-use-instatrip)
+  - [Target Audience](#target-audience)
   - [User Stories](#user-stories)
+  - [Site Owner's Goal](#site-owners-goal)
+  - [Features to Achieve the goals](#features-to-achieve-the-goals)
 - [User Experience](#user-experience)
   - [Site Structure](#site-structure)
+  - [Flowchart](#flowchart)
+  - [Database Structure](#database-structure)
+      - [Google Sheet](#google-sheet)
+  - [Logic Flow](#logic-flow)
   - [Design Choices](#design-choices)
-- [Flowchart](#flowchart)
-- [Database Structure](#database-structure)
-  - [Google Sheet](#google-sheet)
 - [Features](#features)
 - [Future Features](#future-features)
 - [Technologies](#technologies)
@@ -111,7 +115,7 @@ While this project by nature limits styling liberties, I enjoyed colorizing the 
 # Flowchart  
 
 <p align="center">
-  <img src="assets/documentation/googlesheet.png" height="50px"/>
+  <img src="assets/documentation/googlesheet.png" height="500px"/>
   </p>
 
 # Database Structure 
@@ -468,7 +472,7 @@ All tutorials used have been credited throughout the code. Tutorials were consul
 If applicable
 
 # Acknowledgements
-- My mentor, Precious Ijege, for helping me make sure all my exceptions were handled, providing kind guidance from project inception to completion, and helping me see the project with fresh eyes.
+- My mentor, Precious Ijege, for helping me make sure all my exceptions were handled, providing kind guidance from project inception to completion, and allowing me to see the project with fresh eyes.
 - Our cohort standup leader, Kay Welfare, for providing a weekly dose of enthusiasm and encouragement
 - The CI Hackathon staff and my Elevate Hackathon teammates (Team ResuMates!) for inspiration and the opportunity to experience working as part of a team
 - My husband, Taylor, process mapper extraordinaire, for helping me tighten up my flow chart. And *especially* for taking care of our horses and household during Storm Ashley to allow me long hours to complete the bulk of this project
