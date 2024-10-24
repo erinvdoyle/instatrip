@@ -11,7 +11,7 @@
 
 Crave the magic of adventure but need the security of cold, hard data? Welcome to **InstaTrip**, your source for perfectly planned travel spontaneity (courtesy of a Google Sheet)
 
-InstaTrip asks you a few simple questions (nothing too deep!), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests: Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
+InstaTrip asks you a few simple questions (nothing too deep!), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests. Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
 
 But that's not all, reader. **InstaTrip** even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. Decision fatigue is real, so help us help you. No need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
 
@@ -54,21 +54,24 @@ This program was created for Portfolio Project #3 (Python Essentials) for The Co
 
 ## How to Use InstaTrip
 
-1. Navigate to `https://instatrip-ffc10cb98741.herokuapp.com`or [click this link](https://instatrip-ffc10cb98741.herokuapp.com/)
+1. Navigate to `https://instatrip-ffc10cb98741.herokuapp.com`or [follow this link](https://instatrip-ffc10cb98741.herokuapp.com/)
 2. Click the *Run Program* button at the top of the page
 3. Follow the instructions on the main menu to either read *about* the program or *start* it
 4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *start over* to select new cities, or *exit* the program
 
 ## Target Audience
-*InstaTrip* is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport: People who would like to explore spontaneous European travel. This program is designed to inspire joy.  From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip** encourages them to imagine the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
+**InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport: Those of whom would like to explore spontaneous European travel. This program is designed to inspire joy.  From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip** encourages them to imagine the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
 
 ## User Stories
    <details>
    <summary>User Stories for Instatrip (click)</summary>
  
  - **As a new visitor**, I want:
-    - Story 1
-    - Story 2 etc
+    - a simple and easily understood main menu for ease of navigation 
+    - a step by step, methodical process that helps me choose the best destination to suit my needs
+    - the ability to choose the departure date that fits my schedule
+    - a flexible departure date so that I can find the cheapest flights available to me
+    - 
    
  - **As a returning visitor**, I want:
     - Story 1
@@ -92,7 +95,7 @@ This program was created for Portfolio Project #3 (Python Essentials) for The Co
 
 **Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is fueled by two core modalities, each backed by an API. The first is a data collection process to determine the user's ideal European destination, as ranked by their input and compared with a Google Sheet of relevant values. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight based on the parameters decided above.
 
-More about each of these processes can be found in the [flowchart](<#flowchart>) and [database structure]((<#database-structure>)) sections. The logic behind them and the experience navigating through the program can be found in the [Features](<#features>) section.
+More about each of these processes can be found in the [Flowchart](<#flowchart>) and [Database Structure]((<#database-structure>)) sections. The underlying logic and the experience navigating through the program can be found in the [Features](<#features>) section.
 
 ## Flowchart  
 <details>
@@ -101,7 +104,7 @@ More about each of these processes can be found in the [flowchart](<#flowchart>)
   <img src="assets/documentation/googlesheet.png" height="500px"/>
   </p>
 
-The flow chart for this application was originally designed with pen and paper before I began coding. I used Visio once I had an idea of the general structure for **InstaTrip** and had the first few functions in place. This helped me flesh out the details, stay organized, and create the necessary bridges between functions as the logic of the program grew in complexity
+The flow chart for this application was originally designed with pen and paper before I began coding. I used Visio once I had an idea of the general structure and put the first few functions in place. This helped me flesh out the details, stay organized, and create the necessary bridges between functions as the logic of the program grew in complexity
 </details>
 
 ## Database Structure 
@@ -113,7 +116,7 @@ The flow chart for this application was originally designed with pen and paper b
   <img src="assets/documentation/googlesheet.png" height="500px"/>
   </p>
 
-My introduction to Google Sheets was from Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said I am not a "spreadsheet person" to my Business Analyst husband, despite my love and need for organization. I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkle:
+My introduction to Google Sheets was from Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said to my Business Analyst husband that I am not a "spreadsheet person," despite my love and need for organization. I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkles:
 
 My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17 columns, 15 of which form the parameters for the user's travel preferences; and 32 rows, with each row representing a European city.
 
@@ -130,7 +133,7 @@ Data to rank each city with a numeric value from 1-5 to populate each of the col
 
 ### Color Scheme
 
-The color and design scheme for the starting screen of **Instatrip** was chosen to give a slightly retro feel, intended to evoke nostalgia-- the travel agencies and city destination posters of yesteryear. The background image for the page, an island sunset, inspired the color choice for the rest of the program. 
+The color and design scheme for the starting screen of **Instatrip** was chosen to give a slightly nostalgic, retro feel, reminiscent of the travel agency advertisements and city destination posters of yesteryear. The background image for the page, an island sunset, inspired the color choice for the rest of the program. 
 
 While this project by nature limits styling liberties, I enjoyed colorizing the text and making generous use of emoji to compliment the fun, light-hearted tone set by the copy. Booking flights and tending to travel details can often be a dreary affair. The aim here is to break the tedium and usher in a bit of excitement
 
@@ -141,7 +144,7 @@ While this project by nature limits styling liberties, I enjoyed colorizing the 
     <img src="assets/documentation/colorama.png" height="150"/>
 </p>
 
-- Color for the text was provided by the [Colorama library](https://pypi.org/project/colorama/). The primary colors of choice were Cyan and Magenta, to compliment the background image behind the terminal. Red was used for exception messages. Red and two tones of Yellow colorized the *Start* screen
+- Color for the text was provided by the [Colorama library](https://pypi.org/project/colorama/). The primary colors of choice were Cyan and Magenta, to compliment the background image around the mock terminal. Red was used for exception messages. Red and two tones of Yellow colorized the *Start* screen
 
 - Emoji were taken from the [Emoji for Python library](https://pypi.org/project/emoji/). When using human emoji characters, I made every effort to choose different skintones and genders for inclusivity
 
@@ -399,15 +402,11 @@ if applicable
 
 ## Unsolved Bugs
 
-After implementing the above solutions and running all code through the necessary validators, remaining bug
+After implementing the above solutions and running all code through the necessary validators, I am pleased to report no remaining bugs
 
-<details>
-  <summary>Bug title</summary>
-<img src="assets/documentation/bug2.png">
-<p>explanation</p>
-</details>
+## Further Areas of Note
 
-Further areas of note
+I have read that the Code Institute mock terminal does not function properly in Safari. I have been unable to test this myself on a laptop or desktop as I own Windows devices. I can attest that the program does not perform properly on mobile Safari on iPhone, but that is also the case with mobile Chrome. I was not able to implement a solution for this issue as it appears to stem from the terminal and not this program
 
 # Deployment
 
