@@ -1,4 +1,4 @@
-# :airplane: **InstaTrip** :airplane:
+# :sunny: **InstaTrip** :sunny:
 ## *For When You Want to Travel, But Decision-Making Isn’t Your Thing* 
 
 <p align="center">
@@ -13,7 +13,7 @@ Crave the magic of adventure but need the security of cold, hard data? Welcome t
 
 InstaTrip asks you a few simple questions (nothing too deep!), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests: Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
 
-But that's not all, folks. InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. Decision fatigue is real, so let us help you. No need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
+But that's not all, reader. **InstaTrip** even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. Decision fatigue is real, so help us help you. No need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
 
 Don't forget your passport!
 
@@ -25,10 +25,11 @@ Don't forget your passport!
   - [Site Owner's Goal](#site-owners-goal)
   - [Features to Achieve the goals](#features-to-achieve-the-goals)
 - [User Experience](#user-experience)
-  - [Site Structure](#site-structure)
+  - [Program Structure](#program-structure)
   - [Flowchart](#flowchart)
   - [Database Structure](#database-structure)
       - [Google Sheet](#google-sheet)
+      - [Ryanair API](#ryanair-api)
   - [Logic Flow](#logic-flow)
   - [Design Choices](#design-choices)
 - [Features](#features)
@@ -42,9 +43,6 @@ Don't forget your passport!
   - [Additional Testing](#additional-testing)
   - [Bugs](#bugs)
 - [Deployment](#deployment)
-  - [Git](#git)
-  - [GitHub](#github)
-  - [Heroku](#heroku)
 - [Credits](#credits)
 - [Acknowledgements](#acknowledgements)
 - [Contact](#contact)
@@ -56,13 +54,13 @@ This program was created for Portfolio Project #3 (Python Essentials) for The Co
 
 ## How to Use InstaTrip
 
-1. Navigate to https://instatrip-ffc10cb98741.herokuapp.com [or click this link](https://instatrip-ffc10cb98741.herokuapp.com/)
-2. Click the "Run Program" button at the top of the page
-3. Follow the instruction on the main menu to either read *about* the program or *start* the InstaTrip city destination process
+1. Navigate to `https://instatrip-ffc10cb98741.herokuapp.com`or [click this link](https://instatrip-ffc10cb98741.herokuapp.com/)
+2. Click the *Run Program* button at the top of the page
+3. Follow the instructions on the main menu to either read *about* the program or *start* it
 4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *start over* to select new cities, or *exit* the program
 
 ## Target Audience
-It is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport: People who would like to explore spontaneous European travel. This program is designed to inspire joy.  From the colors to the playful tone, whether the user is landlocked or ready for takeoff, InstaTrip encourages them to imagine all the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
+*InstaTrip* is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport: People who would like to explore spontaneous European travel. This program is designed to inspire joy.  From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip** encourages them to imagine the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
 
 ## User Stories
    <details>
@@ -90,11 +88,11 @@ It is intended for adults (and young people with parental supervision) of all wa
 
 # User Experience
 
-## Site Structure
+## Program Structure
 
-**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is fueled by two core modalities, each backed by an API: A data collection process to determine the user's ideal European destination, as ranked by their input and compared with a Google Sheet of relevant values; and a flight retrieval process by which the Ryanair API selects the cheapest flight based on the parameters decided above.
+**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is fueled by two core modalities, each backed by an API. The first is a data collection process to determine the user's ideal European destination, as ranked by their input and compared with a Google Sheet of relevant values. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight based on the parameters decided above.
 
-More about each of these processes can be found in the [flowchart](<#flowchart>) and [database structure]((<#database-structure>)) sections. The logic behind them as well as the experience navigating through the program can be found in the [Features](<#features>) section.
+More about each of these processes can be found in the [flowchart](<#flowchart>) and [database structure]((<#database-structure>)) sections. The logic behind them and the experience navigating through the program can be found in the [Features](<#features>) section.
 
 ## Flowchart  
 <details>
@@ -103,28 +101,28 @@ More about each of these processes can be found in the [flowchart](<#flowchart>)
   <img src="assets/documentation/googlesheet.png" height="500px"/>
   </p>
 
-The flow chart for this application was originally designed with pen and paper before I began coding. I used Visio once I had an idea of the general structure of InstaTrip and the first few functions in place, and it helped me flesh out the details, stay organized, and create the necessary bridges between functions as the logic of the program became more complex
+The flow chart for this application was originally designed with pen and paper before I began coding. I used Visio once I had an idea of the general structure for **InstaTrip** and had the first few functions in place. This helped me flesh out the details, stay organized, and create the necessary bridges between functions as the logic of the program grew in complexity
 </details>
 
 ## Database Structure 
 
-## Google Sheet
+### Google Sheet
 <details>
 <summary> Instatrip Google Sheet </summary>
 <p align="center">
   <img src="assets/documentation/googlesheet.png" height="500px"/>
   </p>
 
-My introduction to Google Sheets was from Code Institute's extremely helpful Love Sandwiches Walkthrough Project. I have often said I am not a "spreadsheet person" to my Business Analyst husband, despite my love and need for organization. I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkle:
+My introduction to Google Sheets was from Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said I am not a "spreadsheet person" to my Business Analyst husband, despite my love and need for organization. I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkle:
 
 My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17 columns, 15 of which form the parameters for the user's travel preferences; and 32 rows, with each row representing a European city.
 
 The column titles are as follows: City, IATA (airport code), Nightlife, History & Culure, Cuisine, Outdoorsy Experiences, Shopping, Off the Beaten Path Exploration, Romantic Adventure, Solo Travel, Hen or Stag Party, Time with Friends or Family, Overall Safety, Accessibility, Public Transportation, Tourism-Friendliness, and English-Speaking
 
-Data to rank each city with a numeric value from 1-5 for each of the column parameters was collected first from google, and then with the aid of ChatGPT. The program compares these numeric rankings with the user's own rankings to determine which cities make the most suitable destinations 
+Data to rank each city with a numeric value from 1-5 to populate each of the column parameters was collected first from google, and then with the aid of ChatGPT. The program compares these numeric rankings with the user's own rankings to determine which cities make the most suitable destinations 
 </details>
 
-## Ryanair API
+### Ryanair API
 
 ## Logic Flow
 
@@ -137,14 +135,15 @@ The color and design scheme for the starting screen of **Instatrip** was chosen 
 While this project by nature limits styling liberties, I enjoyed colorizing the text and making generous use of emoji to compliment the fun, light-hearted tone set by the copy. Booking flights and tending to travel details can often be a dreary affair. The aim here is to break the tedium and usher in a bit of excitement
 
 <p align="center">
-    <img src="assets/documentation/" height="150" style="margin-right: 20px;"/>
-    <img src="assets/" height="150" style="margin-right: 20px;"/>
-    <img src="assets/" height="150"/>
+    <img src="assets/documentation/bg.png" height="150" style="margin-right: 20px;"/>
+    <img src="assets/documentation/logoinspo.png" height="150" style="margin-right: 20px;"/>
+    <img src="assets/documentation/emoji.png" height="150" style="margin-right: 20px;"/>
+    <img src="assets/documentation/colorama.png" height="150"/>
 </p>
 
-**--- codes:**
-- #fdf4ce ![Static Badge](https://img.shields.io/badge/LemonChiffon-fdf4ce)
-- #fdeca6 ![Static Badge](https://img.shields.io/badge/Vanilla-fdeca6)
+- Color for the text was provided by the [Colorama library](https://pypi.org/project/colorama/). The primary colors of choice were Cyan and Magenta, to compliment the background image behind the terminal. Red was used for exception messages. Red and two tones of Yellow colorized the *Start* screen
+
+- Emoji were taken from the [Emoji for Python library](https://pypi.org/project/emoji/). When using human emoji characters, I made every effort to choose different skintones and genders for inclusivity
 
 ### ASCII ART (spelling?)
 
@@ -412,10 +411,10 @@ Further areas of note
 
 # Deployment
 
-## To Deploy The Project
+## To Deploy The Project on Heroku
 
 <details>
-  <summary>How to Deploy (click)</summary> 
+  <summary>How to Deploy with Heroku(click)</summary> 
 <p>
 
 This site was deployed through Heroku [/?](https://)
@@ -434,12 +433,12 @@ This site was deployed through Heroku [/?](https://)
 ## To Fork The Repository on GitHub
 
 <details>
-  <summary>How to fork the Tarot repository (click)</summary>
+  <summary>How to fork the **InstaTrip** repository (click)</summary>
 <p>
 
 To make a copy of a repository, fork it through Github:
 
-1. Find the repository either by using the search bar or by navigating to the URL [/erinvdoyle/tarot](https://github.com/erinvdoyle/tarot)
+1. Find the repository either by using the search bar or by navigating to the URL [/erinvdoyle/instatrip](https://github.com/erinvdoyle/instatrip)
 2. Once on the repository main page, navigate to the "Fork" button in the upper-right corner, between the "Watch"("Unwatch" in the image as I am the repository owner and watcher) and "Star" buttons
 
 ![Github Fork](assets/documentation/fork.png)
@@ -465,15 +464,15 @@ To clone the repository of this site:
 
  ![Github Clone Page 2](assets/documentation/clone2.png)
 
-4. Type the following command: git clone https://github.com/erinvdoyle/tarot.git to create a local clone
+4. Type the following command: git clone https://github.com/erinvdoyle/instatrip.git to create a local clone
 
 ![Github Clone Page 2](assets/documentation/clone3.png)
 </p>
 </details>
 
-## Heroku
-
 # Credits
+[Retro Logo Inspiration by Sundhar on Dribble](https://dribbble.com/shots/7900685-Retro-Logo-Design)
+
 
 ## Content
 
@@ -489,9 +488,7 @@ All tutorials used have been credited throughout the code. Tutorials were consul
 
 ## Media
 ### Image Credits
-[Main Image by ](https://)
-
-[Second Image](https://)
+[Main Image by FreePik](https://www.freepik.com/free-vector/gradient-beach-sunset-landscape_4636385.htm)
 
 ### Other Resources
 If applicable
@@ -507,43 +504,3 @@ Thank you for viewing this project. Please feel free to contact me with any ques
   
  - [erin.v.doyle@gmail.com](mailto:erin.v.doyle@gmail.com)
  - [linkedin.com/erinvdoyle](https://linkedin.com/erinvdoyle)
-
-
-
-
------------------------------------------------------------------
-
-
-
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-Welcome,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
-
-## Reminders
-
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
