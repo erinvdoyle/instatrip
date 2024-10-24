@@ -1,4 +1,4 @@
-# **InstaTrip** :airplane::sun:
+# :airplane: **InstaTrip** :airplane:
 ## *For When You Want to Travel, But Decision-Making Isn’t Your Thing* 
 
 <p align="center">
@@ -11,9 +11,9 @@
 
 Crave the magic of adventure but need the security of cold, hard data? Welcome to **InstaTrip**, your source for perfectly planned travel spontaneity (courtesy of a Google Sheet)
 
-InstaTrip asks you a few simple questions (nothing too deep :sweat_smile:), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Or maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests (Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*)
+InstaTrip asks you a few simple questions (nothing too deep :sweat_smile:), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests (Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*)
 
-InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket for your destination. So no need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries in a 40cm x 20cm bag! :fearful:
+InstaTrip even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket for your destination. So no need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries in a 40cm x 20cm bag :fearful:
 
 Don't forget your passport!
 
@@ -50,7 +50,7 @@ Don't forget your passport!
 
 This website was created for Portfolio Project #3 (Python Essentials) for The Code Institute Full Stack Software Developer program.
 
-It is intended for 
+It is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport, who would like to explore spontaneous European travel. This program is designed to inspire joy--------
 
 ## How to Use InstaTrip
 
@@ -86,7 +86,9 @@ More about each area and all of the features can be found in the [Features](<#fe
 
 ### Color Scheme
 
-The color scheme for **Instatrip** was inspired by 
+The color and design scheme for the start screen of **Instatrip** was inspired by a slightly retro feel, intended to evoke travel agencies of yesteryear. The background image for the page, a sunset tropical paradise, inspired the color choice for the rest of the program.
+
+While this project by nature limits styling liberties, I enjoyed colorizing the text and making generous use of emoji to compliment the fun, light-hearted tone set by the copy. 
 
 <p align="center">
     <img src="assets/documentation/" height="150" style="margin-right: 20px;"/>
@@ -94,13 +96,13 @@ The color scheme for **Instatrip** was inspired by
     <img src="assets/" height="150"/>
 </p>
 
-**Hex codes:**
+**--- codes:**
 - #fdf4ce ![Static Badge](https://img.shields.io/badge/LemonChiffon-fdf4ce)
 - #fdeca6 ![Static Badge](https://img.shields.io/badge/Vanilla-fdeca6)
 
-### Typography
+### ASCII ART (spelling?)
 
-- Fonts have been provided by 
+- ASCII Art for the logo and exit screen has been provided by ----.  
     
   <p align="center">
   <img src="assets/documentation/font1.png" height="50px"/>
@@ -119,6 +121,9 @@ The color scheme for **Instatrip** was inspired by
 <p align="center">
   <img src="assets/documentation/font1.png" height="50px"/>
   </p>
+
+## Ryanair API
+
     
 # Features
 
@@ -190,13 +195,19 @@ Examples of this site's interactive features include:
 
 ## Code Validation
 
-| W3 Validator | index.html | 
+| W3 Validator | views.html | 
 |--------------|------------|
 | html         | Pass       |
-| python          |  ?      |
 
 
-No errors were returned in any of the -- code validators
+| Python De-linter | run.py | 
+|--------------|------------|
+| python         | Pass       |
+
+
+I ran the views.html page housing the terminal through the W3 validator after changing the background. Thankfully, this adjustment caused no errors and the page passed validation.
+
+The Python de-linter----
 
 
 ## Feature Testing 
@@ -457,9 +468,10 @@ All tutorials used have been credited throughout the code. Tutorials were consul
 If applicable
 
 # Acknowledgements
-- My mentor, Precious Ijege for
-- Our cohort standup leader, Kay Welfare for
-- My husband, Taylor, for 
+- My mentor, Precious Ijege, for helping me make sure all my exceptions were handled, providing kind guidance and ---.
+- Our cohort standup leader, Kay Welfare, for providing a weekly dose of enthusiasm and ---
+- The CI Hackathon Team and my Elevate Hackathon teammates (Team ResuMates!) for inspiration and ---
+- My husband, Taylor, process mapper extraordinaire, for helping me tighten up my flow chart. And especially for taking care of our horses and household during Storm Ashley to allow me long hours to complete the bulk of this project
 
 # Contact
 Thank you for viewing my project. Please feel free to contact me with any questions, comments, or opportunities
