@@ -113,7 +113,7 @@ The flow chart for this application was originally designed with pen and paper b
 <details>
 <summary> Instatrip Google Sheet </summary>
 <p align="center">
-  <img src="assets/documentation/googlesheet.png" height="650px"/>
+  <img src="assets/documentation/googlesheet.png" height="500px"/>
   </p>
 
 My introduction to Google Sheets was from Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said to my Business Analyst husband that I am not a "spreadsheet person," despite my love and need for organization. I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkles:
