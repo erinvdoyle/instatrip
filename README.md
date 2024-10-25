@@ -60,22 +60,38 @@ This program was created for Portfolio Project #3 (Python Essentials) for The Co
 4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *start over* to select new cities, or *exit* the program
 
 ## Target Audience
-**InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport: Those of whom would like to explore spontaneous European travel. This program is designed to inspire joy.  From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip** encourages them to imagine the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
+**InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport; People who would like to explore spontaneous European travel. 
+
+This program is designed to inspire joy. From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip**  is for anyone who'd like a change of pace as it encourages them to feel the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
 
 ## User Stories
    <details>
    <summary>User Stories for Instatrip (click)</summary>
  
  - **As a new visitor**, I want:
-    - a simple and easily understood main menu for ease of navigation 
-    - a step by step, methodical process that helps me choose the best destination to suit my needs
-    - the ability to choose the departure date that fits my schedule
-    - a flexible departure date so that I can find the cheapest flights available to me
-    - 
+    - A simple and easily understood main menu for hassle-free navigation 
+    - A step by step, methodical process that helps me choose the best destination to suit my needs
+    - An intuitive process that communicates each step along the way to selecting my next vacation
+    - The ability to choose the departure date that fits my schedule
+    - A flexible departure date so that I can find the cheapest flights available to me
+    - A suggested list of cities to visit tailored to my own preferences
+    - A suggested list of cities best suited for my personal occasion
+    - Ideas on where to visit based on my travel interests
+    - The option to ask for a new selection of cities or return to my previously suggested destinations
+    - The flexibility to easily the start again if I haven't been offered cities that interest me
+    - Destination recommendations that take into account my travel safety and accessibility preferences
+    - To be offered the most economical flight choices that fit my needs
+    - Real-time flight information with an accurate reflection of prices, flight numbers, and departure times
+    - The information needed to book my flight
+    - To be able to read about the service
    
  - **As a returning visitor**, I want:
-    - Story 1
-    - Story 2 etc
+    - A reliable city selection process
+    - A variety of cities so that my city suggestions vary based on my preferences
+    - The opportunity to receive suggestions for cities I may never have thought about visiting
+    - To understand that certain cities I may not have considered are actually tailored to my preferences
+    - To be able to generate new cities based on changing travel dates, flexibility, preferences, and trip occasions
+    - To receive the best prices and most suitable flights regardless of my varying selections
     </details>
 
 ## Site Owner's Goal
@@ -93,9 +109,9 @@ This program was created for Portfolio Project #3 (Python Essentials) for The Co
 
 ## Program Structure
 
-**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is fueled by two core modalities, each backed by an API. The first is a data collection process to determine the user's ideal European destination, as ranked by their input and compared with a Google Sheet of relevant values. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight based on the parameters decided above.
+**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is fueled by two core processes, each fueled by an API. The first is a data collection process to determine the user's ideal European destination, as ranked by their input and compared with a Google Sheet of relevant values. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight based on the parameters decided above.
 
-More about each of these processes can be found in the [Flowchart](<#flowchart>) and [Database Structure]((<#database-structure>)) sections. The underlying logic and the experience navigating through the program can be found in the [Features](<#features>) section.
+More about each of these processes can be found in the [Flowchart](<#flowchart>) and [Database Structure]((<#database-structure>)) sections. The underlying logic and the user experience navigating through the program can be found in the [Features](<#features>) section.
 
 ## Flowchart  
 <details>
@@ -116,7 +132,7 @@ The flow chart for this application was originally designed with pen and paper b
   <img src="assets/documentation/googlesheet.png" height="500px"/>
   </p>
 
-My introduction to Google Sheets was from Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said to my Business Analyst husband that I am not a "spreadsheet person," despite my love and need for organization. I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkles:
+My introduction to Google Sheets was from Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said to my Business Analyst husband that I am not a "spreadsheet person." I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkles:
 
 My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17 columns, 15 of which form the parameters for the user's travel preferences; and 32 rows, with each row representing a European city.
 
@@ -204,8 +220,16 @@ Examples of this site's interactive features include:
 - Explanation
 
 # Future Features
-- FF1
-- FF2
+- A login system to store a user's previously generated cities
+- A trip log and diary to record previous travel experiences
+- Flexible departure locations rather than the default setting of Dublin airport
+- An explanded list of European destinations
+- A broader list of trip occasions to select from
+- A broader list of preferred activities and interests to select from
+- Opening the program to destinations outside of Europe
+- Partnerships or tie ins with hotel and car rental accomodations
+- Curated experience and activity suggestions
+- Flight selection from multiple airlines rather than solely Ryanair  
 
 # Technologies
 
