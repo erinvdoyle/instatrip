@@ -11,7 +11,7 @@
 
 Crave the magic of adventure but need the security of cold, hard data? Welcome to **InstaTrip**, your source for perfectly planned travel spontaneity (courtesy of a Google Sheet)
 
-InstaTrip asks you a few simple questions (nothing too deep!), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests. Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
+InstaTrip asks you a few simple questions (nothing too deep), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests. Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
 
 But that's not all, reader. **InstaTrip** even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. Decision fatigue is real, so help us help you. No need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
 
@@ -60,7 +60,7 @@ This program was created for Portfolio Project #3 (Python Essentials) for The Co
 4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *start over* to select new cities, or *exit* the program
 
 ## Target Audience
-**InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport; People who would like to explore spontaneous European travel. 
+**InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport. People who would like to explore spontaneous European travel. 
 
 This program is designed to inspire joy. From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip**  is for anyone who'd like a change of pace as it encourages them to feel the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
 
@@ -78,17 +78,18 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
     - A suggested list of cities best suited for my personal occasion
     - Ideas on where to visit based on my travel interests
     - The option to ask for a new selection of cities or return to my previously suggested destinations
-    - The flexibility to easily the start again if I haven't been offered cities that interest me
+    - The flexibility to easily start again if I haven't been offered cities that interest me
     - Destination recommendations that take into account my travel safety and accessibility preferences
     - To be offered the most economical flight choices that fit my needs
     - Real-time flight information with an accurate reflection of prices, flight numbers, and departure times
     - The information needed to book my flight
     - To be able to read about the service
-   
+    - To be able to start over or exit the program once my flight information has been generated
+
  - **As a returning visitor**, I want:
-    - A reliable city selection process
+    - A quick and reliable city selection process
     - A variety of cities so that my city suggestions vary based on my preferences
-    - The opportunity to receive suggestions for cities I may never have thought about visiting
+    - The opportunity to receive suggestions for cities I may never have thought about
     - To understand that certain cities I may not have considered are actually tailored to my preferences
     - To be able to generate new cities based on changing travel dates, flexibility, preferences, and trip occasions
     - To receive the best prices and most suitable flights regardless of my varying selections
@@ -109,13 +110,13 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
 
 ## Program Structure
 
-**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is fueled by two core processes, each fueled by an API. The first is a data collection process to determine the user's ideal European destination, as ranked by their input and compared with a Google Sheet of relevant values. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight based on the parameters decided above.
+**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is driven by two core processes, each powered by an API. The first is a data collection and comparison process which measures user input against a Google Sheet of city rankings to determine the user's ideal European destination. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight for a city decided by the parameters above.
 
 More about each of these processes can be found in the [Flowchart](<#flowchart>) and [Database Structure]((<#database-structure>)) sections. The underlying logic and the user experience navigating through the program can be found in the [Features](<#features>) section.
 
 ## Flowchart  
 <details>
-<summary> Instatrip Flowchart </summary>
+<summary> Instatrip Flowchart (click) </summary>
 <p align="center">
   <img src="assets/documentation/flowchart.png" height="650px"/>
   </p>
@@ -127,7 +128,7 @@ The flow chart for this application was originally designed with pen and paper b
 
 ### Google Sheet
 <details>
-<summary> Instatrip Google Sheet </summary>
+<summary> Instatrip Google Sheet (click) </summary>
 <p align="center">
   <img src="assets/documentation/googlesheet.png" height="500px"/>
   </p>
@@ -138,12 +139,35 @@ My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17
 
 The column titles are as follows: City, IATA (airport code), Nightlife, History & Culure, Cuisine, Outdoorsy Experiences, Shopping, Off the Beaten Path Exploration, Romantic Adventure, Solo Travel, Hen or Stag Party, Time with Friends or Family, Overall Safety, Accessibility, Public Transportation, Tourism-Friendliness, and English-Speaking
 
-Data to rank each city with a numeric value from 1-5 to populate each of the column parameters was collected first from google, and then with the aid of ChatGPT. The program compares these numeric rankings with the user's own rankings to determine which cities make the most suitable destinations 
+Data to rank each city with a numeric value (1-5) and populate each of the column parameters was collected first from google, and then with the aid of ChatGPT. The program compares these rankings with the user's own ranked preferences to determine which cities make the most suitable destinations 
 </details>
 
 ### Ryanair API
 
 ## Logic Flow
+
+<details>
+<summary>InstaTrip Logic Flow (click)</summary>
+The *run.py* file contains all functions for this program. When the site is loaded and/or the *Run Program* button at the top of the page is clicked, the function *main()* is called.
+
+*main()* clear the screen of the startup command and prints the **InstaTrip** logo, displays the *Main Menu*, and requests the user to choose a menu option: *Start*, *About*, or *Exit*. The following functions are called for this opening sequence: *colored_instatrip()*, *print_colored_background()*, and *display_menu()*
+
+When the user chooses the *Start* option, *display_menu()* prints the greeting message (*greeting()*), which gives the user instructions on how to use the program. *Main()* then calls the *get_trip_details()* function, which asks the user for their departure date, departure flexibility, and trip duration. This information will eventually be passed to the Ryanair API.
+
+Once *get_trip_details()* has run, the user will then be prompted to select their type of trip and choose their important travel factors by functions *type_of_trip()* and *important_factors()*
+
+This input will then be compared with the data in the Google Sheet *Instatrip* by function *rank_cities()* to order the most cities most appropriate to the user's preferences. Function *select_random_cities()* than randomizes the order of the cities to avoid listing the first three applicable cities in alphabetical order.
+
+A *drumroll()* prints and then the initial top city selections are displayed. The user is given the choice either to proceed, *generate_new_cities(),* or *start_over()*.
+
+Function *user_choice_after_ranking()* permits the user is able to generate three new cities as many times as they wish and given the opportunity each time to proceed, start over, or return to the previous city selections, as stored in the *city_history* list. 
+
+Once the user has selected their preferred three destinations, they are asked by the *rate_importance()* function to rate the importance of five different safety and accessibility factors. Their answers are then compared with the rankings stored in the Sheet for each city, and *adjust_city_scores()* reorders the final three cities from most suitable to least.
+
+From here, the user's departure data and the IATA airport codes (stored in the Sheet) for the user's selected cities are passed to the Ryanair API. This is accomplished with these functions: *get_airport_codes(), search_ryanair_flights(),* and *find_cheapest_flights()*. The cheapest applicable flight information for each city is then printed and the user may choose whether to *ask_for_booking()* url or *exit()* the program. 
+
+*Exit()* prints the exit message and art, a url for a staycation article, and the option to return to the *Main Menu*. 
+</details>
 
 ## Design Choices
 
@@ -220,7 +244,7 @@ Examples of this site's interactive features include:
 - Explanation
 
 # Future Features
-- A login system to store a user's previously generated cities
+- A login system to store the user's previously generated cities
 - A trip log and diary to record previous travel experiences
 - Flexible departure locations rather than the default setting of Dublin airport
 - An explanded list of European destinations
