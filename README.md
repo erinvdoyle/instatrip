@@ -56,18 +56,18 @@ This program was created for Portfolio Project #3 (Python Essentials) for The Co
 
 1. Navigate to `https://instatrip-ffc10cb98741.herokuapp.com`or [follow this link](https://instatrip-ffc10cb98741.herokuapp.com/)
 2. Click the *Run Program* button at the top of the page
-3. Follow the instructions on the main menu to either read *about* the program or *start* it
-4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *start over* to select new cities, or *exit* the program
+3. Follow the instructions on the main menu to either read *About* the program or *Start* it
+4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *Start Over* to select new cities, or *Exit* the program
 
 ## Target Audience
 **InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport-- people who would like to explore spontaneous European travel. 
 
-This program is designed to inspire joy. From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip**  is for anyone who'd like a change of pace as it encourages them to feel the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
+This program is designed to inspire joy. From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip**  is for anyone who'd like a change of pace as it encourages the feelings of excitement and anticipation that accompany planning a big trip. It's to be used as inspiration, for fun, or to plot the next great escape from daily routine :sparkles:
 
 ## User Stories
    <details>
    <summary>User Stories for Instatrip (click)</summary>
- 
+   
  - **As a new visitor**, I want:
     - A simple and easily understood main menu for hassle-free navigation 
     - A step by step, methodical process that helps me choose the best destination to suit my needs
@@ -100,11 +100,26 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
    <summary>Site Owner's Goal (click)</summary>
 
   - **As the owner of the site**, I want:
-    - Story 1
-    - Story 2 etc
+    - To deliver a clean, well-planned interface that seamlessly collects user preferences to predict a tailored selection of vacation destinations
+    - To connect my users with the best prices for their chosen destinations and with a reputable airline, Ryanair
+    - To offer a variety of choice and a fun factor that encourages repeat vists
     </details>
 
 ## Features to Achieve the Goals
+
+<details>
+   <summary>Features to Achieve the Goals (click)</summary>
+   - The starting screen of the application features a simple main menu for easy navigation
+   - The user is walked through the process of entering their departure details and choosing their vacation preferences; every step is explained along the way
+   - The tone of the copy and the color and decorative choices for the interface keep the process engaging and fun
+   - There is a wide range for departure dates that allows users to book up to two years in advance
+   - Additional departure date flexibility for the Ryanair API can be factored into finding the cheapest flight
+   - A wide range of cities and the ranked suitability of each for all occasion and interest parameters offer the user exposure to many different city suggestions
+   - The user is given the opportunity to draw and re-draw sets of destination cities as many times as they wish
+   - Flight information is offered for each of the three selected cities so that the user can choose a city with booking details in mind
+   - A url is provided if desired so that the user can book their flight directly with Ryanair
+   - User errors are handled at each stage of input with clear feedback so that the user can find cities and coinciding flights without issue
+</details>
 
 # User Experience
 
@@ -112,7 +127,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
 
 **Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is driven by two core processes, each powered by an API. The first is a data collection and comparison process which measures user input against a Google Sheet of city rankings to determine the user's ideal European destination. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight for the cities decided by the parameters above.
 
-More about each of these processes can be found in the [Flowchart](<#flowchart>) and [Database Structure]((<#database-structure>)) sections. The underlying logic and the user experience navigating through the program can be found in the [Features](<#features>) section.
+More about each of these processes can be found in the [Flowchart](<#flowchart>) and [Database Structure]((<#database-structure>)) sections. The underlying logic and the user experience navigating through the program can be found in the [Logic Flow](<#logic-flow>) and [Features](<#features>) sections.
 
 ## Flowchart  
 <details>
@@ -151,7 +166,7 @@ Data to rank each city with a numeric value (1-5) and populate each of the colum
 
 - The *run.py* file contains all functions for this program. When the site is loaded or the *Run Program* button at the top of the page is clicked, the function *main*() is called.
 
-- *main()* clear the screen of the startup command and prints the **InstaTrip** logo, displays the *Main Menu*, and requests the user to choose a menu option: *Start*, *About*, or *Exit*. The following functions are called for this opening sequence: *colored_instatrip()*, *print_colored_background()*, and *display_menu()*
+- *main()* clears the screen of the startup command and prints the **InstaTrip** logo, displays the *Main Menu*, and requests the user to choose a menu option: *Start*, *About*, or *Exit*. The following functions are called for this opening sequence: *colored_instatrip()*, *print_colored_background()*, and *display_menu()*
 
 - When the user chooses the *Start* option, *display_menu()* prints the greeting message (*greeting()*), which gives the user instructions on how to use the program. *Main()* then calls the *get_trip_details()* function, which asks the user for their departure date, departure flexibility, and trip duration. This information will eventually be passed to the Ryanair API.
 
