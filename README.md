@@ -109,16 +109,17 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
 
 <details>
    <summary>Features to Achieve the Goals (click)</summary>
-   - The starting screen of the application features a simple main menu for easy navigation
-   - The user is walked through the process of entering their departure details and choosing their vacation preferences; every step is explained along the way
-   - The tone of the copy and the color and decorative choices for the interface keep the process engaging and fun
-   - There is a wide range for departure dates that allows users to book up to two years in advance
-   - Additional departure date flexibility for the Ryanair API can be factored into finding the cheapest flight
-   - A wide range of cities and the ranked suitability of each for all occasion and interest parameters offer the user exposure to many different city suggestions
-   - The user is given the opportunity to draw and re-draw sets of destination cities as many times as they wish
-   - Flight information is offered for each of the three selected cities so that the user can choose a city with booking details in mind
-   - A url is provided if desired so that the user can book their flight directly with Ryanair
-   - User errors are handled at each stage of input with clear feedback so that the user can find cities and coinciding flights without issue
+
+    - The starting screen of the application features a simple main menu for easy navigation
+    - The user is walked through the process of entering their departure details and choosing their vacation preferences; every step is explained along the way
+    - The tone of the copy and the color and decorative choices for the interface keep the process engaging and fun
+    - There is a wide range for departure dates that allows users to book up to two years in advance
+    - Additional departure date flexibility for the Ryanair API can be factored into finding the cheapest flight
+    - A wide range of cities and the ranked suitability of each for all occasion and interest parameters offer the user exposure to many different city suggestions
+    - The user is given the opportunity to draw and re-draw sets of destination cities as many times as they wish
+    - Flight information is offered for each of the three selected cities so that the user can choose a city with booking details in mind
+    - A url is provided if desired so that the user can book their flight directly with Ryanair
+    - User errors are handled at each stage of input with clear feedback so that the user can find cities and coinciding flights without issue
 </details>
 
 # User Experience
@@ -158,6 +159,10 @@ Data to rank each city with a numeric value (1-5) and populate each of the colum
 </details>
 
 ### Ryanair API
+
+I was able to integrate the Ryanair API into this program by signing up for [Rapid API](https://rapidapi.com/DataCrawler/api/ryanair2) and subscribing through their service. This was my second experience with APIs (the first being a soft launch into them with Google Sheets from the *Love Sandwiches* walkthrough), and while the parameters and logic appeared straightforward enough, I spent an entire morning trying to set it up utilizing JSON format before finally turning to AI for help. One struggle was in fetching the destination airport IATAs, which I eventually stored in my Google Sheet rather than in a list in *run.py*. 
+
+Once integrated, the API made the program functional (a thrill! :woman_dancing:) and I was able to generate flight information through **InstaTrip** and find the correct flight numbers via Ryanair.com
 
 ## Logic Flow
 
@@ -206,10 +211,11 @@ While this project by nature limits styling liberties, I enjoyed colorizing the 
 
 ### ASCII ART (spelling?)
 
-- ASCII Art for the logo and exit screen has been provided by ----.  
+- ASCII Art for the logo and exit screen has been provided by the [ASCII Art Archive](https://www.asciiart.eu/)  
     
   <p align="center">
-  <img src="assets/documentation/font1.png" height="50px"/>
+  <img src="assets/documentation/startart.png" height="150px"/>
+  <img src="assets/documentation/exitart.png" height="150px"/>
   </p>
 
 # Features
