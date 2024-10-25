@@ -60,7 +60,7 @@ This program was created for Portfolio Project #3 (Python Essentials) for The Co
 4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *start over* to select new cities, or *exit* the program
 
 ## Target Audience
-**InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport. People who would like to explore spontaneous European travel. 
+**InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport-- people who would like to explore spontaneous European travel. 
 
 This program is designed to inspire joy. From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip**  is for anyone who'd like a change of pace as it encourages them to feel the excitement and anticipation that accompanies planning a big trip. Use it as inspiration, use it for fun, or use it to plot the next great escape from the daily routine :sparkles:
 
@@ -110,7 +110,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
 
 ## Program Structure
 
-**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is driven by two core processes, each powered by an API. The first is a data collection and comparison process which measures user input against a Google Sheet of city rankings to determine the user's ideal European destination. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight for a city decided by the parameters above.
+**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is driven by two core processes, each powered by an API. The first is a data collection and comparison process which measures user input against a Google Sheet of city rankings to determine the user's ideal European destination. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight for the cities decided by the parameters above.
 
 More about each of these processes can be found in the [Flowchart](<#flowchart>) and [Database Structure]((<#database-structure>)) sections. The underlying logic and the user experience navigating through the program can be found in the [Features](<#features>) section.
 
@@ -148,25 +148,26 @@ Data to rank each city with a numeric value (1-5) and populate each of the colum
 
 <details>
 <summary>InstaTrip Logic Flow (click)</summary>
-The *run.py* file contains all functions for this program. When the site is loaded and/or the *Run Program* button at the top of the page is clicked, the function *main()* is called.
 
-*main()* clear the screen of the startup command and prints the **InstaTrip** logo, displays the *Main Menu*, and requests the user to choose a menu option: *Start*, *About*, or *Exit*. The following functions are called for this opening sequence: *colored_instatrip()*, *print_colored_background()*, and *display_menu()*
+- The *run.py* file contains all functions for this program. When the site is loaded or the *Run Program* button at the top of the page is clicked, the function *main*() is called.
 
-When the user chooses the *Start* option, *display_menu()* prints the greeting message (*greeting()*), which gives the user instructions on how to use the program. *Main()* then calls the *get_trip_details()* function, which asks the user for their departure date, departure flexibility, and trip duration. This information will eventually be passed to the Ryanair API.
+- *main()* clear the screen of the startup command and prints the **InstaTrip** logo, displays the *Main Menu*, and requests the user to choose a menu option: *Start*, *About*, or *Exit*. The following functions are called for this opening sequence: *colored_instatrip()*, *print_colored_background()*, and *display_menu()*
 
-Once *get_trip_details()* has run, the user will then be prompted to select their type of trip and choose their important travel factors by functions *type_of_trip()* and *important_factors()*
+- When the user chooses the *Start* option, *display_menu()* prints the greeting message (*greeting()*), which gives the user instructions on how to use the program. *Main()* then calls the *get_trip_details()* function, which asks the user for their departure date, departure flexibility, and trip duration. This information will eventually be passed to the Ryanair API.
 
-This input will then be compared with the data in the Google Sheet *Instatrip* by function *rank_cities()* to order the most cities most appropriate to the user's preferences. Function *select_random_cities()* than randomizes the order of the cities to avoid listing the first three applicable cities in alphabetical order.
+- Once *get_trip_details()* has run, the user will then be prompted to select their type of trip and choose their important travel factors by functions *type_of_trip()* and *important_factors()*
 
-A *drumroll()* prints and then the initial top city selections are displayed. The user is given the choice either to proceed, *generate_new_cities(),* or *start_over()*.
+- This input will then be compared with the data in the *Instatrip* Google Sheet by function *rank_cities()* to order the cities most appropriate to the user's preferences. Function *select_random_cities()* randomizes the order of the cities to avoid listing the first three applicable cities in alphabetical order.
 
-Function *user_choice_after_ranking()* permits the user is able to generate three new cities as many times as they wish and given the opportunity each time to proceed, start over, or return to the previous city selections, as stored in the *city_history* list. 
+- A *drumroll()* prints and the initial top city selections are displayed. The user is given the choice either to proceed, *generate_new_cities(),* or *start_over()*.
 
-Once the user has selected their preferred three destinations, they are asked by the *rate_importance()* function to rate the importance of five different safety and accessibility factors. Their answers are then compared with the rankings stored in the Sheet for each city, and *adjust_city_scores()* reorders the final three cities from most suitable to least.
+- Function *user_choice_after_ranking()* permits the user to generate three new cities as many times as they wish. The opportunity to proceed, start over, or return to the previous city selections, as stored in the *city_history* list, is given each time. 
 
-From here, the user's departure data and the IATA airport codes (stored in the Sheet) for the user's selected cities are passed to the Ryanair API. This is accomplished with these functions: *get_airport_codes(), search_ryanair_flights(),* and *find_cheapest_flights()*. The cheapest applicable flight information for each city is then printed and the user may choose whether to *ask_for_booking()* url or *exit()* the program. 
+- Once the user has selected their preferred three destinations, they are asked by the *rate_importance()* function to rate the importance of five different safety and accessibility factors. Their answers are then compared with the rankings stored in the Sheet for each city, and *adjust_city_scores()* reorders the final three cities from most suitable to least.
 
-*Exit()* prints the exit message and art, a url for a staycation article, and the option to return to the *Main Menu*. 
+- From here, the user's departure data and the IATA airport codes (stored in the Sheet) for the user's selected cities are passed to the Ryanair API. This is accomplished with these functions: *get_airport_codes(), search_ryanair_flights(),* and *find_cheapest_flights()*. The cheapest applicable flight information for each city is then printed and the user may choose whether to *ask_for_booking()* (a url) or *exit()* the program. 
+
+- *Exit()* prints the exit message and art, a url for a staycation article, and the option to return to the *Main Menu*. 
 </details>
 
 ## Design Choices
