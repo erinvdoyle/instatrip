@@ -319,7 +319,7 @@ def get_trip_details():
 
             current_date = datetime.now()
             minimum_travel_date = current_date + timedelta(days=1)
-            maximum_travel_date = current_date + timedelta(days=730)
+            maximum_travel_date = current_date + timedelta(days=182)
 
             if travel_date < minimum_travel_date:
                 print(
@@ -745,7 +745,7 @@ def user_choice_after_ranking(
                         Style.BRIGHT
                         + Fore.MAGENTA
                         + "Great! Let's adjust the cities based on your safety "
-                        "and accessibility preferences :service_dog: \n" + Style.NORMAL
+                        "and accessibility \npreferences :service_dog: \n" + Style.NORMAL
                     )
                 )
 
@@ -887,7 +887,7 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
                 origin, destination_code, outbound_date
             )
 
-            if flight_data:
+            if flight_data and "data" in flight_data and "trips" in flight_data["data"]:
                 cheapest_flight = None
                 for trip in flight_data["data"]["trips"]:
                     for date in trip["dates"]:
@@ -933,7 +933,7 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
     return flight_results
 
 
-def ask_for_booking_link(flights_info):
+def ask_for_booking_link(flights_info, trip_details):
     """
     Asks the user if they would like to generate a booking link for any of the
     displayed flights and allows user to start over if not.
@@ -941,32 +941,34 @@ def ask_for_booking_link(flights_info):
     if not flights_info:
         print(
             Style.BRIGHT
-            + Fore.MAGENTA_EX
+            + Fore.MAGENTA
             + "No flight information available."
             + Style.NORMAL
         )
         return
 
+    print(" ")
     print(
         Style.BRIGHT
-        + Fore.MAGENTA_EX
+        + Fore.MAGENTA
         + "Would you like to generate a booking for any of these flights?"
         + Style.NORMAL
     )
     for idx, flight in enumerate(flights_info, start=1):
         print(
-            Style.BRIGHT + Fore.MAGENTA_EX + f"{idx}. {flight['city']}: Flight Number: "
+            Style.BRIGHT + Fore.MAGENTA + f"{idx}. {flight['city']}: Flight Number: "
             f"{flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL
         )
 
-    print(Style.BRIGHT + Fore.MAGENTA_EX + "4. Start over" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.MAGENTA + "4. Start over" + Style.NORMAL)
+    print(" ")
 
     while True:
         try:
             choice = int(
                 input(
                     Style.BRIGHT
-                    + Fore.MAGENTA_EX
+                    + Fore.MAGENTA
                     + "Please choose an option (1-4): "
                     + Style.NORMAL
                 )
@@ -979,23 +981,24 @@ def ask_for_booking_link(flights_info):
                     f"{selected_flight['city']}&outboundDate="
                     f"{trip_details['departure_date']}&adults=1"
                 )
+                print(" ")
                 print(
                     Style.BRIGHT
-                    + Fore.MAGENTA_EX
+                    + Fore.MAGENTA
                     + "Copy link into your browser"
                     + Style.NORMAL
                 )
                 print(
                     Style.BRIGHT
-                    + Fore.MAGENTA_EX
+                    + Fore.MAGENTA
                     + f"Booking link for {selected_flight['city']}: "
                     f"{booking_link}" + Style.NORMAL
                 )
-                print(Style.BRIGHT + Fore.MAGENTA_EX + "Bon Voyage!" + Style.NORMAL)
+                print(Style.BRIGHT + Fore.MAGENTA + "Bon Voyage!" + Style.NORMAL)
                 break
             elif choice == 4:
                 print(
-                    Style.BRIGHT + Fore.MAGENTA_EX + "Starting over..." + Style.NORMAL
+                    Style.BRIGHT + Fore.MAGENTA + "Starting over..." + Style.NORMAL
                 )
                 break
             else:
@@ -1139,20 +1142,30 @@ def main():
                 )
 
                 trip_details['departure_airport'] = 'DUB'
-                trip_details['departure_date'] = trip_details
-                ['travel_date'].strftime("%Y-%m-%d")
-                flights_info = find_cheapest_flights(SHEET,
-                [city[0] for city in final_top_cities], trip_details)
-                print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
-                "\nCheapest Flights Information:" + Style.NORMAL)
-                for flight in flights_info: 
-                    print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
-                f"{flight['city']}: Flight Number: {flight['flight_number']},"
-                "Price: {flight['price']} EUR, "
-                "Departure Time: {flight['departure_time']}, "
-                "Arrival Time: {flight['arrival_time']}" + Style.NORMAL)
+                travel_date = trip_details.get('travel_date')
+                if isinstance(travel_date, list) and travel_date:
+                    trip_details['departure_date'] = travel_date[0].strftime("%Y-%m-%d")
+                else:
+                    trip_details['departure_date'] = travel_date.strftime("%Y-%m-%d")
 
-            ask_for_booking_link(flights_info)
+                flights_info = find_cheapest_flights(
+                    SHEET,
+                    [city[0] for city in final_top_cities],
+                    trip_details
+                )
+            os.system("cls" if os.name == "nt" else "clear")    
+            print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
+                "\nCheapest Flights Information:" + Style.NORMAL)
+            for flight in flights_info: 
+                print(
+                    Style.BRIGHT + Fore.LIGHTCYAN_EX +
+                    f"{flight['city']}: Flight Number: {flight['flight_number']}, "
+                    f"Price: {flight['price']} EUR, "
+                    f"Departure Time: {flight['departure_time']}, "
+                    f"Arrival Time: {flight['arrival_time']}" + Style.NORMAL
+                 )
+
+            ask_for_booking_link(flights_info, trip_details)
             break
 
 
