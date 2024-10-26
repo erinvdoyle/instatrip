@@ -329,7 +329,7 @@ def get_trip_details():
                 continue
             elif travel_date > maximum_travel_date:
                 print(
-                    Fore.RED + f"Please enter a date no further than two years from today "
+                    Fore.RED + f"Please enter a date no further than six months from today "
                     f"(before {maximum_travel_date.date()})."
                 )
                 continue
@@ -985,15 +985,19 @@ def ask_for_booking_link(flights_info, trip_details):
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + "Copy link into your browser"
+                    + "Type this URL into your browser"
                     + Style.NORMAL
                 )
+                print(" ")
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA
                     + f"Booking link for {selected_flight['city']}: "
-                    f"{booking_link}" + Style.NORMAL
+                    + Fore.CYAN
+                    + f"{booking_link}"
+                    + Style.NORMAL
                 )
+                print(" ")
                 print(Style.BRIGHT + Fore.MAGENTA + "Bon Voyage!" + Style.NORMAL)
                 break
             elif choice == 4:
@@ -1157,13 +1161,14 @@ def main():
             print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
                 "\nCheapest Flights Information:" + Style.NORMAL)
             for flight in flights_info: 
-                print(
-                    Style.BRIGHT + Fore.LIGHTCYAN_EX +
-                    f"{flight['city']}: Flight Number: {flight['flight_number']}, "
-                    f"Price: {flight['price']} EUR, "
-                    f"Departure Time: {flight['departure_time']}, "
-                    f"Arrival Time: {flight['arrival_time']}" + Style.NORMAL
-                 )
+                    print(
+                        Style.BRIGHT + Fore.LIGHTCYAN_EX +
+                        f"{flight['city']}: \nFlight Number: {flight['flight_number']},\n" 
+                        f"Price: {flight['price']} EUR,\n"  
+                        f"Departure Time: {flight['departure_time']},\n" 
+                        f"Arrival Time: {flight['arrival_time']}" + Style.NORMAL
+                    )
+                    print(" ")
 
             ask_for_booking_link(flights_info, trip_details)
             break
