@@ -76,20 +76,20 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
     - The ability to choose the departure date that fits my schedule
     - A flexible departure date so that I can find the cheapest flights available to me
     - A suggested list of cities to visit tailored to my own preferences
-    - A suggested list of cities best suited for my personal occasion
+    - A suggested list of cities best suited to my personal occasion for travel
     - Ideas on where to visit based on my travel interests
     - The option to ask for a new selection of cities or return to my previously suggested destinations
     - The flexibility to easily start again if I haven't been offered cities that interest me
     - Destination recommendations that take into account my travel safety and accessibility preferences
     - To be offered the most economical flight choices that fit my needs
-    - Real-time flight information with an accurate reflection of prices, flight numbers, and departure times
+    - Real-time flight information with an accurate reflection of prices, airports, flight numbers, and departure times
     - The information needed to book my flight
     - To be able to read about the service
     - To be able to start over or exit the program once my flight information has been generated
 
  - **As a returning visitor**, I want:
     - A quick and reliable city selection process
-    - A variety of cities so that my city suggestions vary based on my preferences
+    - A variety of cities so that my city suggestions vary based on my preferences 
     - The opportunity to receive suggestions for cities I may never have thought about
     - To understand that certain cities I may not have considered are actually tailored to my preferences
     - To be able to generate new cities based on changing travel dates, flexibility, preferences, and trip occasions
@@ -101,16 +101,17 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
    <summary>Site Owner's Goal (click)</summary>
 
   - **As the owner of the site**, I want:
-    - To deliver a clean, well-planned interface that seamlessly collects user preferences to predict a tailored selection of vacation destinations
+    - To deliver a program with a clean, well-planned interface that seamlessly collects user preferences to predict a tailored selection of vacation destinations
     - To connect my users with the best prices for their chosen destinations and with a reputable airline, Ryanair
-    - To offer a variety of choice and a fun factor that encourages repeat vists
+    - To offer a variety of choice and a fun factor that encourages repeat vists and word of mouth recommendations
     </details>
 
 ## Features to Achieve the Goals
 
 <details>
    <summary>Features to Achieve the Goals (click)</summary>
-
+   
+  - **Features of the program to achieve user story goals:**
     - The starting screen of the application features a simple main menu for easy navigation
     - The user is walked through the process of entering their departure details and choosing their vacation preferences; every step is explained along the way
     - The tone of the copy and the color and decorative choices for the interface keep the process engaging and fun
@@ -121,13 +122,15 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
     - Flight information is offered for each of the three selected cities so that the user can choose a city with booking details in mind
     - A url is provided if desired so that the user can book their flight directly with Ryanair
     - User errors are handled at each stage of input with clear feedback so that the user can find cities and coinciding flights without issue
+
 </details>
+
 
 # User Experience
 
 ## Program Structure
 
-**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is driven by two core processes, each powered by an API. The first is a data collection and comparison process which measures user input against a Google Sheet of city rankings to determine the user's ideal European destination. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight for the cities decided by the parameters above.
+**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is driven by two core processes, each powered by an API. The first is a data collection and comparison process which measures user input against a Google Sheet of city rankings in order to determine the user's ideal European destination. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight for the cities decided by the process described above.
 
 More about each of these processes can be found in the [Flowchart](<#flowchart>) and [Database Structure]((<#database-structure>)) sections. The underlying logic and the user experience navigating through the program can be found in the [Logic Flow](<#logic-flow>) and [Features](<#features>) sections.
 
@@ -150,9 +153,9 @@ The flow chart for this application was originally designed with pen and paper b
   <img src="assets/documentation/googlesheet.png" height="500px"/>
   </p>
 
-My introduction to Google Sheets was from Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said to my Business Analyst husband that I am not a "spreadsheet person." I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkles:
+My introduction to Google Sheets was by Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said to my Business Analyst husband that I am not a "spreadsheet person." I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkles:
 
-My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17 columns, 15 of which form the parameters for the user's travel preferences; and 32 rows, with each row representing a European city.
+My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17 columns, 15 of which represent the choices for the user's travel preferences; and 32 rows, with each row representing a European city.
 
 The column titles are as follows: City, IATA (airport code), Nightlife, History & Culure, Cuisine, Outdoorsy Experiences, Shopping, Off the Beaten Path Exploration, Romantic Adventure, Solo Travel, Hen or Stag Party, Time with Friends or Family, Overall Safety, Accessibility, Public Transportation, Tourism-Friendliness, and English-Speaking
 
@@ -164,9 +167,9 @@ Data to rank each city with a numeric value (1-5) and populate each of the colum
 <details>
 <summary>Ryanair API (click)</summary>
 
-I was able to integrate the Ryanair API into this program by signing up for [Rapid API](https://rapidapi.com/DataCrawler/api/ryanair2) and subscribing through their service. This was my second experience with APIs (the first being a soft launch into them with Google Sheets in the *Love Sandwiches* walkthrough), and while the parameters and logic appeared straightforward, I spent an entire morning trying to set it up using SON format before finally turning to AI. One struggle was in fetching the destination airport IATAs, which I eventually stored in my Google Sheet rather than in a list in *run.py*. 
+I was able to integrate the Ryanair API into this program by signing up for [Rapid API](https://rapidapi.com/DataCrawler/api/ryanair2) and subscribing through their service. This was my second experience with APIs (the first being a soft launch into them with Google Sheets in the *Love Sandwiches* walkthrough), and while the parameters and logic appeared straightforward, I spent an entire morning trying to set it up using JSON format before finally turning to AI. One struggle was in fetching the destination airport IATAs, which I eventually stored in my Google Sheet rather than in a list in *run.py*. 
 
-Once integrated, the API made the program functional (a thrill! :woman_dancing:) and I was able to generate flight information through **InstaTrip** and then find the corresponding flights on Ryanair.com
+Once integrated, the API made the program functional (a thrill! :woman_dancing:) and I was able to generate flight information through **InstaTrip** and find the matching flights on Ryanair.com
 </details>
 
 ## Logic Flow
@@ -178,11 +181,11 @@ Once integrated, the API made the program functional (a thrill! :woman_dancing:)
 
 - *main()* clears the screen of the startup command and prints the **InstaTrip** logo, displays the *Main Menu*, and requests the user to choose a menu option: *Start*, *About*, or *Exit*. The following functions are called for this opening sequence: *colored_instatrip()*, *print_colored_background()*, and *display_menu()*
 
-- When the user chooses the *Start* option, *display_menu()* prints the greeting message (*greeting()*), which gives the user instructions on how to use the program. *Main()* then calls the *get_trip_details()* function, which asks the user for their departure date, departure flexibility, and trip duration. This information will eventually be passed to the Ryanair API.
+- When the user chooses the *Start* option, *display_menu()* prints the greeting message (*greeting()*), which gives the user instructions on how to use the program. *Main()* then calls the *get_trip_details()* function, which asks the user for their departure date, departure flexibility, and trip duration. This information will be passed to the Ryanair API.
 
-- Once *get_trip_details()* has run, the user will then be prompted to select their type of trip and choose their important travel factors by functions *type_of_trip()* and *important_factors()*
+- Once *get_trip_details()* has run, the user will be prompted to select their type of trip and choose their important travel factors by functions *type_of_trip()* and *important_factors()*
 
-- This input will then be compared with the data in the *Instatrip* Google Sheet by function *rank_cities()* to order the cities most appropriate to the user's preferences. Function *select_random_cities()* randomizes the order of the cities to avoid listing the first three applicable cities in alphabetical order.
+- This input will then be compared with the data in the *Instatrip* Google Sheet by function *rank_cities()* to order the cities most appropriate to the user's preferences. Function *select_random_cities()* randomizes the order of the cities to prevent selecting the first applicable cities from the top of the list.
 
 - A *drumroll()* prints and the initial top city selections are displayed. The user is given the choice either to proceed, *generate_new_cities(),* or *start_over()*.
 
@@ -199,7 +202,7 @@ Once integrated, the API made the program functional (a thrill! :woman_dancing:)
 
 ### Color Scheme
 
-The color and design scheme for the starting screen of **Instatrip** was chosen to give a slightly nostalgic, retro feel, reminiscent of the travel agency advertisements and city destination posters of yesteryear. The background image for the page, an island sunset, inspired the color choice for the rest of the program. 
+The color and design scheme for the starting screen of **Instatrip** were chosen to give a slightly nostalgic, retro feel, reminiscent of the travel agency advertisements and city destination posters of yesteryear. The background image for the page, an island sunset, inspired the color choice for the rest of the program. 
 
 While this project by nature limits styling liberties, I enjoyed colorizing the text and making generous use of emoji to compliment the fun, light-hearted tone set by the copy. Booking flights and tending to travel details can often be a dreary affair. The aim here is to break the tedium and usher in a bit of excitement
 
@@ -214,7 +217,7 @@ While this project by nature limits styling liberties, I enjoyed colorizing the 
 
 - Emoji were taken from the [Emoji for Python library](https://pypi.org/project/emoji/). When using human emoji characters, I made every effort to choose different skintones and genders for inclusivity
 
-### ASCII ART (spelling?)
+### ASCII ART
 
 - ASCII Art for the logo and exit screen has been provided by the [ASCII Art Archive](https://www.asciiart.eu/)  
     
@@ -274,8 +277,8 @@ Examples of this site's interactive features include:
 
 - A login system to store the user's previously generated cities
 - A trip log and diary to record previous travel experiences
-- Flexible departure locations rather than the default setting of Dublin airport
-- An explanded list of European destinations
+- Flexible departure locations rather than a default setting of Dublin airport
+- An expanded list of European destinations
 - A broader list of trip occasions to select from
 - A broader list of preferred activities and interests to select from
 - Opening the program to destinations outside of Europe
@@ -290,7 +293,7 @@ Examples of this site's interactive features include:
 
 - [Python](https://www.python.org/) - Provides application functionality
 - [html](https://developer.mozilla.org/en-US/docs/Web/HTML) - Provides the template for the mock terminal
-- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - Styles the template, including chosen background image
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - Styles the template, including the chosen background image
 
 ## Libraries, Programs, and Tools
 
@@ -301,7 +304,7 @@ Examples of this site's interactive features include:
 - [datetime](https://docs.python.org/3/library/datetime.html) - Handles date-based calculations for user travel date
 - [os](https://docs.python.org/3/library/os.html) - Clears the terminal
 - [random](https://docs.python.org/3/library/random.html#module-random) - Selects elligible cities randomly rather than sequentially
-- [textwrap](https://docs.python.org/3/library/textwrap.html#module-textwrap) - Formats text for About section to avoid broken lines
+- [textwrap](https://docs.python.org/3/library/textwrap.html#module-textwrap) - Formats text for *About* section to avoid broken lines
 - [time](https://docs.python.org/3/library/time.html#module-time) - Creates "Sleep" pauses to break up lines of text for readability and flare
 - [timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) - Class of datetime. Sets date range for departure date
 
@@ -310,14 +313,14 @@ Examples of this site's interactive features include:
 - [colorama](https://pypi.org/project/colorama/) - Adds color and styles to the project text
 - [emoji](https://pypi.org/project/emoji/) - Adds emoji icons to the project
 - [gspread](https://pypi.org/project/gspread/) - Stores and Retrieves data from Google Sheets
-- [HTTPAdapter](https://pypi.org/project/http-adapter/) - manages HTTP connections with the Ryanair API
-- [requests](https://pypi.org/project/requests/) - sends HTTP requests to the Ryanair API
-- [Retry](https://pypi.org/project/retry2/) - configures automatic retries for failed network requests to the Ryanair API
-- [Ryanair API](https://pypi.org/project/ryanair/) - provides flight information and booking links
+- [HTTPAdapter](https://pypi.org/project/http-adapter/) - Manages HTTP connections with the Ryanair API
+- [requests](https://pypi.org/project/requests/) - Sends HTTP requests to the Ryanair API
+- [Retry](https://pypi.org/project/retry2/) - Configures automatic retries for failed network requests to the Ryanair API
+- [Ryanair API](https://pypi.org/project/ryanair/) - Provides flight information and booking links
 
 #### Other Tools:
 
-- [ASCII Art Archive](https://www.asciiart.eu/) - provides logo and exit screen ASCII art
+- [ASCII Art Archive](https://www.asciiart.eu/) - Provides logo and exit screen ASCII art
 - [ChatGPT](https://openai.com/chatgpt/) - Assisted in ranking tourist destinations by chosen criteria for Google Sheet
 - [Freepik](https://www.freepik.com) - Supplies the landing page background image
 - [Github](https://github.com/) - Hosts the code for the site
@@ -327,7 +330,7 @@ Examples of this site's interactive features include:
 - [Icons8](https://icons8.com/) - Supplies the favicon
 - [Mistral AI](https://mistral.ai) - For troubleshooting Ryanair API implementation
 - [Rapid Api](https://rapidapi.com/) - Integrates the Ryanair API for flight information
-- [Visio]( https://www.microsoft.com/en-us/microsoft-365/visio/visio-in-microsoft-365) - Creates the README flowchart
+- [Visio]( https://www.microsoft.com/en-us/microsoft-365/visio/visio-in-microsoft-365) - For creating the README flowchart
 
 # Testing
 

@@ -593,9 +593,6 @@ def drumroll():
         print(drum_emojis * 5)
         time.sleep(2)
 
-    print(Style.BRIGHT + Fore.MAGENTA + "after some consideration..." + Style.NORMAL)
-    print(" ")
-
 
 def generate_new_cities(sheet, selected_trip_type, selected_factors):
     """
@@ -1002,7 +999,7 @@ def ask_for_booking_link(flights_info):
                 )
                 break
             else:
-                print(Fore.RED + "Invalid choice. Please select a number from 1 to 5.")
+                print(Fore.RED + "Invalid choice. Please select a number from 1 to 4.")
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
 
@@ -1141,21 +1138,21 @@ def main():
                     )
                 )
 
-                # trip_details['departure_airport'] = 'DUB'
-                # trip_details['departure_date'] = trip_details['travel_date']
-                # .strftime("%Y-%m-%d")
-                # flights_info = find_cheapest_flights(SHEET,
-                # [city[0] for city in final_top_cities], trip_details)
-                # print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
-                # "\nCheapest Flights Information:" + Style.NORMAL)
-                # for flight in flights_info:
-                # print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
-                # f"{flight['city']}: Flight Number: {flight['flight_number']},"
-                # "Price: {flight['price']} EUR, "
-                # "Departure Time: {flight['departure_time']}, "
-                # "Arrival Time: {flight['arrival_time']}" + Style.NORMAL)
+                trip_details['departure_airport'] = 'DUB'
+                trip_details['departure_date'] = trip_details
+                ['travel_date'].strftime("%Y-%m-%d")
+                flights_info = find_cheapest_flights(SHEET,
+                [city[0] for city in final_top_cities], trip_details)
+                print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
+                "\nCheapest Flights Information:" + Style.NORMAL)
+                for flight in flights_info: 
+                    print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
+                f"{flight['city']}: Flight Number: {flight['flight_number']},"
+                "Price: {flight['price']} EUR, "
+                "Departure Time: {flight['departure_time']}, "
+                "Arrival Time: {flight['arrival_time']}" + Style.NORMAL)
 
-            # ask_for_booking_link(flights_info)
+            ask_for_booking_link(flights_info)
             break
 
 
