@@ -60,6 +60,7 @@ This program was created for Portfolio Project #3 (Python Essentials) for The Co
 4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *Start Over* to select new cities, or *Exit* the program
 
 ## Target Audience
+
 **InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport-- people who would like to explore spontaneous European travel. 
 
 This program is designed to inspire joy. From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip**  is for anyone who'd like a change of pace as it encourages the feelings of excitement and anticipation that accompany planning a big trip. It's to be used as inspiration, for fun, or to plot the next great escape from daily routine :sparkles:
@@ -162,6 +163,7 @@ Data to rank each city with a numeric value (1-5) and populate each of the colum
 
 <details>
 <summary>Ryanair API (click)</summary>
+
 I was able to integrate the Ryanair API into this program by signing up for [Rapid API](https://rapidapi.com/DataCrawler/api/ryanair2) and subscribing through their service. This was my second experience with APIs (the first being a soft launch into them with Google Sheets in the *Love Sandwiches* walkthrough), and while the parameters and logic appeared straightforward, I spent an entire morning trying to set it up using SON format before finally turning to AI. One struggle was in fetching the destination airport IATAs, which I eventually stored in my Google Sheet rather than in a list in *run.py*. 
 
 Once integrated, the API made the program functional (a thrill! :woman_dancing:) and I was able to generate flight information through **InstaTrip** and then find the corresponding flights on Ryanair.com
@@ -269,6 +271,7 @@ Examples of this site's interactive features include:
 - Explanation
 
 # Future Features
+
 - A login system to store the user's previously generated cities
 - A trip log and diary to record previous travel experiences
 - Flexible departure locations rather than the default setting of Dublin airport
@@ -284,6 +287,7 @@ Examples of this site's interactive features include:
 # Technologies
 
 ## Languages Used
+
 - [Python](https://www.python.org/) - Provides application functionality
 - [html](https://developer.mozilla.org/en-US/docs/Web/HTML) - Provides the template for the mock terminal
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - Styles the template, including chosen background image
@@ -293,6 +297,7 @@ Examples of this site's interactive features include:
 ### Python Modules
 
 #### Library Imports:
+
 - [datetime](https://docs.python.org/3/library/datetime.html) - Handles date-based calculations for user travel date
 - [os](https://docs.python.org/3/library/os.html) - Clears the terminal
 - [random](https://docs.python.org/3/library/random.html#module-random) - Selects elligible cities randomly rather than sequentially
@@ -301,25 +306,28 @@ Examples of this site's interactive features include:
 - [timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) - Class of datetime. Sets date range for departure date
 
 #### Third-Party Imports: 
-- [colorama]() - Adds color and styles to the project text
-- [emoji]() - Adds emoji icons to the project
-- [gspread]() - Stores and Retrieves data from Google Sheets
-- [HTTPAdapter]() - manages HTTP connections with the Ryanair API
-- [requests]() - sends HTTP requests to the Ryanair API
-- [Retry]() - configures automatic retries for failed network requests to the Ryanair API
-- [Ryanair API]() - provides flight information and booking links
+
+- [colorama](https://pypi.org/project/colorama/) - Adds color and styles to the project text
+- [emoji](https://pypi.org/project/emoji/) - Adds emoji icons to the project
+- [gspread](https://pypi.org/project/gspread/) - Stores and Retrieves data from Google Sheets
+- [HTTPAdapter](https://pypi.org/project/http-adapter/) - manages HTTP connections with the Ryanair API
+- [requests](https://pypi.org/project/requests/) - sends HTTP requests to the Ryanair API
+- [Retry](https://pypi.org/project/retry2/) - configures automatic retries for failed network requests to the Ryanair API
+- [Ryanair API](https://pypi.org/project/ryanair/) - provides flight information and booking links
 
 #### Other Tools:
+
 - [ASCII Art Archive](https://www.asciiart.eu/) - provides logo and exit screen ASCII art
-- [ChatGPT](https://openai.com/chatgpt/) - Assisted in ranking tourist destinations by chosen criteria and troubleshooting Ryanair API implementation
+- [ChatGPT](https://openai.com/chatgpt/) - Assisted in ranking tourist destinations by chosen criteria for Google Sheet
 - [Freepik](https://www.freepik.com) - Supplies the landing page background image
 - [Github](https://github.com/) - Hosts the code for the site
 - [Gitpod](https://www.gitpod.io/#get-started) - Provides the workspace to create and edit the site
-- [Google Sheets]() - Hosts the city data for the application
-- [Heroku]() - Deploys the application
+- [Google Sheets](https://workspace.google.com/products/sheets/) - Hosts the city data for the application
+- [Heroku](https://www.heroku.com) - Deploys the application
 - [Icons8](https://icons8.com/) - Supplies the favicon
-- [Rapid Api]() - Integrates the Ryanair API for flight information
-- [Visio]() - Creates the README flowchart
+- [Mistral AI](https://mistral.ai) - For troubleshooting Ryanair API implementation
+- [Rapid Api](https://rapidapi.com/) - Integrates the Ryanair API for flight information
+- [Visio]( https://www.microsoft.com/en-us/microsoft-365/visio/visio-in-microsoft-365) - Creates the README flowchart
 
 # Testing
 
@@ -493,6 +501,7 @@ if applicable
 # Bugs
 
 ## Solved Bugs
+
 <details>
   <summary>Bug title (click)</summary>
 <img src="assets/documentation/bug1.png">
@@ -568,11 +577,13 @@ To clone the repository of this site:
 </p>
 </details>
 
-# Credits
-[Retro Logo Inspiration by Sundhar on Dribble](https://dribbble.com/shots/7900685-Retro-Logo-Design)
 
+# Credits
 
 ## Content
+
+- Code Institute's [Love Sandwiches](https://github.com/erinvdoyle/love_sandwiches) walkthrough project was used as a reference to connect **InstaTrip** to Google Sheets
+- The [Code Institute Template](https://github.com/Code-Institute-Org/p3-template) provided everything needed for the mock terminal in the browser
 
 ## Technical Content
 
@@ -580,24 +591,30 @@ All tutorials used have been credited throughout the code. Tutorials were consul
 
 ### Python Tutorials
 
-["Python Datetime" Tutorial](https://www.w3schools.com/python/python_datetime.asp)
+- ["Clear the terminal in Python" Tutorial](https://stackoverflow.com/questions/2084508/clear-the-terminal-in-python)
+- ["Exception & Error Handling in Python" Tutorial](https://www.datacamp.com/tutorial/exception-handling-python)
+- ["How Do I Create a Scoring System in Python" - Stack Overflow](https://stackoverflow.com/questions/50115873/how-do-i-create-a-scoring-system-in-python)
+- ["How to Handle a Python Exception within a Loop" Tutorial](https://www.tutorialspoint.com/how-to-handle-a-python-exception-within-a-loop)
+- ["Python Datetime" Tutorial](https://www.w3schools.com/python/python_datetime.asp)
+- ["Python Random Module" Tutorial](https://www.w3schools.com/python/module_random.asp)
+- ["Sort Using Lambda in Python"](https://sparkbyexamples.com/python/sort-using-lambda-in-python/) 
 
-[Tutorial summary and title"](https://)
 
 ## Media
 ### Image Credits
-[Main Image by FreePik](https://www.freepik.com/free-vector/gradient-beach-sunset-landscape_4636385.htm)
 
-### Other Resources
-If applicable
+- [Main Image by FreePik](https://www.freepik.com/free-vector/gradient-beach-sunset-landscape_4636385.htm)
+- [Retro Logo Inspiration by Sundhar on Dribble](https://dribbble.com/shots/7900685-Retro-Logo-Design)
 
 # Acknowledgements
+
 - My mentor, Precious Ijege, for helping me make sure all my exceptions were handled, providing kind guidance from project inception to completion, and allowing me to see the project with fresh eyes.
 - Our cohort standup leader, Kay Welfare, for providing a weekly dose of enthusiasm and encouragement
 - The CI Hackathon staff and my Elevate Hackathon teammates (Team ResuMates!) for inspiration and the opportunity to experience working as part of a team
 - My husband, Taylor, process mapper extraordinaire, for helping me tighten up my flow chart. And *especially* for taking care of our horses and household during Storm Ashley to allow me long hours to complete the bulk of this project
 
 # Contact
+
 Thank you for viewing this project. Please feel free to contact me with any questions, comments, or opportunities
   
  - [erin.v.doyle@gmail.com](mailto:erin.v.doyle@gmail.com)

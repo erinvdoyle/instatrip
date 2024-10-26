@@ -10,15 +10,14 @@ import time
 import textwrap
 import emoji
 from ryanair import Ryanair
-
-# credit for emoji library: https://pypi.org/project/emoji/
 from colorama import Fore, Style, init
-
-# credit for colorama library: https://pypi.org/project/colorama/
 import os
 
-# credit for tutorial to clear console
-# https://www.delftstack.com/howto/python/python-clear-console/#print-multiple-new-lines-to-clear-interpreter-console-in-python
+# credit for colorama library: https://pypi.org/project/colorama/
+# credit for emoji library: https://pypi.org/project/emoji/
+# credit for tutorial to clear console:
+# https://www.delftstack.com/howto/python/python-clear-console/
+# print-multiple-new-lines-to-clear-interpreter-console-in-python
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -58,6 +57,7 @@ def print_colored_background():
 
 
 # Initialize colorama for Windows support
+
 init(autoreset=True)
 
 insta_trip_text = [
@@ -96,8 +96,10 @@ def center_text(text):
     Centers the text in the console.
     """
     terminal_width = os.get_terminal_size().columns
+    
     # Check if the input is a list
-    # (credit mistral AI for help creating a centered text function that works for lists)
+    # (Credit: Mistral AI for help creating a centered text function that works for lists)
+    
     if isinstance(text, list):
         text = "\n".join(text)
 
@@ -527,7 +529,11 @@ def important_factors():
 # Logic to Rank Cities from Google Sheet Based on User Preferences
 # and Randomly Select Three of them
 
-# Ranking tutorial credit:
+# Ranking tutorial credit using the sort method: 
+# https://sparkbyexamples.com/python/sort-using-lambda-in-python/
+# "How Do I Create A Scoring System in Python - Stack Overflow": 
+# https://stackoverflow.com/questions/50115873/how-do-i-create-a-scoring-system-in-python
+
 def rank_cities(sheet, selected_trip_type, selected_factors):
     """
     Ranks cities based on user preferences from Google Sheets,
@@ -541,7 +547,7 @@ def rank_cities(sheet, selected_trip_type, selected_factors):
         score = 0
 
         if selected_trip_type in city and city[selected_trip_type] == "1":
-            score += 5  # Arbitrary score boost
+            score += 5   
 
         for factor in selected_factors:
             if factor in city:
@@ -550,11 +556,11 @@ def rank_cities(sheet, selected_trip_type, selected_factors):
         if "City" in city:
             ranked_cities.append((city["City"].strip(), score))
 
-    # Sort by score (higher is better)
     ranked_cities.sort(key=lambda x: x[1], reverse=True)
 
     return ranked_cities  # [:3]
 
+# Random Tutorial Credit: https://www.w3schools.com/python/module_random.asp
 
 def select_random_cities(cities, num_cities=3):
     """
@@ -587,7 +593,8 @@ def drumroll():
         print(drum_emojis * 5)
         time.sleep(2)
 
-    # print(Style.BRIGHT + Fore.MAGENTA + "And the result is..." + Style.NORMAL)
+    print(Style.BRIGHT + Fore.MAGENTA + "after some consideration..." + Style.NORMAL)
+    print(" ")
 
 
 def generate_new_cities(sheet, selected_trip_type, selected_factors):
@@ -614,7 +621,6 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
 # Logic to Weigh The User's Safety and Accessibility Preferences
 # Against the Selected Cities And Order Accordingly
 
-
 def rate_importance():
     """
     Collects importance ranking for safety and accessibility factors
@@ -633,13 +639,11 @@ def rate_importance():
     for factor in factors_to_rate:
         while True:
             try:
-                # Ask the user for a rating
                 rating = input(
                     Style.BRIGHT + Fore.MAGENTA + f"Rate the importance of {factor} "
                     "(1-5, with 1 being most important): \n" + Style.NORMAL
                 ).strip()
 
-                # Ensure the rating is not blank
                 if rating == "":
                     print(
                         Fore.RED + "You didn't enter anything. Please enter a number "
@@ -647,13 +651,11 @@ def rate_importance():
                     )
                     continue
 
-                # Try to convert the rating to an integer
                 rating = int(rating)
 
-                # Ensure the rating is between 1 and 5
                 if 1 <= rating <= 5:
                     ratings[factor] = rating
-                    break  # Valid input, break out of the loop
+                    break  
                 else:
                     print(Fore.RED + "Please enter a number between 1 and 5.")
 
@@ -804,7 +806,6 @@ def user_choice_after_ranking(
 # Logic to Pull Airport Codes of Final City Selections from Google Sheet
 # and Pass Them to Ryanair API
 
-
 def get_airport_codes(sheet):
     """
     Get airport codes from Google Sheet using 'City' and 'IATA' columns
@@ -821,6 +822,7 @@ def get_airport_codes(sheet):
 
 # Credit for help implementing and understanding how to use the API
 # in this function, find_cheapest_flights(), and ask_for_booking(): Mistral AI
+
 def search_ryanair_flights(
     origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0
 ):
@@ -837,11 +839,12 @@ def search_ryanair_flights(
         "children": str(children),
         "infants": str(infants),
     }
+
     # Credit to Rapid API for Ryanair API key
+
     headers = {
         "x-rapidapi-host": "ryanair2.p.rapidapi.com",
         "x-rapidapi-key": "1ba388bfffmsh0eff684773db243p19641djsn51bdcd6bec4f",
-        # Replace with your RapidAPI key
     }
 
     try:
@@ -883,13 +886,11 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
                 + Style.NORMAL
             )
 
-            # Search flights via RapidAPI Ryanair
             flight_data = search_ryanair_flights(
                 origin, destination_code, outbound_date
             )
 
             if flight_data:
-                # Parse the response and find the cheapest flight
                 cheapest_flight = None
                 for trip in flight_data["data"]["trips"]:
                     for date in trip["dates"]:
