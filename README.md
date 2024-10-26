@@ -160,14 +160,17 @@ Data to rank each city with a numeric value (1-5) and populate each of the colum
 
 ### Ryanair API
 
-I was able to integrate the Ryanair API into this program by signing up for [Rapid API](https://rapidapi.com/DataCrawler/api/ryanair2) and subscribing through their service. This was my second experience with APIs (the first being a soft launch into them with Google Sheets from the *Love Sandwiches* walkthrough), and while the parameters and logic appeared straightforward enough, I spent an entire morning trying to set it up utilizing JSON format before finally turning to AI for help. One struggle was in fetching the destination airport IATAs, which I eventually stored in my Google Sheet rather than in a list in *run.py*. 
+<details>
+<summary>Ryanair API (click)</summary>
+I was able to integrate the Ryanair API into this program by signing up for [Rapid API](https://rapidapi.com/DataCrawler/api/ryanair2) and subscribing through their service. This was my second experience with APIs (the first being a soft launch into them with Google Sheets in the *Love Sandwiches* walkthrough), and while the parameters and logic appeared straightforward, I spent an entire morning trying to set it up using SON format before finally turning to AI. One struggle was in fetching the destination airport IATAs, which I eventually stored in my Google Sheet rather than in a list in *run.py*. 
 
-Once integrated, the API made the program functional (a thrill! :woman_dancing:) and I was able to generate flight information through **InstaTrip** and find the correct flight numbers via Ryanair.com
+Once integrated, the API made the program functional (a thrill! :woman_dancing:) and I was able to generate flight information through **InstaTrip** and then find the corresponding flights on Ryanair.com
+</details>
 
 ## Logic Flow
 
 <details>
-<summary>InstaTrip Logic Flow (click)</summary>
+<summary>Logic Flow (click)</summary>
 
 - The *run.py* file contains all functions for this program. When the site is loaded or the *Run Program* button at the top of the page is clicked, the function *main*() is called.
 
@@ -275,22 +278,48 @@ Examples of this site's interactive features include:
 - Opening the program to destinations outside of Europe
 - Partnerships or tie ins with hotel and car rental accomodations
 - Curated experience and activity suggestions
-- Flight selection from multiple airlines rather than solely Ryanair  
+- Flight selection from multiple airlines rather than solely Ryanair
+- A proper, clickable link to make a flight booking (currently prevented by Heroku)
 
 # Technologies
 
 ## Languages Used
-- [Python](https://www./) - provides application functionality
-
+- [Python](https://www.python.org/) - Provides application functionality
+- [html](https://developer.mozilla.org/en-US/docs/Web/HTML) - Provides the template for the mock terminal
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - Styles the template, including chosen background image
 
 ## Libraries, Programs, and Tools
-- [ChatGPT](https://openai.com/chatgpt/) - for help ranking tourist destinations by my chosen criteria
-- [Coolors](https://coolors.co/) - to provide the README color palette
-- [Freepik](https://www.freepik.com) - for all images
-- [Github](https://github.com/) - to host the site ?
-- [Gitpod](https://www.gitpod.io/#get-started) - to create and edit the site
-- [Icons8](https://icons8.com/) - for -- favicon
-- [Shields.io](https://shields.io/badges) - for README color badges
+
+### Python Modules
+
+#### Library Imports:
+- [datetime](https://docs.python.org/3/library/datetime.html) - Handles date-based calculations for user travel date
+- [os](https://docs.python.org/3/library/os.html) - Clears the terminal
+- [random](https://docs.python.org/3/library/random.html#module-random) - Selects elligible cities randomly rather than sequentially
+- [textwrap](https://docs.python.org/3/library/textwrap.html#module-textwrap) - Formats text for About section to avoid broken lines
+- [time](https://docs.python.org/3/library/time.html#module-time) - Creates "Sleep" pauses to break up lines of text for readability and flare
+- [timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) - Class of datetime. Sets date range for departure date
+
+#### Third-Party Imports: 
+- [colorama]() - Adds color and styles to the project text
+- [emoji]() - Adds emoji icons to the project
+- [gspread]() - Stores and Retrieves data from Google Sheets
+- [HTTPAdapter]() - manages HTTP connections with the Ryanair API
+- [requests]() - sends HTTP requests to the Ryanair API
+- [Retry]() - configures automatic retries for failed network requests to the Ryanair API
+- [Ryanair API]() - provides flight information and booking links
+
+#### Other Tools:
+- [ASCII Art Archive](https://www.asciiart.eu/) - provides logo and exit screen ASCII art
+- [ChatGPT](https://openai.com/chatgpt/) - Assisted in ranking tourist destinations by chosen criteria and troubleshooting Ryanair API implementation
+- [Freepik](https://www.freepik.com) - Supplies the landing page background image
+- [Github](https://github.com/) - Hosts the code for the site
+- [Gitpod](https://www.gitpod.io/#get-started) - Provides the workspace to create and edit the site
+- [Google Sheets]() - Hosts the city data for the application
+- [Heroku]() - Deploys the application
+- [Icons8](https://icons8.com/) - Supplies the favicon
+- [Rapid Api]() - Integrates the Ryanair API for flight information
+- [Visio]() - Creates the README flowchart
 
 # Testing
 
