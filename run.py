@@ -946,7 +946,7 @@ def ask_for_flight_info(flights_info, trip_details):
             + "No flight information available."
             + Style.NORMAL
         )
-        return
+        return False
 
     print(" ")
     print(
@@ -962,7 +962,6 @@ def ask_for_flight_info(flights_info, trip_details):
         )
 
     print(Style.BRIGHT + Fore.MAGENTA + "4. Start over" + Style.NORMAL)
-    print(Style.BRIGHT + Fore.MAGENTA + "5. Exit" + Style.NORMAL)
     print(" ")
 
     while True:
@@ -971,7 +970,7 @@ def ask_for_flight_info(flights_info, trip_details):
                 input(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + "Please choose an option (1-5): "
+                    + "Please choose an option (1-4): "
                     + Style.NORMAL
                 )
             )
@@ -1025,7 +1024,7 @@ def ask_for_flight_info(flights_info, trip_details):
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + "Navigate to www.ryanair.com and enter the city " 
+                    + "Navigate to www.ryanair.com and enter the city "
                     + "and departure date to secure the best price for your trip to "
                     + emoji.emojize(f":sun_with_face:  {selected_flight['city']} :sun_with_face:")
                     + Style.NORMAL
@@ -1033,36 +1032,29 @@ def ask_for_flight_info(flights_info, trip_details):
                 print(" ")
                 print(Style.BRIGHT + Fore.YELLOW + f"Bon Voyage! {emoji.emojize(
                     ':airplane_departure:')}" + Style.NORMAL)
-                
+
                 while True:
-                    exit_prompt = input(
-                        Style.BRIGHT + Fore.MAGENTA + "\nPress Enter to exit: " + Style.NORMAL
+                    restart_choice = input(
+                        Style.BRIGHT + Fore.MAGENTA + "\nPress Enter to return to Main Menu " + Style.NORMAL
                     )
-                    if exit_prompt == "":
-                        print(Fore.CYAN + "Exiting the program. Safe travels!")
-                        exit()
+                    if restart_choice == "":
+                        return True  # Return True to indicate that the program should restart
                     else:
-                        print(Fore.RED + "Invalid input. Please press Enter to exit.")
+                        print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu")
 
             elif choice == 4:
                 print(
-                    Style.BRIGHT + Fore.MAGENTA + "Starting over..." + Style.NORMAL
+                    Style.BRIGHT + Fore.MAGENTA + "Returning to Main Menu..." + Style.NORMAL
                 )
                 time.sleep(2)
-                main()
-                break  
-
-            elif choice == 5:  
-                print(
-                    Style.BRIGHT + Fore.MAGENTA + "Thank you for using the travel planner! Safe travels!" 
-                    + Style.NORMAL
-                )
-                exit()  
+                return True  
 
             else:
-                print(Fore.RED + "Invalid choice. Please select a number from 1 to 5.")
+                print(Fore.RED + "Invalid choice. Please select a number from 1 to 4.")
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
+
+    return False
 
 
 def exit():
@@ -1138,13 +1130,15 @@ def main():
     """
     The main operating function which runs the program
     """
-    while True:
+    def initialize_program():
         os.system("cls" if os.name == "nt" else "clear")
-
         print("\n")
         colored_instatrip()
         print_colored_background()
         display_menu()
+
+    while True:
+        initialize_program()
 
         trip_details = get_trip_details()
         if not trip_details:
@@ -1211,10 +1205,8 @@ def main():
                     )
                     print(" ")
 
-                ask_for_flight_info(flights_info, trip_details)
-                break
+                if ask_for_flight_info(flights_info, trip_details):
+                    break  # Break the inner loop to restart the program
 
-            
 if __name__ == "__main__":
     main()
-
