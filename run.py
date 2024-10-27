@@ -239,7 +239,7 @@ def read_about():
             Fore.YELLOW
             + "For each destination, flight data is retrieved by the Ryanair API, "
             + "showcasing the cheapest available flights. The user may then choose "
-            + "to book a flight through the provided url"
+            + "to view detailed flight information and visit the provided url"
         )
     )
     print("")
@@ -982,21 +982,15 @@ def ask_for_flight_info(flights_info, trip_details):
                 os.system("cls" if os.name == "nt" else "clear")
                 print(
                     Style.BRIGHT
-                    + Fore.MAGENTA
+                    + Fore.YELLOW
                     + "Flight Details:"
                     + Style.NORMAL
                 )
                 print(" ")
                 print(
                     Style.BRIGHT
-                    + Fore.YELLOW
-                    + f"City: {selected_flight['city']}"
-                    + Style.NORMAL
-                )
-                print(
-                    Style.BRIGHT
                     + Fore.MAGENTA
-                    + f"IATA Code: {selected_flight['iata_code']}"
+                    + f"City: {selected_flight['city']}"
                     + Style.NORMAL
                 )
                 print(
@@ -1107,11 +1101,13 @@ def exit():
     )
     time.sleep(2)
     print(
-        Style.BRIGHT + Fore.MAGENTA + emoji.emojize(":open_book: Perhaps a staycation is in order... :open_book:") + Style.NORMAL
+        Style.BRIGHT + Fore.MAGENTA + emoji.emojize(
+            ":house_with_garden: Perhaps a staycation is in order... :house_with_garden:") + Style.NORMAL
     )
     time.sleep(2)
     print(" ")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + url + Style.NORMAL)
+    print("Type the url into your browser to get cozy staycation tips")
     print(" ")
 
     while True:
@@ -1160,10 +1156,10 @@ def main():
             initial_top_cities = select_random_cities(all_ranked_cities)
 
             os.system("cls" if os.name == "nt" else "clear")
-            print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
+            print(Fore.MAGENTA + "Your Curated Destinations:")
             print("")
             for city in initial_top_cities:
-                print(emoji.emojize(Fore.MAGENTA + ":star: " + " " + city[0]))
+                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":star: " + " " + city[0] + Style.NORMAL))
 
             user_choice = user_choice_after_ranking(
                 initial_top_cities, SHEET, selected_trip_type, selected_factors
@@ -1206,7 +1202,8 @@ def main():
                 for flight in flights_info:
                     print(
                         Style.BRIGHT + Fore.LIGHTCYAN_EX +
-                        f"{flight['city']}: \nFlight Number: {flight['flight_number']},\n"
+                        f"{emoji.emojize(':airplane_departure:')}  {flight['city']}  {emoji.emojize(
+                            ':airplane_departure:')} \nFlight Number: {flight['flight_number']},\n"
                         f"Price: {flight['price']} EUR\n" + Style.NORMAL
                     )
                     print(" ")
