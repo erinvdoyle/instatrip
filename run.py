@@ -1144,6 +1144,7 @@ def main():
         if not trip_details:
             continue
 
+        os.system("cls" if os.name == "nt" else "clear")
         selected_trip_type = type_of_trip()
         selected_factors = important_factors()
 
@@ -1162,6 +1163,7 @@ def main():
             )
 
             if user_choice == "start_over":
+                os.system("cls" if os.name == "nt" else "clear") 
                 print(
                     Style.BRIGHT + Fore.MAGENTA + "Starting over..." + Style.NORMAL
                 )
@@ -1206,7 +1208,7 @@ def main():
                     print(" ")
 
                 if ask_for_flight_info(flights_info, trip_details):
-                    break  # Break the inner loop to restart the program
+                    break 
 
 if __name__ == "__main__":
     main()
