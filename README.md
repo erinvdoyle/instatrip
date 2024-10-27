@@ -228,50 +228,119 @@ While this project by nature limits styling liberties, I enjoyed colorizing the 
 
 # Features
 
-I have aimed to give this site a simple, intuitive interface. Ease of navigation allows the visitor to 
+I have aimed to give this program a logical, straightforward interface that both entertains and instructs its user, leaving little room for confusion or error
 
-Examples of this site's interactive features include:
- 
-- Example 1
-- Example 2
 
-## Favicon
+## Welcome Screen
+
+A colorful ASCII Art logo with the name of the application and its tagline form the top of the *Welcome Screen*. Beanth the art, the *Main Menu* instructs the user to decide whether to read about **InstaTrip**, *Start* the program, or visit the *Exit* screen. The input is validated for the three correct choices: 1, 2, or 3.
 
 <p align="center">
   <img src="assets/documentation/favicon.png">
 </p>
 
-- The favicon features 
+## About
 
-## Feature 1
+The *About* screen explains the concept of the program, briefly introduces the developer, and offers a playful disclaimer about the changing nature of flight prices. The user may press 1 to return to the *Main Menu*. Any other input returns an error message with instruction to press "1"
 
 <p align="center">
 <img src="assets/documentation/rmstartingarea.png" height="450px"/>
 </p>
 
-- Explanation
-
-### Feature 1 sub-feature
+## Exit Screen
 
 <p align="center">
 <img src="assets/documentation/rmheading.png" width="250px"/>
 </p>
 
-- Explanation
+The *Exit* screen features ASCII Art of a tropical beach scene and a url for a staycation article, should the user be unable to travel. The user must press Enter to return to the *Main Menu*
 
-## Feature 2
+## Greeting Message
+
+When the user chooses *Start*, a greeting message welcomes them and explains the premise of InstaTrip. The program then advances to collect departure details
+
 
 <p align="center">
 <img src="assets/documentation/drawinstructions.png" height="450px"/>
 </p>
 
-### Sub-Feature
+## Departure Details
+
+After reading that InstaTrip departs out of Dublin (with new departure cities to launch "soon"), the user is prompted to enter a series of departure details: The date, their travel date flexibility, and their length of stay. User input is validated at each step
+
 
 <p align="center">
 <img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
 </p>
 
-- Explanation
+<p align="center">
+<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+</p>
+
+These details will be used by the Ryanair API to generate flight departure information
+
+## Travel Preferences
+
+Once the departure details have been collected, the user is given the opportunity to specify their type of trip: Romantic Adventure, Solo Travel, Hen or Stag Party, or Time with Friends or Family
+
+<p align="center">
+<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+</p>
+
+When they have entered their choice of occasion, they are given 6 important factors in their travel preferences, of which they may choose 3. These important factors are Nightlife, History & Culture, Cuisine, Outdoorsy Experiences, Shopping, and Off the Beaten Path Exploration.
+
+<p align="center">
+<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+</p>
+
+These preferences are used to determine which of the cities stored in the Google Sheet, each with their own rankings for each catagory, make the most suitable travel destinations
+
+## Curated Destinations
+
+Now that departure details and travel preferences have been collected, the user is offered three potential vacation cities
+
+<p align="center">
+<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+</p>
+
+Three options follow the cities. If the user is happy with the cities, they may proceed. If not, they can choose to see another three cities, or start the program over 
+
+<p align="center">
+<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+</p>
+
+If the user chooses to view a new set of cities, they receive another list of three choices. They may then proceed, generate another new set, start the program over, or return to the previously offered cities. These options are available on a loop until either the user is pleased with their options or decides to start over. All choices are validated
+
+<p align="center">
+<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+</p>
+
+## Safety and Accessibility Preferences 
+
+Once the destination cities have been settled, they are then ranked again by the user's safety and accessibility preferences. Data from the Google Sheet is compared with the user's input to determine the order of suitability of the cities
+
+<p align="center">
+<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+</p>
+
+
+## Flight Information
+
+Real-time flight information for each of the three cities is then fetched and printed
+
+<p align="center">
+<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+</p>
+
+The user is asked whether they would like to see booking details for any of the cities or to start the program over
+
+## Final Flight Details
+
+<p align="center">
+<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+</p>
+
+The final step of the program is to print the flight details of the user's chosen city and offer the url for Ryanair so that they may book a flight if wished
 
 # Future Features
 
