@@ -978,6 +978,7 @@ def ask_for_flight_info(flights_info, trip_details):
                 selected_flight = flights_info[choice - 1]
                 os.system("cls" if os.name == "nt" else "clear")
                 print(" ")
+                os.system("cls" if os.name == "nt" else "clear")
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA
@@ -1015,7 +1016,7 @@ def ask_for_flight_info(flights_info, trip_details):
                     + Fore.MAGENTA
                     + "Navigate to www.ryanair.com and enter the above details" 
                     + " to secure the best price for your trip to "
-                    + f"City: {selected_flight['city']}"
+                    + emoji.emojize(f":sun_with_face: {selected_flight['city']} :sun_with_face:")
                     + Style.NORMAL
                 )
                 print(" ")
@@ -1025,6 +1026,7 @@ def ask_for_flight_info(flights_info, trip_details):
                 print(
                     Style.BRIGHT + Fore.MAGENTA + "Starting over..." + Style.NORMAL
                 )
+                time.sleep(2)
                 main()
                 break
             else:
@@ -1068,7 +1070,7 @@ def exit():
     )
     time.sleep(2)
     print(
-        Style.BRIGHT + Fore.MAGENTA + "Perhaps a staycation is in order!" + Style.NORMAL
+        Style.BRIGHT + Fore.MAGENTA + emoji.emojize(":open_book: Perhaps a staycation is in order... :open_book:") + Style.NORMAL
     )
     time.sleep(2)
     print(" ")
@@ -1179,7 +1181,9 @@ def main():
                     [city[0] for city in final_top_cities],
                     trip_details
                 )
+
             os.system("cls" if os.name == "nt" else "clear")    
+            
             print(Style.BRIGHT + Fore.MAGENTA +
                 "\nCheapest Flights Information:" + Style.NORMAL)
             for flight in flights_info: 
