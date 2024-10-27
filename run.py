@@ -995,19 +995,17 @@ def ask_for_flight_info(flights_info, trip_details):
                 )
                 print(
                     Style.BRIGHT
-                    + Fore.YELLOW
+                    + Fore.MAGENTA
                     + f"Flight Number: {selected_flight['flight_number']}"
                     + Style.NORMAL
                 )
                 print(
-                    Style.BRIGHT
-                    + Fore.MAGENTA
+                    Fore.YELLOW
                     + f"Departure Date: {trip_details['departure_date']}"
                     + Style.NORMAL
                 )
                 print(
-                    Style.BRIGHT
-                    + Fore.YELLOW
+                    Fore.YELLOW
                     + f"Departure Time: {flight['departure_time']}"
                     + Style.NORMAL
                 )
@@ -1019,7 +1017,7 @@ def ask_for_flight_info(flights_info, trip_details):
                 )
                 print(
                     Style.BRIGHT
-                    + Fore.YELLOW
+                    + Fore.MAGENTA
                     + f"Price: {selected_flight['price']} EUR"
                     + Style.NORMAL
                 )
@@ -1033,7 +1031,8 @@ def ask_for_flight_info(flights_info, trip_details):
                     + Style.NORMAL
                 )
                 print(" ")
-                print(Style.BRIGHT + Fore.YELLOW + "Bon Voyage!" + Style.NORMAL)
+                print(Style.BRIGHT + Fore.YELLOW + f"Bon Voyage! {emoji.emojize(
+                    ':airplane_departure:')}" + Style.NORMAL)
                 
                 while True:
                     exit_prompt = input(
@@ -1107,7 +1106,7 @@ def exit():
     time.sleep(2)
     print(" ")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + url + Style.NORMAL)
-    print("Type the url into your browser to get cozy staycation tips")
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "(Type the url into your browser to get cozy staycation tips)" + Style.NORMAL)
     print(" ")
 
     while True:
