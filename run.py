@@ -173,7 +173,7 @@ def greeting():
     )
     fun_part_message = emoji.emojize(
         Fore.LIGHTMAGENTA_EX
-        + "Then we'll get to the fun part: :crystal_ball: Selecting your next trip!\n"
+        + "Then we'll get to the fun part: :crystal_ball:  Selecting your next trip!\n"
     )
     get_started_message = (
         Fore.YELLOW + "Grab your suitcase, we're about to get started...\n"
@@ -711,7 +711,7 @@ def user_choice_after_ranking(
         print(
             emoji.emojize(
                 Fore.LIGHTCYAN_EX
-                + "2. No, let's see another three cities :man_gesturing_NO:"
+                + "2. No, let's see another three cities :cross_mark:"
             )
         )
         print(
@@ -1101,12 +1101,12 @@ def exit():
     time.sleep(2)
     print(
         Style.BRIGHT + Fore.MAGENTA + emoji.emojize(
-            ":house_with_garden: Perhaps a staycation is in order... :house_with_garden:") + Style.NORMAL
+            ":house_with_garden:  Perhaps a staycation is in order... :house_with_garden:") + Style.NORMAL
     )
     time.sleep(2)
     print(" ")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + url + Style.NORMAL)
-    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "(Type the url into your browser to get cozy staycation tips)" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "(Type the url into your browser to get cozy staycation tips!)" + Style.NORMAL)
     print(" ")
 
     while True:
@@ -1138,24 +1138,27 @@ def main():
     """
     The main operating function which runs the program
     """
-    os.system("cls" if os.name == "nt" else "clear")
+    while True:
+        os.system("cls" if os.name == "nt" else "clear")
 
-    print("\n")
-    colored_instatrip()
-    print_colored_background()
-    display_menu()
+        print("\n")
+        colored_instatrip()
+        print_colored_background()
+        display_menu()
 
-    trip_details = get_trip_details()
-    if trip_details:
+        trip_details = get_trip_details()
+        if not trip_details:
+            continue
+
         selected_trip_type = type_of_trip()
         selected_factors = important_factors()
 
-        while True:  
+        while True:
             all_ranked_cities = rank_cities(SHEET, selected_trip_type, selected_factors)
             initial_top_cities = select_random_cities(all_ranked_cities)
 
             os.system("cls" if os.name == "nt" else "clear")
-            print(Fore.MAGENTA + "Your Curated Destinations:")
+            print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
             print("")
             for city in initial_top_cities:
                 print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":star: " + " " + city[0] + Style.NORMAL))
@@ -1169,10 +1172,11 @@ def main():
                     Style.BRIGHT + Fore.MAGENTA + "Starting over..." + Style.NORMAL
                 )
                 time.sleep(1)
-                continue  
+                break
 
-            elif user_choice is not None:  
+            elif user_choice is not None:
                 final_top_cities = user_choice
+                print(" ")
                 print(
                     emoji.emojize(
                         Style.BRIGHT
@@ -1208,9 +1212,9 @@ def main():
                     print(" ")
 
                 ask_for_flight_info(flights_info, trip_details)
-                break  
-            
+                break
 
+            
 if __name__ == "__main__":
     main()
 
