@@ -236,7 +236,7 @@ I have aimed to give this program a logical, straightforward interface that both
 A colorful ASCII Art logo with the name of the application and its tagline form the top of the *Welcome Screen*. Beanth the art, the *Main Menu* instructs the user to decide whether to read about **InstaTrip**, *Start* the program, or visit the *Exit* screen. The input is validated for the three correct choices: 1, 2, or 3.
 
 <p align="center">
-  <img src="assets/documentation/favicon.png">
+  <img src="assets/documentation/welcome.png">
 </p>
 
 ## About
@@ -244,13 +244,13 @@ A colorful ASCII Art logo with the name of the application and its tagline form 
 The *About* screen explains the concept of the program, briefly introduces the developer, and offers a playful disclaimer about the changing nature of flight prices. The user may press 1 to return to the *Main Menu*. Any other input returns an error message with instruction to press "1"
 
 <p align="center">
-<img src="assets/documentation/rmstartingarea.png" height="450px"/>
+<img src="assets/documentation/about.png" height="450px"/>
 </p>
 
 ## Exit Screen
 
 <p align="center">
-<img src="assets/documentation/rmheading.png" width="250px"/>
+<img src="assets/documentation/exit.png" height="450px"/>
 </p>
 
 The *Exit* screen features ASCII Art of a tropical beach scene and a url for a staycation article, should the user be unable to travel. The user must press Enter to return to the *Main Menu*
@@ -261,7 +261,7 @@ When the user chooses *Start*, a greeting message welcomes them and explains the
 
 
 <p align="center">
-<img src="assets/documentation/drawinstructions.png" height="450px"/>
+<img src="assets/documentation/greeting.png" height="450px"/>
 </p>
 
 ## Departure Details
@@ -270,11 +270,11 @@ After reading that InstaTrip departs out of Dublin (with new departure cities to
 
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/departure1.png" height="450px"/>
 </p>
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/departure2.png" height="450px"/>
 </p>
 
 These details will be used by the Ryanair API to generate flight departure information
@@ -284,13 +284,13 @@ These details will be used by the Ryanair API to generate flight departure infor
 Once the departure details have been collected, the user is given the opportunity to specify their type of trip: Romantic Adventure, Solo Travel, Hen or Stag Party, or Time with Friends or Family
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/preferences1.png" height="450px"/>
 </p>
 
 When they have entered their choice of occasion, they are given 6 important factors in their travel preferences, of which they may choose 3. These important factors are Nightlife, History & Culture, Cuisine, Outdoorsy Experiences, Shopping, and Off the Beaten Path Exploration.
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/preferences2.png" height="450px"/>
 </p>
 
 These preferences are used to determine which of the cities stored in the Google Sheet, each with their own rankings for each catagory, make the most suitable travel destinations
@@ -300,19 +300,19 @@ These preferences are used to determine which of the cities stored in the Google
 Now that departure details and travel preferences have been collected, the user is offered three potential vacation cities
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/curated1.png" height="450px"/>
 </p>
 
 Three options follow the cities. If the user is happy with the cities, they may proceed. If not, they can choose to see another three cities, or start the program over 
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/curated2.png" height="450px"/>
 </p>
 
 If the user chooses to view a new set of cities, they receive another list of three choices. They may then proceed, generate another new set, start the program over, or return to the previously offered cities. These options are available on a loop until either the user is pleased with their options or decides to start over. All choices are validated
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/curated3.png" height="450px"/>
 </p>
 
 ## Safety and Accessibility Preferences 
@@ -320,7 +320,7 @@ If the user chooses to view a new set of cities, they receive another list of th
 Once the destination cities have been settled, they are then ranked again by the user's safety and accessibility preferences. Data from the Google Sheet is compared with the user's input to determine the order of suitability of the cities
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/safety.png" height="450px"/>
 </p>
 
 
@@ -329,7 +329,7 @@ Once the destination cities have been settled, they are then ranked again by the
 Real-time flight information for each of the three cities is then fetched and printed
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/flights1.png" height="450px"/>
 </p>
 
 The user is asked whether they would like to see booking details for any of the cities or to start the program over
@@ -337,7 +337,7 @@ The user is asked whether they would like to see booking details for any of the 
 ## Final Flight Details
 
 <p align="center">
-<img src="assets/documentation/drawinstructionsh3.png" width="250px"/>
+<img src="assets/documentation/flights2.png" height="450px"/>
 </p>
 
 The final step of the program is to print the flight details of the user's chosen city and offer the url for Ryanair so that they may book a flight if wished
