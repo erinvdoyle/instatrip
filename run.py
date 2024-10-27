@@ -222,6 +222,7 @@ def read_about():
     """
     Displays the about text for both the company and the developer :)
     """
+    print(" ")
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
         wrap_text(
@@ -818,7 +819,7 @@ def get_airport_codes(sheet):
 
 
 # Credit for help implementing and understanding how to use the API
-# in this function, find_cheapest_flights(), and ask_for_booking(): Mistral AI
+# in this function, find_cheapest_flights(), and ask_for_flight_info(): Mistral AI
 
 def search_ryanair_flights(
     origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0
@@ -859,7 +860,7 @@ def search_ryanair_flights(
 
 
 # Logic to Find the Cheapest Flights Among Those Eligible and Ask User
-# If They Want to Make a Booking
+# If They Want to Generate Ryanair Flight Details
 
 
 def find_cheapest_flights(sheet, top_cities, trip_details):
@@ -933,10 +934,10 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
     return flight_results
 
 
-def ask_for_booking_link(flights_info, trip_details):
+def ask_for_flight_info(flights_info, trip_details):
     """
-    Asks the user if they would like to generate a booking link for any of the
-    displayed flights and allows user to start over if not.
+    Asks the user if they would like to generate full flight information for any of
+    the displayed flights and allows user to start over if not.
     """
     if not flights_info:
         print(
@@ -951,7 +952,7 @@ def ask_for_booking_link(flights_info, trip_details):
     print(
         Style.BRIGHT
         + Fore.MAGENTA
-        + "Would you like to generate a booking for any of these flights?"
+        + "Would you like to see more details for any of these flights?"
         + Style.NORMAL
     )
     for idx, flight in enumerate(flights_info, start=1):
@@ -975,26 +976,46 @@ def ask_for_booking_link(flights_info, trip_details):
             )
             if 1 <= choice <= len(flights_info):
                 selected_flight = flights_info[choice - 1]
-                booking_link = (
-                    f"https://www.ryanair.com/gb/en/booking/home?"
-                    f"departureAirport=DUB&arrivalAirport="
-                    f"{selected_flight['city']}&outboundDate="
-                    f"{trip_details['departure_date']}&adults=1"
-                )
+                os.system("cls" if os.name == "nt" else "clear")
                 print(" ")
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + "Type this URL into your browser"
+                    + "Flight Details:"
                     + Style.NORMAL
                 )
                 print(" ")
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + f"Booking link for {selected_flight['city']}: "
-                    + Fore.CYAN
-                    + f"{booking_link}"
+                    + f"City: {selected_flight['city']}"
+                    + Style.NORMAL
+                )
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + f"IATA: {selected_flight['flight_number']}"
+                    + Style.NORMAL
+                )
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + f"Departure Date: {trip_details['departure_date']}"
+                    + Style.NORMAL
+                )
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + f"Price: {selected_flight['price']} EUR"
+                    + Style.NORMAL
+                )
+                print(" ")
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + "Navigate to www.ryanair.com and enter the above details" 
+                    + " to secure the best price for your trip to "
+                    + f"City: {selected_flight['city']}"
                     + Style.NORMAL
                 )
                 print(" ")
@@ -1004,6 +1025,7 @@ def ask_for_booking_link(flights_info, trip_details):
                 print(
                     Style.BRIGHT + Fore.MAGENTA + "Starting over..." + Style.NORMAL
                 )
+                main()
                 break
             else:
                 print(Fore.RED + "Invalid choice. Please select a number from 1 to 4.")
@@ -1158,7 +1180,7 @@ def main():
                     trip_details
                 )
             os.system("cls" if os.name == "nt" else "clear")    
-            print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
+            print(Style.BRIGHT + Fore.MAGENTA +
                 "\nCheapest Flights Information:" + Style.NORMAL)
             for flight in flights_info: 
                     print(
@@ -1170,7 +1192,7 @@ def main():
                     )
                     print(" ")
 
-            ask_for_booking_link(flights_info, trip_details)
+            ask_for_flight_info(flights_info, trip_details)
             break
 
 
