@@ -701,9 +701,15 @@ Due to the specifications of the mock terminal, responsiveness was not required 
 </details>
 
 <details>
-  <summary>Bug title (click)</summary>
-<img src="assets/documentation/bug1.png">
-<p>Explanation and resolution</p>
+  <summary>TypeError:  Can only concatenate list to list (click)</summary>
+<img src="assets/documentation/bug3.png">
+<p>This was a carelessness error as I tried to concatenate the "options" list with "Style.NORMAL." I removed the latter to solve the error</p>
+</details>
+
+<details>
+  <summary>KeyError: 'regularFare' (click)</summary>
+<img src="assets/documentation/bug4.png">
+<p>Nothing like an eleventh hour bug on a function that's worked dozens of times. Searching flight information for Vilnius, Lithuania seemed to upset the Ryanair API and the "regularFare" key was not found in the "flight" dictionary. To solve this, I wrote an if statement for the code to skip over any flights missing the regularFare key</p>
 </details>
 
 ## Unsolved Bugs
@@ -712,7 +718,16 @@ After implementing the above solutions and running all code through the necessar
 
 ## Further Areas of Note
 
-I have read that the Code Institute mock terminal does not function properly in Safari. I have been unable to test this myself on a laptop or desktop as I own Windows devices. I can attest that the program does not perform properly on mobile Safari on iPhone, but that is also the case with mobile Chrome. I was not able to implement a solution for this issue as it appears to stem from the terminal and not this program
+- I have read that the Code Institute mock terminal does not function properly in Safari. I have been unable to test this myself on a laptop or desktop as I own Windows devices. I can attest that the program does not perform properly on mobile Safari on iPhone, but that is also the case with mobile Chrome. I was not able to implement a solution for this issue as it appears to stem from the terminal and not this program
+
+- I was unaware until I first deployed my project that Heroku would not allow link generation within the CLI terminal. I began the program with the intention of providing a booking link for users and had already written the function, ask_for_booking(), which was functional in my GitPod IDE. I had also included a link to a staycation article for the exit screen: 
+
+<details>
+  <summary>Creating a link worked in the IDE but not Heroku (click)</summary>
+<img src="assets/documentation/bug5a.png">
+<img src="assets/documentation/bug5b.png">
+<p>I have now simply instructed the user to type either the staycation URL into their browser or to search [ryanair.com](https://www.ryanair.com) with the provided flight information</p>
+</details>
 
 # Deployment
 
