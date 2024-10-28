@@ -453,11 +453,16 @@ The Python de-linter----
 | How many days do you plan to stay? | Enter various incorrect numbers, letters/words, press *Enter*  | Exception message and redirection | Pass |
 | How many days do you plan to stay? | Enter a number between 1 and 59  | Calls type_of_trip() | Pass |
 | **Travel Preferences**  |
+| Please enter the most applicable choice for your trip (1-4) | Test | Expected Response | Pass |
 | Feature | Test | Expected Response | Pass |
-| Feature | Test | Expected Response | Pass |
+| Select up to three important factors | Test | Expected Response | Pass |
+| Select up to three important factors | Test | Expected Response | Pass |
 | **Curated Destinations**  |
-| Feature | Test | Expected Response | Pass |
-| Feature | Test | Expected Response | Pass |
+| Are you happy with these cities? (1,2, or 3) | Test | Expected Response | Pass |
+| Are you happy with these cities? (1,2, or 3) | Test | Expected Response | Pass |
+| Are you happy with these cities? (1,2, or 3) | Test | Expected Response | Pass |
+| Are you happy with these cities? (1,2, or 3) | Test | Expected Response | Pass |
+| Are you happy with these cities? (1,2, or 3) | Test | Expected Response | Pass |
 | **Safety and Accessibility Preferences**  |
 | Feature | Test | Expected Response | Pass |
 | Feature | Test | Expected Response | Pass |
@@ -472,7 +477,7 @@ The Python de-linter----
 ### Feature Testing Images
 
 <details>
-  <summary>Testing the Welcome Screen(click)</summary> 
+  <summary>Testing the Welcome Screen (click)</summary> 
 <p align="center">
 <img src="assets/documentation/welcomeex.png" height="450px">
 </p>
@@ -480,17 +485,20 @@ The Python de-linter----
 - User input is validated and no alphanumeric entry or keypress other than **1, 2**, or **3** is accepted
 - Incorrect input results in a request for correct input
 
+</details>
+
 <details>
-  <summary>Testing the About Screen(click)</summary> 
+  <summary>Testing the About Screen (click)</summary> 
 <p align="center">
 <img src="assets/documentation/aboutex.png" height="450px">
 </p>
 
 - User input is validated and no alphanumeric entry or keypress other than pressing **1** is accepted
 - Incorrect input results in a request for correct input
+</details>
 
 <details>
-  <summary>Testing the Exit Screen(click)</summary> 
+  <summary>Testing the Exit Screen (click)</summary> 
 <p align="center">
 <img src="assets/documentation/exitex.png" height="450px">
 </p>
@@ -498,61 +506,85 @@ The Python de-linter----
 - User input is validated and no alphanumeric entry or keypress other than pressing **Enter** is accepted
 - Incorrect input results in a request for correct input
 
+</details>
+
 <details>
-  <summary>Testing the Departure Details Section(click)</summary> 
+  <summary>Testing the Departure Details Section (click)</summary> 
 <p align="center">
 <img src="assets/documentation/departureex1.png" height="450px">
 <img src="assets/documentation/departureex2.png" height="450px">
 <img src="assets/documentation/departureex3.png" height="450px">
 </p>
 
-- Feature action 1
-- Feature action 2
+- User input is validated and no alphanumeric entry or keypress outside of the specified format is accepted
+- Incorrect input results in a request for correct input
+
+</details>
 
 <details>
-  <summary>Testing the Travel Preferences Section(click)</summary> 
+  <summary>Testing the Travel Preferences Section (click)</summary> 
 <p align="center">
-<img src="assets/documentation/" height="450px">
+<img src="assets/documentation/preferencesex1.png" height="450px">
+<img src="assets/documentation/preferencesex2.png" height="450px">
 </p>
 
-- Feature action 1
-- Feature action 2
+- User input is validated and no alphanumeric entry or keypress outside of the specified format is accepted
+- Incorrect input results in a request for correct input
+
+</details>
 
 <details>
-  <summary>Testing the Destinations Section(click)</summary> 
+  <summary>Testing the Destinations Section (click)</summary> 
 <p align="center">
-<img src="assets/documentation/" height="450px">
+<img src="assets/documentation/curatedex.png" height="450px">
+<img src="assets/documentation/curatedex2.png" height="450px">
+<img src="assets/documentation/curatedex3.png" height="450px">
+<img src="assets/documentation/curatedex4.png" height="450px">
 </p>
 
-- Feature action 1
-- Feature action 2
+- User input is validated and no alphanumeric entry or keypress outside of the specified format is accepted
+- Incorrect input results in a request for correct input
+- User may choose to generate new cities and receives three new cities
+- User may return to previous selection, request new selection, proceed to Safety preferences, or start over
+
+</details>
 
 <details>
-  <summary>Testing the Safety and Accessibility Preferences Section(click)</summary> 
+  <summary>Testing the Safety and Accessibility Preferences Section (click)</summary> 
 <p align="center">
-<img src="assets/documentation/" height="450px">
+<img src="assets/documentation/safetyex1.png" height="450px">
+<img src="assets/documentation/safetyex2.png" height="450px">
 </p>
 
-- Feature action 1
-- Feature action 2
+- User input is validated and no alphanumeric entry or keypress outside of the specified format is accepted
+- Incorrect input results in a request for correct input
+
+</details>
 
 <details>
-  <summary>Testing the Flight Information Section(click)</summary> 
+  <summary>Testing the Flight Information Section (click)</summary> 
 <p align="center">
-<img src="assets/documentation/" height="450px">
+<img src="assets/documentation/flightex1.png" height="450px">
+<img src="assets/documentation/flightex2.png" height="450px">
 </p>
 
-- Feature action 1
-- Feature action 2
+- Flight information is generated for the user's final choice of cities
+- User input is validated and no alphanumeric entry or keypress outside of the specified format is accepted
+- Incorrect input results in a request for correct input
+
+</details>
 
 <details>
-  <summary>Testing the Final Flight Details Section(click)</summary> 
+  <summary>Testing the Final Flight Details Section (click)</summary> 
 <p align="center">
-<img src="assets/documentation/" height="450px">
+<img src="assets/documentation/finalflightex.png" height="450px">
 </p>
 
-- Feature action 1
-- Feature action 2
+- User input is validated and no alphanumeric entry or keypress outside of the specified format is accepted
+- Incorrect input results in a request for correct input
+- The user successfully returns to Main Menu after pressing *Enter*
+
+</details>
 
 ### HTML Validation
 - [W3C HTML Validator](https://validator.w3.org/) -
@@ -602,66 +634,6 @@ This website was developed with special consideration for accessibility through 
 
 if applicable
 
-<details>
-  <summary>Screenshots of each area of the site as tested on Am I Responsive? (click)</summary>
-   <p align="center">
-   <img src="assets/documentation/" width="500px">
-   <img src="assets/documentation/" width="500px">
-   <img src="assets/documentation/" width="500px">
-   <img src="assets/documentation/" width="500px">
-   <img src="assets/documentation/" width="500px">
-   <img src="assets/documentation/" width="500px">
-   </p>
-</details>
-<details>
-  <summary>Screenshots of each area of the site as tested on my own device, iPhone 13Pro (click)</summary>
-   <p align="center">
-   <img src="assets/documentation/iphone13a.png" height="450px">
-   <img src="assets/documentation/iphone13b.png" height="450px">
-   <img src="assets/documentation/iphone13c.png" height="450px">
-   <img src="assets/documentation/iphone13d.png" height="450px">
-   <img src="assets/documentation/iphone13e.png" height="450px">
-   <img src="assets/documentation/iphone13f.png" height="450px">
-   </p>
-</details>
-
-<details>
-  <summary>Screenshots of each area of the site as tested on iPhone 11 (click)</summary>
-  <p align="center">
-   <img src="assets/documentation/iphone11a.PNG" height="450px">
-   <img src="assets/documentation/iphone11b.PNG" height="450px">
-   <img src="assets/documentation/iphone11c.PNG" height="450px">
-   <img src="assets/documentation/iphone11d.PNG" height="450px">
-   <img src="assets/documentation/iphone11e.PNG" height="450px">
-   <img src="assets/documentation/iphone11f.PNG" height="450px">
-   </p>
-</details>
-
-<details>
-  <summary>Screenshots of each area of the site as tested on HP Elitebook (click)</summary>
-   <p align="center">
-   <img src="assets/documentation/laptop1a.png" width="500px">
-   <img src="assets/documentation/laptop1b.png" width="500px">
-   <img src="assets/documentation/laptop1c.png" width="500px">
-   <img src="assets/documentation/laptop1d.png" width="500px">
-   <img src="assets/documentation/laptop1e.png" width="500px">
-   <img src="assets/documentation/laptop1f.png" width="500px">
-  </p>
-   
-</details>
-
-<details>
-  <summary>Screenshots of each area of the site as tested on Dell Latitude 5430 (1920px x 1080px) (click)</summary>
-  <p align="center">
-   <img src="assets/documentation/laptop2a.png" width="500px">
-   <img src="assets/documentation/laptop2b.png" width="500px">
-   <img src="assets/documentation/laptop2c.png" width="500px">
-   <img src="assets/documentation/laptop2d.png" width="500px">
-   <img src="assets/documentation/laptop2e.png" width="500px">
-   <img src="assets/documentation/laptop2f.png" width="500px">
-  </p>
-</details>
-
 # Bugs
 
 ## Solved Bugs
@@ -674,7 +646,7 @@ if applicable
 
 ## Unsolved Bugs
 
-After implementing the above solutions and running all code through the necessary validators, I am pleased to report no remaining bugs
+After implementing the above solutions and running all code through the necessary validators, I am pleased to report no bugs remain
 
 ## Further Areas of Note
 
