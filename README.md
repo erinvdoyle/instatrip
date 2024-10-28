@@ -21,10 +21,10 @@ Don't forget your passport!
 - [Project](#project)
   - [How to Use InstaTrip](#how-to-use-instatrip)
   - [Target Audience](#target-audience)
+- [User Experience](#user-experience)
   - [User Stories](#user-stories)
   - [Site Owner's Goal](#site-owners-goal)
   - [Features to Achieve the goals](#features-to-achieve-the-goals)
-- [User Experience](#user-experience)
   - [Program Structure](#program-structure)
   - [Flowchart](#flowchart)
   - [Database Structure](#database-structure)
@@ -64,6 +64,8 @@ This program was created for Portfolio Project #3 (Python) for The Code Institut
 **InstaTrip** is intended for adults (and young people with parental supervision) of all walks of life, based in Ireland and/or within reasonable travelling distance to Dublin airport-- people who would like to explore spontaneous European travel. 
 
 This program is designed to inspire joy. From the colors to the playful tone, whether the user is landlocked or ready for takeoff, **InstaTrip**  is for anyone who'd like a change of pace as it encourages the feelings of excitement and anticipation that accompany planning a big trip. It's to be used as inspiration, for fun, or to plot the next great escape from daily routine :sparkles:
+
+# User Experience
 
 ## User Stories
    <details>
@@ -124,9 +126,6 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
     - User errors are handled at each stage of input with clear feedback so that the user can find cities and coinciding flights without issue
 
 </details>
-
-
-# User Experience
 
 ## Program Structure
 
@@ -423,9 +422,34 @@ The final step of the program is to print the flight details of the user's chose
 
 - I ran the views.html page housing the terminal through the [W3 validator](https://validator.w3.org/) after changing the background. Thankfully, this adjustment caused no errors and the page passed validation through the W3C validators for html and CSS
 
-- JavaScript for this project has been provides by Code Institute and has not been altered from the base code; I have not validated it
+- JavaScript for this project has been provided by Code Institute and has not been altered from the base code; I have not validated it
 
 - The [PEP8](https://pep8ci.herokuapp.com/) Python de-linter helped me de-lint (and caused some initial concern!) my codes at several points along development
+
+### HTML Validation
+- [W3C HTML Validator](https://validator.w3.org/) -
+<details>
+    <summary>HTML Validation Screenshot (click)</summary>
+     <img src="assets/documentation/htmlvalid.png">
+     <p>No errors were returned</p>
+  </details>
+
+### CSS Validation
+- [W3C CSS Validator](https://validator.w3.org/) -
+<details>
+    <summary>HTML Validation Screenshot (click)</summary>
+     <img src="assets/documentation/cssvalid.png">
+     <p>No errors were returned</p>
+  </details>  
+
+### Python Validation
+- [PEP8 Python De-Linter](https://) -
+<details>
+    <summary>Python Validation Screenshot (click)</summary>
+     <img src="assets/documentation/">
+     <img src="assets/documentation/">
+     <p>No errors returned. etc</p>
+  </details>
 
 
 ## Feature Testing 
@@ -484,6 +508,8 @@ The final step of the program is to print the flight details of the user's chose
 </details>
 
 ### Feature Testing Images
+
+Exception handling has been implemented to ensure smooth user interactions, validating all inputs and preventing errors or misdirection. These feature testing images reflect that input handling process
 
 <details>
   <summary>Testing the Welcome Screen (click)</summary> 
@@ -595,51 +621,27 @@ The final step of the program is to print the flight details of the user's chose
 
 </details>
 
-### HTML Validation
-- [W3C HTML Validator](https://validator.w3.org/) -
-<details>
-    <summary>HTML Validation Screenshot (click)</summary>
-     <img src="assets/documentation/">
-     <p>No errors were returned</p>
-  </details>
-
-### CSS Validation
-- [W3C CSS Validator](https://validator.w3.org/) -
-<details>
-    <summary>HTML Validation Screenshot (click)</summary>
-     <img src="assets/documentation/">
-     <p>No errors were returned</p>
-  </details>  
-
-### Python Validation
-- [PEP8 Python De-Linter](https://) -
-<details>
-    <summary>Python Validation Screenshot (click)</summary>
-     <img src="assets/documentation/">
-     <img src="assets/documentation/">
-     <p>No errors returned. etc</p>
-  </details>
-
 ## Additional Testing
 
 ### Lighthouse
 
 <details>
-  <summary>Lighthouse Test Results: Mobile (click)</summary> 
-<img src="assets/documentation/">
-</details>
+  <summary>Lighthouse Test Results: Mobile and Desktop (click)</summary> 
+<img src="assets/documentation/lighthousemobile.png">
+<img src="assets/documentation/lighthousedesk.png">
 
-<details>
-  <summary>Lighthouse Test Results: Desktop (click)</summary> 
-<img src="assets/documentation/">
+<p>The site scores well with Lighthouse with scores of 100 for acessibility and SEO and a 96 for best practices </p>
+
 </details>
 
 ### WAVE Testing
 
 <details>
   <summary>WAVE Web Accessibility Evaluation Tool (click)</summary> 
-<img src="assets/documentation/">
-<p>Explanation</p>
+<img src="assets/documentation/wave.png">
+
+<p>No errors found with WAVE testing; the site performs well for accessibility with good contrast and use of aria labels</p>
+
 </details>
 
 ### Accessibility
