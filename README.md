@@ -363,6 +363,7 @@ The final step of the program is to print the flight details of the user's chose
 - [Python](https://www.python.org/) - Provides application functionality
 - [html](https://developer.mozilla.org/en-US/docs/Web/HTML) - Provides the template for the mock terminal
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - Styles the template, including the chosen background image
+- [JavaScript](https://www.javascript.com/) - Provides the script which runs the mock terminal in the browser
 
 ## Libraries, Programs, and Tools
 
@@ -405,19 +406,26 @@ The final step of the program is to print the flight details of the user's chose
 
 ## Code Validation
 
-| W3 Validator | views.html | 
+| W3C Validator | views.html | 
 |--------------|------------|
 | html         | Pass       |
 
 
-| Python De-linter | run.py | 
+| W3C Validator | views.html | 
+|--------------|------------|
+| CSS         | Pass       |
+
+
+| PEP8 Python De-linter | run.py | 
 |--------------|------------|
 | python         | Pass       |
 
 
-I ran the views.html page housing the terminal through the W3 validator after changing the background. Thankfully, this adjustment caused no errors and the page passed validation.
+- I ran the views.html page housing the terminal through the [W3 validator](https://validator.w3.org/) after changing the background. Thankfully, this adjustment caused no errors and the page passed validation through the W3C validators for html and CSS
 
-The Python de-linter----
+- JavaScript for this project has been provides by Code Institute and has not been altered from the base code; I have not validated it
+
+- The [PEP8](https://pep8ci.herokuapp.com/) Python de-linter helped me de-lint (and caused some initial concern!) my codes at several points along development
 
 
 ## Feature Testing 
@@ -595,8 +603,16 @@ The Python de-linter----
      <p>No errors were returned</p>
   </details>
 
+### CSS Validation
+- [W3C CSS Validator](https://validator.w3.org/) -
+<details>
+    <summary>HTML Validation Screenshot (click)</summary>
+     <img src="assets/documentation/">
+     <p>No errors were returned</p>
+  </details>  
+
 ### Python Validation
-- [Python -- Validator](https://) -
+- [PEP8 Python De-Linter](https://) -
 <details>
     <summary>Python Validation Screenshot (click)</summary>
      <img src="assets/documentation/">
@@ -627,13 +643,16 @@ The Python de-linter----
 </details>
 
 ### Accessibility
-This website was developed with special consideration for accessibility through the following methods:
-- Accessibility methods
-- Accessibility methods 2
+
+- I have added meta data to the head of the views.html page
+
+- Accessibility preferences are considered in the program's city safety and accessibility rankings in the Google Sheet and the user is asked to rank the importance of accessibility factors so that the program may determine which cities are most suitable
 
 ### Manual Testing
 
-if applicable
+- This program was tested on my and my husband's latops and performed as designed
+
+- Testing on mobile was also performed but I quickly determined that the mock terminal does not perform as expected on mobile devices
 
 # Bugs
 
