@@ -75,12 +75,12 @@ def colored_instatrip():
     """
     Makes InstaTrip ASCII text tri-colored
     """
-    # Split the ASCII text into three sections and 
+    # Split the ASCII text into three sections and
     # display each section in a different color
     total_lines = len(insta_trip_text)
     top_lines = insta_trip_text[: total_lines // 3]
-    middle_lines = insta_trip_text[total_lines // 3 : 2 * total_lines // 3]
-    bottom_lines = insta_trip_text[2 * total_lines // 3 :]
+    middle_lines = insta_trip_text[total_lines // 3: 2 * total_lines // 3]
+    bottom_lines = insta_trip_text[2 * total_lines // 3:]
 
     top_lines = center_text(top_lines)
     middle_lines = center_text(middle_lines)
@@ -100,14 +100,16 @@ def center_text(text):
     """
     # Get the terminal width and center the text within the terminal width
     terminal_width = os.get_terminal_size().columns
-    
+
     # Check if the input is a list
-    # (Credit: Mistral AI for help creating a centered text function that works for lists)
-    
+    # (Credit: Mistral AI for help creating a centered text function that
+    # works for lists)
+
     if isinstance(text, list):
         text = "\n".join(text)
 
-    centered_lines = [line.center(terminal_width) for line in text.splitlines()]
+    centered_lines = [line.center(
+        terminal_width) for line in text.splitlines()]
     return centered_lines
 
 
@@ -116,7 +118,8 @@ DEFAULT_COLOR = Fore.LIGHTMAGENTA_EX
 
 def print_with_default_color(text):
     """
-    Prints text in the default color so that it can be applied to the Main Menu List
+    Prints text in the default color so that it can be
+    applied to the Main Menu List
     """
     print(DEFAULT_COLOR + text + Style.RESET_ALL)
 
@@ -175,11 +178,13 @@ def greeting():
         + " Welcome to Instatrip, your booking bestie :palm_tree:\n"
     )
     first_message = (
-        Fore.YELLOW + "First we'll ask you a few questions about your travel dates \n"
+        Fore.YELLOW
+        + "First we'll ask you a few questions about your travel dates \n"
     )
     fun_part_message = emoji.emojize(
         Fore.LIGHTMAGENTA_EX
-        + "Then we'll get to the fun part: :crystal_ball:  Selecting your next trip!\n"
+        + "Then we'll get "
+        + "to the fun part: :crystal_ball:  Selecting your next trip!\n"
     )
     get_started_message = (
         Fore.YELLOW + "Grab your suitcase, we're about to get started...\n"
