@@ -963,13 +963,14 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
                 cheapest_flight = None
                 for trip in flight_data["data"]["trips"]:
                     for date in trip["dates"]:
-                        for flight in date["flights"]:
-                            if (
-                                not cheapest_flight
-                                or flight["regularFare"]["fares"][0]["amount"]
-                                < cheapest_flight["regularFare"]["fares"][0]["amount"]
-                            ):
-                                cheapest_flight = flight
+                       for flight in date["flights"]:
+                            if "regularFare" in flight:
+                                if (
+                                    not cheapest_flight
+                                    or flight["regularFare"]["fares"][0]["amount"]
+                                    < cheapest_flight["regularFare"]["fares"][0]["amount"]
+                                ):
+                                    cheapest_flight = flight
 
                 # Add the flight information to the results list
                 if cheapest_flight:
