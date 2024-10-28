@@ -1036,10 +1036,14 @@ def ask_for_flight_info(flights_info, trip_details):
             f"{flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL
         )
 
-    print(Style.BRIGHT + Fore.MAGENTA + "4. See flight information for all three cities" 
+    print(Style.BRIGHT + Fore.MAGENTA + "4. See booking instructions for all cities" 
     + Style.NORMAL)
     print(Style.BRIGHT + Fore.MAGENTA + "5. Start over" + Style.NORMAL)
     print(" ")
+    print(
+    "Occasionally, booking information may be unavailable at the time of your request, "
+    + "and InstaTrip will be unable to provide booking instructions for that city."
+    )
 
     # Get the user's choice and handle any errors
     while True:
@@ -1117,7 +1121,7 @@ def ask_for_flight_info(flights_info, trip_details):
                 while True:
                     restart_choice = input(
                         Style.BRIGHT + Fore.MAGENTA + 
-                        "\nPress Enter to return to Main Menu or type 'all' to see flight information for all three cities: " 
+                        "\nPress Enter to return to Main Menu or type 'all' to see booking instructions for all cities: " 
                         + Style.NORMAL
                     )
                     if restart_choice == "":
@@ -1192,7 +1196,7 @@ def ask_for_flight_info(flights_info, trip_details):
                                 print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu")
                     else:
                         print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu "
-                        + "or type 'all' to see flight information for all three cities")
+                        + "or type 'all' to see booking instructions for all cities")
 
             # If the user chooses to see flight information for all three cities, display
             #  the flight details for each city
