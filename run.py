@@ -453,9 +453,9 @@ def type_of_trip():
     ]
 
     # Print the trip type options
-    colored_options = [Style.BRIGHT + Fore.LIGHTMAGENTA_EX + option for option in options + Style.NORMAL]
+    colored_options = [Style.BRIGHT + Fore.LIGHTMAGENTA_EX + option for option in options]
     for i, option in enumerate(colored_options, start=1):
-        print(Style.BRIGHT + Fore.LIGHTMAGENTA_EX + f"{i}. {option}" + Style.NORMAL)
+        print(Style.BRIGHT + Fore.LIGHTMAGENTA_EX + f"{i}. {option}")
 
     # Get the user's choice
     while True:
