@@ -428,21 +428,89 @@ The Python de-linter----
 
  <summary>A Table of Feature Tests (click)</summary>
 
-| Feature                     | Test Case                 | Outcome                   |
-|-----------------------------|---------------------------|---------------------------|
-| Favicon | Load Site | Icon and title appear in tab |
-| **Section 1**  |
-| Feature | Test | Outcome |
-| Feature | Test | Outcome |
-| **Section 2**  |
-| Feature | Test | Outcome |
-| Feature | Test | Outcome |
+| Feature                     | Test Case                 | Expected Response                   | Outcome                   |
+|-----------------------------|---------------------------|---------------------------|---------------------------|
+| Favicon | Load Site | Palm Tree icon and title appear in tab | Pass
+| **Welcome Screen**  |
+| "Please choose an option (1, 2 or 3)" | Enter various numbers, letters/words, press *Enter* | Exception message and redirection  | Pass |
+| "Please choose an option (1, 2 or 3)" | Enter 1 | Calls greeting() | Pass |
+| "Please choose an option (1, 2 or 3)" | Enter 2 | Calls read_about() | Pass |
+| "Please choose an option (1, 2 or 3)" | Enter 3 | Calls exit() | Pass |
+| **About Screen 2**  |
+| "Enter 1 to return to Main Menu | Enter various numbers, letters/words, press *Enter* | Exception message and redirection | Pass | 
+| "Enter 1 to return to Main Menu | Enter 1 | Calls display_menu() | Pass | 
+| **Exit Screen**  |
+| Press *Enter* to return to main menu | Enter various numbers, letters/words | Exception message and redirection | Pass |
+| Press *Enter*to return to main menu | Press *Enter* | Calls display_menu() | Pass |
+| **Departure Details**  |
+| Please enter a date in YYYY-DD-MM format | Enter various numbers, letters/words, press *Enter* | Exception message and redirection | Pass |
+| Please enter a date in YYYY-DD-MM format | Enter a valid date | User asked for flexibility_response | Pass |
+| Are you flexible with your departure date? Yes/no | Enter various numbers, letters/words, press *Enter* | Exception message and redirection | Pass |
+| Are you flexible with your departure date? Yes/no | Enter Yes | Ask user for flexibility_days | Pass |
+| Are you flexible with your departure date? Yes/no | Enter No |  Ask user for length_of_stay | Pass |
+| How many days of departure flexibility do you have? | Enter various numbers, letters/words, press *Enter*  | Exception message and redirection | Pass |
+| How many days of departure flexibility do you have? | Enter 1, 2, or 3 | Ask user for length_of_stay | Pass |
+| How many days do you plan to stay? | Enter various incorrect numbers, letters/words, press *Enter*  | Exception message and redirection | Pass |
+| How many days do you plan to stay? | Enter a number between 1 and 59  | Calls type_of_trip() | Pass |
+| **Travel Preferences**  |
+| Feature | Test | Expected Response | Pass |
+| Feature | Test | Expected Response | Pass |
+| **Curated Destinations**  |
+| Feature | Test | Expected Response | Pass |
+| Feature | Test | Expected Response | Pass |
+| **Safety and Accessibility Preferences**  |
+| Feature | Test | Expected Response | Pass |
+| Feature | Test | Expected Response | Pass |
+| **Flight Information**  |
+| Feature | Test | Expected Response | Pass |
+| Feature | Test | Expected Response | Pass |
+| **Final Flight Details**  |
+| Feature | Test | Expected Response | Pass |
+| Feature | Test | Expected Response | Pass |
 </details>
 
 ### Feature Testing Images
 
 <details>
-  <summary>Testing the --(click)</summary> 
+  <summary>Testing the Welcome Screen(click)</summary> 
+<p align="center">
+<img src="assets/documentation/welcomeex.png" height="450px">
+</p>
+
+- User input is validated and no alphanumeric entry or keypress other than **1, 2**, or **3** is accepted
+- Incorrect input results in a request for correct input
+
+<details>
+  <summary>Testing the About Screen(click)</summary> 
+<p align="center">
+<img src="assets/documentation/aboutex.png" height="450px">
+</p>
+
+- User input is validated and no alphanumeric entry or keypress other than pressing **1** is accepted
+- Incorrect input results in a request for correct input
+
+<details>
+  <summary>Testing the Exit Screen(click)</summary> 
+<p align="center">
+<img src="assets/documentation/exitex.png" height="450px">
+</p>
+
+- User input is validated and no alphanumeric entry or keypress other than pressing **Enter** is accepted
+- Incorrect input results in a request for correct input
+
+<details>
+  <summary>Testing the Departure Details Section(click)</summary> 
+<p align="center">
+<img src="assets/documentation/departureex1.png" height="450px">
+<img src="assets/documentation/departureex2.png" height="450px">
+<img src="assets/documentation/departureex3.png" height="450px">
+</p>
+
+- Feature action 1
+- Feature action 2
+
+<details>
+  <summary>Testing the Travel Preferences Section(click)</summary> 
 <p align="center">
 <img src="assets/documentation/" height="450px">
 </p>
@@ -450,6 +518,8 @@ The Python de-linter----
 - Feature action 1
 - Feature action 2
 
+<details>
+  <summary>Testing the Destinations Section(click)</summary> 
 <p align="center">
 <img src="assets/documentation/" height="450px">
 </p>
@@ -457,10 +527,32 @@ The Python de-linter----
 - Feature action 1
 - Feature action 2
 
+<details>
+  <summary>Testing the Safety and Accessibility Preferences Section(click)</summary> 
 <p align="center">
 <img src="assets/documentation/" height="450px">
 </p>
-</details>
+
+- Feature action 1
+- Feature action 2
+
+<details>
+  <summary>Testing the Flight Information Section(click)</summary> 
+<p align="center">
+<img src="assets/documentation/" height="450px">
+</p>
+
+- Feature action 1
+- Feature action 2
+
+<details>
+  <summary>Testing the Final Flight Details Section(click)</summary> 
+<p align="center">
+<img src="assets/documentation/" height="450px">
+</p>
+
+- Feature action 1
+- Feature action 2
 
 ### HTML Validation
 - [W3C HTML Validator](https://validator.w3.org/) -
