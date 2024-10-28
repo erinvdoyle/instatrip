@@ -1035,7 +1035,8 @@ def ask_for_flight_info(flights_info, trip_details):
             f"{flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL
         )
 
-    print(Style.BRIGHT + Fore.MAGENTA + "4. Start over" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.MAGENTA + "4. See flight information for all three cities" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.MAGENTA + "5. Start over" + Style.NORMAL)
     print(" ")
 
     # Get the user's choice and handle any errors
@@ -1045,12 +1046,11 @@ def ask_for_flight_info(flights_info, trip_details):
                 input(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + "Please choose an option (1-4): "
+                    + "Please choose an option (1-5): "
                     + Style.NORMAL
                 )
             )
-            # If the user chooses a flight, display the flight details and 
-            # ask if they want to restart the program
+            # If the user chooses a flight, display the flight details and ask if they want to restart the program
             if 1 <= choice <= len(flights_info):
                 selected_flight = flights_info[choice - 1]
                 os.system("cls" if os.name == "nt" else "clear")
@@ -1082,13 +1082,13 @@ def ask_for_flight_info(flights_info, trip_details):
                 )
                 print(
                     Fore.YELLOW
-                    + f"Departure Time: {flight['departure_time']}"
+                    + f"Departure Time: {selected_flight['departure_time']}"
                     + Style.NORMAL
                 )
                 print(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + f"Arrival Time: {flight['arrival_time']}"
+                    + f"Arrival Time: {selected_flight['arrival_time']}"
                     + Style.NORMAL
                 )
                 print(
@@ -1119,17 +1119,74 @@ def ask_for_flight_info(flights_info, trip_details):
                     else:
                         print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu")
 
-            # If the user chooses to start over, print a message and return True
+            # If the user chooses to see flight information for all three cities, display the flight details for each city
             elif choice == 4:
+                os.system("cls" if os.name == "nt" else "clear")
+                print(" ")
+                print(
+                    Style.BRIGHT
+                    + Fore.YELLOW
+                    + "Flight Details:"
+                    + Style.NORMAL
+                )
+                print(" ")
+                for flight in flights_info:
+                    print(
+                        Style.BRIGHT
+                        + Fore.MAGENTA
+                        + f"City: {flight['city']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Style.BRIGHT
+                        + Fore.MAGENTA
+                        + f"Flight Number: {flight['flight_number']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Fore.YELLOW
+                        + f"Departure Date: {trip_details['departure_date']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Fore.YELLOW
+                        + f"Departure Time: {flight['departure_time']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Style.BRIGHT
+                        + Fore.MAGENTA
+                        + f"Arrival Time: {flight['arrival_time']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Style.BRIGHT
+                        + Fore.MAGENTA
+                        + f"Price: {flight['price']} EUR"
+                        + Style.NORMAL
+                    )
+                    print(" ")
+
+                while True:
+                    restart_choice = input(
+                        Style.BRIGHT + Fore.MAGENTA + "\nPress Enter to return to Main Menu " + Style.NORMAL
+                    )
+                    if restart_choice == "":
+                        return True  # Return True to indicate that the program should restart
+                    else:
+                        print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu")
+
+            # If the user chooses to start over, print a message and return True
+            elif choice == 5:
                 print(
                     Style.BRIGHT + Fore.MAGENTA + "Returning to Main Menu..." + Style.NORMAL
                 )
                 time.sleep(2)
-                return True  
+                return True
 
             # If the user enters an invalid choice, print an error message
             else:
-                print(Fore.RED + "Invalid choice. Please select a number from 1 to 4.")
+                print(Fore.RED + "Invalid choice. Please select a number from 1 to 5.")
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
 

@@ -259,12 +259,14 @@ The *Exit* screen features ASCII Art of a tropical beach scene and a url for a s
 
 ## Greeting Message
 
-When the user chooses *Start*, a greeting message welcomes them and explains the premise of InstaTrip. The program then advances to collect departure details
+When the user chooses *Start*, a greeting message welcomes them and explains the premise of InstaTrip. The sleep.time method allows a sequential loading of each line of text to greet the user, preventing a cluttered block of text on the CLI and giving the message a friendly, conversational feel
 
 
 <p align="center">
 <img src="assets/documentation/greeting.png" height="450px"/>
 </p>
+
+The screen then clears and the program advances to collect the user's departure details.
 
 ## Departure Details
 
@@ -299,7 +301,7 @@ These preferences are used to determine which of the cities stored in the Google
 
 ## Curated Destinations
 
-Now that departure details and travel preferences have been collected, the user is offered three potential vacation cities
+Now that departure details and travel preferences have been collected, the screen clears for a drumroll effect, and the user is offered three potential vacation cities
 
 <p align="center">
 <img src="assets/documentation/curated1.png" height="450px"/>
