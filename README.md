@@ -50,7 +50,7 @@ Don't forget your passport!
 
 # Project 
 
-This program was created for Portfolio Project #3 (Python Essentials) for The Code Institute Full Stack Software Developer program
+This program was created for Portfolio Project #3 (Python) for The Code Institute Full Stack Software Developer program
 
 ## How to Use InstaTrip
 
@@ -650,9 +650,9 @@ The final step of the program is to print the flight details of the user's chose
 
 ### Manual Testing
 
-- This program was tested on my and my husband's latops and performed as designed
+- This program was tested on my and my husband's latops-- HP Elitebook and Dell Latitude 5430-- and performed as designed
 
-- Testing on mobile was also performed but I quickly determined that the mock terminal does not perform as expected on mobile devices
+- Testing on mobile was also performed but I quickly determined that the provided mock terminal does not perform as expected on mobile devices
 
 # Bugs
 
@@ -695,13 +695,23 @@ I have read that the Code Institute mock terminal does not function properly in 
   <summary>How to Deploy with Heroku(click)</summary> 
 <p>
 
-This site was deployed through Heroku [/?](https://)
+This site was deployed through [Heroku](https://www.heroku.com/)
 
-1. Instructions 1
+1. Sign up for a Heroku account and log in
+2. On the dashboard, select New and then choose Create new app
+3. Choose a unique app name, pick a region, and click Create app
+4. Open the Settings tab within the newly created app
+5. In the Config Vars section, click Reveal Config Vars
+6. To enable Google Sheets, add a config variable with the key CREDS and paste the contents of the creds.json file as the value
+7. Add another config variable, setting PORT as the key and 8000 as the value
+8. Under Config Vars, click Add buildpack. Choose Python and save it, then add another buildpack, selecting Node.js. Make sure the buildpacks appear in this order
+9. Go to the Deploy tab at the top
+10. Select GitHub as the deployment method and connect your GitHub account
+11. Find and connect the repository by searching for its name
+12. Optionally, turn on automatic deploys to trigger deployment whenever updates are pushed to the repository
+13. Finally, click Deploy Branch to deploy the project immediately
 
 ![Heroku Deploy Page 1](assets/documentation/deploy1.png)
-
-2. Instructions 2
 
 ![Heroku Deploy Page 2](assets/documentation/deploy2.png)
 
