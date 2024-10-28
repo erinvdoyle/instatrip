@@ -57,7 +57,7 @@ This program was created for Portfolio Project #3 (Python) for The Code Institut
 1. Navigate to `https://instatrip-ffc10cb98741.herokuapp.com`or [follow this link](https://instatrip-ffc10cb98741.herokuapp.com/)
 2. Click the *Run Program* button at the top of the page
 3. Follow the instructions on the main menu to either read *About* the program or *Start* it
-4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then copy the provided link and purchase the flight from Ryanair, *Start Over* to select new cities, or *Exit* the program
+4. After starting the program, answer the questions and select your vacation preferences. Then choose from the cities presented and receive the cheapest flight for your preferred destination. You may then use the booking details to select and purchase the flight from Ryanair, *Start Over* to select new cities, or *Exit* the program
 
 ## Target Audience
 
@@ -102,6 +102,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
    <details>
    <summary>Site Owner's Goal (click)</summary>
 
+
   - **As the owner of the site**, I want:
     - To deliver a program with a clean, well-planned interface that seamlessly collects user preferences to predict a tailored selection of vacation destinations
     - To connect my users with the best prices for their chosen destinations and with a reputable airline, Ryanair
@@ -113,6 +114,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
 <details>
    <summary>Features to Achieve the Goals (click)</summary>
    
+
   - **Features of the program to achieve user story goals:**
     - The starting screen of the application features a simple main menu for easy navigation
     - The user is walked through the process of entering their departure details and choosing their vacation preferences; every step is explained along the way
@@ -122,7 +124,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
     - A wide range of cities and the ranked suitability of each for all occasion and interest parameters offer the user exposure to many different city suggestions
     - The user is given the opportunity to draw and re-draw sets of destination cities as many times as they wish
     - Flight information is offered for each of the three selected cities so that the user can choose a city with booking details in mind
-    - A url is provided if desired so that the user can book their flight directly with Ryanair
+    - Booking details like flight numher and departure time are provided so that the user can locate and book their flight directly with Ryanair
     - User errors are handled at each stage of input with clear feedback so that the user can find cities and coinciding flights without issue
 
 </details>
@@ -149,12 +151,13 @@ The flow chart for this application was originally designed with pen and paper b
 <details>
 <summary> Instatrip Google Sheet (click) </summary>
 <p align="center">
-  <img src="assets/documentation/googlesheet.png" height="500px"/>
+  <img src="assets/documentation/sheet1.png" height="500px"/>
+  <img src="assets/documentation/sheet2.png" height="500px"/>
   </p>
 
 My introduction to Google Sheets was by Code Institute's extremely helpful *Love Sandwiches* walkthrough project. I have often said to my Business Analyst husband that I am not a "spreadsheet person." I was more than pleasantly surprised by the ease of use incorporating these Sheets into both the walkthrough and my own project, and can now officially designate myself a Sheet Believer :sparkles:
 
-My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17 columns, 15 of which represent the choices for the user's travel preferences; and 32 rows, with each row representing a European city.
+My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17 columns, 15 of which represent the choices for the user's travel preferences; and 43 rows, with each row representing a European city.
 
 The column titles are as follows: City, IATA (airport code), Nightlife, History & Culure, Cuisine, Outdoorsy Experiences, Shopping, Off the Beaten Path Exploration, Romantic Adventure, Solo Travel, Hen or Stag Party, Time with Friends or Family, Overall Safety, Accessibility, Public Transportation, Tourism-Friendliness, and English-Speaking
 
@@ -192,7 +195,7 @@ Once integrated, the API made the program functional (a thrill! :woman_dancing:)
 
 - Once the user has selected their preferred three destinations, they are asked by the *rate_importance()* function to rate the importance of five different safety and accessibility factors. Their answers are then compared with the rankings stored in the Sheet for each city, and *adjust_city_scores()* reorders the final three cities from most suitable to least.
 
-- From here, the user's departure data and the IATA airport codes (stored in the Sheet) for the user's selected cities are passed to the Ryanair API. This is accomplished with these functions: *get_airport_codes(), search_ryanair_flights(),* and *find_cheapest_flights()*. The cheapest applicable flight information for each city is then printed and the user may choose whether to *ask_for_booking()* (a url) or *exit()* the program. 
+- From here, the user's departure data and the IATA airport codes (stored in the Sheet) for the user's selected cities are passed to the Ryanair API. This is accomplished with these functions: *get_airport_codes(), search_ryanair_flights(),* and *find_cheapest_flights()*. The cheapest applicable flight information for each city is then printed and the user may choose whether to *ask_for_flight_info()* or *exit()* the program. 
 
 - *Exit()* prints the exit message and art, a url for a staycation article, and the option to return to the *Main Menu*. 
 </details>
@@ -385,7 +388,7 @@ The final step of the program is to print the flight details of the user's chose
 - [HTTPAdapter](https://pypi.org/project/http-adapter/) - Manages HTTP connections with the Ryanair API
 - [requests](https://pypi.org/project/requests/) - Sends HTTP requests to the Ryanair API
 - [Retry](https://pypi.org/project/retry2/) - Configures automatic retries for failed network requests to the Ryanair API
-- [Ryanair API](https://pypi.org/project/ryanair/) - Provides flight information and booking links
+- [Ryanair API](https://pypi.org/project/ryanair/) - Provides flight information 
 
 #### Other Tools:
 
@@ -424,28 +427,37 @@ The final step of the program is to print the flight details of the user's chose
 
 - JavaScript for this project has been provided by Code Institute and has not been altered from the base code; I have not validated it
 
-- The [PEP8](https://pep8ci.herokuapp.com/) Python de-linter helped me de-lint (and caused some initial concern!) my codes at several points along development
+- The [PEP8](https://pep8ci.herokuapp.com/) Python de-linter helped me de-lint (and caused some initial concern!) my code at several points along development
 
 ### HTML Validation
-- [W3C HTML Validator](https://validator.w3.org/) -
+
 <details>
     <summary>HTML Validation Screenshot (click)</summary>
+
+    [W3C HTML Validator](https://validator.w3.org/)
+
      <img src="assets/documentation/htmlvalid.png">
      <p>No errors were returned</p>
   </details>
 
 ### CSS Validation
-- [W3C CSS Validator](https://validator.w3.org/) -
+
 <details>
     <summary>HTML Validation Screenshot (click)</summary>
+
+    [W3C CSS Validator](https://validator.w3.org/)
+
      <img src="assets/documentation/cssvalid.png">
      <p>No errors were returned</p>
   </details>  
 
 ### Python Validation
-- [PEP8 Python De-Linter](https://) -
+
 <details>
     <summary>Python Validation Screenshot (click)</summary>
+
+    [PEP8 Python De-Linter](https://) 
+
      <img src="assets/documentation/">
      <img src="assets/documentation/">
      <p>No errors returned. etc</p>
@@ -509,7 +521,7 @@ The final step of the program is to print the flight details of the user's chose
 
 ### Feature Testing Images
 
-Exception handling has been implemented to ensure smooth user interactions, validating all inputs and preventing errors or misdirection. These feature testing images reflect that input handling process
+Exception handling has been implemented to ensure smooth user interactions, validating all inputs and preventing errors or misdirection. These feature testing images reflect that input handling process.
 
 <details>
   <summary>Testing the Welcome Screen (click)</summary> 
@@ -648,11 +660,22 @@ Exception handling has been implemented to ensure smooth user interactions, vali
 
 - I have added meta data to the head of the views.html page
 
-- Accessibility preferences are considered in the program's city safety and accessibility rankings in the Google Sheet and the user is asked to rank the importance of accessibility factors so that the program may determine which cities are most suitable
+- Accessibility preferences are considered in the program's city safety and accessibility rankings in the Google Sheet. The user is asked to rank the importance of accessibility factors for their travel preferences so that the program may determine which cities are most suitable
+
+### Browser Compatability
+
+**InstaTrip** has been tested for functionality and appearance in the following browsers on desktop. No visual or functional errors occurred 
+
+ - Google Chrome
+ - Microsoft Edge
+
+### Responsiveness
+
+Due to the specifications of the mock terminal, responsiveness was not required for this project. I have run the program on desktop, laptop, and mobile, and have found that it does not perform properly on mobile devices
 
 ### Manual Testing
 
-- This program was tested on my and my husband's latops-- HP Elitebook and Dell Latitude 5430-- and performed as designed
+- This program was tested on my and my husband's latops, HP Elitebook and Dell Latitude 5430, and performed as designed
 
 - Testing on mobile was also performed but I quickly determined that the provided mock terminal does not perform as expected on mobile devices
 

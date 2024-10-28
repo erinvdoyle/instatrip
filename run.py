@@ -230,7 +230,9 @@ def read_about():
             + "InstaTrip is a travel planning program designed to bring spontaneity "
             + "to the user's next vacation. After asking a few simple questions with "
             + "data compiled by a Google Sheet, the program curates a list of "
-            + "personalized European destinations"
+            + "personalized European destinations. The departure city is currently "
+            + "set to Dublin, Ireland, with the aim of expanding departure cities "
+            + "in the future"
         )
     )
     print("")
@@ -239,7 +241,7 @@ def read_about():
             Fore.YELLOW
             + "For each destination, flight data is retrieved by the Ryanair API, "
             + "showcasing the cheapest available flights. The user may then choose "
-            + "to view detailed flight information and visit the provided url"
+            + "to view detailed flight information and receive booking instructions"
         )
     )
     print("")
@@ -411,6 +413,7 @@ def type_of_trip():
     Determines the occasion for the trip.
     """
     os.system("cls" if os.name == "nt" else "clear")
+    print(" ")
     print(
         Style.BRIGHT
         + Fore.MAGENTA
@@ -424,9 +427,9 @@ def type_of_trip():
         emoji.emojize("Time with Friends or Family :family:"),
     ]
 
-    colored_options = [Fore.LIGHTMAGENTA_EX + option for option in options]
+    colored_options = [Style.BRIGHT + Fore.LIGHTMAGENTA_EX + option for option in options + Style.NORMAL]
     for i, option in enumerate(colored_options, start=1):
-        print(Fore.LIGHTMAGENTA_EX + f"{i}. {option}")
+        print(Style.BRIGHT + Fore.LIGHTMAGENTA_EX + f"{i}. {option}" + Style.NORMAL)
 
     while True:
         try:
@@ -1146,6 +1149,7 @@ def main():
 
         os.system("cls" if os.name == "nt" else "clear")
         selected_trip_type = type_of_trip()
+        
         selected_factors = important_factors()
 
         while True:
