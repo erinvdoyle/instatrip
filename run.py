@@ -233,8 +233,7 @@ def read_about():
     """
     Displays the about text for both the company and the developer :)
     """
-    os.system("cls" if os.name == "nt" else "clear")
-    print("\033[H\033[J") # Manual screen clear
+    print(" ")
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
         wrap_text(
