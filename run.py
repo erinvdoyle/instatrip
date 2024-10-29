@@ -726,8 +726,7 @@ def rate_importance():
         while True:
             try:
                 rating = input(
-                    Style.BRIGHT + Fore.MAGENTA + f"Rate the "
-                    + "importance of {factor} "
+                    Style.BRIGHT + Fore.MAGENTA + f"Rate the importance of {factor} "
                     "(1-5, with 1 being most important): \n" + Style.NORMAL
                 ).strip()
 
@@ -800,13 +799,13 @@ def user_choice_after_ranking(
         )
         print("")
         print(
-            emoji.emojize(
-                Fore.LIGHTCYAN_EX + "1. Yes, let's go! :airplane_departure:"
-            )
+            emoji.emojize(Fore.LIGHTCYAN_EX + "1. Yes, let's "
+                          + "go! :airplane_departure:")
         )
         print(
             emoji.emojize(
-                Fore.LIGHTCYAN_EX + "2. No, let's see another three cities :cross_mark:"
+                Fore.LIGHTCYAN_EX
+                + "2. No, let's see another three cities :cross_mark:"
             )
         )
         print(
@@ -818,8 +817,8 @@ def user_choice_after_ranking(
         if city_history:
             print(
                 emoji.emojize(
-                    Fore.LIGHTCYAN_EX +
-                    "4. Return to previous cities :left_arrow:"
+                    Fore.LIGHTCYAN_EX + "4. Return to previous cities "
+                    + ":left_arrow:"
                 )
             )
 
@@ -842,13 +841,14 @@ def user_choice_after_ranking(
                     emoji.emojize(
                         Style.BRIGHT
                         + Fore.MAGENTA
-                        + "Great! Let's adjust the cities based on your safety "
-                        + "and accessibility \npreferences :service_dog: \n"
-                        + Style.NORMAL
+                        + "Great! Let's adjust the cities based on your "
+                        + "safety and accessibility \npreferences "
+                        + ":service_dog: \n" + Style.NORMAL
                     )
                 )
 
                 user_ratings = rate_importance()
+
                 adjusted_cities = adjust_city_scores(top_cities, user_ratings)
 
                 os.system("cls" if os.name == "nt" else "clear")
@@ -856,8 +856,7 @@ def user_choice_after_ranking(
                     Style.BRIGHT
                     + Fore.LIGHTCYAN_EX
                     + "\nHere are your final cities ranked by your safety "
-                    + "and accessibility preferences:"
-                    + Style.NORMAL
+                    "and accessibility preferences:" + Style.NORMAL
                 )
                 for city in adjusted_cities:
                     print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
@@ -866,7 +865,9 @@ def user_choice_after_ranking(
 
             elif choice == 2:
                 os.system("cls" if os.name == "nt" else "clear")
+
                 city_history.append(top_cities)
+
                 new_top_cities = generate_new_cities(
                     sheet, selected_trip_type, selected_factors
                 )
@@ -878,7 +879,9 @@ def user_choice_after_ranking(
 
             elif choice == 4 and city_history:
                 os.system("cls" if os.name == "nt" else "clear")
+
                 top_cities = city_history.pop()
+
                 print(
                     Style.BRIGHT
                     + Fore.LIGHTCYAN_EX
@@ -889,7 +892,8 @@ def user_choice_after_ranking(
                     print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
 
             else:
-                print(Fore.RED + "Invalid choice. Please select a valid number")
+                print(
+                    Fore.RED + "Invalid choice. Please select a valid number")
 
         except ValueError:
             print(Fore.RED + "Please enter a valid number")
@@ -903,10 +907,12 @@ def get_airport_codes(sheet):
     Get airport codes from Google Sheet using 'City' and 'IATA' columns
     to access airport codes
     """
+
     # Get all records from the Google Sheets worksheet
     records = sheet.get_all_records()
     airport_codes = {}
-    # Iterate through each record and add the city and airport code to the dictionary
+    # Iterate through each record and add the city and airport code
+    # to the dictionary
     for record in records:
         city = record["City"].strip()
         code = record["IATA"].strip()
@@ -915,10 +921,12 @@ def get_airport_codes(sheet):
 
 
 # Credit for help implementing and understanding how to use the API
-# in this function, find_cheapest_flights(), and ask_for_flight_info(): Mistral AI
+# in this function, find_cheapest_flights(), and ask_for_flight_info():
+# Mistral AI
 
 def search_ryanair_flights(
-    origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0
+    origin, destination, outbound_date, adults=1,
+    teens=0, children=0, infants=0
 ):
     """
     Searches flights using Ryanair API (via RapidAPI).
@@ -959,6 +967,7 @@ def search_ryanair_flights(
 
 # Logic to Find the Cheapest Flights Among Those Eligible and Ask User
 # If They Want to Generate Ryanair Flight Details
+
 
 def find_cheapest_flights(sheet, top_cities, trip_details):
     """
@@ -1001,7 +1010,6 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
                                     < cheapest_flight["regularFare"]["fares"][0]["amount"]
                                 ):
                                     cheapest_flight = flight
-
                 # Add the flight information to the results list
                 if cheapest_flight:
                     flight_info = {
@@ -1039,176 +1047,303 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
 
 def ask_for_flight_info(flights_info, trip_details):
     """
-    Asks the user if they would like to generate full flight information for any of
-    the displayed flights and allows user to start over if not.
+    Asks the user if they would like to generate full flight information
+    for any of the displayed flights and allows user to start over if not.
     """
+    # If there is no flight information available, print a message and
+    # return False
     if not flights_info:
-        print(Style.BRIGHT + Fore.MAGENTA + "No flight information available." +
-              Style.NORMAL)
+        print(
+            Style.BRIGHT
+            + Fore.MAGENTA
+            + "No flight information available."
+            + Style.NORMAL
+        )
         return False
 
+    # Print the flight information and ask the user if they want to see
+    # more details
     print(" ")
-    print(Style.BRIGHT + Fore.MAGENTA +
-          "Would you like to see booking instructions for any of these flights?" +
-          Style.NORMAL)
-
+    print(
+        Style.BRIGHT
+        + Fore.MAGENTA
+        + "Would you like to see booking instructions for any of "
+        + "these flights?"
+        + Style.NORMAL
+    )
     for idx, flight in enumerate(flights_info, start=1):
-        print(Style.BRIGHT + Fore.MAGENTA +
-              f"{idx}. {flight['city']}: Flight Number: "
-              f"{flight['flight_number']}, Price: {flight['price']} EUR" +
-              Style.NORMAL)
+        print(
+            Style.BRIGHT + Fore.MAGENTA + f"{idx}. {flight['city']}: Flight Number: "
+            f"{flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL
+        )
 
-    print(Style.BRIGHT + Fore.MAGENTA + "4. See booking instructions for all cities" +
-          Style.NORMAL)
+    print(Style.BRIGHT + Fore.MAGENTA + "4. See booking "
+          + "instructions for all cities"
+          + Style.NORMAL)
     print(Style.BRIGHT + Fore.MAGENTA + "5. Start over" + Style.NORMAL)
     print(" ")
-    print(Style.BRIGHT + Fore.YELLOW +
-          "Please note: Occasionally, booking information may be unavailable at the time of your "
-          "request, and InstaTrip will be unable to provide booking instructions for that city." +
-          Style.NORMAL)
+    print(Style.BRIGHT + Fore.YELLOW
+          + "Please note: Occasionally, booking information may be "
+          + "unavailable at the time of your request, and InstaTrip will be "
+          + "unable to provide booking instructions for that city."
+          + Style.NORMAL)
 
+    # Get the user's choice and handle any errors
     while True:
         try:
-            choice = int(input(Style.BRIGHT + Fore.MAGENTA +
-                               "Please choose an option (1-5): " + Style.NORMAL))
-
+            choice = int(
+                input(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + "Please choose an option (1-5): "
+                    + Style.NORMAL
+                )
+            )
+            # If the user chooses a flight, display the flight details and
+            # ask if they want to restart the program
             if 1 <= choice <= len(flights_info):
                 selected_flight = flights_info[choice - 1]
                 os.system("cls" if os.name == "nt" else "clear")
                 print(" ")
                 os.system("cls" if os.name == "nt" else "clear")
-                print(Style.BRIGHT + Fore.YELLOW + "Flight Details:" + Style.NORMAL)
+                print(
+                    Style.BRIGHT
+                    + Fore.YELLOW
+                    + "Flight Details:"
+                    + Style.NORMAL
+                )
                 print(" ")
-                print(Style.BRIGHT + Fore.MAGENTA +
-                      f"City: {selected_flight['city']}" + Style.NORMAL)
-                print(Style.BRIGHT + Fore.MAGENTA +
-                      f"Flight Number: {selected_flight['flight_number']}" +
-                      Style.NORMAL)
-                print(Fore.YELLOW +
-                      f"Departure Date: {trip_details['departure_date']}" +
-                      Style.NORMAL)
-                print(Fore.YELLOW +
-                      f"Departure Time: {selected_flight['departure_time']}" +
-                      Style.NORMAL)
-                print(Style.BRIGHT + Fore.MAGENTA +
-                      f"Arrival Time: {selected_flight['arrival_time']}" +
-                      Style.NORMAL)
-                print(Style.BRIGHT + Fore.MAGENTA +
-                      f"Price: {selected_flight['price']} EUR" + Style.NORMAL)
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + f"City: {selected_flight['city']}"
+                    + Style.NORMAL
+                )
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + f"Flight Number: {selected_flight['flight_number']}"
+                    + Style.NORMAL
+                )
+                print(
+                    Fore.YELLOW
+                    + f"Departure Date: {trip_details['departure_date']}"
+                    + Style.NORMAL
+                )
+                print(
+                    Fore.YELLOW
+                    + f"Departure Time: {selected_flight['departure_time']}"
+                    + Style.NORMAL
+                )
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + f"Arrival Time: {selected_flight['arrival_time']}"
+                    + Style.NORMAL
+                )
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + f"Price: {selected_flight['price']} EUR"
+                    + Style.NORMAL
+                )
                 print(" ")
-                print(Style.BRIGHT + Fore.MAGENTA +
-                      "Navigate to www.ryanair.com and enter the city " +
-                      "and departure date to secure the best price for your trip to " +
-                      emoji.emojize(f":sun_with_face:  {selected_flight['city']} :sun_with_face:") +
-                      Style.NORMAL)
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + "Navigate to www.ryanair.com and enter the city "
+                    + "and departure date to secure the best price for "
+                    + "your trip to "
+                    + emoji.emojize(
+                        f":sun_with_face:  {selected_flight['city']} "
+                        + ":sun_with_face:")
+                    + Style.NORMAL
+                )
                 print(" ")
-                print(Style.BRIGHT + Fore.YELLOW +
-                      f"Bon Voyage! {emoji.emojize(':airplane_departure:')}" +
-                      Style.NORMAL)
+                print(
+                    Style.BRIGHT + Fore.YELLOW + f"Bon Voyage! {emoji.emojize(
+                        ':airplane_departure:')}" + Style.NORMAL)
 
                 while True:
-                    restart_choice = input(Style.BRIGHT + Fore.MAGENTA +
-                                           "\nPress Enter to return to Main Menu or "
-                                           "type 'all' to see booking instructions for all cities: " +
-                                           Style.NORMAL)
+                    restart_choice = input(
+                        Style.BRIGHT + Fore.MAGENTA +
+                        "\nPress Enter to return to Main Menu or type 'all' "
+                        + "to see booking instructions for all cities: "
+                        + Style.NORMAL
+                    )
                     if restart_choice == "":
-                        return True
+                        return True  # Return True to indicate that the program
+                        # should restart
                     elif restart_choice.lower() == "all":
                         os.system("cls" if os.name == "nt" else "clear")
                         print(" ")
-                        print(Style.BRIGHT + Fore.YELLOW + "Flight Details:" +
-                              Style.NORMAL)
+                        print(
+                            Style.BRIGHT
+                            + Fore.YELLOW
+                            + "Flight Details:"
+                            + Style.NORMAL
+                        )
                         print(" ")
                         for flight in flights_info:
-                            print(Style.BRIGHT + Fore.MAGENTA +
-                                  f"City: {flight['city']}" + Style.NORMAL)
-                            print(Style.BRIGHT + Fore.MAGENTA +
-                                  f"Flight Number: {flight['flight_number']}" +
-                                  Style.NORMAL)
-                            print(Fore.YELLOW +
-                                  f"Departure Date: {trip_details['departure_date']}" +
-                                  Style.NORMAL)
-                            print(Fore.YELLOW +
-                                  f"Departure Time: {flight['departure_time']}" +
-                                  Style.NORMAL)
-                            print(Style.BRIGHT + Fore.MAGENTA +
-                                  f"Arrival Time: {flight['arrival_time']}" +
-                                  Style.NORMAL)
-                            print(Style.BRIGHT + Fore.MAGENTA +
-                                  f"Price: {flight['price']} EUR" + Style.NORMAL)
+                            print(
+                                Style.BRIGHT
+                                + Fore.MAGENTA
+                                + f"City: {flight['city']}"
+                                + Style.NORMAL
+                            )
+                            print(
+                                Style.BRIGHT
+                                + Fore.MAGENTA
+                                + f"Flight Number: {flight['flight_number']}"
+                                + Style.NORMAL
+                            )
+                            print(
+                                Fore.YELLOW
+                                + f"Departure Date: {trip_details['departure_date']}"
+                                + Style.NORMAL
+                            )
+                            print(
+                                Fore.YELLOW
+                                + f"Departure Time: {flight['departure_time']}"
+                                + Style.NORMAL
+                            )
+                            print(
+                                Style.BRIGHT
+                                + Fore.MAGENTA
+                                + f"Arrival Time: {flight['arrival_time']}"
+                                + Style.NORMAL
+                            )
+                            print(
+                                Style.BRIGHT
+                                + Fore.MAGENTA
+                                + f"Price: {flight['price']} EUR"
+                                + Style.NORMAL
+                            )
                             print(" ")
 
                         print(" ")
-                        print(Style.BRIGHT + Fore.MAGENTA +
-                              "Navigate to www.ryanair.com and enter the city " +
-                              "and departure date to secure the best price for your trip" +
-                              Style.NORMAL)
+                        print(
+                            Style.BRIGHT
+                            + Fore.MAGENTA
+                            + "Navigate to www.ryanair.com and enter the city "
+                            + "and departure date to secure the best price "
+                            + "for your trip"
+                            + Style.NORMAL
+                        )
                         print(" ")
-                        print(Style.BRIGHT + Fore.YELLOW +
-                              f"Bon Voyage! {emoji.emojize(':airplane_departure:')}" +
-                              Style.NORMAL)
+                        print(Style.BRIGHT +
+                              Fore.YELLOW + f"Bon Voyage! {emoji.emojize(
+                                ':airplane_departure:')}" + Style.NORMAL)
 
                         while True:
-                            restart_choice = input(Style.BRIGHT + Fore.MAGENTA +
-                                                   "\nPress Enter to return to Main Menu " +
-                                                   Style.NORMAL)
+                            restart_choice = input(
+                                Style.BRIGHT + Fore.MAGENTA + "\nPress Enter "
+                                + "to return to Main Menu "
+                                + Style.NORMAL
+                            )
                             if restart_choice == "":
-                                return True
+                                return True  # Return True to indicate that
+                                # the program should restart
                             else:
-                                print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu")
+                                print(Fore.RED + "Invalid input. Please press "
+                                      + "Enter to return to Main Menu")
                     else:
-                        print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu "
-                              "or type 'all' to see booking instructions for all cities")
+                        print(Fore.RED + "Invalid input. Please press Enter "
+                              + "to return to Main Menu "
+                              + "or type 'all' to see booking instructions "
+                              + "for all cities")
 
+            # If the user chooses to see flight information for all three
+            # cities, display
+            # the flight details for each city
             elif choice == 4:
                 os.system("cls" if os.name == "nt" else "clear")
                 print(" ")
-                print(Style.BRIGHT + Fore.YELLOW + "Flight Details:" + Style.NORMAL)
+                print(
+                    Style.BRIGHT
+                    + Fore.YELLOW
+                    + "Flight Details:"
+                    + Style.NORMAL
+                )
                 print(" ")
                 for flight in flights_info:
-                    print(Style.BRIGHT + Fore.MAGENTA +
-                          f"City: {flight['city']}" + Style.NORMAL)
-                    print(Style.BRIGHT + Fore.MAGENTA +
-                          f"Flight Number: {flight['flight_number']}" + Style.NORMAL)
-                    print(Fore.YELLOW +
-                          f"Departure Date: {trip_details['departure_date']}" +
-                          Style.NORMAL)
-                    print(Fore.YELLOW +
-                          f"Departure Time: {flight['departure_time']}" +
-                          Style.NORMAL)
-                    print(Style.BRIGHT + Fore.MAGENTA +
-                          f"Arrival Time: {flight['arrival_time']}" + Style.NORMAL)
-                    print(Style.BRIGHT + Fore.MAGENTA +
-                          f"Price: {flight['price']} EUR" + Style.NORMAL)
+                    print(
+                        Style.BRIGHT
+                        + Fore.MAGENTA
+                        + f"City: {flight['city']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Style.BRIGHT
+                        + Fore.MAGENTA
+                        + f"Flight Number: {flight['flight_number']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Fore.YELLOW
+                        + f"Departure Date: {trip_details['departure_date']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Fore.YELLOW
+                        + f"Departure Time: {flight['departure_time']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Style.BRIGHT
+                        + Fore.MAGENTA
+                        + f"Arrival Time: {flight['arrival_time']}"
+                        + Style.NORMAL
+                    )
+                    print(
+                        Style.BRIGHT
+                        + Fore.MAGENTA
+                        + f"Price: {flight['price']} EUR"
+                        + Style.NORMAL
+                    )
                     print(" ")
 
                 print(" ")
-                print(Style.BRIGHT + Fore.MAGENTA +
-                      "Navigate to www.ryanair.com and enter the city " +
-                      "and departure date to secure the best price for your trip" +
-                      Style.NORMAL)
+                print(
+                    Style.BRIGHT
+                    + Fore.MAGENTA
+                    + "Navigate to www.ryanair.com and enter the city "
+                    + "and departure date to secure the best price for "
+                    + "your trip"
+                    + Style.NORMAL
+                )
                 print(" ")
-                print(Style.BRIGHT + Fore.YELLOW +
-                      f"Bon Voyage! {emoji.emojize(':airplane_departure:')}" +
+                print(Style.BRIGHT + Fore.YELLOW + f"Bon "
+                      + "Voyage!  {emoji.emojize(':airplane_departure:')}" +
                       Style.NORMAL)
 
                 while True:
-                    restart_choice = input(Style.BRIGHT + Fore.MAGENTA +
-                                           "\nPress Enter to return to Main Menu " +
-                                           Style.NORMAL)
+                    restart_choice = input(
+                        Style.BRIGHT + Fore.MAGENTA + "\nPress Enter to "
+                        + "return to Main Menu "
+                        + Style.NORMAL
+                    )
                     if restart_choice == "":
-                        return True
+                        return True  # Return True to indicate that the
+                        # program should restart
                     else:
-                        print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu")
+                        print(Fore.RED + "Invalid input. Please press "
+                              + "Enter to return to Main Menu")
 
+            # If the user chooses to start over, print a message and return
+            # True
             elif choice == 5:
-                print(Style.BRIGHT + Fore.MAGENTA + "Returning to Main Menu..." +
-                      Style.NORMAL)
+                print(
+                    Style.BRIGHT + Fore.MAGENTA + "Returning to Main "
+                    + "Menu..." + Style.NORMAL
+                )
                 time.sleep(2)
                 return True
 
+            # If the user enters an invalid choice, print an error message
             else:
-                print(Fore.RED + "Invalid choice. Please select a number from 1 to 5.")
+                print(Fore.RED + "Invalid choice. Please select a number "
+                      + "from 1 to 5.")
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
 
@@ -1221,18 +1356,23 @@ def exit():
     """
     # Clear the screen and print the exit art and staycation link
     os.system("cls" if os.name == "nt" else "clear")
-    print("\n\n" + Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL + "\n")
+    print("")
+    print("")
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
+    print("")
 
     goodbye_art = [
-        f"{Style.BRIGHT + Fore.MAGENTA}              |",
-        f"{Style.BRIGHT + Fore.MAGENTA}        \\ _ /",
-        f"{Style.BRIGHT + Fore.MAGENTA}      -= (_) =-",
-        f"{Style.BRIGHT + Fore.MAGENTA}        /   \\         _\\/\\_",
-        f"{Style.BRIGHT + Fore.MAGENTA}          |           //o\\  _\\/\\_",
-        f"{Style.BRIGHT + Fore.YELLOW}   _____ _ __ __ ____ _ | __/o\\\\ _",
-        f'{Style.BRIGHT + Fore.LIGHTCYAN_EX} =-=-_-__=_-= _=_=-=_,-\'|""""-|-,_',
-        f'{Style.BRIGHT + Fore.LIGHTCYAN_EX}  =- _=-=- -_=-=_,-"          |',
-        f"{Style.BRIGHT + Fore.LIGHTCYAN_EX} =- =- -=.--",
+        (f"{Style.BRIGHT + Fore.MAGENTA}              |"),
+        (f"{Style.BRIGHT + Fore.MAGENTA}        \\ _ /"),
+        (f"{Style.BRIGHT + Fore.MAGENTA}      -= (_) =-"),
+        (f"{Style.BRIGHT + Fore.MAGENTA}        /   \\         _\\/\\_"),
+        (f"{Style.BRIGHT + Fore.MAGENTA}          |           //o\\  _\\/\\_"),
+        (f"{Style.BRIGHT + Fore.YELLOW}   _____ _ __ __ ____ _ | __/o\\\\ _"),
+        (f"{Style.BRIGHT + Fore.LIGHTCYAN_EX} =-=-_-__=_-= _=_=-=_,-"
+            f"\'|\"\"\"\"-|-,_"),
+        (f"{Style.BRIGHT + Fore.LIGHTCYAN_EX}  =- _=-=- -_=-=_,-\"          "
+            + "|"),
+        (f"{Style.BRIGHT + Fore.LIGHTCYAN_EX} =- =- -=.--"),
     ]
 
     for line in goodbye_art:
@@ -1240,30 +1380,41 @@ def exit():
 
     url = "https://www.lonelyplanet.com/articles/how-to-plan-a-staycation"
 
-    print("\n\n" + Style.BRIGHT + Fore.MAGENTA +
-          "Not able to travel at the moment?" + Style.NORMAL)
+    print(" ")
+    print(" ")
     time.sleep(2)
-    print(Style.BRIGHT + Fore.MAGENTA +
-          emoji.emojize(":house_with_garden: Perhaps a staycation is in order... :house_with_garden:") +
-          Style.NORMAL)
+    print(
+        Style.BRIGHT + Fore.MAGENTA + "Not able to travel at the "
+        + "moment?" + Style.NORMAL
+    )
     time.sleep(2)
-    print("\n" + Style.BRIGHT + Fore.LIGHTCYAN_EX + url + Style.NORMAL)
-    print(Style.BRIGHT + Fore.LIGHTCYAN_EX +
-          "(Type the url into your browser to get cozy staycation tips!)" + Style.NORMAL)
+    print(
+        Style.BRIGHT + Fore.MAGENTA + emoji.emojize(
+            ":house_with_garden:  Perhaps a staycation is in "
+            + "order... :house_with_garden:") + Style.NORMAL
+    )
+    time.sleep(2)
+    print(" ")
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + url + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX
+          + "(Type the url into your browser to get cozy staycation"
+          + "tips!)" + Style.NORMAL)
     print(" ")
 
     # Wait for the user to press Enter to return to the main menu
     while True:
         user_input = input(
-            Style.BRIGHT + Fore.MAGENTA +
-            "Press Enter to return to the main menu: " + Style.NORMAL
+            Style.BRIGHT
+            + Fore.MAGENTA
+            + "Press Enter to return to the main menu: "
+            + Style.NORMAL
         )
         if user_input == "":
             break
         else:
             print(
-                Fore.RED + "Invalid input! Please press Enter to return to the main menu."
-                + Style.NORMAL
+                Fore.RED + "Invalid input! Please press Enter"
+                + "to return to the main menu." + Style.NORMAL
             )
 
     # Clear the screen and restart the program
@@ -1272,6 +1423,9 @@ def exit():
     colored_instatrip()
     print_colored_background()
     display_menu()
+
+
+# Logic to Run The Program
 
 
 def main():
@@ -1295,9 +1449,11 @@ def main():
         if not trip_details:
             continue
 
-        # Clear the screen and get the trip type and important factors from the user
+        # Clear the screen and get the trip type and important factors
+        # from the user
         os.system("cls" if os.name == "nt" else "clear")
         selected_trip_type = type_of_trip()
+        
         selected_factors = important_factors()
 
         while True:
@@ -1310,33 +1466,37 @@ def main():
             print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
             print("")
             for city in initial_top_cities:
-                print(
-                    emoji.emojize(
-                        Style.BRIGHT + Fore.MAGENTA + ":star: " + " " + city[0] + Style.NORMAL
-                    )
-                )
+                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":star: " + " " + city[0] 
+                + Style.NORMAL))
 
-            # Ask the user if they are happy with the top cities and get their choice
+            # Ask the user if they are happy with the top cities and
+            # get their choice
             user_choice = user_choice_after_ranking(
                 initial_top_cities, SHEET, selected_trip_type, selected_factors
             )
 
-            # If the user chooses to start over, clear the screen and restart the program
+            # If the user chooses to start over, clear the screen and
+            # restart the program
             if user_choice == "start_over":
                 os.system("cls" if os.name == "nt" else "clear")
-                print(Style.BRIGHT + Fore.MAGENTA + "Starting over..." + Style.NORMAL)
+                print(
+                    Style.BRIGHT + Fore.MAGENTA + "Starting "
+                    + "over..." + Style.NORMAL
+                )
                 time.sleep(1)
                 break
 
-            # If the user chooses to proceed with the top cities, display the flight information
+            # If the user chooses to proceed with the top cities, display
+            # the flight information
             elif user_choice is not None:
                 final_top_cities = user_choice
                 print(" ")
                 print(
                     emoji.emojize(
-                        Style.BRIGHT + Fore.MAGENTA +
-                        "\n :party_popper: Let's print your flight information... :party_popper:"
-                        + Style.NORMAL
+                        Style.BRIGHT
+                        + Fore.MAGENTA
+                        + "\n :party_popper: Let's print your flight "
+                        "information... :party_popper:" + Style.NORMAL
                     )
                 )
 
@@ -1346,7 +1506,9 @@ def main():
                 if isinstance(travel_date, list) and travel_date:
                     trip_details['departure_date'] = travel_date[0].strftime("%Y-%m-%d")
                 else:
-                    trip_details['departure_date'] = travel_date.strftime("%Y-%m-%d")
+                    trip_details['departure_date'] = (
+                        travel_date.strftime("%Y-%m-%d")
+                    )
 
                 # Find the cheapest flights for the top cities
                 flights_info = find_cheapest_flights(
@@ -1357,17 +1519,19 @@ def main():
 
                 # Clear the screen and display the flight information
                 os.system("cls" if os.name == "nt" else "clear")
-                print(Style.BRIGHT + Fore.MAGENTA + "\nCheapest Flights Information:" +
-                      Style.NORMAL)
+                print(Style.BRIGHT + Fore.MAGENTA + "\nCheapest Flights "
+                      + "Information:" + Style.NORMAL)
                 print(" ")
                 for flight in flights_info:
                     print(
-                        Style.BRIGHT + Fore.LIGHTCYAN_EX +
-                        f"{emoji.emojize(':airplane_departure:')}  {flight['city']}  "
-                        f"{emoji.emojize(':airplane_departure:')} \nFlight Number: "
-                        f"{flight['flight_number']},\nPrice: {flight['price']} EUR\n" +
-                        Style.NORMAL
-                    )
+                        Style.BRIGHT + Fore.LIGHTCYAN_EX
+                        + f"{emoji.emojize(':airplane_departure:')}  "
+                        + f"{flight['city']}  "
+                        + f"{emoji.emojize(':airplane_departure:')} \n"
+                        + f"Flight Number: {flight['flight_number']},\n"
+                        + f"Price: {flight['price']} EUR\n"
+                        + Style.NORMAL
+                        )
                     print(" ")
 
                 # Ask the user if they want to see more flight information
