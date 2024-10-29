@@ -458,9 +458,8 @@ Python validated with [PEP8 Python De-Linter](https://pep8ci.herokuapp.com/)
 
 <details>
     <summary>Python Validation Screenshot (click)</summary>
-     <img src="assets/documentation/">
-     <img src="assets/documentation/">
-     <p>No errors returned. etc</p>
+     <img src="assets/documentation/pep8.png">
+     <p>No errors returned after several long hours shortening lines!</p>
   </details>
 
 
@@ -722,6 +721,7 @@ After implementing the above solutions and running all code through the necessar
 
 <details>
   <summary>Creating a link worked in the IDE but not Heroku (click)</summary>
+
 <img src="assets/documentation/bug5a.png">
 <img src="assets/documentation/bug5b.png">
 
@@ -729,33 +729,81 @@ I have now simply instructed the user to type either the staycation URL into the
 
 </details>
 
+
 # Deployment
 
 ## To Deploy The Project on Heroku
 
 <details>
-  <summary>How to Deploy with Heroku(click)</summary> 
+  <summary>How to Deploy with Heroku (click)</summary> 
 <p>
 
 This site was deployed through [Heroku](https://www.heroku.com/)
 
 1. Sign up for a Heroku account and log in
 2. On the dashboard, select New and then choose Create new app
+
+<details>
+<summary>Create New App (click)</summary>
+<img src="assets/documentation/heroku1.png">
+</details>
+
 3. Choose a unique app name, pick a region, and click Create app
+
+<details>
+<summary>Create App (click)</summary>
+<img src="assets/documentation/heroku2.png">
+</details>
+
 4. Open the Settings tab within the newly created app
 5. In the Config Vars section, click Reveal Config Vars
 6. To enable Google Sheets, add a config variable with the key CREDS and paste the contents of the creds.json file as the value
 7. Add another config variable, setting PORT as the key and 8000 as the value
-8. Under Config Vars, click Add buildpack. Choose Python and save it, then add another buildpack, selecting Node.js. Make sure the buildpacks appear in this order
+
+<details>
+<summary>Config Vars (click)</summary>
+<img src="assets/documentation/heroku3.png">
+</details>
+
+8. Under Config Vars, click Add buildpack. Choose Python and save it, then add another buildpack, selecting Node.js. Make sure the buildpacks appear in this order. 
+
+<details>
+<summary>Create new app (click)</summary>
+<img src="assets/documentation/heroku4.png">
+</details>
+
+You can drag and drop the buildpacks to change the order if needed
+
+<details>
+<summary>Create new app (click)</summary>
+<img src="assets/documentation/heroku5.png">
+<img src="assets/documentation/heroku6.png">
+</details>
+
 9. Go to the Deploy tab at the top
 10. Select GitHub as the deployment method and connect your GitHub account
+
+<details>
+<summary>Create new app (click)</summary>
+<img src="assets/documentation/heroku7.png">
+</details>
+
+
 11. Find and connect the repository by searching for its name
+
+<details>
+<summary>Create new app (click)</summary>
+<img src="assets/documentation/heroku8.png">
+</details>
+
 12. Optionally, turn on automatic deploys to trigger deployment whenever updates are pushed to the repository
+
+<details>
+<summary>Create new app (click)</summary>
+<img src="assets/documentation/heroku9.png">
+</details>
+
 13. Finally, click Deploy Branch to deploy the project immediately
-
-![Heroku Deploy Page 1](assets/documentation/deploy1.png)
-
-![Heroku Deploy Page 2](assets/documentation/deploy2.png)
 
 </p>
 </details>
@@ -777,6 +825,7 @@ To make a copy of a repository, fork it through Github:
 </p>
 </details>
 
+
 ## Creating A Local Clone of The Project
 
 <details>
@@ -794,7 +843,7 @@ To clone the repository of this site:
 
  ![Github Clone Page 2](assets/documentation/clone2.png)
 
-4. Type the following command: git clone https://github.com/erinvdoyle/instatrip.git to create a local clone
+4. Type the following command into your terminal: git clone https://github.com/erinvdoyle/instatrip.git to create a local clone
 
 ![Github Clone Page 2](assets/documentation/clone3.png)
 </p>

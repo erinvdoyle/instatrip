@@ -233,6 +233,7 @@ def read_about():
     """
     Displays the about text for both the company and the developer :)
     """
+    os.system("cls" if os.name == "nt" else "clear")
     print(" ")
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
@@ -1397,7 +1398,7 @@ def exit():
     print(" ")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + url + Style.NORMAL)
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX
-          + "(Type the url into your browser to get cozy staycation"
+          + "(Type the url into your browser to get cozy staycation "
           + "tips!)" + Style.NORMAL)
     print(" ")
 
@@ -1413,7 +1414,7 @@ def exit():
             break
         else:
             print(
-                Fore.RED + "Invalid input! Please press Enter"
+                Fore.RED + "Invalid input! Please press Enter "
                 + "to return to the main menu." + Style.NORMAL
             )
 
