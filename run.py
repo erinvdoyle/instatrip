@@ -275,22 +275,19 @@ def read_about():
             Style.BRIGHT + Fore.MAGENTA + "About the Developer"
             + Style.RESET_ALL)
     print(
-        wrap_text(
-            Fore.YELLOW
-            + "InstaTrip was developed by Erin Doyle, a student "
-            + "of Code Institute's Full-Stack Software Development "
-            + "program. Her InstaTrip travel preferences are: Romantic "
-            + "(her husband vetoed 'Solo Trip') + Culinary, "
-            + "Outdoorsy, and Off the Beaten Path"
-        )
+    wrap_text(
+        Fore.YELLOW
+        + "InstaTrip was developed by Erin Doyle, a student "
+        + "of Code Institute's Full-Stack Software Development "
+        + "program. Her InstaTrip travel preferences are: Romantic "
+        + "(her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, "
+        + "and Off the Beaten Path.  "
+        + Style.BRIGHT + Fore.LIGHTCYAN_EX
+        + "https://github.com/erinvdoyle" + Style.NORMAL
     )
-    print(
-        Style.BRIGHT
-        + Fore.LIGHTCYAN_EX
-        + "https://github.com/erinvdoyle"
-        + Style.NORMAL
-    )
+)
 
+    print(" ")
     while True:
         choice = input(Fore.RED + "Enter 1 to return to Main Menu: \n")
 
