@@ -290,7 +290,6 @@ def read_about():
         + "https://github.com/erinvdoyle"
         + Style.NORMAL
     )
-    print("")
 
     while True:
         choice = input(Fore.RED + "Enter 1 to return to Main Menu: \n")
