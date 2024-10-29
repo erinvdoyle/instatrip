@@ -434,7 +434,7 @@ The final step of the program is to print the flight details of the user's chose
 
 ### HTML Validation
 
-[W3C HTML Validator](https://validator.w3.org/)
+HTML validated with [W3C HTML Validator](https://validator.w3.org/)
 
 <details>
     <summary>HTML Validation Screenshot (click)</summary>
@@ -444,7 +444,7 @@ The final step of the program is to print the flight details of the user's chose
 
 ### CSS Validation
 
-[W3C CSS Validator](https://validator.w3.org/)
+CSS validated with [W3C CSS Validator](https://validator.w3.org/)
 
 <details>
     <summary>CSS Validation Screenshot (click)</summary>
@@ -454,7 +454,7 @@ The final step of the program is to print the flight details of the user's chose
 
 ### Python Validation
 
-[PEP8 Python De-Linter](https://pep8ci.herokuapp.com/) 
+Python validated with [PEP8 Python De-Linter](https://pep8ci.herokuapp.com/) 
 
 <details>
     <summary>Python Validation Screenshot (click)</summary>

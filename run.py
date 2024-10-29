@@ -316,17 +316,15 @@ def get_trip_details():
     os.system('cls' if os.name == 'nt' else 'clear')
     print("")
 
-    # Inform the user that the departure city being Dublin
+    # Inform the user that the departure city is Dublin
     print(
-            emoji.emojize(
-                Fore.GREEN
-                + ":shamrock:"
-                + "  "
-                + "Please note that InstaTrip hails from the emerald isle "
-                + "of Ireland, with our \ndeparture city set to Dublin. "
-                + "New departure cities take off soon! :shamrock:"
-            )
+        emoji.emojize(
+            Fore.GREEN
+            + ":shamrock:" + "  " + "Please note that InstaTrip hails from "
+            + "the emerald isle of Ireland, with our \ndeparture city set to "
+            + "Dublin. New departure cities take off soon! :shamrock:"
         )
+    )
     print(" ")
 
     # Get the travel date from the user
@@ -335,7 +333,8 @@ def get_trip_details():
             emoji.emojize(
                 Style.BRIGHT + Fore.MAGENTA
                 + ":handbag:  When would you like to depart? "
-                "(Please enter a date in YYYY-MM-DD format): \n" + Style.NORMAL
+                "(Please enter a date in YYYY-MM-DD format): \n"
+                + Style.NORMAL
             )
         )
 
@@ -347,9 +346,6 @@ def get_trip_details():
             current_date = datetime.now()
             minimum_travel_date = current_date + timedelta(days=1)
             maximum_travel_date = current_date + timedelta(days=182)
-            # sets maximum departure date to six months from current
-            # date due to Ryanair's rare release of longer-term flight
-            # sales
 
             # Validate the travel date
             if travel_date < minimum_travel_date:
@@ -369,8 +365,10 @@ def get_trip_details():
             break
 
         except ValueError:
-            print(Fore.RED + "Oops. Please enter a valid date "
-                  + "in YYYY-MM-DD format.")
+            print(
+                Fore.RED + "Oops. Please enter a valid date "
+                + "in YYYY-MM-DD format."
+            )
             continue
 
     # Get the user's departure date flexibility
@@ -382,7 +380,8 @@ def get_trip_details():
                     + Fore.MAGENTA
                     + "Are you flexible with your departure date "
                     + "(+/- 1-3 days)? "
-                    + "(yes/no):person_cartwheeling: \n" + Style.NORMAL
+                    + "(yes/no):person_cartwheeling: \n"
+                    + Style.NORMAL
                 )
             )
             .strip()
@@ -412,8 +411,10 @@ def get_trip_details():
                 else:
                     break
             except ValueError:
-                print(Fore.RED + "Please enter a valid number for flexibility "
-                      + "days.")
+                print(
+                    Fore.RED + "Please enter a valid number for flexibility "
+                    + "days."
+                )
                 continue
 
     # Get the length of stay from the user
@@ -421,9 +422,10 @@ def get_trip_details():
         try:
             length_of_stay = int(
                 input(
-                    Style.BRIGHT + Fore.MAGENTA +
+                    Style.BRIGHT + Fore.MAGENTA
                     + "How many days do you plan to stay? "
-                    "(Enter a minimum of 1 and maximum of 59)\n" + Style.NORMAL
+                    + "(Enter a minimum of 1 and maximum of 59)\n"
+                    + Style.NORMAL
                 )
             )
             if not (1 <= length_of_stay <= 59):
@@ -511,7 +513,6 @@ def important_factors():
     """
     Collects up to three important factors from the user.
     """
-
     # Print the important factors selection prompt
     print(
         Style.BRIGHT
@@ -551,43 +552,47 @@ def important_factors():
             try:
                 index = int(choice.strip()) - 1
                 if 0 <= index < len(factors):
-                    selected_factors.append(factors[index])
+                    if factors[index] not in selected_factors:
+                        selected_factors.append(factors[index])
                 else:
                     invalid_choices.append(choice.strip())
             except ValueError:
                 invalid_choices.append(choice.strip())
 
-    # Handle invalid choices
-    if invalid_choices:
-        print(
+        # Handle invalid choices
+        if invalid_choices:
+            print(
                 Fore.RED
                 + "Invalid input(s): "
                 + ", ".join(invalid_choices)
                 + ". Please choose numbers between 1 "
                 + "and {}.".format(len(factors))
             )
-        continue
+            continue
 
         # Handle too many choices
         if len(selected_factors) > 3:
             print(Fore.RED + "Please select up to three factors.")
+            continue
 
         # Handle no choices
         elif len(selected_factors) == 0:
             print(Fore.RED +
                   "You must select at least one factor. Please try again.")
-        else:
-            selected_factors_str = ", ".join(selected_factors)
-            print(
-                Style.BRIGHT
-                + Fore.LIGHTCYAN_EX
-                + f"You selected: {selected_factors_str}"
-                + Style.NORMAL
-            )
-            print("")
-            time.sleep(2)
-            drumroll()
-            return selected_factors
+            continue
+
+        # Print selected factors and return
+        selected_factors_str = ", ".join(selected_factors)
+        print(
+            Style.BRIGHT
+            + Fore.LIGHTCYAN_EX
+            + f"You selected: {selected_factors_str}"
+            + Style.NORMAL
+        )
+        print("")
+        time.sleep(2)
+        drumroll()
+        return selected_factors
 
 
 # Logic to Rank Cities from Google Sheet Based on User Preferences
