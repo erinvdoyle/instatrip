@@ -238,11 +238,12 @@ def read_about():
     print(
         wrap_text(
             Fore.YELLOW
-            + "InstaTrip is a travel planning program designed to bring spontaneity "
-            + "to the user's next vacation. After asking a few simple questions with "
-            + "data compiled by a Google Sheet, the program curates a list of "
-            + "personalized European destinations. The departure city is currently "
-            + "set to Dublin, Ireland, with the aim of expanding departure cities "
+            + "InstaTrip is a travel planning program designed to bring "
+            + "spontaneity to the user's next vacation. After asking a "
+            + "few simple questions with data compiled by a Google Sheet, "
+            + "the program curates a list of personalized European "
+            + "destinations. The departure city is currently set to "
+            + "Dublin, Ireland, with the aim of expanding departure cities "
             + "in the future"
         )
     )
@@ -250,9 +251,10 @@ def read_about():
     print(
         wrap_text(
             Fore.YELLOW
-            + "For each destination, flight data is retrieved by the Ryanair API, "
-            + "showcasing the cheapest available flights. The user may then choose "
-            + "to view detailed flight information and receive booking instructions"
+            + "For each destination, flight data is retrieved by the "
+            + "Ryanair API, showcasing the cheapest available flights. "
+            + "The user may then choose to view detailed flight "
+            + "information and receive booking instructions"
         )
     )
     print("")
@@ -261,20 +263,24 @@ def read_about():
             Fore.LIGHTRED_EX
             + "Disclaimer:"
             + Fore.YELLOW
-            + " InstaTrip is a student project and not affiliated with Ryanair. Prices "
-            + "+ details are updated in real-time and subject to change. InstaTrip "
-            + "wishes the user the happiest of holidays and cannot be held responsible "
+            + " InstaTrip is a student project and not affiliated "
+            + "with Ryanair. Prices + details are updated in real-time "
+            + "and subject to change. InstaTrip wishes the user the "
+            + "happiest of holidays and cannot be held responsible "
             + "for any travel mishaps or misadventures :)"
         )
     )
     print("")
-    print(Style.BRIGHT + Fore.MAGENTA + "About the Developer" + Style.RESET_ALL)
+    print(
+            Style.BRIGHT + Fore.MAGENTA + "About the Developer"
+            + Style.RESET_ALL)
     print(
         wrap_text(
             Fore.YELLOW
-            + "InstaTrip was developed by Erin Doyle, a student of Code Institute's "
-            + "Full-Stack Software Development program. Her InstaTrip travel "
-            + "preferences are: Romantic (her husband vetoed 'Solo Trip') + Culinary, "
+            + "InstaTrip was developed by Erin Doyle, a student "
+            + "of Code Institute's Full-Stack Software Development "
+            + "program. Her InstaTrip travel preferences are: Romantic "
+            + "(her husband vetoed 'Solo Trip') + Culinary, "
             + "Outdoorsy, and Off the Beaten Path"
         )
     )
@@ -306,7 +312,7 @@ def get_trip_details():
     """
     Asks user for travel date, flexibility, and length of trip.
     """
-    # Clear the console 
+    # Clear the console
     os.system('cls' if os.name == 'nt' else 'clear')
     print("")
 
@@ -316,9 +322,9 @@ def get_trip_details():
                 Fore.GREEN
                 + ":shamrock:"
                 + "  "
-                + "Please note that InstaTrip hails from the emerald isle of Ireland, "
-                + "with our \ndeparture city set to Dublin. New departure cities take "
-                + "off soon! :shamrock:"
+                + "Please note that InstaTrip hails from the emerald isle "
+                + "of Ireland, with our \ndeparture city set to Dublin. "
+                + "New departure cities take off soon! :shamrock:"
             )
         )
     print(" ")
@@ -327,7 +333,8 @@ def get_trip_details():
     while True:
         travel_date_str = input(
             emoji.emojize(
-                Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? "
+                Style.BRIGHT + Fore.MAGENTA
+                + ":handbag:  When would you like to depart? "
                 "(Please enter a date in YYYY-MM-DD format): \n" + Style.NORMAL
             )
         )
@@ -340,8 +347,9 @@ def get_trip_details():
             current_date = datetime.now()
             minimum_travel_date = current_date + timedelta(days=1)
             maximum_travel_date = current_date + timedelta(days=182)
-            # sets maximum departure date to six months from current date due to
-            # Ryanair's rare release of longer-term flight sales 
+            # sets maximum departure date to six months from current
+            # date due to Ryanair's rare release of longer-term flight
+            # sales
 
             # Validate the travel date
             if travel_date < minimum_travel_date:
@@ -352,7 +360,8 @@ def get_trip_details():
                 continue
             elif travel_date > maximum_travel_date:
                 print(
-                    Fore.RED + f"Please enter a date no further than six months from today "
+                    Fore.RED + f"Please enter a date no further than six "
+                    + "months from today "
                     f"(before {maximum_travel_date.date()})."
                 )
                 continue
@@ -360,7 +369,8 @@ def get_trip_details():
             break
 
         except ValueError:
-            print(Fore.RED + "Oops. Please enter a valid date in YYYY-MM-DD format.")
+            print(Fore.RED + "Oops. Please enter a valid date "
+                  + "in YYYY-MM-DD format.")
             continue
 
     # Get the user's departure date flexibility
@@ -370,8 +380,9 @@ def get_trip_details():
                 emoji.emojize(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + "Are you flexible with your departure date (+/- 1-3 days)? "
-                    "(yes/no):person_cartwheeling: \n" + Style.NORMAL
+                    + "Are you flexible with your departure date "
+                    + "(+/- 1-3 days)? "
+                    + "(yes/no):person_cartwheeling: \n" + Style.NORMAL
                 )
             )
             .strip()
@@ -381,7 +392,7 @@ def get_trip_details():
             print(Fore.RED + "Please answer with 'yes' or 'no'.")
         else:
             break
-    
+
     # If the user is flexible, get the number of flexibility days
     flexibility_days = 0
     if flexibility_response == "yes":
@@ -391,7 +402,8 @@ def get_trip_details():
                     input(
                         Style.BRIGHT
                         + Fore.MAGENTA
-                        + "How many days of departure flexibility do you have? (1-3): \n"
+                        + "How many days of departure flexibility do you "
+                        + "have? (1-3): \n"
                         + Style.NORMAL
                     )
                 )
@@ -400,7 +412,8 @@ def get_trip_details():
                 else:
                     break
             except ValueError:
-                print(Fore.RED + "Please enter a valid number for flexibility days.")
+                print(Fore.RED + "Please enter a valid number for flexibility "
+                      + "days.")
                 continue
 
     # Get the length of stay from the user
@@ -408,7 +421,8 @@ def get_trip_details():
         try:
             length_of_stay = int(
                 input(
-                    Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? "
+                    Style.BRIGHT + Fore.MAGENTA +
+                    + "How many days do you plan to stay? "
                     "(Enter a minimum of 1 and maximum of 59)\n" + Style.NORMAL
                 )
             )
@@ -440,7 +454,7 @@ def type_of_trip():
     # Clear the console
     os.system("cls" if os.name == "nt" else "clear")
     print(" ")
-    
+
     # Print the trip type selection prompt
     print(
         Style.BRIGHT
@@ -486,7 +500,8 @@ def type_of_trip():
                 return selected_trip_type
             else:
                 print(
-                    Fore.RED + "Invalid choice. Please select a number from the list."
+                    Fore.RED + "Invalid choice. Please select "
+                    + "a number from the list."
                 )
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
@@ -542,23 +557,25 @@ def important_factors():
             except ValueError:
                 invalid_choices.append(choice.strip())
 
-        # Handle invalid choices
-        if invalid_choices:
-            print(
+    # Handle invalid choices
+    if invalid_choices:
+        print(
                 Fore.RED
                 + "Invalid input(s): "
                 + ", ".join(invalid_choices)
-                + ". Please choose numbers between 1 and {}.".format(len(factors))
+                + ". Please choose numbers between 1 "
+                + "and {}.".format(len(factors))
             )
-            continue
+        continue
 
         # Handle too many choices
         if len(selected_factors) > 3:
             print(Fore.RED + "Please select up to three factors.")
-        
+
         # Handle no choices
         elif len(selected_factors) == 0:
-            print(Fore.RED + "You must select at least one factor. Please try again.")
+            print(Fore.RED +
+                  "You must select at least one factor. Please try again.")
         else:
             selected_factors_str = ", ".join(selected_factors)
             print(
@@ -576,9 +593,9 @@ def important_factors():
 # Logic to Rank Cities from Google Sheet Based on User Preferences
 # and Randomly Select Three of them
 
-# Ranking tutorial credit using the sort method: 
+# Ranking tutorial credit using the sort method:
 # https://sparkbyexamples.com/python/sort-using-lambda-in-python/
-# "How Do I Create A Scoring System in Python - Stack Overflow": 
+# "How Do I Create A Scoring System in Python - Stack Overflow":
 # https://stackoverflow.com/questions/50115873/how-do-i-create-a-scoring-system-in-python
 
 def rank_cities(sheet, selected_trip_type, selected_factors):
@@ -591,15 +608,18 @@ def rank_cities(sheet, selected_trip_type, selected_factors):
 
     ranked_cities = []
 
-    # Iterate through each city and calculate its score based on user preferences
+    # Iterate through each city and calculate its score based
+    # on user preferences
     for city in cities:
         score = 0
 
-        # If the city is suitable for the selected trip type, add 5 points to its score
+        # If the city is suitable for the selected trip type, add 5
+        # points to its score
         if selected_trip_type in city and city[selected_trip_type] == "1":
-            score += 5   
+            score += 5
 
-        # For each selected important factor, add points to the city's score based on its rating
+        # For each selected important factor, add points to the city's
+        # score based on its rating
         for factor in selected_factors:
             if factor in city:
                 score += 5 - int(city[factor])
@@ -608,12 +628,13 @@ def rank_cities(sheet, selected_trip_type, selected_factors):
         if "City" in city:
             ranked_cities.append((city["City"].strip(), score))
 
-    # Sort the ranked cities list by score 
+    # Sort the ranked cities list by score
     ranked_cities.sort(key=lambda x: x[1], reverse=True)
 
     return ranked_cities  # [:3]
 
 # Random Tutorial Credit: https://www.w3schools.com/python/module_random.asp
+
 
 def select_random_cities(cities, num_cities=3):
     """
@@ -624,7 +645,7 @@ def select_random_cities(cities, num_cities=3):
     #  return the entire list
     if len(cities) <= num_cities:
         return cities
-    # Otherwise, return a random sample of the desired size    
+    # Otherwise, return a random sample of the desired size
     return random.sample(cities, num_cities)
 
 
@@ -657,7 +678,7 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
     """
     Generates and ranks a list of new cities based on the same user preferences
     """
-     # Rank cities based on user preferences
+    # Rank cities based on user preferences
     new_top_cities_with_scores = rank_cities(
         sheet, selected_trip_type, selected_factors
     )
@@ -700,14 +721,16 @@ def rate_importance():
         while True:
             try:
                 rating = input(
-                    Style.BRIGHT + Fore.MAGENTA + f"Rate the importance of {factor} "
+                    Style.BRIGHT + Fore.MAGENTA + f"Rate the "
+                    + "importance of {factor} "
                     "(1-5, with 1 being most important): \n" + Style.NORMAL
                 ).strip()
 
                 # Validate the user's input
                 if rating == "":
                     print(
-                        Fore.RED + "You didn't enter anything. Please enter a number "
+                        Fore.RED + "You didn't enter anything. Please "
+                        + "enter a number "
                         "between 1 and 5."
                     )
                     continue
@@ -716,7 +739,7 @@ def rate_importance():
 
                 if 1 <= rating <= 5:
                     ratings[factor] = rating
-                    break  
+                    break
                 else:
                     print(Fore.RED + "Please enter a number between 1 and 5.")
 
@@ -772,7 +795,8 @@ def user_choice_after_ranking(
         )
         print("")
         print(
-            emoji.emojize(Fore.LIGHTCYAN_EX + "1. Yes, let's go! :airplane_departure:")
+            emoji.emojize(Fore.LIGHTCYAN_EX + "1. Yes, let's "
+                          + "go! :airplane_departure:")
         )
         print(
             emoji.emojize(
