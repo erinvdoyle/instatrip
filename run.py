@@ -458,9 +458,9 @@ def type_of_trip():
     ]
 
     # Print the trip type options
-    colored_options = [Style.BRIGHT + Fore.LIGHTMAGENTA_EX + option for option in options]
+    colored_options = [Fore.LIGHTMAGENTA_EX + option for option in options]
     for i, option in enumerate(colored_options, start=1):
-        print(Style.BRIGHT + Fore.LIGHTMAGENTA_EX + f"{i}. {option}")
+        print(Fore.LIGHTMAGENTA_EX + f"{i}. {option}")
 
     # Get the user's choice
     while True:
@@ -1045,10 +1045,10 @@ def ask_for_flight_info(flights_info, trip_details):
     + Style.NORMAL)
     print(Style.BRIGHT + Fore.MAGENTA + "5. Start over" + Style.NORMAL)
     print(" ")
-    print(
-    "Occasionally, booking information may be unavailable at the time of your request, "
-    + "and InstaTrip will be unable to provide booking instructions for that city."
-    )
+    print(Style.BRIGHT + Fore.YELLOW
+    + "Please note: Occasionally, booking information may be unavailable at the time of your "
+    + "request, and InstaTrip will be unable to provide booking instructions for that city."
+    + Style.NORMAL)
 
     # Get the user's choice and handle any errors
     while True:
