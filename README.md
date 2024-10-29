@@ -738,53 +738,55 @@ I have now simply instructed the user to type either the staycation URL into the
   <summary>How to Deploy with Heroku (click)</summary> 
 <p>
 
-This site was deployed through [Heroku](https://www.heroku.com/)
+This site was deployed to [Heroku](https://www.heroku.com/). Follow these steps to deploy:
 
 1. Sign up for a Heroku account and log in
-2. On the dashboard, select New and then choose Create new app
+2. On the dashboard, select *New* and then choose *Create new app*
 
 <details>
-<summary>Create New App (click)</summary>
+<summary><b>Create New App</b> (click)</summary>
 <img src="assets/documentation/heroku1.png">
 </details>
 
-3. Choose a unique app name, pick a region, and click Create app
+3. Choose a unique app name, pick a region, and click *Create app*
 
 <details>
-<summary>Create App (click)</summary>
+<summary><b>Create App</b> (click)</summary>
 <img src="assets/documentation/heroku2.png">
 </details>
 
-4. Open the Settings tab within the newly created app
-5. In the Config Vars section, click Reveal Config Vars
-6. To enable Google Sheets, add a config variable with the key CREDS and paste the contents of the creds.json file as the value
-7. Add another config variable, setting PORT as the key and 8000 as the value
+4. Open the *Settings* tab within the newly created app
 
 <details>
-<summary>Config Vars (click)</summary>
+<summary><b>Config Vars</b> (click)</summary>
 <img src="assets/documentation/heroku3.png">
 </details>
 
-8. Under Config Vars, click Add buildpack. Choose Python and save it, then add another buildpack, selecting Node.js. Make sure the buildpacks appear in this order. 
+5. In the *Config Vars* section, click *Reveal Config Vars*
+6. To enable Google Sheets, add a config variable with the key CREDS and paste the contents of the creds.json file as the value
+7. Add another config variable, setting PORT as the key and 8000 as the value
+
+8. Under *Config Vars*, click *Add buildpack*. Choose *Python* and save it, then add another buildpack, selecting *Node.js*. Make sure the buildpacks appear in this order. 
 
 <details>
-<summary>Create new app (click)</summary>
+<summary><b>Buildpacks</b> (click)</summary>
 <img src="assets/documentation/heroku4.png">
 </details>
 
-You can drag and drop the buildpacks to change the order if needed
-
 <details>
-<summary>Create new app (click)</summary>
+<summary><b>Choosing and Ordering Buildpacks</b> (click)</summary>
 <img src="assets/documentation/heroku5.png">
+
+You can drag and drop the buildpacks to correct the order if needed
+
 <img src="assets/documentation/heroku6.png">
 </details>
 
-9. Go to the Deploy tab at the top
-10. Select GitHub as the deployment method and connect your GitHub account
+9. Go to the *Deploy* tab at the top
+10. Select *GitHub* as the deployment method and connect your GitHub account
 
 <details>
-<summary>Create new app (click)</summary>
+<summary><b>Finding the Repository to Deploy</b> (click)</summary>
 <img src="assets/documentation/heroku7.png">
 </details>
 
@@ -792,18 +794,18 @@ You can drag and drop the buildpacks to change the order if needed
 11. Find and connect the repository by searching for its name
 
 <details>
-<summary>Create new app (click)</summary>
+<summary><b>Connecting to GitHub</b> (click)</summary>
 <img src="assets/documentation/heroku8.png">
 </details>
 
 12. Optionally, turn on automatic deploys to trigger deployment whenever updates are pushed to the repository
 
 <details>
-<summary>Create new app (click)</summary>
+<summary><b>Deploying Your Branch</b> (click)</summary>
 <img src="assets/documentation/heroku9.png">
 </details>
 
-13. Finally, click Deploy Branch to deploy the project immediately
+13. Finally, click *Deploy Branch* to deploy the project immediately
 
 </p>
 </details>
@@ -811,17 +813,17 @@ You can drag and drop the buildpacks to change the order if needed
 ## To Fork The Repository on GitHub
 
 <details>
-  <summary>How to fork the **InstaTrip** repository (click)</summary>
+  <summary>How to fork the InstaTrip repository (click)</summary>
 <p>
 
 To make a copy of a repository, fork it through Github:
 
 1. Find the repository either by using the search bar or by navigating to the URL [/erinvdoyle/instatrip](https://github.com/erinvdoyle/instatrip)
-2. Once on the repository main page, navigate to the "Fork" button in the upper-right corner, between the "Watch"("Unwatch" in the image as I am the repository owner and watcher) and "Star" buttons
+2. Once on the repository main page, navigate to the *Fork* button in the upper-right corner, between the *Watch*(*Unwatch* in the image as I am the repository owner and watcher) and *Star* buttons
 
 ![Github Fork](assets/documentation/fork.png)
 
-3. Click the "Fork" button to create a copy of the repository. This copy be altered without affecting the source code
+3. Click the *Fork* button to create a copy of the repository. This copy can be altered without affecting the source code
 </p>
 </details>
 
@@ -834,7 +836,7 @@ To make a copy of a repository, fork it through Github:
 <p>
 To clone the repository of this site:
 
-1. Click the "Code" button in your forked repository
+1. Click the *Code* button in your forked repository
 
 ![Github Clone Page 1](assets/documentation/clone1.png)
 
