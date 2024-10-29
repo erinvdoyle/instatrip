@@ -234,6 +234,7 @@ def read_about():
     Displays the about text for both the company and the developer :)
     """
     os.system("cls" if os.name == "nt" else "clear")
+    print("\033[H\033[J") # Manual screen clear
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
         wrap_text(
@@ -281,7 +282,7 @@ def read_about():
         + "of Code Institute's Full-Stack Software Development "
         + "program. Her InstaTrip travel preferences are: Romantic "
         + "(her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, "
-        + "and Off the Beaten Path.  "
+        + "and Off the Beaten Path  "
         + Style.BRIGHT + Fore.LIGHTCYAN_EX
         + "https://github.com/erinvdoyle" + Style.NORMAL
     )
