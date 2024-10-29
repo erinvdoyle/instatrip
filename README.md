@@ -13,7 +13,7 @@ Crave the magic of adventure but need the security of cold, hard data? Welcome t
 
 InstaTrip asks you a few simple questions (nothing too deep), then compiles a hand-picked list of European destinations based on your preferences. Fancy a quick solo trip to Bucharest? A hen party in Amsterdam? Maybe a spicy weekend for two in Istanbul? We’ve got you covered. We'll match the occasion of your trip to your chosen interests. Shopping? *Check.* Dining? *Absolutely.* Nightlife? *Cheers!*
 
-But that's not all, reader. **InstaTrip** even saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. Decision fatigue is real, so help us help you. No need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
+But that's not all, reader. **InstaTrip** saves you the trouble of flight searching. Thanks to the Ryanair API, we’ll show you the cheapest ticket to your destination. Decision fatigue is real, so help us help you. No need to spend hours searching for flights-- that's time better spent agonizing over how to fit your entire wardrobe + toiletries into a 40cm x 20cm bag :fearful:
 
 Don't forget your passport!
 
@@ -106,7 +106,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
   - **As the owner of the site**, I want:
     - To deliver a program with a clean, well-planned interface that seamlessly collects user preferences to predict a tailored selection of vacation destinations
     - To connect my users with the best prices for their chosen destinations and with a reputable airline, Ryanair
-    - To offer a variety of choice and a fun factor that encourages repeat vists and word of mouth recommendations
+    - To offer a variety of choice and a fun factor that encourages repeat vists and word of mouth recommendation
     </details>
 
 ## Features to Achieve the Goals
@@ -115,12 +115,12 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
    <summary>Features to Achieve the Goals (click)</summary>
    
 
-  - **Features of the program to achieve user story goals:**
+  - **Features to achieve user story goals:**
     - The starting screen of the application features a simple main menu for easy navigation
-    - The user is walked through the process of entering their departure details and choosing their vacation preferences; every step is explained along the way
-    - The tone of the copy and the color and decorative choices for the interface keep the process engaging and fun
-    - There is a wide range for departure dates that allows users to book up to two years in advance
-    - Additional departure date flexibility for the Ryanair API can be factored into finding the cheapest flight
+    - The user is walked through the process of entering their departure details and choosing vacation preferences; every step is explained along the way
+    - The tone of the copy, color, and decorative choices for the interface keep the process engaging and fun
+    - There is a wide range for departure dates that allows users to book up to six months in advance
+    - Departure date flexibility for the Ryanair API can be factored into finding the cheapest flight
     - A wide range of cities and the ranked suitability of each for all occasion and interest parameters offer the user exposure to many different city suggestions
     - The user is given the opportunity to draw and re-draw sets of destination cities as many times as they wish
     - Flight information is offered for each of the three selected cities so that the user can choose a city with booking details in mind
@@ -131,7 +131,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
 
 ## Program Structure
 
-**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It is driven by two core processes, each powered by an API. The first is a data collection and comparison process which measures user input against a Google Sheet of city rankings in order to determine the user's ideal European destination. The second is a flight retrieval process by which the Ryanair API selects the cheapest flight for the cities decided by the process described above.
+**Instatrip** is a terminal-based application housed on a landing page and deployed by Heroku. It operates through two core processes, each utilizing an API. The first is a data collection and comparison process which measures user input against a Google Sheet of city rankings, determining the user's ideal European destination. The second process uses the Ryanair API to retrieve the most affordable flights for the selected cities
 
 More about each of these processes can be found in the [Flowchart](<#flowchart>) and [Database Structure]((<#database-structure>)) sections. The underlying logic and the user experience navigating through the program can be found in the [Logic Flow](<#logic-flow>) and [Features](<#features>) sections.
 
@@ -142,7 +142,7 @@ More about each of these processes can be found in the [Flowchart](<#flowchart>)
   <img src="assets/documentation/flowchart.png" height="650px"/>
   </p>
 
-The flow chart for this application was originally designed with pen and paper before I began coding. I used Visio once I had an idea of the general structure and put the first few functions in place. This helped me flesh out the details, stay organized, and create the necessary bridges between functions as the logic of the program grew in complexity
+The flow chart for this application was originally designed with pen and paper before I began coding. I used Visio once I had an idea of the general structure and had put the first few functions in place. This helped me flesh out the details, stay organized, and create the necessary bridges between functions as the logic of the program grew in complexity
 </details>
 
 ## Database Structure 
@@ -171,7 +171,7 @@ Data to rank each city with a numeric value (1-5) and populate each of the colum
 
 I was able to integrate the Ryanair API into this program by signing up for [Rapid API](https://rapidapi.com/DataCrawler/api/ryanair2) and subscribing through their service. This was my second experience with APIs (the first being a soft launch into them with Google Sheets in the *Love Sandwiches* walkthrough), and while the parameters and logic appeared straightforward, I spent an entire morning trying to set it up using JSON format before finally turning to AI. One struggle was in fetching the destination airport IATAs, which I eventually stored in my Google Sheet rather than in a list in *run.py*. 
 
-Once integrated, the API made the program functional (a thrill! :woman_dancing:) and I was able to generate flight information through **InstaTrip** and find the matching flights on Ryanair.com
+Once integrated, the API made the program functional (a thrill! :woman_dancing:) and I was able to generate flight information through **InstaTrip** and find the matching flights on ryanair.com
 </details>
 
 ## Logic Flow
@@ -195,9 +195,9 @@ Once integrated, the API made the program functional (a thrill! :woman_dancing:)
 
 - Once the user has selected their preferred three destinations, they are asked by the *rate_importance()* function to rate the importance of five different safety and accessibility factors. Their answers are then compared with the rankings stored in the Sheet for each city, and *adjust_city_scores()* reorders the final three cities from most suitable to least.
 
-- From here, the user's departure data and the IATA airport codes (stored in the Sheet) for the user's selected cities are passed to the Ryanair API. This is accomplished with these functions: *get_airport_codes(), search_ryanair_flights(),* and *find_cheapest_flights()*. The cheapest applicable flight information for each city is then printed and the user may choose whether to *ask_for_flight_info()* or *exit()* the program. 
+- From here, the user's departure data and the IATA airport codes (stored in the Sheet) for the user's selected cities are passed to the Ryanair API. This is accomplished with these functions: *get_airport_codes(), search_ryanair_flights(),* and *find_cheapest_flights()*. The cheapest applicable flight information for each city is then printed and the user may choose whether to *ask_for_flight_info()* or start the program over. 
 
-- *Exit()* prints the exit message and art, a url for a staycation article, and the option to return to the *Main Menu*. 
+- The *Exit* screen, accessed from the Main Menu, calls *exit()* to print the exit message and art, a url for a staycation article, and the option to return to the *Main Menu*. 
 </details>
 
 ## Design Choices
@@ -235,7 +235,7 @@ I have aimed to give this program a logical, straightforward interface that both
 
 ## Welcome Screen
 
-A colorful ASCII Art logo with the name of the application and its tagline form the top of the *Welcome Screen*. Beanth the art, the *Main Menu* instructs the user to decide whether to read about **InstaTrip**, *Start* the program, or visit the *Exit* screen. The input is validated for the three correct choices: 1, 2, or 3.
+A colorful ASCII Art logo with the name of the application and its tagline form the top of the *Welcome Screen*. Beneath the art, the *Main Menu* instructs the user to decide whether to read *About* **InstaTrip**, *Start* the program, or visit the *Exit* screen. The input is validated for the three correct choices: 1, 2, or 3.
 
 <p align="center">
   <img src="assets/documentation/welcome.png">
@@ -270,7 +270,7 @@ The screen then clears and the program advances to collect the user's departure 
 
 ## Departure Details
 
-After reading that InstaTrip departs out of Dublin (with new departure cities to launch "soon"), the user is prompted to enter a series of departure details: The date, their travel date flexibility, and their length of stay. User input is validated at each step
+After reading a message that InstaTrip departs out of Dublin (with new departure cities to launch "soon"), the user is prompted to enter a series of departure details: The date, their travel date flexibility, and their length of stay. User input is validated at each step
 
 
 <p align="center">
@@ -281,7 +281,7 @@ After reading that InstaTrip departs out of Dublin (with new departure cities to
 <img src="assets/documentation/departure2.png" height="450px"/>
 </p>
 
-These details will be used by the Ryanair API to generate flight departure information
+These travel details will be used by the Ryanair API to generate flight departure information.
 
 ## Travel Preferences
 
@@ -291,13 +291,14 @@ Once the departure details have been collected, the user is given the opportunit
 <img src="assets/documentation/preferences1.png" height="450px"/>
 </p>
 
-When they have entered their choice of occasion, they are given 6 important factors in their travel preferences, of which they may choose 3. These important factors are Nightlife, History & Culture, Cuisine, Outdoorsy Experiences, Shopping, and Off the Beaten Path Exploration.
+When the user has entered their choice of occasion, they are given 6 important factors in their travel preferences, of which they may choose 3. These important factors are Nightlife, History & Culture, Cuisine, Outdoorsy Experiences, Shopping, and Off the Beaten Path Exploration.
 
 <p align="center">
 <img src="assets/documentation/preferences2.png" height="450px"/>
 </p>
 
-These preferences are used to determine which of the cities stored in the Google Sheet, each with their own rankings for each catagory, make the most suitable travel destinations
+These preferences are matched against the cities listed in the Google Sheet, each rated across the important factor categories, to determine the most suitable travel destinations.
+
 
 ## Curated Destinations
 
@@ -307,13 +308,13 @@ Now that departure details and travel preferences have been collected, the scree
 <img src="assets/documentation/curated1.png" height="450px"/>
 </p>
 
-Three options follow the cities. If the user is happy with the cities, they may proceed. If not, they can choose to see another three cities, or start the program over 
+Three options follow the cities. If the user is happy with the cities, they may proceed. If not, they can choose to see another three cities, or start the program over. All input is validated. 
 
 <p align="center">
 <img src="assets/documentation/curated2.png" height="450px"/>
 </p>
 
-If the user chooses to view a new set of cities, they receive another list of three choices. They may then proceed, generate another new set, start the program over, or return to the previously offered cities. These options are available on a loop until either the user is pleased with their options or decides to start over. All choices are validated
+If the user chooses to view a new set of cities, they receive another list of three choices. They may then proceed, generate another new set, start the program over, or return to the previously offered cities. These options are available on a loop until either the user is pleased with their options or decides to start over. All choices are validated.
 
 <p align="center">
 <img src="assets/documentation/curated3.png" height="450px"/>
@@ -321,7 +322,7 @@ If the user chooses to view a new set of cities, they receive another list of th
 
 ## Safety and Accessibility Preferences 
 
-Once the destination cities have been settled, they are then ranked again by the user's safety and accessibility preferences. Data from the Google Sheet is compared with the user's input to determine the order of suitability of the cities
+Once the destination cities have been settled, they are then ranked again by the user's safety and accessibility preferences. Data from the Google Sheet is compared with the user's input to determine the order of suitability for the cities
 
 <p align="center">
 <img src="assets/documentation/safety.png" height="450px"/>
@@ -433,33 +434,30 @@ The final step of the program is to print the flight details of the user's chose
 
 ### HTML Validation
 
+[W3C HTML Validator](https://validator.w3.org/)
+
 <details>
     <summary>HTML Validation Screenshot (click)</summary>
-
-    [W3C HTML Validator](https://validator.w3.org/)
-
      <img src="assets/documentation/htmlvalid.png">
      <p>No errors were returned</p>
   </details>
 
 ### CSS Validation
 
+[W3C CSS Validator](https://validator.w3.org/)
+
 <details>
-    <summary>HTML Validation Screenshot (click)</summary>
-
-    [W3C CSS Validator](https://validator.w3.org/)
-
+    <summary>CSS Validation Screenshot (click)</summary>
      <img src="assets/documentation/cssvalid.png">
      <p>No errors were returned</p>
   </details>  
 
 ### Python Validation
 
+[PEP8 Python De-Linter](https://pep8ci.herokuapp.com/) 
+
 <details>
     <summary>Python Validation Screenshot (click)</summary>
-
-    [PEP8 Python De-Linter](https://) 
-
      <img src="assets/documentation/">
      <img src="assets/documentation/">
      <p>No errors returned. etc</p>
@@ -689,7 +687,7 @@ Due to the specifications of the mock terminal, responsiveness was not required 
   <summary>Linebreak Issue After De-Linting (click)</summary>
 <img src="assets/documentation/bug1a.png">
 <img src="assets/documentation/bug1b.png">
-<p>This bug, and the next, are representative of numerous errors returned after my first attempt to de-lint my python code after using the Pep 8 de-linter. While initially concerning, this issue was easily rectified by removing "\n" and manually creating a line break after the opening parenthesis</p>
+<p>This bug, and the next, are representative of numerous errors returned after my first attempt to de-lint my python code using the PEP8 de-linter. While initially concerning, this issue was easily rectified by removing "\n" and manually creating a line break after the opening parenthesis</p>
 </details>
 
 <details>
@@ -703,7 +701,7 @@ Due to the specifications of the mock terminal, responsiveness was not required 
 <details>
   <summary>TypeError:  Can only concatenate list to list (click)</summary>
 <img src="assets/documentation/bug3.png">
-<p>This was a carelessness error as I tried to concatenate the "options" list with "Style.NORMAL." I removed the latter to solve the error</p>
+<p>This was an error of carelessness as I tried to concatenate the "options" list with "Style.NORMAL." I removed the latter to solve the error</p>
 </details>
 
 <details>
@@ -726,7 +724,9 @@ After implementing the above solutions and running all code through the necessar
   <summary>Creating a link worked in the IDE but not Heroku (click)</summary>
 <img src="assets/documentation/bug5a.png">
 <img src="assets/documentation/bug5b.png">
-<p>I have now simply instructed the user to type either the staycation URL into their browser or to search [ryanair.com](https://www.ryanair.com) with the provided flight information</p>
+
+I have now simply instructed the user to type either the staycation URL into their browser or to search [ryanair](https://www.ryanair.com) with the provided flight information
+
 </details>
 
 # Deployment
