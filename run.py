@@ -1030,7 +1030,7 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
         if destination_code:
             outbound_date = trip_details["departure_date"]
             print(
-                  Style.BRIGHT
+                Style.BRIGHT
                   + Fore.LIGHTCYAN_EX
                   + f"Fetching flights for {city_name} "
                   + f"(IATA: {destination_code})..."
@@ -1042,52 +1042,47 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
             )
 
             # Search for flights using the Ryanair API
-            if (
-                flight_data
-                and "data" in flight_data
-                and "trips" in flight_data["data"]
-            ):
+            if flight_data and "data" in flight_data and "trips" in flight_data["data"]:
                 cheapest_flight = None
-    for trip in flight_data["data"]["trips"]:
-        for date in trip["dates"]:
-            for flight in date["flights"]:
-                if "regularFare" in flight:
-                    if (
-                        not cheapest_flight
-                        or flight["regularFare"]["fares"][0]["amount"]
-                        < cheapest_flight["regularFare"]["fares"][0]["amount"]
-                    ):
-                        cheapest_flight = flight
-    # Add the flight information to the results list
-    if cheapest_flight:
-        flight_info = {
-            "city": city_name,
-            "flight_number": cheapest_flight["flightNumber"],
-            "price": cheapest_flight["regularFare"]["fares"][0]["amount"],
-            "departure_time": cheapest_flight["time"][0],
-            "arrival_time": cheapest_flight["time"][1],
-        }
-        flight_results.append(flight_info)
-    else:
-        if not flight_data:
-            print(
-                Style.BRIGHT
-                + Fore.LIGHTCYAN_EX
-                + f"No fares found for {city_name}."
-                + Style.NORMAL
-            )
-        elif not city_name:  # Assuming this checks for city_name
-            print(
-                Style.BRIGHT
-                + Fore.LIGHTCYAN_EX
-                + f"No airport code found for {city_name}"
-                + Style.NORMAL
-            )
+                for trip in flight_data["data"]["trips"]:
+                    for date in trip["dates"]:
+                       for flight in date["flights"]:
+                            if "regularFare" in flight:
+                                if (
+                                    not cheapest_flight
+                                    or flight["regularFare"]["fares"][0]["amount"]
+                                    < cheapest_flight["regularFare"]["fares"][0]["amount"]
+                                ):
+                                    cheapest_flight = flight
+                # Add the flight information to the results list
+                if cheapest_flight:
+                    flight_info = {
+                        "city": city_name,
+                        "flight_number": cheapest_flight["flightNumber"],
+                        "price": cheapest_flight["regularFare"]["fares"][0]["amount"],
+                        "departure_time": cheapest_flight["time"][0],
+                        "arrival_time": cheapest_flight["time"][1],
+                    }
+                    flight_results.append(flight_info)
+                else:
+                    print(
+                        Style.BRIGHT
+                        + Fore.LIGHTCYAN_EX
+                        + f"No fares found for {city_name}."
+                        + Style.NORMAL
+                    )
+            else:
+                print(
+                    Style.BRIGHT
+                    + Fore.LIGHTCYAN_EX
+                    + f"Error fetching flights for {city_name}"
+                    + Style.NORMAL
+                )
         else:
             print(
                 Style.BRIGHT
                 + Fore.LIGHTCYAN_EX
-                + f"Error fetching flights for {city_name}"
+                + f"No airport code found for {city_name}"
                 + Style.NORMAL
             )
 
@@ -1121,11 +1116,8 @@ def ask_for_flight_info(flights_info, trip_details):
     )
     for idx, flight in enumerate(flights_info, start=1):
         print(
-            Style.BRIGHT
-            + Fore.CYAN
-            + f"{idx}. {flight['city']}: Flight Number: "
-            + f"{flight['flight_number']}, Price: {flight['price']} EUR"
-            + Style.NORMAL
+            Style.BRIGHT + Fore.CYAN + f"{idx}. {flight['city']}: Flight Number: "
+            f"{flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL
         )
 
     print(Style.BRIGHT + Fore.CYAN + "4. See booking "
@@ -1136,7 +1128,7 @@ def ask_for_flight_info(flights_info, trip_details):
     print(Fore.YELLOW
           + "Please note: Occasionally, booking information may be "
           + "unavailable at the time of your request, and InstaTrip will be "
-          + "unable to provide booking information for that city."
+          + "unable to provide booking instructions for that city."
           )
 
     # Get the user's choice and handle any errors
@@ -1213,11 +1205,10 @@ def ask_for_flight_info(flights_info, trip_details):
                 )
                 print(" ")
                 print(
-                    Style.BRIGHT
-                    + Fore.YELLOW
-                    + f"Bon Voyage! "
-                    + Style.NORMAL
-                )
+                      Style.BRIGHT + Fore.YELLOW +
+                      f"Bon Voyage! {emoji.emojize(':airplane_departure:')}" +
+                      Style.NORMAL
+                    )
 
                 while True:
                     restart_choice = input(
@@ -1255,8 +1246,7 @@ def ask_for_flight_info(flights_info, trip_details):
                             )
                             print(
                                 Fore.YELLOW
-                                + f"Departure Date: "
-                                + f"{trip_details['departure_date']}"
+                                + f"Departure Date: {trip_details['departure_date']}"
                                 + Style.NORMAL
                             )
                             print(
@@ -1291,7 +1281,7 @@ def ask_for_flight_info(flights_info, trip_details):
                         print(
                             Style.BRIGHT + Fore.YELLOW +
                             "Bon Voyage! " +
-                            Style.NORMAL
+                             Style.NORMAL
                         )
 
                         while True:
@@ -1372,13 +1362,9 @@ def ask_for_flight_info(flights_info, trip_details):
                     + Style.NORMAL
                 )
                 print(" ")
-                print(
-                    Style.BRIGHT
-                    + Fore.YELLOW
-                    + f"Bon "
-                    + "Voyage! "
-                    + Style.NORMAL
-                )
+                print(Style.BRIGHT + Fore.YELLOW + f"Bon "
+                      + "Voyage!  {emoji.emojize(':airplane_departure:')}" +
+                      Style.NORMAL)
 
                 while True:
                     restart_choice = input(
@@ -1521,32 +1507,26 @@ def main():
         # from the user
         os.system("cls" if os.name == "nt" else "clear")
         selected_trip_type = type_of_trip()
-
+        
         selected_factors = important_factors()
 
         while True:
             # Rank and select the top cities based on the user's preferences
-            all_ranked_cities = rank_cities(
-                SHEET, selected_trip_type, selected_factors
-            )
-        initial_top_cities = select_random_cities(all_ranked_cities)
+            all_ranked_cities = rank_cities(SHEET, selected_trip_type, selected_factors)
+            initial_top_cities = select_random_cities(all_ranked_cities)
 
-        # Clear the console
-        clear_screen()
+            # Clear the console
+            clear_screen()
 
-        # Clear the console using blank lines just in case clear_screen()
-        # fails
-        # print("\n" * 100)
+            # Clear the console using blank lines just in case clear_screen()
+            # fails
+            # print("\n" * 100)
 
-        print(Style.BRIGHT + Fore.MAGENTA + "Your "
-              + "Curated Destinations:" + Style.NORMAL)
-        print("")
-        for city in initial_top_cities:
-            print(
-                emoji.emojize(
-                    Style.BRIGHT + Fore.MAGENTA + ":star: "
-                ) + " " + city[0] + Style.NORMAL
-            )
+            print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
+            print("")
+            for city in initial_top_cities:
+                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":star: " + " " + city[0] 
+                + Style.NORMAL))
 
             # Ask the user if they are happy with the top cities and
             # get their choice
@@ -1583,9 +1563,7 @@ def main():
                 trip_details['departure_airport'] = 'DUB'
                 travel_date = trip_details.get('travel_date')
                 if isinstance(travel_date, list) and travel_date:
-                    trip_details['departure_date'] = travel_date[0].strftime(
-                        "%Y-%m-%d"
-                    )
+                    trip_details['departure_date'] = travel_date[0].strftime("%Y-%m-%d")
                 else:
                     trip_details['departure_date'] = (
                         travel_date.strftime("%Y-%m-%d")
@@ -1602,6 +1580,7 @@ def main():
                 os.system("cls" if os.name == "nt" else "clear")
                 clear_screen()
                 print("\n" * 20)
+
 
                 print(Style.BRIGHT + Fore.MAGENTA + "\nCheapest Flights "
                       + "Information:" + Style.NORMAL)
