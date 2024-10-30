@@ -243,6 +243,7 @@ def wrap_text(text):
     width = get_terminal_width()
     return textwrap.fill(text, width)
 
+
 def read_about():
     """
     Displays the about text for both the company and the developer :)
@@ -295,17 +296,17 @@ def read_about():
             Style.BRIGHT + Fore.MAGENTA + "About the Developer"
             + Style.RESET_ALL)
     print(
-    wrap_text(
-        Fore.YELLOW
-        + "InstaTrip was developed by Erin Doyle, a student "
-        + "of Code Institute's Full-Stack Software Development "
-        + "program. Her InstaTrip travel preferences are: Romantic "
-        + "(her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, "
-        + "and Off the Beaten Path.  "
-        + Style.BRIGHT + Fore.LIGHTCYAN_EX
-        + "https://github.com/erinvdoyle" + Style.NORMAL
+        wrap_text(
+            Fore.YELLOW
+            + "InstaTrip was developed by Erin Doyle, a student "
+            + "of Code Institute's Full-Stack Software Development "
+            + "program. Her InstaTrip travel preferences are: Romantic "
+            + "(her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, "
+            + "and Off the Beaten Path.  "
+            + Style.BRIGHT + Fore.LIGHTCYAN_EX
+            + "https://github.com/erinvdoyle" + Style.NORMAL
+        )
     )
-)
 
     print(" ")
     while True:
@@ -565,7 +566,8 @@ def important_factors():
 
         # Check for duplicates in choices
         if len(choices) != len(set(choices)):
-            print(Fore.RED + "Duplicate choices are not allowed. Please try again.")
+            print(Fore.RED + "Duplicate choices are not allowed. "
+                  + "Please try again.")
             continue
 
         selected_factors = []
@@ -761,7 +763,8 @@ def rate_importance():
         while True:
             try:
                 rating = input(
-                    Style.BRIGHT + Fore.MAGENTA + f"Rate the importance of {factor} "
+                    Style.BRIGHT + Fore.MAGENTA + f"Rate "
+                    + "the importance of {factor} "
                     "(1-5, with 1 being most important): \n" + Style.NORMAL
                 ).strip()
 
@@ -894,7 +897,9 @@ def user_choice_after_ranking(
                     "and accessibility preferences:" + Style.NORMAL
                 )
                 for city in adjusted_cities:
-                    print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
+                    print(
+                        emoji.emojize(
+                            Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
 
                 return adjusted_cities
 
@@ -924,7 +929,9 @@ def user_choice_after_ranking(
                     + Style.NORMAL
                 )
                 for city in top_cities:
-                    print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
+                    print(
+                        emoji.emojize(
+                            Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
 
             else:
                 print(
@@ -1023,10 +1030,10 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
             print(
                 Style.BRIGHT
                 + Fore.LIGHTCYAN_EX
-                + f"Fetching flights for {city_name} (IATA: {destination_code})..."
+                + f"Fetching flights "
+                + "for {city_name} (IATA: {destination_code})..."
                 + Style.NORMAL
             )
-
             # Search for flights using the Ryanair API
             flight_data = search_ryanair_flights(
                 origin, destination_code, outbound_date
