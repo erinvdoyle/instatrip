@@ -682,7 +682,7 @@ def drumroll():
     """
     os.system("cls" if os.name == "nt" else "clear")
     # Clear the console
-    clear_screen()
+    # clear_screen()
 
     # Clear the console using blank lines just in case clear_screen()
     # fails
@@ -1119,7 +1119,7 @@ def ask_for_flight_info(flights_info, trip_details):
     print(" ")
     print(Fore.YELLOW
           + "Please note: Occasionally, booking information may be "
-          + "unavailable at the time of your request, and InstaTrip will be "
+          + "unavailable at the time of your \nrequest, and InstaTrip will be "
           + "unable to provide booking instructions for that city."
           )
 
