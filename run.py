@@ -591,6 +591,7 @@ def important_factors():
             + Style.NORMAL
         )
         print("")
+        print("\n" * 3)
         time.sleep(2)
         drumroll()
         return selected_factors
@@ -836,7 +837,7 @@ def user_choice_after_ranking(
             # Handle the user's choice
             if choice == 1:
                 os.system("cls" if os.name == "nt" else "clear")
-                print("\n" * 100)
+                print("\n" * 1)
                 print("")
 
                 print(
@@ -1065,7 +1066,6 @@ def ask_for_flight_info(flights_info, trip_details):
 
     # Print the flight information and ask the user if they want to see
     # more details
-    print(" ")
     print(
         Style.BRIGHT
         + Fore.MAGENTA
@@ -1106,9 +1106,9 @@ def ask_for_flight_info(flights_info, trip_details):
             if 1 <= choice <= len(flights_info):
                 selected_flight = flights_info[choice - 1]
                 os.system("cls" if os.name == "nt" else "clear")
-                print("\n" * 100)
                 print(" ")
                 os.system("cls" if os.name == "nt" else "clear")
+                print("\n" * 3)
                 print(
                     Style.BRIGHT
                     + Fore.YELLOW
@@ -1471,7 +1471,7 @@ def main():
 
             # Clear the screen and display the top cities
             os.system("cls" if os.name == "nt" else "clear")
-            print("\n" * 100)
+            print("\n" * 2)
             print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
             print("")
             for city in initial_top_cities:
