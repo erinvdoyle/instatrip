@@ -12,6 +12,7 @@ import emoji
 from ryanair import Ryanair
 from colorama import Fore, Style, init
 import os
+import platform
 
 # credit for colorama library: https://pypi.org/project/colorama/
 # credit for emoji library: https://pypi.org/project/emoji/
@@ -166,6 +167,16 @@ def display_menu():
             print(Fore.RED + "Invalid choice. Please enter 1, 2, or 3.")
 
 
+def clear_screen():
+    """
+    Clears the terminal screen
+    """
+    if platform.system() == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
+
+
 # Greeting Screen
 
 
@@ -230,15 +241,17 @@ def wrap_text(text):
     width = get_terminal_width()
     return textwrap.fill(text, width)
 
-
 def read_about():
     """
     Displays the about text for both the company and the developer :)
     """
-    # Clear the console using blank lines
+    # Clear the console
+    clear_screen()
+
+    # Clear the console using blank lines just in case clear_screen()
+    # fails
     print("\n" * 100)
 
-    os.system("cls" if os.name == "nt" else "clear")
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
         wrap_text(
@@ -485,7 +498,7 @@ def type_of_trip():
             choice = int(
                 input(
                     Style.BRIGHT
-                    + Fore.MAGENTA
+                    + Fore.LIGHTMAGENTA_EX
                     + "\nEnter the number corresponding to your choice: \n"
                     + Style.NORMAL
                 )
@@ -545,6 +558,12 @@ def important_factors():
             + "Enter your choices (e.g., 1,2,3): \n"
             + Style.NORMAL
         ).split(",")
+
+        # Check for duplicates in choices
+        if len(choices) != len(set(choices)):
+            print(Fore.RED + "Duplicate choices are not allowed. Please try again.")
+            continue
+
         selected_factors = []
         invalid_choices = []
 
@@ -593,6 +612,7 @@ def important_factors():
         print("")
         print("\n" * 3)
         time.sleep(2)
+        clear_screen()
         drumroll()
         return selected_factors
 
@@ -661,6 +681,12 @@ def drumroll():
     Clears the screen and displays a drumroll message with drum emojis.
     """
     os.system("cls" if os.name == "nt" else "clear")
+    # Clear the console
+    clear_screen()
+
+    # Clear the console using blank lines just in case clear_screen()
+    # fails
+    print("\n" * 100)
 
     # Print the drumroll message
     print(
@@ -691,6 +717,13 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
     )
     # Select a random sample of cities from the ranked list
     new_top_cities = select_random_cities(new_top_cities_with_scores)
+
+    # Clear the console
+    clear_screen()
+
+    # Clear the console using blank lines just in case clear_screen()
+    # fails
+    print("\n" * 100)
 
     # Print the new cities
     print(
@@ -1075,11 +1108,11 @@ def ask_for_flight_info(flights_info, trip_details):
     )
     for idx, flight in enumerate(flights_info, start=1):
         print(
-            Style.BRIGHT + Fore.MAGENTA + f"{idx}. {flight['city']}: Flight Number: "
+            Style.BRIGHT + Fore.CYAN + f"{idx}. {flight['city']}: Flight Number: "
             f"{flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL
         )
 
-    print(Style.BRIGHT + Fore.MAGENTA + "4. See booking "
+    print(Style.BRIGHT + Fore.CYAN + "4. See booking "
           + "instructions for all cities"
           + Style.NORMAL)
     print(Style.BRIGHT + Fore.MAGENTA + "5. Start over" + Style.NORMAL)
@@ -1107,8 +1140,8 @@ def ask_for_flight_info(flights_info, trip_details):
                 selected_flight = flights_info[choice - 1]
                 os.system("cls" if os.name == "nt" else "clear")
                 print(" ")
-                os.system("cls" if os.name == "nt" else "clear")
-                print("\n" * 3)
+                clear_screen()
+                print("\n" * 100)
                 print(
                     Style.BRIGHT
                     + Fore.YELLOW
@@ -1236,9 +1269,11 @@ def ask_for_flight_info(flights_info, trip_details):
                             + Style.NORMAL
                         )
                         print(" ")
-                        print(Style.BRIGHT +
-                              Fore.YELLOW + f"Bon Voyage! {emoji.emojize(
-                                ':airplane_departure:')}" + Style.NORMAL)
+                        print(
+                            Style.BRIGHT + Fore.YELLOW +
+                            "Bon Voyage! " +
+                             Style.NORMAL
+                        )
 
                         while True:
                             restart_choice = input(
@@ -1469,9 +1504,13 @@ def main():
             all_ranked_cities = rank_cities(SHEET, selected_trip_type, selected_factors)
             initial_top_cities = select_random_cities(all_ranked_cities)
 
-            # Clear the screen and display the top cities
-            os.system("cls" if os.name == "nt" else "clear")
-            print("\n" * 2)
+            # Clear the console
+            clear_screen()
+
+            # Clear the console using blank lines just in case clear_screen()
+            # fails
+            print("\n" * 100)
+
             print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
             print("")
             for city in initial_top_cities:
@@ -1528,7 +1567,10 @@ def main():
 
                 # Clear the screen and display the flight information
                 os.system("cls" if os.name == "nt" else "clear")
+                clear_screen()
                 print("\n" * 100)
+
+
                 print(Style.BRIGHT + Fore.MAGENTA + "\nCheapest Flights "
                       + "Information:" + Style.NORMAL)
                 print(" ")
@@ -1542,7 +1584,6 @@ def main():
                         + f"Price: {flight['price']} EUR\n"
                         + Style.NORMAL
                         )
-                    print(" ")
 
                 # Ask the user if they want to see more flight information
                 if ask_for_flight_info(flights_info, trip_details):
