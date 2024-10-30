@@ -75,6 +75,8 @@ def colored_instatrip():
     """
     Makes InstaTrip ASCII text tri-colored
     """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
     # Split the ASCII text into three sections and
     # display each section in a different color
     total_lines = len(insta_trip_text)
@@ -171,6 +173,8 @@ def greeting():
     """
     Greets the user when the program is run.
     """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
     # Display a welcome message and instructions for using InstaTrip
     welcome_message = emoji.emojize(
         "\n:palm_tree: "
@@ -234,6 +238,7 @@ def read_about():
     Displays the about text for both the company and the developer :)
     """
     os.system("cls" if os.name == "nt" else "clear")
+    
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
         wrap_text(
