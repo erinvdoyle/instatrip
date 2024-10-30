@@ -686,7 +686,7 @@ def drumroll():
 
     # Clear the console using blank lines just in case clear_screen()
     # fails
-    print("\n" * 100)
+    # print("\n" * 100)
 
     # Print the drumroll message
     print(
@@ -1141,7 +1141,7 @@ def ask_for_flight_info(flights_info, trip_details):
                 os.system("cls" if os.name == "nt" else "clear")
                 print(" ")
                 clear_screen()
-                print("\n" * 100)
+                print("\n" * 10)
                 print(
                     Style.BRIGHT
                     + Fore.YELLOW
@@ -1453,6 +1453,8 @@ def exit():
             + Style.NORMAL
         )
         if user_input == "":
+            # Clear the screen before returning to main menu
+            clear_screen()
             break
         else:
             print(
@@ -1461,7 +1463,7 @@ def exit():
             )
 
     # Clear the screen and restart the program
-    os.system("cls" if os.name == "nt" else "clear")
+    clear_screen()
     print("\n")
     colored_instatrip()
     print_colored_background()
@@ -1509,7 +1511,7 @@ def main():
 
             # Clear the console using blank lines just in case clear_screen()
             # fails
-            print("\n" * 100)
+            # print("\n" * 100)
 
             print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
             print("")
