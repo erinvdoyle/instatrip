@@ -311,6 +311,7 @@ def read_about():
 
         if choice == "1":
             os.system("cls" if os.name == "nt" else "clear")
+            clear_screen()
             colored_instatrip()
             print_colored_background()
             display_menu()
@@ -513,6 +514,7 @@ def type_of_trip():
                     + Style.NORMAL
                 )
                 print("")
+                clear_screen()
                 return selected_trip_type
             else:
                 print(
@@ -723,7 +725,7 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
 
     # Clear the console using blank lines just in case clear_screen()
     # fails
-    print("\n" * 100)
+    print("\n" * 5)
 
     # Print the new cities
     print(
@@ -869,8 +871,7 @@ def user_choice_after_ranking(
 
             # Handle the user's choice
             if choice == 1:
-                os.system("cls" if os.name == "nt" else "clear")
-                print("\n" * 1)
+                clear_screen()
                 print("")
 
                 print(
@@ -1119,7 +1120,7 @@ def ask_for_flight_info(flights_info, trip_details):
     print(" ")
     print(Fore.YELLOW
           + "Please note: Occasionally, booking information may be "
-          + "unavailable at the time of your \nrequest, and InstaTrip will be "
+          + "unavailable at the time of your request, and InstaTrip will be "
           + "unable to provide booking instructions for that city."
           )
 
@@ -1570,7 +1571,7 @@ def main():
                 # Clear the screen and display the flight information
                 os.system("cls" if os.name == "nt" else "clear")
                 clear_screen()
-                print("\n" * 100)
+                print("\n" * 20)
 
 
                 print(Style.BRIGHT + Fore.MAGENTA + "\nCheapest Flights "
