@@ -12,7 +12,6 @@ import emoji
 from ryanair import Ryanair
 from colorama import Fore, Style, init
 import os
-import curses
 
 # credit for colorama library: https://pypi.org/project/colorama/
 # credit for emoji library: https://pypi.org/project/emoji/
@@ -76,8 +75,6 @@ def colored_instatrip():
     """
     Makes InstaTrip ASCII text tri-colored
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
-
     # Split the ASCII text into three sections and
     # display each section in a different color
     total_lines = len(insta_trip_text)
@@ -236,11 +233,10 @@ def read_about():
     """
     Displays the about text for both the company and the developer :)
     """
-    # Clear the console using curses
-    stdscr = curses.initscr()
-    stdscr.clear()
-    curses.endwin()
+    # Clear the console using blank lines
+    print("\n" * 50)
 
+    os.system("cls" if os.name == "nt" else "clear")
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
         wrap_text(
@@ -299,11 +295,7 @@ def read_about():
         choice = input(Fore.RED + "Enter 1 to return to Main Menu: \n")
 
         if choice == "1":
-            # Clear the console using curses
-            stdscr = curses.initscr()
-            stdscr.clear()
-            curses.endwin()
-
+            os.system("cls" if os.name == "nt" else "clear")
             colored_instatrip()
             print_colored_background()
             display_menu()
@@ -1168,8 +1160,10 @@ def ask_for_flight_info(flights_info, trip_details):
                 )
                 print(" ")
                 print(
-                    Style.BRIGHT + Fore.YELLOW + f"Bon Voyage! {emoji.emojize(
-                        ':airplane_departure:')}" + Style.NORMAL)
+                      Style.BRIGHT + Fore.YELLOW +
+                      f"Bon Voyage! {emoji.emojize(':airplane_departure:')}" +
+                      Style.NORMAL
+                    )
 
                 while True:
                     restart_choice = input(
@@ -1362,11 +1356,10 @@ def exit():
     Brings the user to the exit art screen and displays a staycation link.
     """
     # Clear the screen and print the exit art and staycation link
-     # Clear the console using curses
-    stdscr = curses.initscr()
-    stdscr.clear()
-    curses.endwin()
-    
+    # Clear the console using blank lines
+    print("\n" * 50)
+
+    os.system("cls" if os.name == "nt" else "clear")
     print("")
     print("")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
@@ -1428,11 +1421,8 @@ def exit():
                 + "to return to the main menu." + Style.NORMAL
             )
 
-    # Clear the console using curses
-    stdscr = curses.initscr()
-    stdscr.clear()
-    curses.endwin()
-    
+    # Clear the screen and restart the program
+    os.system("cls" if os.name == "nt" else "clear")
     print("\n")
     colored_instatrip()
     print_colored_background()
