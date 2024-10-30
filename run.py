@@ -148,11 +148,13 @@ def display_menu():
         choice = input(Fore.RED + "Please choose an option (1, 2, or 3): ")
 
         if choice == "1":
+            print("\n" * 100)
             os.system("cls" if os.name == "nt" else "clear")
             colored_instatrip()
             greeting()
             break
         elif choice == "2":
+            print("\n" * 100)
             os.system("cls" if os.name == "nt" else "clear")
             read_about()
             break
@@ -234,7 +236,7 @@ def read_about():
     Displays the about text for both the company and the developer :)
     """
     # Clear the console using blank lines
-    print("\n" * 50)
+    print("\n" * 100)
 
     os.system("cls" if os.name == "nt" else "clear")
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
@@ -834,6 +836,7 @@ def user_choice_after_ranking(
             # Handle the user's choice
             if choice == 1:
                 os.system("cls" if os.name == "nt" else "clear")
+                print("\n" * 100)
                 print("")
 
                 print(
@@ -1103,6 +1106,7 @@ def ask_for_flight_info(flights_info, trip_details):
             if 1 <= choice <= len(flights_info):
                 selected_flight = flights_info[choice - 1]
                 os.system("cls" if os.name == "nt" else "clear")
+                print("\n" * 100)
                 print(" ")
                 os.system("cls" if os.name == "nt" else "clear")
                 print(
@@ -1467,6 +1471,7 @@ def main():
 
             # Clear the screen and display the top cities
             os.system("cls" if os.name == "nt" else "clear")
+            print("\n" * 100)
             print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
             print("")
             for city in initial_top_cities:
@@ -1523,6 +1528,7 @@ def main():
 
                 # Clear the screen and display the flight information
                 os.system("cls" if os.name == "nt" else "clear")
+                print("\n" * 100)
                 print(Style.BRIGHT + Fore.MAGENTA + "\nCheapest Flights "
                       + "Information:" + Style.NORMAL)
                 print(" ")
