@@ -12,6 +12,7 @@ import emoji
 from ryanair import Ryanair
 from colorama import Fore, Style, init
 import os
+import curses
 
 # credit for colorama library: https://pypi.org/project/colorama/
 # credit for emoji library: https://pypi.org/project/emoji/
@@ -173,8 +174,6 @@ def greeting():
     """
     Greets the user when the program is run.
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
-
     # Display a welcome message and instructions for using InstaTrip
     welcome_message = emoji.emojize(
         "\n:palm_tree: "
@@ -237,8 +236,11 @@ def read_about():
     """
     Displays the about text for both the company and the developer :)
     """
-    os.system("cls" if os.name == "nt" else "clear")
-    
+    # Clear the console using curses
+    stdscr = curses.initscr()
+    stdscr.clear()
+    curses.endwin()
+
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
         wrap_text(
@@ -297,7 +299,11 @@ def read_about():
         choice = input(Fore.RED + "Enter 1 to return to Main Menu: \n")
 
         if choice == "1":
-            os.system("cls" if os.name == "nt" else "clear")
+            # Clear the console using curses
+            stdscr = curses.initscr()
+            stdscr.clear()
+            curses.endwin()
+
             colored_instatrip()
             print_colored_background()
             display_menu()
@@ -1356,7 +1362,11 @@ def exit():
     Brings the user to the exit art screen and displays a staycation link.
     """
     # Clear the screen and print the exit art and staycation link
-    os.system("cls" if os.name == "nt" else "clear")
+     # Clear the console using curses
+    stdscr = curses.initscr()
+    stdscr.clear()
+    curses.endwin()
+    
     print("")
     print("")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
@@ -1418,8 +1428,11 @@ def exit():
                 + "to return to the main menu." + Style.NORMAL
             )
 
-    # Clear the screen and restart the program
-    os.system("cls" if os.name == "nt" else "clear")
+    # Clear the console using curses
+    stdscr = curses.initscr()
+    stdscr.clear()
+    curses.endwin()
+    
     print("\n")
     colored_instatrip()
     print_colored_background()
