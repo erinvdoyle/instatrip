@@ -228,11 +228,14 @@ def wrap_text(text):
     width = get_terminal_width()
     return textwrap.fill(text, width)
 
+def clear_screen():
+    print("\033[H\033[J", end="")
 
 def read_about():
     """
     Displays the about text for both the company and the developer :)
     """
+    clear_screen()
     print(" ")
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
@@ -292,7 +295,7 @@ def read_about():
         choice = input(Fore.RED + "Enter 1 to return to Main Menu: \n")
 
         if choice == "1":
-            os.system("cls" if os.name == "nt" else "clear")
+            clear_screen()
             colored_instatrip()
             print_colored_background()
             display_menu()
@@ -1351,7 +1354,7 @@ def exit():
     Brings the user to the exit art screen and displays a staycation link.
     """
     # Clear the screen and print the exit art and staycation link
-    os.system("cls" if os.name == "nt" else "clear")
+    clear_screen()
     print("")
     print("")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
@@ -1406,6 +1409,10 @@ def exit():
             + Style.NORMAL
         )
         if user_input == "":
+            clear_screen()
+            colored_instatrip()
+            print_colored_background()
+            display_menu()
             break
         else:
             print(
@@ -1413,14 +1420,7 @@ def exit():
                 + "to return to the main menu." + Style.NORMAL
             )
 
-    # Clear the screen and restart the program
-    os.system("cls" if os.name == "nt" else "clear")
-    print("\n")
-    colored_instatrip()
-    print_colored_background()
-    display_menu()
-
-
+    
 # Logic to Run The Program
 
 
