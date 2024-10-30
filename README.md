@@ -617,7 +617,6 @@ Exception handling has been implemented to ensure smooth user interactions, vali
 <details>
   <summary>Testing the Flight Information Section (click)</summary> 
 <p align="center">
-<img src="assets/documentation/flightex1.png" height="450px">
 <img src="assets/documentation/flightex2.png" height="450px">
 </p>
 

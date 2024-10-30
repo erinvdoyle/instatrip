@@ -161,6 +161,7 @@ def display_menu():
             break
         elif choice == "3":
             print(Fore.YELLOW + "Exiting the program...")
+            print("\n" * 100)
             clear_screen()
             exit()
             break
