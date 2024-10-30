@@ -1081,11 +1081,11 @@ def ask_for_flight_info(flights_info, trip_details):
           + Style.NORMAL)
     print(Style.BRIGHT + Fore.MAGENTA + "5. Start over" + Style.NORMAL)
     print(" ")
-    print(Style.BRIGHT + Fore.YELLOW
+    print(Fore.YELLOW
           + "Please note: Occasionally, booking information may be "
           + "unavailable at the time of your request, and InstaTrip will be "
           + "unable to provide booking instructions for that city."
-          + Style.NORMAL)
+          )
 
     # Get the user's choice and handle any errors
     while True:
@@ -1160,8 +1160,9 @@ def ask_for_flight_info(flights_info, trip_details):
                 )
                 print(" ")
                 print(
-                    Style.BRIGHT + Fore.YELLOW + f"Bon Voyage! {emoji.emojize(
-                        ':airplane_departure:')}" + Style.NORMAL)
+                      Style.BRIGHT + Fore.YELLOW + f"Bon Voyage! "
+                      + f"{emoji.emojize(':airplane_departure:')}" + Style.NORMAL
+                )
 
                 while True:
                     restart_choice = input(

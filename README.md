@@ -24,7 +24,7 @@ Don't forget your passport!
 - [User Experience](#user-experience)
   - [User Stories](#user-stories)
   - [Site Owner's Goal](#site-owners-goal)
-  - [Features to Achieve the goals](#features-to-achieve-the-goals)
+  - [Features to Achieve the Goals](#features-to-achieve-the-goals)
   - [Program Structure](#program-structure)
   - [Flowchart](#flowchart)
   - [Database Structure](#database-structure)
@@ -104,6 +104,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
 
 
   - **As the owner of the site**, I want:
+
     - To deliver a program with a clean, well-planned interface that seamlessly collects user preferences to predict a tailored selection of vacation destinations
     - To connect my users with the best prices for their chosen destinations and with a reputable airline, Ryanair
     - To offer a variety of choice and a fun factor that encourages repeat vists and word of mouth recommendation
@@ -116,6 +117,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
    
 
   - **Features to achieve user story goals:**
+
     - The starting screen of the application features a simple main menu for easy navigation
     - The user is walked through the process of entering their departure details and choosing vacation preferences; every step is explained along the way
     - The tone of the copy, color, and decorative choices for the interface keep the process engaging and fun
@@ -124,7 +126,7 @@ This program is designed to inspire joy. From the colors to the playful tone, wh
     - A wide range of cities and the ranked suitability of each for all occasion and interest parameters offer the user exposure to many different city suggestions
     - The user is given the opportunity to draw and re-draw sets of destination cities as many times as they wish
     - Flight information is offered for each of the three selected cities so that the user can choose a city with booking details in mind
-    - Booking details like flight numher and departure time are provided so that the user can locate and book their flight directly with Ryanair
+    - Booking details like flight number and departure time are provided so that the user can locate and book their flight directly with Ryanair
     - User errors are handled at each stage of input with clear feedback so that the user can find cities and coinciding flights without issue
 
 </details>
@@ -159,9 +161,9 @@ My introduction to Google Sheets was by Code Institute's extremely helpful *Love
 
 My Workbook *Instatrip* consists of a single Sheet. This Sheet is composed of 17 columns, 15 of which represent the choices for the user's travel preferences; and 43 rows, with each row representing a European city.
 
-The column titles are as follows: City, IATA (airport code), Nightlife, History & Culure, Cuisine, Outdoorsy Experiences, Shopping, Off the Beaten Path Exploration, Romantic Adventure, Solo Travel, Hen or Stag Party, Time with Friends or Family, Overall Safety, Accessibility, Public Transportation, Tourism-Friendliness, and English-Speaking
+The column titles are as follows: City, IATA (airport code), Nightlife, History & Culture, Cuisine, Outdoorsy Experiences, Shopping, Off the Beaten Path Exploration, Romantic Adventure, Solo Travel, Hen or Stag Party, Time with Friends or Family, Overall Safety, Accessibility, Public Transportation, Tourism-Friendliness, and English-Speaking
 
-Data to rank each city with a numeric value (1-5) and populate each of the column parameters was collected first from google, and then with the aid of ChatGPT. The program compares these rankings with the user's own ranked preferences to determine which cities make the most suitable destinations 
+Data to rank each city with a numeric value (1-5) and populate each of the column parameters was collected first from Google, and then with the aid of ChatGPT. The program compares these rankings with the user's own ranked preferences to determine which cities make the most suitable destinations 
 </details>
 
 ### Ryanair API
@@ -197,7 +199,7 @@ Once integrated, the API made the program functional (a thrill! :woman_dancing:)
 
 - From here, the user's departure data and the IATA airport codes (stored in the Sheet) for the user's selected cities are passed to the Ryanair API. This is accomplished with these functions: *get_airport_codes(), search_ryanair_flights(),* and *find_cheapest_flights()*. The cheapest applicable flight information for each city is then printed and the user may choose whether to *ask_for_flight_info()* or start the program over. 
 
-- The *Exit* screen, accessed from the Main Menu, calls *exit()* to print the exit message and art, a url for a staycation article, and the option to return to the *Main Menu*. 
+- The *Exit* screen, accessed from the Main Menu, calls *exit()* to print the exit message and ASCII art, a url for a staycation article, and the option to return to the *Main Menu*. 
 </details>
 
 ## Design Choices
@@ -206,7 +208,7 @@ Once integrated, the API made the program functional (a thrill! :woman_dancing:)
 
 The color and design scheme for the starting screen of **Instatrip** were chosen to give a slightly nostalgic, retro feel, reminiscent of the travel agency advertisements and city destination posters of yesteryear. The background image for the page, an island sunset, inspired the color choice for the rest of the program. 
 
-While this project by nature limits styling liberties, I enjoyed colorizing the text and making generous use of emoji to compliment the fun, light-hearted tone set by the copy. Booking flights and tending to travel details can often be a dreary affair. The aim here is to break the tedium and usher in a bit of excitement
+While this project by nature limits styling liberties, I enjoyed colorizing the text and making generous use of emoji to complement the fun, light-hearted tone set by the copy. Booking flights and tending to travel details can often be a dreary affair. The aim here is to break the tedium and usher in a bit of excitement
 
 <p align="center">
     <img src="assets/documentation/bg.png" height="150" style="margin-right: 20px;"/>
@@ -215,7 +217,7 @@ While this project by nature limits styling liberties, I enjoyed colorizing the 
     <img src="assets/documentation/colorama.png" height="150"/>
 </p>
 
-- Color for the text was provided by the [Colorama library](https://pypi.org/project/colorama/). The primary colors of choice were Cyan and Magenta, to compliment the background image around the mock terminal. Red was used for exception messages. Red and two tones of Yellow colorized the *Start* screen
+- Color for the text was provided by the [Colorama library](https://pypi.org/project/colorama/). The primary colors of choice were Cyan and Magenta, to complement the background image around the mock terminal. Red was used for exception messages. Red and two tones of Yellow colorized the *Start* screen
 
 - Emoji were taken from the [Emoji for Python library](https://pypi.org/project/emoji/). When using human emoji characters, I made every effort to choose different skintones and genders for inclusivity
 
@@ -331,7 +333,7 @@ Once the destination cities have been settled, they are then ranked again by the
 
 ## Flight Information
 
-Real-time flight information for each of the three cities is then fetched and printed
+Real-time flight information for each of the three cities is then fetched via the Ryanair API and printed
 
 <p align="center">
 <img src="assets/documentation/flights1.png" height="450px"/>
@@ -356,7 +358,7 @@ The final step of the program is to print the flight details of the user's chose
 - A broader list of trip occasions to select from
 - A broader list of preferred activities and interests to select from
 - Opening the program to destinations outside of Europe
-- Partnerships or tie ins with hotel and car rental accomodations
+- Partnerships or tie ins with hotel and car rental accommodations
 - Curated experience and activity suggestions
 - Flight selection from multiple airlines rather than solely Ryanair
 - A proper, clickable link to make a flight booking (currently prevented by Heroku)
@@ -378,7 +380,7 @@ The final step of the program is to print the flight details of the user's chose
 
 - [datetime](https://docs.python.org/3/library/datetime.html) - Handles date-based calculations for user travel date
 - [os](https://docs.python.org/3/library/os.html) - Clears the terminal
-- [random](https://docs.python.org/3/library/random.html#module-random) - Selects elligible cities randomly rather than sequentially
+- [random](https://docs.python.org/3/library/random.html#module-random) - Selects eligible cities randomly rather than sequentially
 - [textwrap](https://docs.python.org/3/library/textwrap.html#module-textwrap) - Formats text for *About* section to avoid broken lines
 - [time](https://docs.python.org/3/library/time.html#module-time) - Creates "Sleep" pauses to break up lines of text for readability and flare
 - [timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) - Class of datetime. Sets date range for departure date
@@ -430,7 +432,7 @@ The final step of the program is to print the flight details of the user's chose
 
 - JavaScript for this project has been provided by Code Institute and has not been altered from the base code; I have not validated it
 
-- The [PEP8](https://pep8ci.herokuapp.com/) Python de-linter helped me de-lint (and caused some initial concern!) my code at several points along development
+- The [PEP8](https://pep8ci.herokuapp.com/) Python de-linter helped me de-lint my code at several points along development (and caused some consternation as well!) 
 
 ### HTML Validation
 
@@ -591,7 +593,7 @@ Exception handling has been implemented to ensure smooth user interactions, vali
 - User input is validated and no alphanumeric entry or keypress outside of the specified format is accepted
 - Incorrect input results in a request for correct input
 - User may choose to generate new cities and receives three new cities
-- User may return to previous selection, request new selection, proceed to *Safetyand Accessibility* preferences, or start over
+- User may return to previous selection, request new selection, proceed to *Safety and Accessibility* preferences, or start over
 
 </details>
 
@@ -641,7 +643,7 @@ Exception handling has been implemented to ensure smooth user interactions, vali
 <img src="assets/documentation/lighthousemobile.png">
 <img src="assets/documentation/lighthousedesk.png">
 
-<p>The site scores well with Lighthouse with scores of 100 for acessibility and SEO and a 96 for best practices </p>
+<p>The site scores well with Lighthouse with scores of 100 for accessibility and SEO and a 96 for best practices </p>
 
 </details>
 
@@ -674,7 +676,7 @@ Due to the specifications of the mock terminal, responsiveness was not required 
 
 ### Manual Testing
 
-- This program was tested on my and my husband's latops, HP Elitebook and Dell Latitude 5430, and performed as designed
+- This program was tested on my and my husband's laptops, HP Elitebook and Dell Latitude 5430, and performed as designed
 
 - Testing on mobile was also performed but I quickly determined that the provided mock terminal does not perform as expected on mobile devices
 
@@ -686,7 +688,7 @@ Due to the specifications of the mock terminal, responsiveness was not required 
   <summary>Linebreak Issue After De-Linting (click)</summary>
 <img src="assets/documentation/bug1a.png">
 <img src="assets/documentation/bug1b.png">
-<p>This bug, and the next, are representative of numerous errors returned after my first attempt to de-lint my python code using the PEP8 de-linter. While initially concerning, this issue was easily rectified by removing "\n" and manually creating a line break after the opening parenthesis</p>
+<p>This bug, and the next, are representative of numerous errors returned after my first attempt to de-lint my Python code using the PEP8 de-linter. While initially concerning, this issue was easily rectified by removing "\n" and manually creating a line break after the opening parenthesis</p>
 </details>
 
 <details>
@@ -717,7 +719,7 @@ After implementing the above solutions and running all code through the necessar
 
 - I have read that the Code Institute mock terminal does not function properly in Safari. I have been unable to test this myself on a laptop or desktop as I own Windows devices. I can attest that the program does not perform properly on mobile Safari on iPhone, but that is also the case with mobile Chrome. I was not able to implement a solution for this issue as it appears to stem from the terminal and not this program
 
-- I was unaware until I first deployed my project that Heroku would not allow link generation within the CLI terminal. I began the program with the intention of providing a booking link for users and had already written the function, ask_for_booking(), which was functional in my GitPod IDE. I had also included a link to a staycation article for the exit screen: 
+- I was unaware until I first deployed my project that Heroku would not allow link generation within the CLI terminal. I began the program with the intention of providing a booking link for users and had already written the function, ask_for_booking(), which was functional in my GitPod IDE. I had also included a link to a staycation article for the exit screen. All intended links have now been replaced with instructions to type the web address into the browser 
 
 <details>
   <summary>Creating a link worked in the IDE but not Heroku (click)</summary>
@@ -816,10 +818,10 @@ You can drag and drop the buildpacks to correct the order if needed
   <summary>How to fork the InstaTrip repository (click)</summary>
 <p>
 
-To make a copy of a repository, fork it through Github:
+To make a copy of a repository, fork it through GitHub:
 
 1. Find the repository either by using the search bar or by navigating to the URL [/erinvdoyle/instatrip](https://github.com/erinvdoyle/instatrip)
-2. Once on the repository main page, navigate to the *Fork* button in the upper-right corner, between the *Watch*(*Unwatch* in the image as I am the repository owner and watcher) and *Star* buttons
+2. Once on the repository main page, navigate to the *Fork* button in the upper-right corner, between the *Watch* (*Unwatch* in the image as I am the repository owner and watcher) and *Star* buttons
 
 ![Github Fork](assets/documentation/fork.png)
 
