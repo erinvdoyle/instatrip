@@ -75,12 +75,12 @@ def colored_instatrip():
     """
     Makes InstaTrip ASCII text tri-colored
     """
-    # Split the ASCII text into three sections and
+    # Split the ASCII text into three sections and 
     # display each section in a different color
     total_lines = len(insta_trip_text)
     top_lines = insta_trip_text[: total_lines // 3]
-    middle_lines = insta_trip_text[total_lines // 3: 2 * total_lines // 3]
-    bottom_lines = insta_trip_text[2 * total_lines // 3:]
+    middle_lines = insta_trip_text[total_lines // 3 : 2 * total_lines // 3]
+    bottom_lines = insta_trip_text[2 * total_lines // 3 :]
 
     top_lines = center_text(top_lines)
     middle_lines = center_text(middle_lines)
@@ -100,16 +100,14 @@ def center_text(text):
     """
     # Get the terminal width and center the text within the terminal width
     terminal_width = os.get_terminal_size().columns
-
+    
     # Check if the input is a list
-    # (Credit: Mistral AI for help creating a centered text function that
-    # works for lists)
-
+    # (Credit: Mistral AI for help creating a centered text function that works for lists)
+    
     if isinstance(text, list):
         text = "\n".join(text)
 
-    centered_lines = [line.center(
-        terminal_width) for line in text.splitlines()]
+    centered_lines = [line.center(terminal_width) for line in text.splitlines()]
     return centered_lines
 
 
@@ -118,8 +116,7 @@ DEFAULT_COLOR = Fore.LIGHTMAGENTA_EX
 
 def print_with_default_color(text):
     """
-    Prints text in the default color so that it can be
-    applied to the Main Menu List
+    Prints text in the default color so that it can be applied to the Main Menu List
     """
     print(DEFAULT_COLOR + text + Style.RESET_ALL)
 
@@ -178,13 +175,11 @@ def greeting():
         + " Welcome to Instatrip, your booking bestie :palm_tree:\n"
     )
     first_message = (
-        Fore.YELLOW
-        + "First we'll ask you a few questions about your travel dates \n"
+        Fore.YELLOW + "First we'll ask you a few questions about your travel dates \n"
     )
     fun_part_message = emoji.emojize(
         Fore.LIGHTMAGENTA_EX
-        + "Then we'll get "
-        + "to the fun part: :crystal_ball:  Selecting your next trip!\n"
+        + "Then we'll get to the fun part: :crystal_ball:  Selecting your next trip!\n"
     )
     get_started_message = (
         Fore.YELLOW + "Grab your suitcase, we're about to get started...\n"
@@ -228,25 +223,21 @@ def wrap_text(text):
     width = get_terminal_width()
     return textwrap.fill(text, width)
 
-def clear_screen():
-    print("\033[H\033[J", end="")
 
 def read_about():
     """
     Displays the about text for both the company and the developer :)
     """
-    clear_screen()
     print(" ")
     print(Style.BRIGHT + Fore.MAGENTA + "About InstaTrip" + Style.RESET_ALL)
     print(
         wrap_text(
             Fore.YELLOW
-            + "InstaTrip is a travel planning program designed to bring "
-            + "spontaneity to the user's next vacation. After asking a "
-            + "few simple questions with data compiled by a Google Sheet, "
-            + "the program curates a list of personalized European "
-            + "destinations. The departure city is currently set to "
-            + "Dublin, Ireland, with the aim of expanding departure cities "
+            + "InstaTrip is a travel planning program designed to bring spontaneity "
+            + "to the user's next vacation. After asking a few simple questions with "
+            + "data compiled by a Google Sheet, the program curates a list of "
+            + "personalized European destinations. The departure city is currently "
+            + "set to Dublin, Ireland, with the aim of expanding departure cities "
             + "in the future"
         )
     )
@@ -254,10 +245,9 @@ def read_about():
     print(
         wrap_text(
             Fore.YELLOW
-            + "For each destination, flight data is retrieved by the "
-            + "Ryanair API, showcasing the cheapest available flights. "
-            + "The user may then choose to view detailed flight "
-            + "information and receive booking instructions"
+            + "For each destination, flight data is retrieved by the Ryanair API, "
+            + "showcasing the cheapest available flights. The user may then choose "
+            + "to view detailed flight information and receive booking instructions"
         )
     )
     print("")
@@ -266,36 +256,36 @@ def read_about():
             Fore.LIGHTRED_EX
             + "Disclaimer:"
             + Fore.YELLOW
-            + " InstaTrip is a student project and not affiliated "
-            + "with Ryanair. Prices + details are updated in real-time "
-            + "and subject to change. InstaTrip wishes the user the "
-            + "happiest of holidays and cannot be held responsible "
+            + " InstaTrip is a student project and not affiliated with Ryanair. Prices "
+            + "+ details are updated in real-time and subject to change. InstaTrip "
+            + "wishes the user the happiest of holidays and cannot be held responsible "
             + "for any travel mishaps or misadventures :)"
         )
     )
     print("")
+    print(Style.BRIGHT + Fore.MAGENTA + "About the Developer" + Style.RESET_ALL)
     print(
-            Style.BRIGHT + Fore.MAGENTA + "About the Developer"
-            + Style.RESET_ALL)
-    print(
-    wrap_text(
-        Fore.YELLOW
-        + "InstaTrip was developed by Erin Doyle, a student "
-        + "of Code Institute's Full-Stack Software Development "
-        + "program. Her InstaTrip travel preferences are: Romantic "
-        + "(her husband vetoed 'Solo Trip') + Culinary, Outdoorsy, "
-        + "and Off the Beaten Path  "
-        + Style.BRIGHT + Fore.LIGHTCYAN_EX
-        + "https://github.com/erinvdoyle" + Style.NORMAL
+        wrap_text(
+            Fore.YELLOW
+            + "InstaTrip was developed by Erin Doyle, a student of Code Institute's "
+            + "Full-Stack Software Development program. Her InstaTrip travel "
+            + "preferences are: Romantic (her husband vetoed 'Solo Trip') + Culinary, "
+            + "Outdoorsy, and Off the Beaten Path"
+        )
     )
-)
+    print(
+        Style.BRIGHT
+        + Fore.LIGHTCYAN_EX
+        + "https://github.com/erinvdoyle"
+        + Style.NORMAL
+    )
+    print("")
 
-    print(" ")
     while True:
         choice = input(Fore.RED + "Enter 1 to return to Main Menu: \n")
 
         if choice == "1":
-            clear_screen()
+            os.system("cls" if os.name == "nt" else "clear")
             colored_instatrip()
             print_colored_background()
             display_menu()
@@ -311,29 +301,29 @@ def get_trip_details():
     """
     Asks user for travel date, flexibility, and length of trip.
     """
-    # Clear the console
+    # Clear the console 
     os.system('cls' if os.name == 'nt' else 'clear')
     print("")
 
-    # Inform the user that the departure city is Dublin
+    # Inform the user that the departure city being Dublin
     print(
-        emoji.emojize(
-            Fore.GREEN
-            + ":shamrock:" + "  " + "Please note that InstaTrip hails from "
-            + "the emerald isle of Ireland, with our \ndeparture city set to "
-            + "Dublin. New departure cities take off soon! :shamrock:"
+            emoji.emojize(
+                Fore.GREEN
+                + ":shamrock:"
+                + "  "
+                + "Please note that InstaTrip hails from the emerald isle of Ireland, "
+                + "with our \ndeparture city set to Dublin. New departure cities take "
+                + "off soon! :shamrock:"
+            )
         )
-    )
     print(" ")
 
     # Get the travel date from the user
     while True:
         travel_date_str = input(
             emoji.emojize(
-                Style.BRIGHT + Fore.MAGENTA
-                + ":handbag:  When would you like to depart? "
-                "(Please enter a date in YYYY-MM-DD format): \n"
-                + Style.NORMAL
+                Style.BRIGHT + Fore.MAGENTA + ":handbag:  When would you like to depart? "
+                "(Please enter a date in YYYY-MM-DD format): \n" + Style.NORMAL
             )
         )
 
@@ -345,6 +335,8 @@ def get_trip_details():
             current_date = datetime.now()
             minimum_travel_date = current_date + timedelta(days=1)
             maximum_travel_date = current_date + timedelta(days=182)
+            # sets maximum departure date to six months from current date due to
+            # Ryanair's rare release of longer-term flight sales 
 
             # Validate the travel date
             if travel_date < minimum_travel_date:
@@ -355,8 +347,7 @@ def get_trip_details():
                 continue
             elif travel_date > maximum_travel_date:
                 print(
-                    Fore.RED + f"Please enter a date no further than six "
-                    + "months from today "
+                    Fore.RED + f"Please enter a date no further than six months from today "
                     f"(before {maximum_travel_date.date()})."
                 )
                 continue
@@ -364,10 +355,7 @@ def get_trip_details():
             break
 
         except ValueError:
-            print(
-                Fore.RED + "Oops. Please enter a valid date "
-                + "in YYYY-MM-DD format."
-            )
+            print(Fore.RED + "Oops. Please enter a valid date in YYYY-MM-DD format.")
             continue
 
     # Get the user's departure date flexibility
@@ -377,10 +365,8 @@ def get_trip_details():
                 emoji.emojize(
                     Style.BRIGHT
                     + Fore.MAGENTA
-                    + "Are you flexible with your departure date "
-                    + "(+/- 1-3 days)? "
-                    + "(yes/no):person_cartwheeling: \n"
-                    + Style.NORMAL
+                    + "Are you flexible with your departure date (+/- 1-3 days)? "
+                    "(yes/no):person_cartwheeling: \n" + Style.NORMAL
                 )
             )
             .strip()
@@ -390,7 +376,7 @@ def get_trip_details():
             print(Fore.RED + "Please answer with 'yes' or 'no'.")
         else:
             break
-
+    
     # If the user is flexible, get the number of flexibility days
     flexibility_days = 0
     if flexibility_response == "yes":
@@ -400,8 +386,7 @@ def get_trip_details():
                     input(
                         Style.BRIGHT
                         + Fore.MAGENTA
-                        + "How many days of departure flexibility do you "
-                        + "have? (1-3): \n"
+                        + "How many days of departure flexibility do you have? (1-3): \n"
                         + Style.NORMAL
                     )
                 )
@@ -410,10 +395,7 @@ def get_trip_details():
                 else:
                     break
             except ValueError:
-                print(
-                    Fore.RED + "Please enter a valid number for flexibility "
-                    + "days."
-                )
+                print(Fore.RED + "Please enter a valid number for flexibility days.")
                 continue
 
     # Get the length of stay from the user
@@ -421,10 +403,8 @@ def get_trip_details():
         try:
             length_of_stay = int(
                 input(
-                    Style.BRIGHT + Fore.MAGENTA
-                    + "How many days do you plan to stay? "
-                    + "(Enter a minimum of 1 and maximum of 59)\n"
-                    + Style.NORMAL
+                    Style.BRIGHT + Fore.MAGENTA + "How many days do you plan to stay? "
+                    "(Enter a minimum of 1 and maximum of 59)\n" + Style.NORMAL
                 )
             )
             if not (1 <= length_of_stay <= 59):
@@ -455,7 +435,7 @@ def type_of_trip():
     # Clear the console
     os.system("cls" if os.name == "nt" else "clear")
     print(" ")
-
+    
     # Print the trip type selection prompt
     print(
         Style.BRIGHT
@@ -473,9 +453,9 @@ def type_of_trip():
     ]
 
     # Print the trip type options
-    colored_options = [Fore.LIGHTMAGENTA_EX + option for option in options]
+    colored_options = [Style.BRIGHT + Fore.LIGHTMAGENTA_EX + option for option in options]
     for i, option in enumerate(colored_options, start=1):
-        print(Fore.LIGHTMAGENTA_EX + f"{i}. {option}")
+        print(Style.BRIGHT + Fore.LIGHTMAGENTA_EX + f"{i}. {option}")
 
     # Get the user's choice
     while True:
@@ -501,8 +481,7 @@ def type_of_trip():
                 return selected_trip_type
             else:
                 print(
-                    Fore.RED + "Invalid choice. Please select "
-                    + "a number from the list."
+                    Fore.RED + "Invalid choice. Please select a number from the list."
                 )
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
@@ -512,6 +491,7 @@ def important_factors():
     """
     Collects up to three important factors from the user.
     """
+
     # Print the important factors selection prompt
     print(
         Style.BRIGHT
@@ -551,8 +531,7 @@ def important_factors():
             try:
                 index = int(choice.strip()) - 1
                 if 0 <= index < len(factors):
-                    if factors[index] not in selected_factors:
-                        selected_factors.append(factors[index])
+                    selected_factors.append(factors[index])
                 else:
                     invalid_choices.append(choice.strip())
             except ValueError:
@@ -564,42 +543,37 @@ def important_factors():
                 Fore.RED
                 + "Invalid input(s): "
                 + ", ".join(invalid_choices)
-                + ". Please choose numbers between 1 "
-                + "and {}.".format(len(factors))
+                + ". Please choose numbers between 1 and {}.".format(len(factors))
             )
             continue
 
         # Handle too many choices
         if len(selected_factors) > 3:
             print(Fore.RED + "Please select up to three factors.")
-            continue
-
+        
         # Handle no choices
         elif len(selected_factors) == 0:
-            print(Fore.RED +
-                  "You must select at least one factor. Please try again.")
-            continue
-
-        # Print selected factors and return
-        selected_factors_str = ", ".join(selected_factors)
-        print(
-            Style.BRIGHT
-            + Fore.LIGHTCYAN_EX
-            + f"You selected: {selected_factors_str}"
-            + Style.NORMAL
-        )
-        print("")
-        time.sleep(2)
-        drumroll()
-        return selected_factors
+            print(Fore.RED + "You must select at least one factor. Please try again.")
+        else:
+            selected_factors_str = ", ".join(selected_factors)
+            print(
+                Style.BRIGHT
+                + Fore.LIGHTCYAN_EX
+                + f"You selected: {selected_factors_str}"
+                + Style.NORMAL
+            )
+            print("")
+            time.sleep(2)
+            drumroll()
+            return selected_factors
 
 
 # Logic to Rank Cities from Google Sheet Based on User Preferences
 # and Randomly Select Three of them
 
-# Ranking tutorial credit using the sort method:
+# Ranking tutorial credit using the sort method: 
 # https://sparkbyexamples.com/python/sort-using-lambda-in-python/
-# "How Do I Create A Scoring System in Python - Stack Overflow":
+# "How Do I Create A Scoring System in Python - Stack Overflow": 
 # https://stackoverflow.com/questions/50115873/how-do-i-create-a-scoring-system-in-python
 
 def rank_cities(sheet, selected_trip_type, selected_factors):
@@ -612,18 +586,15 @@ def rank_cities(sheet, selected_trip_type, selected_factors):
 
     ranked_cities = []
 
-    # Iterate through each city and calculate its score based
-    # on user preferences
+    # Iterate through each city and calculate its score based on user preferences
     for city in cities:
         score = 0
 
-        # If the city is suitable for the selected trip type, add 5
-        # points to its score
+        # If the city is suitable for the selected trip type, add 5 points to its score
         if selected_trip_type in city and city[selected_trip_type] == "1":
-            score += 5
+            score += 5   
 
-        # For each selected important factor, add points to the city's
-        # score based on its rating
+        # For each selected important factor, add points to the city's score based on its rating
         for factor in selected_factors:
             if factor in city:
                 score += 5 - int(city[factor])
@@ -632,13 +603,12 @@ def rank_cities(sheet, selected_trip_type, selected_factors):
         if "City" in city:
             ranked_cities.append((city["City"].strip(), score))
 
-    # Sort the ranked cities list by score
+    # Sort the ranked cities list by score 
     ranked_cities.sort(key=lambda x: x[1], reverse=True)
 
     return ranked_cities  # [:3]
 
 # Random Tutorial Credit: https://www.w3schools.com/python/module_random.asp
-
 
 def select_random_cities(cities, num_cities=3):
     """
@@ -649,7 +619,7 @@ def select_random_cities(cities, num_cities=3):
     #  return the entire list
     if len(cities) <= num_cities:
         return cities
-    # Otherwise, return a random sample of the desired size
+    # Otherwise, return a random sample of the desired size    
     return random.sample(cities, num_cities)
 
 
@@ -682,7 +652,7 @@ def generate_new_cities(sheet, selected_trip_type, selected_factors):
     """
     Generates and ranks a list of new cities based on the same user preferences
     """
-    # Rank cities based on user preferences
+     # Rank cities based on user preferences
     new_top_cities_with_scores = rank_cities(
         sheet, selected_trip_type, selected_factors
     )
@@ -732,8 +702,7 @@ def rate_importance():
                 # Validate the user's input
                 if rating == "":
                     print(
-                        Fore.RED + "You didn't enter anything. Please "
-                        + "enter a number "
+                        Fore.RED + "You didn't enter anything. Please enter a number "
                         "between 1 and 5."
                     )
                     continue
@@ -742,7 +711,7 @@ def rate_importance():
 
                 if 1 <= rating <= 5:
                     ratings[factor] = rating
-                    break
+                    break  
                 else:
                     print(Fore.RED + "Please enter a number between 1 and 5.")
 
@@ -798,8 +767,7 @@ def user_choice_after_ranking(
         )
         print("")
         print(
-            emoji.emojize(Fore.LIGHTCYAN_EX + "1. Yes, let's "
-                          + "go! :airplane_departure:")
+            emoji.emojize(Fore.LIGHTCYAN_EX + "1. Yes, let's go! :airplane_departure:")
         )
         print(
             emoji.emojize(
@@ -816,8 +784,7 @@ def user_choice_after_ranking(
         if city_history:
             print(
                 emoji.emojize(
-                    Fore.LIGHTCYAN_EX + "4. Return to previous cities "
-                    + ":left_arrow:"
+                    Fore.LIGHTCYAN_EX + "4. Return to previous cities :left_arrow:"
                 )
             )
 
@@ -840,9 +807,8 @@ def user_choice_after_ranking(
                     emoji.emojize(
                         Style.BRIGHT
                         + Fore.MAGENTA
-                        + "Great! Let's adjust the cities based on your "
-                        + "safety and accessibility \npreferences "
-                        + ":service_dog: \n" + Style.NORMAL
+                        + "Great! Let's adjust the cities based on your safety "
+                        "and accessibility \npreferences :service_dog: \n" + Style.NORMAL
                     )
                 )
 
@@ -891,8 +857,7 @@ def user_choice_after_ranking(
                     print(emoji.emojize(Fore.LIGHTCYAN_EX + f":star:  {city[0]}"))
 
             else:
-                print(
-                    Fore.RED + "Invalid choice. Please select a valid number")
+                print(Fore.RED + "Invalid choice. Please select a valid number")
 
         except ValueError:
             print(Fore.RED + "Please enter a valid number")
@@ -910,8 +875,7 @@ def get_airport_codes(sheet):
     # Get all records from the Google Sheets worksheet
     records = sheet.get_all_records()
     airport_codes = {}
-    # Iterate through each record and add the city and airport code
-    # to the dictionary
+     # Iterate through each record and add the city and airport code to the dictionary
     for record in records:
         city = record["City"].strip()
         code = record["IATA"].strip()
@@ -920,12 +884,10 @@ def get_airport_codes(sheet):
 
 
 # Credit for help implementing and understanding how to use the API
-# in this function, find_cheapest_flights(), and ask_for_flight_info():
-# Mistral AI
+# in this function, find_cheapest_flights(), and ask_for_flight_info(): Mistral AI
 
 def search_ryanair_flights(
-    origin, destination, outbound_date, adults=1,
-    teens=0, children=0, infants=0
+    origin, destination, outbound_date, adults=1, teens=0, children=0, infants=0
 ):
     """
     Searches flights using Ryanair API (via RapidAPI).
@@ -1001,14 +963,14 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
                 cheapest_flight = None
                 for trip in flight_data["data"]["trips"]:
                     for date in trip["dates"]:
-                       for flight in date["flights"]:
-                            if "regularFare" in flight:
-                                if (
-                                    not cheapest_flight
-                                    or flight["regularFare"]["fares"][0]["amount"]
-                                    < cheapest_flight["regularFare"]["fares"][0]["amount"]
-                                ):
-                                    cheapest_flight = flight
+                        for flight in date["flights"]:
+                            if (
+                                not cheapest_flight
+                                or flight["regularFare"]["fares"][0]["amount"]
+                                < cheapest_flight["regularFare"]["fares"][0]["amount"]
+                            ):
+                                cheapest_flight = flight
+
                 # Add the flight information to the results list
                 if cheapest_flight:
                     flight_info = {
@@ -1046,11 +1008,10 @@ def find_cheapest_flights(sheet, top_cities, trip_details):
 
 def ask_for_flight_info(flights_info, trip_details):
     """
-    Asks the user if they would like to generate full flight information
-    for any of the displayed flights and allows user to start over if not.
+    Asks the user if they would like to generate full flight information for any of
+    the displayed flights and allows user to start over if not.
     """
-    # If there is no flight information available, print a message and
-    # return False
+    # If there is no flight information available, print a message and return False
     if not flights_info:
         print(
             Style.BRIGHT
@@ -1060,14 +1021,12 @@ def ask_for_flight_info(flights_info, trip_details):
         )
         return False
 
-    # Print the flight information and ask the user if they want to see
-    # more details
+    # Print the flight information and ask the user if they want to see more details
     print(" ")
     print(
         Style.BRIGHT
         + Fore.MAGENTA
-        + "Would you like to see booking instructions for any of "
-        + "these flights?"
+        + "Would you like to see booking instructions for any of these flights?"
         + Style.NORMAL
     )
     for idx, flight in enumerate(flights_info, start=1):
@@ -1076,16 +1035,9 @@ def ask_for_flight_info(flights_info, trip_details):
             f"{flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL
         )
 
-    print(Style.BRIGHT + Fore.MAGENTA + "4. See booking "
-          + "instructions for all cities"
-          + Style.NORMAL)
+    print(Style.BRIGHT + Fore.MAGENTA + "4. See flight information for all three cities" + Style.NORMAL)
     print(Style.BRIGHT + Fore.MAGENTA + "5. Start over" + Style.NORMAL)
     print(" ")
-    print(Fore.YELLOW
-          + "Please note: Occasionally, booking information may be "
-          + "unavailable at the time of your request, and InstaTrip will be "
-          + "unable to provide booking instructions for that city."
-          )
 
     # Get the user's choice and handle any errors
     while True:
@@ -1098,8 +1050,7 @@ def ask_for_flight_info(flights_info, trip_details):
                     + Style.NORMAL
                 )
             )
-            # If the user chooses a flight, display the flight details and
-            # ask if they want to restart the program
+            # If the user chooses a flight, display the flight details and ask if they want to restart the program
             if 1 <= choice <= len(flights_info):
                 selected_flight = flights_info[choice - 1]
                 os.system("cls" if os.name == "nt" else "clear")
@@ -1151,111 +1102,24 @@ def ask_for_flight_info(flights_info, trip_details):
                     Style.BRIGHT
                     + Fore.MAGENTA
                     + "Navigate to www.ryanair.com and enter the city "
-                    + "and departure date to secure the best price for "
-                    + "your trip to "
-                    + emoji.emojize(
-                        f":sun_with_face:  {selected_flight['city']} "
-                        + ":sun_with_face:")
+                    + "and departure date to secure the best price for your trip to "
+                    + emoji.emojize(f":sun_with_face:  {selected_flight['city']} :sun_with_face:")
                     + Style.NORMAL
                 )
                 print(" ")
-                print(
-                      Style.BRIGHT + Fore.YELLOW + f"Bon Voyage! "
-                      + f"{emoji.emojize(':airplane_departure:')}" + Style.NORMAL
-                )
+                print(Style.BRIGHT + Fore.YELLOW + f"Bon Voyage! {emoji.emojize(
+                    ':airplane_departure:')}" + Style.NORMAL)
 
                 while True:
                     restart_choice = input(
-                        Style.BRIGHT + Fore.MAGENTA +
-                        "\nPress Enter to return to Main Menu or type 'all' "
-                        + "to see booking instructions for all cities: "
-                        + Style.NORMAL
+                        Style.BRIGHT + Fore.MAGENTA + "\nPress Enter to return to Main Menu " + Style.NORMAL
                     )
                     if restart_choice == "":
-                        return True  # Return True to indicate that the program
-                        # should restart
-                    elif restart_choice.lower() == "all":
-                        os.system("cls" if os.name == "nt" else "clear")
-                        print(" ")
-                        print(
-                            Style.BRIGHT
-                            + Fore.YELLOW
-                            + "Flight Details:"
-                            + Style.NORMAL
-                        )
-                        print(" ")
-                        for flight in flights_info:
-                            print(
-                                Style.BRIGHT
-                                + Fore.MAGENTA
-                                + f"City: {flight['city']}"
-                                + Style.NORMAL
-                            )
-                            print(
-                                Style.BRIGHT
-                                + Fore.MAGENTA
-                                + f"Flight Number: {flight['flight_number']}"
-                                + Style.NORMAL
-                            )
-                            print(
-                                Fore.YELLOW
-                                + f"Departure Date: {trip_details['departure_date']}"
-                                + Style.NORMAL
-                            )
-                            print(
-                                Fore.YELLOW
-                                + f"Departure Time: {flight['departure_time']}"
-                                + Style.NORMAL
-                            )
-                            print(
-                                Style.BRIGHT
-                                + Fore.MAGENTA
-                                + f"Arrival Time: {flight['arrival_time']}"
-                                + Style.NORMAL
-                            )
-                            print(
-                                Style.BRIGHT
-                                + Fore.MAGENTA
-                                + f"Price: {flight['price']} EUR"
-                                + Style.NORMAL
-                            )
-                            print(" ")
-
-                        print(" ")
-                        print(
-                            Style.BRIGHT
-                            + Fore.MAGENTA
-                            + "Navigate to www.ryanair.com and enter the city "
-                            + "and departure date to secure the best price "
-                            + "for your trip"
-                            + Style.NORMAL
-                        )
-                        print(" ")
-                        print(Style.BRIGHT +
-                              Fore.YELLOW + f"Bon Voyage! {emoji.emojize(
-                                ':airplane_departure:')}" + Style.NORMAL)
-
-                        while True:
-                            restart_choice = input(
-                                Style.BRIGHT + Fore.MAGENTA + "\nPress Enter "
-                                + "to return to Main Menu "
-                                + Style.NORMAL
-                            )
-                            if restart_choice == "":
-                                return True  # Return True to indicate that
-                                # the program should restart
-                            else:
-                                print(Fore.RED + "Invalid input. Please press "
-                                      + "Enter to return to Main Menu")
+                        return True  # Return True to indicate that the program should restart
                     else:
-                        print(Fore.RED + "Invalid input. Please press Enter "
-                              + "to return to Main Menu "
-                              + "or type 'all' to see booking instructions "
-                              + "for all cities")
+                        print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu")
 
-            # If the user chooses to see flight information for all three
-            # cities, display
-            # the flight details for each city
+            # If the user chooses to see flight information for all three cities, display the flight details for each city
             elif choice == 4:
                 os.system("cls" if os.name == "nt" else "clear")
                 print(" ")
@@ -1303,47 +1167,26 @@ def ask_for_flight_info(flights_info, trip_details):
                     )
                     print(" ")
 
-                print(" ")
-                print(
-                    Style.BRIGHT
-                    + Fore.MAGENTA
-                    + "Navigate to www.ryanair.com and enter the city "
-                    + "and departure date to secure the best price for "
-                    + "your trip"
-                    + Style.NORMAL
-                )
-                print(" ")
-                print(Style.BRIGHT + Fore.YELLOW + f"Bon "
-                      + "Voyage!  {emoji.emojize(':airplane_departure:')}" +
-                      Style.NORMAL)
-
                 while True:
                     restart_choice = input(
-                        Style.BRIGHT + Fore.MAGENTA + "\nPress Enter to "
-                        + "return to Main Menu "
-                        + Style.NORMAL
+                        Style.BRIGHT + Fore.MAGENTA + "\nPress Enter to return to Main Menu " + Style.NORMAL
                     )
                     if restart_choice == "":
-                        return True  # Return True to indicate that the
-                        # program should restart
+                        return True  # Return True to indicate that the program should restart
                     else:
-                        print(Fore.RED + "Invalid input. Please press "
-                              + "Enter to return to Main Menu")
+                        print(Fore.RED + "Invalid input. Please press Enter to return to Main Menu")
 
-            # If the user chooses to start over, print a message and return
-            # True
+            # If the user chooses to start over, print a message and return True
             elif choice == 5:
                 print(
-                    Style.BRIGHT + Fore.MAGENTA + "Returning to Main "
-                    + "Menu..." + Style.NORMAL
+                    Style.BRIGHT + Fore.MAGENTA + "Returning to Main Menu..." + Style.NORMAL
                 )
                 time.sleep(2)
                 return True
 
             # If the user enters an invalid choice, print an error message
             else:
-                print(Fore.RED + "Invalid choice. Please select a number "
-                      + "from 1 to 5.")
+                print(Fore.RED + "Invalid choice. Please select a number from 1 to 5.")
         except ValueError:
             print(Fore.RED + "Please enter a valid number.")
 
@@ -1355,24 +1198,22 @@ def exit():
     Brings the user to the exit art screen and displays a staycation link.
     """
     # Clear the screen and print the exit art and staycation link
-    clear_screen()
+    os.system("cls" if os.name == "nt" else "clear")
     print("")
     print("")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "Bon Voyage!" + Style.NORMAL)
     print("")
 
     goodbye_art = [
-        (f"{Style.BRIGHT + Fore.MAGENTA}              |"),
-        (f"{Style.BRIGHT + Fore.MAGENTA}        \\ _ /"),
-        (f"{Style.BRIGHT + Fore.MAGENTA}      -= (_) =-"),
-        (f"{Style.BRIGHT + Fore.MAGENTA}        /   \\         _\\/\\_"),
-        (f"{Style.BRIGHT + Fore.MAGENTA}          |           //o\\  _\\/\\_"),
-        (f"{Style.BRIGHT + Fore.YELLOW}   _____ _ __ __ ____ _ | __/o\\\\ _"),
-        (f"{Style.BRIGHT + Fore.LIGHTCYAN_EX} =-=-_-__=_-= _=_=-=_,-"
-            f"\'|\"\"\"\"-|-,_"),
-        (f"{Style.BRIGHT + Fore.LIGHTCYAN_EX}  =- _=-=- -_=-=_,-\"          "
-            + "|"),
-        (f"{Style.BRIGHT + Fore.LIGHTCYAN_EX} =- =- -=.--"),
+        f"{Style.BRIGHT + Fore.MAGENTA}              |",
+        f"{Style.BRIGHT + Fore.MAGENTA}        \\ _ /",
+        f"{Style.BRIGHT + Fore.MAGENTA}      -= (_) =-",
+        f"{Style.BRIGHT + Fore.MAGENTA}        /   \\         _\\/\\_",
+        f"{Style.BRIGHT + Fore.MAGENTA}          |           //o\\  _\\/\\_",
+        f"{Style.BRIGHT + Fore.YELLOW}   _____ _ __ __ ____ _ | __/o\\\\ _",
+        f'{Style.BRIGHT + Fore.LIGHTCYAN_EX} =-=-_-__=_-= _=_=-=_,-\'|""""-|-,_',
+        f'{Style.BRIGHT + Fore.LIGHTCYAN_EX}  =- _=-=- -_=-=_,-"          |',
+        f"{Style.BRIGHT + Fore.LIGHTCYAN_EX} =- =- -=.--",
     ]
 
     for line in goodbye_art:
@@ -1384,21 +1225,17 @@ def exit():
     print(" ")
     time.sleep(2)
     print(
-        Style.BRIGHT + Fore.MAGENTA + "Not able to travel at the "
-        + "moment?" + Style.NORMAL
+        Style.BRIGHT + Fore.MAGENTA + "Not able to travel at the moment?" + Style.NORMAL
     )
     time.sleep(2)
     print(
         Style.BRIGHT + Fore.MAGENTA + emoji.emojize(
-            ":house_with_garden:  Perhaps a staycation is in "
-            + "order... :house_with_garden:") + Style.NORMAL
+            ":house_with_garden:  Perhaps a staycation is in order... :house_with_garden:") + Style.NORMAL
     )
     time.sleep(2)
     print(" ")
     print(Style.BRIGHT + Fore.LIGHTCYAN_EX + url + Style.NORMAL)
-    print(Style.BRIGHT + Fore.LIGHTCYAN_EX
-          + "(Type the url into your browser to get cozy staycation "
-          + "tips!)" + Style.NORMAL)
+    print(Style.BRIGHT + Fore.LIGHTCYAN_EX + "(Type the url into your browser to get cozy staycation tips!)" + Style.NORMAL)
     print(" ")
 
     # Wait for the user to press Enter to return to the main menu
@@ -1410,18 +1247,21 @@ def exit():
             + Style.NORMAL
         )
         if user_input == "":
-            clear_screen()
-            colored_instatrip()
-            print_colored_background()
-            display_menu()
             break
         else:
             print(
-                Fore.RED + "Invalid input! Please press Enter "
-                + "to return to the main menu." + Style.NORMAL
+                Fore.RED + "Invalid input! Please press Enter to return to the "
+                "main menu." + Style.NORMAL
             )
 
-    
+    # Clear the screen and restart the program
+    os.system("cls" if os.name == "nt" else "clear")
+    print("\n")
+    colored_instatrip()
+    print_colored_background()
+    display_menu()
+
+
 # Logic to Run The Program
 
 
@@ -1446,8 +1286,7 @@ def main():
         if not trip_details:
             continue
 
-        # Clear the screen and get the trip type and important factors
-        # from the user
+        # Clear the screen and get the trip type and important factors from the user
         os.system("cls" if os.name == "nt" else "clear")
         selected_trip_type = type_of_trip()
         
@@ -1463,28 +1302,23 @@ def main():
             print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
             print("")
             for city in initial_top_cities:
-                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":star: " + " " + city[0] 
-                + Style.NORMAL))
+                print(emoji.emojize(Style.BRIGHT + Fore.MAGENTA + ":star: " + " " + city[0] + Style.NORMAL))
 
-            # Ask the user if they are happy with the top cities and
-            # get their choice
+            # Ask the user if they are happy with the top cities and get their choice
             user_choice = user_choice_after_ranking(
                 initial_top_cities, SHEET, selected_trip_type, selected_factors
             )
 
-            # If the user chooses to start over, clear the screen and
-            # restart the program
+            # If the user chooses to start over, clear the screen and restart the program
             if user_choice == "start_over":
-                os.system("cls" if os.name == "nt" else "clear")
+                os.system("cls" if os.name == "nt" else "clear") 
                 print(
-                    Style.BRIGHT + Fore.MAGENTA + "Starting "
-                    + "over..." + Style.NORMAL
+                    Style.BRIGHT + Fore.MAGENTA + "Starting over..." + Style.NORMAL
                 )
                 time.sleep(1)
                 break
 
-            # If the user chooses to proceed with the top cities, display
-            # the flight information
+            # If the user chooses to proceed with the top cities, display the flight information
             elif user_choice is not None:
                 final_top_cities = user_choice
                 print(" ")
@@ -1503,9 +1337,7 @@ def main():
                 if isinstance(travel_date, list) and travel_date:
                     trip_details['departure_date'] = travel_date[0].strftime("%Y-%m-%d")
                 else:
-                    trip_details['departure_date'] = (
-                        travel_date.strftime("%Y-%m-%d")
-                    )
+                    trip_details['departure_date'] = travel_date.strftime("%Y-%m-%d")
 
                 # Find the cheapest flights for the top cities
                 flights_info = find_cheapest_flights(
@@ -1516,25 +1348,20 @@ def main():
 
                 # Clear the screen and display the flight information
                 os.system("cls" if os.name == "nt" else "clear")
-                print(Style.BRIGHT + Fore.MAGENTA + "\nCheapest Flights "
-                      + "Information:" + Style.NORMAL)
+                print(Style.BRIGHT + Fore.MAGENTA + "\nCheapest Flights Information:" + Style.NORMAL)
                 print(" ")
                 for flight in flights_info:
                     print(
-                        Style.BRIGHT + Fore.LIGHTCYAN_EX
-                        + f"{emoji.emojize(':airplane_departure:')}  "
-                        + f"{flight['city']}  "
-                        + f"{emoji.emojize(':airplane_departure:')} \n"
-                        + f"Flight Number: {flight['flight_number']},\n"
-                        + f"Price: {flight['price']} EUR\n"
-                        + Style.NORMAL
-                        )
+                        Style.BRIGHT + Fore.LIGHTCYAN_EX +
+                        f"{emoji.emojize(':airplane_departure:')}  {flight['city']}  {emoji.emojize(
+                            ':airplane_departure:')} \nFlight Number: {flight['flight_number']},\n"
+                        f"Price: {flight['price']} EUR\n" + Style.NORMAL
+                    )
                     print(" ")
 
                 # Ask the user if they want to see more flight information
                 if ask_for_flight_info(flights_info, trip_details):
-                    break
-
+                    break 
 
 if __name__ == "__main__":
     main()
