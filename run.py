@@ -150,17 +150,18 @@ def display_menu():
 
         if choice == "1":
             print("\n" * 100)
-            os.system("cls" if os.name == "nt" else "clear")
+            clear_screen()
             colored_instatrip()
             greeting()
             break
         elif choice == "2":
             print("\n" * 100)
-            os.system("cls" if os.name == "nt" else "clear")
+            clear_screen()
             read_about()
             break
         elif choice == "3":
             print(Fore.YELLOW + "Exiting the program...")
+            clear_screen()
             exit()
             break
         else:
@@ -684,11 +685,7 @@ def drumroll():
     """
     os.system("cls" if os.name == "nt" else "clear")
     # Clear the console
-    # clear_screen()
-
-    # Clear the console using blank lines just in case clear_screen()
-    # fails
-    # print("\n" * 100)
+    clear_screen()
 
     # Print the drumroll message
     print(
@@ -1142,7 +1139,7 @@ def ask_for_flight_info(flights_info, trip_details):
                 os.system("cls" if os.name == "nt" else "clear")
                 print(" ")
                 clear_screen()
-                print("\n" * 10)
+                print("\n" * 2)
                 print(
                     Style.BRIGHT
                     + Fore.YELLOW
@@ -1211,10 +1208,11 @@ def ask_for_flight_info(flights_info, trip_details):
                         + Style.NORMAL
                     )
                     if restart_choice == "":
+                        clear_screen()
                         return True  # Return True to indicate that the program
                         # should restart
                     elif restart_choice.lower() == "all":
-                        os.system("cls" if os.name == "nt" else "clear")
+                        clear_screen()
                         print(" ")
                         print(
                             Style.BRIGHT
