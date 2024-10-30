@@ -725,6 +725,7 @@ After implementing the above solutions and running all code through the necessar
 
 - I was unaware until I first deployed my project that Heroku would not allow link generation within the CLI terminal. I began the program with the intention of providing a booking link for users and had already written the function, ask_for_booking(), which was functional in my GitPod IDE. I had also included a link to a staycation article for the exit screen. All intended links have now been replaced with instructions to type the web address into the browser 
 
+- Please note that while my program initially passed the pep8 de-linter after much de-linting, it was necessary for me to reverse some of the formatting due to time constraints and broken code 
 <details>
   <summary>Creating a link worked in the IDE but not Heroku (click)</summary>
 

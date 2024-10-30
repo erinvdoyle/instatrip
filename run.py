@@ -1116,8 +1116,11 @@ def ask_for_flight_info(flights_info, trip_details):
     )
     for idx, flight in enumerate(flights_info, start=1):
         print(
-            Style.BRIGHT + Fore.CYAN + f"{idx}. {flight['city']}: Flight Number: "
-            f"{flight['flight_number']}, Price: {flight['price']} EUR" + Style.NORMAL
+            Style.BRIGHT
+            + Fore.CYAN
+            + f"{idx}. {flight['city']}: Flight Number: "
+            + f"{flight['flight_number']}, Price: {flight['price']} EUR"
+            + Style.NORMAL
         )
 
     print(Style.BRIGHT + Fore.CYAN + "4. See booking "
@@ -1128,7 +1131,7 @@ def ask_for_flight_info(flights_info, trip_details):
     print(Fore.YELLOW
           + "Please note: Occasionally, booking information may be "
           + "unavailable at the time of your request, and InstaTrip will be "
-          + "unable to provide booking instructions for that city."
+          + "unable to provide booking information for that city."
           )
 
     # Get the user's choice and handle any errors
@@ -1205,9 +1208,10 @@ def ask_for_flight_info(flights_info, trip_details):
                 )
                 print(" ")
                 print(
-                      Style.BRIGHT + Fore.YELLOW +
-                      f"Bon Voyage! {emoji.emojize(':airplane_departure:')}" +
-                      Style.NORMAL
+                       Style.BRIGHT
+                    + Fore.YELLOW
+                    + f"Bon Voyage! "
+                    + Style.NORMAL
                     )
 
                 while True:
@@ -1246,7 +1250,8 @@ def ask_for_flight_info(flights_info, trip_details):
                             )
                             print(
                                 Fore.YELLOW
-                                + f"Departure Date: {trip_details['departure_date']}"
+                                + f"Departure Date: "
+                                + f"{trip_details['departure_date']}"
                                 + Style.NORMAL
                             )
                             print(
@@ -1281,7 +1286,7 @@ def ask_for_flight_info(flights_info, trip_details):
                         print(
                             Style.BRIGHT + Fore.YELLOW +
                             "Bon Voyage! " +
-                             Style.NORMAL
+                            Style.NORMAL
                         )
 
                         while True:
@@ -1362,9 +1367,13 @@ def ask_for_flight_info(flights_info, trip_details):
                     + Style.NORMAL
                 )
                 print(" ")
-                print(Style.BRIGHT + Fore.YELLOW + f"Bon "
-                      + "Voyage!  {emoji.emojize(':airplane_departure:')}" +
-                      Style.NORMAL)
+                print(
+                    Style.BRIGHT
+                    + Fore.YELLOW
+                    + f"Bon "
+                    + "Voyage! "
+                    + Style.NORMAL
+                )
 
                 while True:
                     restart_choice = input(
@@ -1517,10 +1526,6 @@ def main():
 
             # Clear the console
             clear_screen()
-
-            # Clear the console using blank lines just in case clear_screen()
-            # fails
-            # print("\n" * 100)
 
             print(Style.BRIGHT + Fore.MAGENTA + "Your Curated Destinations:" + Style.NORMAL)
             print("")
